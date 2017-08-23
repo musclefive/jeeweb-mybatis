@@ -4,6 +4,9 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,9 @@ public class IndexController {
 	@Autowired
 	private IOaNotificationService oaNotificationService;
 
+	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, HttpServletRequest request, HttpServletResponse response) {
 		// 加载菜单
@@ -38,7 +44,14 @@ public class IndexController {
 		model.addAttribute("oaNotifications", oaNotifications);
 		// 加载模版
 		String theme = getTheme(request);
-		return "modules/sys/index/index-" + theme;
+		logger.debug("IndexController index() debug:" + "modules/sys/index/index-" + theme);
+		logger.error("IndexController index() error:" + "modules/sys/index/index-" + theme);
+		logger.info("IndexController index() info:" + "modules/sys/index/index-" + theme);
+		logger.warn("IndexController index() warn:" + "modules/sys/index/index-" + theme);
+
+		return "modules/sys/index/index-uadmin";
+
+//		return "modules/sys/index/index-" + theme;
 	}
 
 	/**
@@ -53,6 +66,8 @@ public class IndexController {
 	private String getTheme(HttpServletRequest request) {
 		// 默认风格
 		String theme = JeewebPropertiesUtil.getConfig("admin.default.theme");
+		logger.error("IndexController getTheme():" + theme);
+
 		if (StringUtils.isEmpty(theme)) {
 			theme = "uadmin";
 		}
