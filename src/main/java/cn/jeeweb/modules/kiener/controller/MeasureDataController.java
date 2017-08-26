@@ -2,10 +2,14 @@ package cn.jeeweb.modules.kiener.controller;
 
 import cn.jeeweb.core.common.controller.BaseCRUDController;
 import cn.jeeweb.core.model.AjaxJson;
+import cn.jeeweb.core.query.data.Queryable;
+import cn.jeeweb.core.query.wrapper.EntityWrapper;
 import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
 import cn.jeeweb.modules.sys.data.HySmsSetting;
 import cn.jeeweb.modules.sys.security.shiro.realm.UserRealm;
+import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
+import cn.jeeweb.modules.sys.utils.MultipleDataSource;
 import cn.jeeweb.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,4 +36,9 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
             return "cc";
     }
 
+    @Override
+    public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
+//        logger.info("preList Test");
+        DataSourceContextHolder.setDbType("dataSource1");
+    }
 }

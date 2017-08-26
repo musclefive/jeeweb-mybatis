@@ -1,5 +1,6 @@
 package cn.jeeweb.modules.kiener.entity;
 
+import cn.jeeweb.core.common.entity.AbstractEntity;
 import cn.jeeweb.core.common.entity.DataEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -10,7 +11,7 @@ import java.util.Date;
  */
 @TableName("MeasurementGeneralData")
 @SuppressWarnings("serial")
-public class MeasureData extends DataEntity<Long> {
+public class MeasureData extends AbstractEntity<Long> {
 
     @TableField(value = "ID")
     private Long id;
