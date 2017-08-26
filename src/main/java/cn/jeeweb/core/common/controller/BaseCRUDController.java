@@ -1,5 +1,7 @@
 package cn.jeeweb.core.common.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +36,7 @@ public abstract class BaseCRUDController<Entity extends AbstractEntity<ID>, ID e
 		extends BaseBeanController<Entity> {
 
 	protected ICommonService<Entity> commonService;
+	private static Logger logger = LoggerFactory.getLogger(BaseCRUDController.class);
 
 	/**
 	 * 设置基础service
@@ -61,9 +64,10 @@ public abstract class BaseCRUDController<Entity extends AbstractEntity<ID>, ID e
 	 * @param response
 	 */
 	public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("preList Test");
 	}
 
-	@RequiresMethodPermissions("list")
+//	@RequiresMethodPermissions("list")
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model, HttpServletRequest request, HttpServletResponse response) {
 		preList(model, request, response);

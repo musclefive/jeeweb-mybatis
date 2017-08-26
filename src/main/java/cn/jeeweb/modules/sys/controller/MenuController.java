@@ -9,7 +9,7 @@ import cn.jeeweb.modules.sys.entity.Menu;
 
 @Controller
 @RequestMapping("${admin.url.prefix}/sys/menu")
-@RequiresPathPermission("sys:menu")
+//@RequiresPathPermission("sys:menu")
 public class MenuController extends BaseTreeController<Menu, String> {
 
 }

@@ -59,6 +59,7 @@ public class BaseController {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(string);
+			logger.debug("printString " + string);
 		} catch (IOException e) {
 
 		}

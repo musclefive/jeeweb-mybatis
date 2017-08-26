@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
+
+	protected static Logger logger = LoggerFactory.getLogger(StringUtils.class);
 
 	// 首字母转小写
 	public static String toLowerCaseFirstOne(String s) {
@@ -62,6 +66,9 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
 	public static void printJson(HttpServletResponse response, String content) {
 		try {
+			logger.debug("printJson:" + content);
+			logger.warn("printJson:" + content);
+
 			response.reset();
 			response.setContentType("application/json");
 			response.setHeader("Cache-Control", "no-store");

@@ -49,9 +49,8 @@ public class IndexController {
 		logger.info("IndexController index() info:" + "modules/sys/index/index-" + theme);
 		logger.warn("IndexController index() warn:" + "modules/sys/index/index-" + theme);
 
-		return "modules/sys/index/index-uadmin";
-
-//		return "modules/sys/index/index-" + theme;
+//		return "modules/sys/index/index-uadmin";
+		return "modules/sys/index/index-" + theme;
 	}
 
 	/**

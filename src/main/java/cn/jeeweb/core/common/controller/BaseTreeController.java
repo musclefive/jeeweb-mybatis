@@ -1,5 +1,7 @@
 package cn.jeeweb.core.common.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +35,7 @@ public abstract class BaseTreeController<Entity extends AbstractEntity<ID> & Tre
 		extends BaseCRUDController<Entity, ID> {
 
 	ITreeCommonService<Entity, ID> treeCommonService;
+	private static Logger logger = LoggerFactory.getLogger(BaseTreeController.class);
 
 	@Autowired
 	public void treeCommonService(ITreeCommonService<Entity, ID> treeCommonService) {
@@ -76,6 +79,7 @@ public abstract class BaseTreeController<Entity extends AbstractEntity<ID> & Tre
 		SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
 		PageJson<Entity> pagejson = new PageJson<Entity>(treeNodeList);
 		String content = JSON.toJSONString(pagejson, filter);
+		logger.info("treeData:" + content);
 		StringUtils.printJson(response, content);
 	}
 
