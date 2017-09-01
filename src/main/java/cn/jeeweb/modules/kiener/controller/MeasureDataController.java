@@ -11,6 +11,8 @@ import cn.jeeweb.modules.sys.security.shiro.realm.UserRealm;
 import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
 import cn.jeeweb.modules.sys.utils.MultipleDataSource;
 import cn.jeeweb.modules.sys.utils.UserUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequiresPathPermission("kiener:measure")
 public class MeasureDataController extends BaseCRUDController<MeasureData, Long> {
 
+    private static Logger logger = LoggerFactory.getLogger(MeasureDataController.class);
+
     @RequestMapping(value = "/login")
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletRequest response, Model model) {
@@ -38,7 +42,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
-//        logger.info("preList Test");
+        logger.info("enter preAjaxList");
+        //多数据源配置、切换数据源
         DataSourceContextHolder.setDbType("dataSource1");
     }
 }

@@ -46,6 +46,9 @@ hs_err_pid*
 
 # Maven
 target/
+target/classes/
+target/generated-sources/
+target/jeeweb-mybatis
 log/
 
 ## Maven release plugin
