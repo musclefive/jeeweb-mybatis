@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="/WEB-INF/webpage/common/taglibs.jspf"%>
+<c:set var="currentMenu" value="${fns:getCurrentMenu()}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,16 @@
   <meta name="decorator" content="list"/>
 </head>
 <body title="<spring:message code="kiener.measure.title" />">
-<grid:grid id="measureDataGridId" url="${adminPath}/kiener/measure/ajaxList">
-	<grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
-    <grid:column label="kiener.measure.partnumber"  name="partNumber" width="200"  query="true"  condition="like"/>
-    <grid:column label="kiener.measure.station"  name="station"  width="200" />
-    <grid:column label="kiener.measure.variety"  name="variety" width="100"    />
-    <grid:column label="kiener.measure.date"  name="measureDate"   width="100" query="true" queryMode="date"/>
 
+<grid:grid id="measureDataGridId" url="${adminPath}/kiener/measure/ajaxList">
+    <grid:column label="kiener.measure.partnumber"  name="partNumber" width="150"  query="true"  condition="like"/>
+    <grid:column label="kiener.measure.station"  name="station"  width="100" />
+    <grid:column label="kiener.measure.variety"  name="variety" width="100"/>
+    <grid:column label="kiener.measure.date"  name="measureDate"   width="100" query="true"/>
+    <grid:column label="合格"  name="ok" width="100"    />
+    <grid:column label="重新加工"  name="reworkOk" width="100"    />
+
+    <grid:column label="结束时间"  name="measureDateEnd"   width="150" query="true" hidden="true"/>
 	<grid:toolbar  function="search"  />
 	<grid:toolbar  function="reset" />
 </grid:grid>
