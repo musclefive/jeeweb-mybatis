@@ -9,15 +9,14 @@
 </head>
 <body title="<spring:message code="kiener.measure.title" />">
 
-<grid:grid id="measureDataGridId" url="${adminPath}/kiener/measure/ajaxList">
+<grid:grid id="measureDataGridId" url="${adminPath}/kiener/measure/ajaxList_measure">
     <grid:column label="kiener.measure.partnumber"  name="partNumber" width="150"  query="true"  condition="like"/>
     <grid:column label="kiener.measure.station"  name="station"  width="100" />
     <grid:column label="kiener.measure.variety"  name="variety" width="100"/>
     <grid:column label="kiener.measure.date"  name="measureDate"   width="100" query="true"/>
-    <grid:column label="合格"  name="ok" width="100"    />
-    <grid:column label="重新加工"  name="reworkOk" width="100"    />
+    <grid:column label="结束时间"  name="nextDate"   width="150" query="true"/>
+    <grid:column label="换型时间"  name="takeTime" width="100"    />
 
-    <grid:column label="结束时间"  name="measureDateEnd"   width="150" query="true" hidden="true"/>
 	<grid:toolbar  function="search"  />
 	<grid:toolbar  function="reset" />
 </grid:grid>

@@ -43,6 +43,11 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(value = "Nok")
     private Boolean nOk;
 
+    @TableField(exist = false)
+    private Date nextDate;
+
+    @TableField(exist = false)
+    private Long takeTime;
 
     @Override
     public Long getId() {
@@ -123,5 +128,21 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setnOk(Boolean nOk) {
         this.nOk = nOk;
+    }
+
+    public Date getNextDate() {
+        return nextDate;
+    }
+
+    public void setNextDate(Date nextDate) {
+        this.nextDate = nextDate;
+    }
+
+    public Long getTakeTime() {
+        return takeTime;
+    }
+
+    public void setTakeTime(Long takeTime) {
+        this.takeTime = takeTime;
     }
 }
