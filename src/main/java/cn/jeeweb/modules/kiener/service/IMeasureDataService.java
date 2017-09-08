@@ -17,4 +17,6 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public Page<MeasureData> listWithSQL(Queryable queryable, Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> queryOutput(Queryable queryable, Wrapper<MeasureData> wrapper);
+
 }

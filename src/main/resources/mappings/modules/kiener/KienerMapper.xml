@@ -47,4 +47,13 @@
         where B.Date is not null
     </select>
 
+
+    <select id="queryRealTimeOutput" resultType="MeasureData">
+        SELECT  Count(*) as "output", Station ,Variety
+        FROM MeasurementGeneralData
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by Station, Variety order by Station, Variety
+    </select>
 </mapper>

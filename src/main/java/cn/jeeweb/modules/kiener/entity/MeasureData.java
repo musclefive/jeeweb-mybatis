@@ -49,6 +49,10 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private Long takeTime;
 
+    /*output for production*/
+    @TableField(exist = false)
+    private String output;
+
     @Override
     public Long getId() {
         return id;
@@ -144,5 +148,13 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setTakeTime(Long takeTime) {
         this.takeTime = takeTime;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+
+    public void setOutput(String output) {
+        this.output = output;
     }
 }

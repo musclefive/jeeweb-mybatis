@@ -33,6 +33,13 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
         return records;
     }
 
+    @Override
+    public List<MeasureData> queryOutput(Queryable queryable, Wrapper<MeasureData> wrapper) {
+//        wrapper.eq("1", "1");
+        List<MeasureData> records = baseMapper.queryRealTimeOutput(queryable, wrapper);
+        return records;
+    }
+
     /*
     *
     * */

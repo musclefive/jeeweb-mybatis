@@ -35,6 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -73,6 +74,40 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         mStation = station;
         logger.info("preAjaxList param:" + mStation);
         return display("list");
+    }
+
+    /*
+    * query the real time output production from startDate to endDate
+    * change the datasource if needed
+    * return json object with no pages
+    * */
+    @RequestMapping(value = "ajaxList_output", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_ouput(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        DataSourceContextHolder.setDbType("dataSource1");
+//        String startDate = request.getParameter("measureDate");
+//        String endDate = request.getParameter("measureDateEnd");
+        String startDate = "2017-09-01 06:30";
+        String endDate = "2017-09-02 06:30";
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+
+//        propertyPreFilterable.addQueryProperty("id");
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("output", "station", "variety");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryOutput(queryable,entityWrapper);
+
+        String content = JSON.toJSONString(record, filter);
+        StringUtils.printJson(response, content);
     }
 
     @Override
