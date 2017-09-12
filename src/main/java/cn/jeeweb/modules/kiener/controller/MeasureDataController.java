@@ -67,6 +67,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 //        logger.info("preList Test");
 //    }
 
+
+
     @RequestMapping(value = "/list/{station}")
     public String list(@PathVariable String station,Model model, HttpServletRequest request, HttpServletResponse response) {
         //enter list to get station parm in the url and return the list view
@@ -74,6 +76,14 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         mStation = station;
         logger.info("preAjaxList param:" + mStation);
         return display("list");
+    }
+
+    @RequestMapping(value = "/output")
+    public String showOutput(HttpServletRequest request, HttpServletRequest response, Model model) {
+        //enter list to get station parm in the url and return the list view
+        logger.info("MeasureDataController showOutput Method:" + display("show") );
+        return "modules/kiener/production/show";
+//        return "modules/sys/index/main";
     }
 
     /*
