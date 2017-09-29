@@ -49,11 +49,11 @@
 
 
     <select id="queryRealTimeOutput" resultType="MeasureData">
-        SELECT  Count(*) as "output", Station ,Variety
+        SELECT  Count(*) as "output", Station ,Variety, MAX(Date) as latest
         FROM MeasurementGeneralData
         <where>
             ${ew.sqlSegment}
         </where>
-        group by Station, Variety order by Station, Variety
+        group by Station, Variety order by Station, latest desc
     </select>
 </mapper>

@@ -165,6 +165,8 @@
 			<mvc:exclude-mapping path="/static/**" />
 			<!-- 需排除拦截的地址 -->
 			<mvc:exclude-mapping path="/upload/**" />
+			<mvc:exclude-mapping path="/webpage/modules/kiener/production/production.jsp" />
+
 			<bean class="cn.jeeweb.core.security.shiro.interceptor.PermissionInterceptorAdapter" />
 		</mvc:interceptor>
 	</mvc:interceptors>

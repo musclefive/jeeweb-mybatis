@@ -35,6 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,6 +47,11 @@ import java.util.List;
 public class MeasureDataController extends BaseCRUDController<MeasureData, Long> {
 
     private static Logger logger = LoggerFactory.getLogger(MeasureDataController.class);
+
+//  define the filtered station as requirements
+    public final static List filteredStation = Arrays.asList("45", "140", "295","320","335","480",
+        "540","550","670","700","730","770","960","990","1020","1030","1050",
+        "1080","1190","1360","1410","1530","1560");
     @Autowired
     private IMeasureDataService measureDataService;
 
@@ -82,7 +88,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     public String showOutput(HttpServletRequest request, HttpServletRequest response, Model model) {
         //enter list to get station parm in the url and return the list view
         logger.info("MeasureDataController showOutput Method:" + display("show") );
-        return "modules/kiener/production/show";
+//        return "modules/kiener/production/show";
+        return "modules/kiener/production/production";
 //        return "modules/sys/index/main";
     }
 
@@ -97,15 +104,17 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
 
         DataSourceContextHolder.setDbType("dataSource1");
-//        String startDate = request.getParameter("measureDate");
-//        String endDate = request.getParameter("measureDateEnd");
-        String startDate = "2017-09-01 06:30";
-        String endDate = "2017-09-02 06:30";
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("measureDateEnd");
+//        String startDate = "2017-09-01 06:30";
+//        String endDate = "2017-09-02 06:30";
         if(startDate != null && endDate != null ){
             if(!startDate.equals("") && !startDate.equals("")){
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
+        entityWrapper.in("station",filteredStation);
+        entityWrapper.eq("Ok", true);
 
 //        propertyPreFilterable.addQueryProperty("id");
         //output json with query conditions
