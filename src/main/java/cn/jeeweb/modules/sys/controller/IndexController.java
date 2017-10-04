@@ -36,12 +36,12 @@ public class IndexController {
 		// 加载菜单
 		model.addAttribute("menus", UserUtils.getMenuList());
 		// 加载通知公告
-		int oaNotificationCount = oaNotificationService
-				.selectCount(new EntityWrapper<OaNotification>(OaNotification.class).eq("status", "1"));
-		List<OaNotification> oaNotifications = oaNotificationService
-				.selectList(new EntityWrapper<OaNotification>(OaNotification.class).eq("status", "1"));
-		model.addAttribute("oaNotificationCount", oaNotificationCount);
-		model.addAttribute("oaNotifications", oaNotifications);
+//		int oaNotificationCount = oaNotificationService
+//				.selectCount(new EntityWrapper<OaNotification>(OaNotification.class).eq("status", "1"));
+//		List<OaNotification> oaNotifications = oaNotificationService
+//				.selectList(new EntityWrapper<OaNotification>(OaNotification.class).eq("status", "1"));
+//		model.addAttribute("oaNotificationCount", oaNotificationCount);
+//		model.addAttribute("oaNotifications", oaNotifications);
 		// 加载模版
 		String theme = getTheme(request);
 		logger.debug("IndexController index() debug:" + "modules/sys/index/index-" + theme);

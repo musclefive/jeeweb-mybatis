@@ -12,8 +12,16 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/ace/fonts/glyphicons-halflings-regular.ttf" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/ace/fonts/glyphicons-halflings-regular.woff" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/ace/fonts/opensans.ttf" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/ace/js/excanvas.min.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets/js/prototype.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/blank_MoMo.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/list.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/prototype.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/blank_MoMo.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/fonts/opensans.ttf" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/momo/blank_MoMo.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/upload/blank_MoMo.html" charset="GBK" />
   </component>
 </project>

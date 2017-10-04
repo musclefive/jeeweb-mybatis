@@ -49,9 +49,10 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     private static Logger logger = LoggerFactory.getLogger(MeasureDataController.class);
 
 //  define the filtered station as requirements
-    public final static List filteredStation = Arrays.asList("45", "140", "295","320","335","480",
-        "540","550","670","700","730","770","960","990","1020","1030","1050",
-        "1080","1190","1360","1410","1530","1560");
+    public final static List kltFilteredStation = Arrays.asList("10", "140", "150", "210", "540", "670",
+        "770", "810", "950", "1090", "1310", "1610", "1620");
+    public final static List gltFilteredStation = Arrays.asList("10", "300", "320","335","400","480",
+            "540","810","990","960","1030","1050","1190","1350","1530","1560","1620");
     @Autowired
     private IMeasureDataService measureDataService;
 
@@ -88,9 +89,10 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     public String showOutput(HttpServletRequest request, HttpServletRequest response, Model model) {
         //enter list to get station parm in the url and return the list view
         logger.info("MeasureDataController showOutput Method:" + display("show") );
-//        return "modules/kiener/production/show";
-        return "modules/kiener/production/production";
-//        return "modules/sys/index/main";
+//        older version of output show page
+//        return "modules/kiener/production/production";
+        return "modules/kiener/production/output_monitor";
+
     }
 
     /*
@@ -106,6 +108,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         DataSourceContextHolder.setDbType("dataSource1");
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("measureDateEnd");
+        String type = request.getParameter("type");
+
 //        String startDate = "2017-09-01 06:30";
 //        String endDate = "2017-09-02 06:30";
         if(startDate != null && endDate != null ){
@@ -113,9 +117,13 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
-        entityWrapper.in("station",filteredStation);
+        if( type.equals("klt")){
+            entityWrapper.in("station",kltFilteredStation);
+        }
+        else{
+            entityWrapper.in("station",gltFilteredStation);
+        }
         entityWrapper.eq("Ok", true);
-
 //        propertyPreFilterable.addQueryProperty("id");
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("output", "station", "variety");

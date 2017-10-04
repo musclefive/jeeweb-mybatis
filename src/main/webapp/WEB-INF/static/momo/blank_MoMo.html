@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Real-Time Production</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />-->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="../assets/css/ace.min.css" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="../assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="../assets/js/html5shiv.min.js"></script>
+		<script src="../assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default">
+
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							Ace Admin
+						</small>
+					</a>
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<div class="main-content">
+				<!-- #section:basics/content.breadcrumbs -->
+				<div class="breadcrumbs" id="breadcrumbs">
+
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="#">Real-Time Production Output</a>
+						</li>
+					</ul><!-- /.breadcrumb -->
+
+					<!-- #section:basics/content.searchbox -->
+					<!--<div class="nav-search" id="nav-search">-->
+						<!--<form class="form-search">-->
+							<!--<span class="input-icon">-->
+								<!--<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />-->
+								<!--<i class="ace-icon fa fa-search nav-search-icon"></i>-->
+							<!--</span>-->
+						<!--</form>-->
+					<!--</div>&lt;!&ndash; /.nav-search &ndash;&gt;-->
+
+					<!-- /section:basics/content.searchbox -->
+				</div>
+
+				<!-- /section:basics/content.breadcrumbs -->
+				<div class="page-content">
+
+					<div class="page-content-area">
+						<div class="row">
+							<label class="pull-left inline">
+								<small class="muted smaller-90">是否开启实时计数:</small>
+
+								<!--<input id="id-button-borders" checked="checked" type="checkbox" class="ace ace-switch ace-switch-5" />-->
+								<input id="id-button-borders"  type="checkbox" class="ace ace-switch ace-switch-5" />
+								<span class="lbl middle"></span>
+							</label>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="space-6"></div>
+
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M670</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m670_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M540</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m540_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M210</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m210_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M150</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m150_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M140</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m140_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div><!-- /.row -->
+
+								<div class="space-10" ></div>
+								<div class="row">
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M770</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m770_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1 col-sm-offset-10" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M010</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m010_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="space-10"></div>
+								<div class="row">
+									<div class="space-6"></div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M810</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m810_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M950</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m950_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M1090</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1090_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M1310</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1310_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M1610</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1610_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h2 class="widget-title smaller">M1620</h2>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1620_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div><!-- /.row -->
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content-area -->
+
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">Ace</span>
+							Stone Info &copy; 2015-2016
+						</span>
+
+						&nbsp; &nbsp;
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='../assets/js/jquery1x.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="../assets/js/prototype.js"></script>
+
+		<!-- ace scripts -->
+		<script src="../assets/js/ace-elements.min.js"></script>
+		<script src="../assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+
+			/*initial the page method
+			 * get the real output from ajax method*/
+
+			$(document).ready(function() {
+				var sh; // Interval
+				var startDate = "2017-09-01 06:30";
+				var endDate = "2017-09-01 09:00";
+				//initial value
+				$('#id-button-borders').on('click', function(){
+					$('#default-buttons .btn').toggleClass('no-border');
+					console.info("checked status:" + this.checked);
+					if(this.checked == false){
+						//stop the counting
+						clearInterval(sh);
+						console.info("stop the interval");
+					}
+					if(this.checked == true){
+						//start the counting
+						sh = setInterval(realtimeOutput, 6000);
+						console.info("Prepare to start the interval ");
+					}
+				});
+
+				/*TO-DO
+				* if in the rest time or no production date , then automatically
+				* close the interval
+				* */
+
+
+
+				var realtimeOutput = function (){
+					endDate = new Date(new Date(endDate).getTime() + 300000).format("yyyy-MM-dd hh:mm:ss");
+					console.info("query time from :" + startDate + " to " + endDate + " checked status: " +
+							$('#id-button-borders').attr('checked') );
+
+					$("#m010_type_1").children().first().html("");
+					$("#m010_type_1").children().last().html("");
+					$("#m140_type_1").children().first().html("");
+					$("#m140_type_1").children().last().html("");
+					$("#m150_type_1").children().first().html("");
+					$("#m150_type_1").children().last().html("");
+					$("#m210_type_1").children().first().html("");
+					$("#m210_type_1").children().last().html("");
+					$("#m540_type_1").children().first().html("");
+					$("#m540_type_1").children().last().html("");
+					$("#m670_type_1").children().first().html("");
+					$("#m670_type_1").children().last().html("");
+					$("#m770_type_1").children().first().html("");
+					$("#m770_type_1").children().last().html("");
+					$("#m810_type_1").children().first().html("");
+					$("#m810_type_1").children().last().html("");
+					$("#m950_type_1").children().first().html("");
+					$("#m950_type_1").children().last().html("");
+					$("#m1090_type_1").children().first().html("");
+					$("#m1090_type_1").children().last().html("");
+					$("#m1310_type_1").children().first().html("");
+					$("#m1310_type_1").children().last().html("");
+					$("#m1610_type_1").children().first().html("");
+					$("#m1610_type_1").children().last().html("");
+					$("#m1620_type_1").children().first().html("");
+					$("#m1620_type_1").children().last().html("");
+
+					var m010_typeNum = 0;
+					var m140_typeNum = 0;
+					var m150_typeNum = 0;
+					var m210_typeNum = 0;
+					var m540_typeNum = 0;
+					var m670_typeNum = 0;
+					var m770_typeNum = 0;
+					var m810_typeNum = 0;
+					var m950_typeNum = 0;
+					var m1090_typeNum = 0;
+					var m1310_typeNum = 0;
+					var m1610_typeNum = 0;
+					var m1620_typeNum = 0;
+
+					$.ajax({
+						type : "post",
+//						url : "${adminPath}/kiener/measure/ajaxList_output",
+						url : "../../admin/kiener/measure/ajaxList_output",
+						dataType : "json",
+						data: {"measureDate":startDate,"measureDateEnd":endDate, "type":"klt"},
+						success : function(data) {
+							//遍历所有json数据，将相同station的数据放入到一个数组中
+//                    [{"output":"1062","station":45,"variety":"05710"},{"output":"5","station":45,"variety":"05776"}]
+							for(var p in data){
+//                        console.info("output:" + data[p].output + " type:" + typeof(data[p].output)+
+//                                " station: " + data[p].station + " type: " + typeof(data[p].station) +
+//                                " variety: " + data[p].variety);
+								if(data[p].station == 10 ){
+									m010_typeNum = m010_typeNum + 1;
+									if (m010_typeNum == 1){
+										//write in the panel with the current production type, identified with the latest production date
+										$("#m010_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m010_type_1").children().last().append(data[p].output);
+									}
+									if (m010_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m010_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m010_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m010_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m010_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m010_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 140 ){
+									m140_typeNum = m140_typeNum + 1;
+									if (m140_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m140_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m140_type_1").children().last().append(data[p].output);
+									}
+									if (m140_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m140_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m140_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m140_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m140_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m140_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 150 ){
+									m150_typeNum = m150_typeNum + 1;
+									if (m150_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m150_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m150_type_1").children().last().append(data[p].output);
+									}
+									if (m150_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m150_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m150_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m150_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m150_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m150_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 210 ){
+									m210_typeNum = m210_typeNum + 1;
+									if (m210_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m210_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m210_type_1").children().last().append(data[p].output);
+									}
+									if (m210_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m210_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m210_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m210_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m210_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m210_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 540 ){
+									m540_typeNum = m540_typeNum + 1;
+									if (m540_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m540_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m540_type_1").children().last().append(data[p].output);
+									}
+									if (m540_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m540_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m540_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m540_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m540_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m540_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 670 ){
+									m670_typeNum = m670_typeNum + 1;
+									if (m670_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m670_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m670_type_1").children().last().append(data[p].output);
+									}
+									if (m670_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m670_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m670_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m670_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m670_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m670_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 770 ){
+									m770_typeNum = m770_typeNum + 1;
+									if (m770_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m770_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m770_type_1").children().last().append(data[p].output);
+									}
+									if (m770_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m770_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m770_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m770_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m770_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m770_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 810 ){
+									m810_typeNum = m810_typeNum + 1;
+									if (m810_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m810_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m810_type_1").children().last().append(data[p].output);
+									}
+									if (m810_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m810_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m810_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m810_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m810_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m810_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 950 ){
+									m950_typeNum = m950_typeNum + 1;
+									if (m950_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m950_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m950_type_1").children().last().append(data[p].output);
+									}
+									if (m950_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m950_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m950_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m950_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m950_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m950_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 1090 ){
+									m1090_typeNum = m1090_typeNum + 1;
+									if (m1090_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m1090_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m1090_type_1").children().last().append(data[p].output);
+									}
+									if (m1090_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m1090_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m1090_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m1090_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m1090_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m1090_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 1310 ){
+									m1310_typeNum = m1310_typeNum + 1;
+									if (m1310_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m1310_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m1310_type_1").children().last().append(data[p].output);
+									}
+									if (m1310_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m1310_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m1310_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m1310_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m1310_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m1310_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 1610 ){
+									m1610_typeNum = m1610_typeNum + 1;
+									if (m1610_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m1610_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m1610_type_1").children().last().append(data[p].output);
+									}
+									if (m1610_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m1610_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m1610_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m1610_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m1610_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m1610_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+								if(data[p].station == 1620 ){
+									m1620_typeNum = m1620_typeNum + 1;
+									if (m1620_typeNum == 1){
+										//the current production type, identitied with the production date
+										$("#m1620_type_1").children().first().append(data[p].variety.substr(1));
+										$("#m1620_type_1").children().last().append(data[p].output);
+									}
+									if (m1620_typeNum == 2){
+										//change the color to indicte there is a type change
+										$("#m1620_type_1").parent().parent().parent().removeClass("widget-color-blue3").addClass("widget-color-red");
+										$("#m1620_type_1").removeClass("alert-info").addClass("alert-danger");
+									}
+									if (m1620_typeNum == 3){
+										//change the color to indicte there is a type change
+										$("#m1620_type_1").parent().parent().parent().removeClass("widget-color-red").addClass("widget-color-green");
+										$("#m1620_type_1").removeClass("alert-danger").addClass("alert-success");
+									}
+								}
+							}
+						}
+					});
+					return realtimeOutput;
+
+				};
+				realtimeOutput();
+			});
+
+
+		</script>
+	</body>
+</html>
