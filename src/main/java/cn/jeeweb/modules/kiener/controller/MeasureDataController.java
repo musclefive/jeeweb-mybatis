@@ -74,8 +74,6 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 //        logger.info("preList Test");
 //    }
 
-
-
     @RequestMapping(value = "/list/{station}")
     public String list(@PathVariable String station,Model model, HttpServletRequest request, HttpServletResponse response) {
         //enter list to get station parm in the url and return the list view
@@ -106,6 +104,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
 
         DataSourceContextHolder.setDbType("dataSource1");
+//      change to the production enviroment
+//        DataSourceContextHolder.setDbType("dataSource_production");
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("measureDateEnd");
         String type = request.getParameter("type");

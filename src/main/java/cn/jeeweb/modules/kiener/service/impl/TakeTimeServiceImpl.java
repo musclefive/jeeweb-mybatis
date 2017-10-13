@@ -26,5 +26,14 @@ import java.util.List;
 @Service("takeTimeService")
 public class TakeTimeServiceImpl extends CommonServiceImpl<TakeTimeMapper,TakeTime> implements ITakeTimeService{
 
+    /*
+    * select all counts with no pages
+    * */
+    @Override
+    public List<TakeTime> selectTakeTimePage(Queryable queryable, Wrapper<TakeTime> wrapper) {
+//        wrapper.eq("1", "1");
+        List<TakeTime> records = baseMapper.selectTakeTime(queryable, wrapper);
+        return records;
+    }
 
 }

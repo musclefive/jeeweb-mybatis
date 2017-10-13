@@ -14,21 +14,12 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/ace/fonts/opensans.ttf" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets/js/prototype.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/b_image.svg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/b_image_1.svg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/b_image_2.svg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/b_image_3.svg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/b_image_3.svg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/bg_1.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/bg_2.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/blank_MoMo.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/datatable.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/kiener.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/list.jsp" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/assets" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/prototype.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/blank_MoMo.html" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/fonts/opensans.ttf" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/momo/blank_MoMo.html" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/upload/blank_MoMo.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/listTable.jsp" charset="GBK" />
   </component>
 </project>

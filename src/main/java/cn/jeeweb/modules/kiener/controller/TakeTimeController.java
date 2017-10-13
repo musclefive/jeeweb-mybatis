@@ -11,8 +11,7 @@ import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
 import cn.jeeweb.core.utils.StringUtils;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
 import cn.jeeweb.modules.kiener.entity.TakeTime;
-import cn.jeeweb.modules.kiener.service.IMeasureDataService;
-import cn.jeeweb.modules.sys.service.IAttachmentService;
+import cn.jeeweb.modules.kiener.service.ITakeTimeService;
 import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeFilter;
@@ -24,11 +23,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -39,6 +38,9 @@ import java.io.IOException;
 public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
     private static Logger logger = LoggerFactory.getLogger(TakeTimeController.class);
+
+    @Autowired
+    private ITakeTimeService takeTimeService;
 
     private String mStation = "";
 
@@ -52,10 +54,30 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     }
 
     @Override
+    public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Enter TakeTimeController preList");
+//       change to the default datasource
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+    @RequestMapping(value = "/listTable/{station}")
+    public String listTable(@PathVariable String station,Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter list to get station parm in the url and return the list view
+        preList(model, request, response);
+        mStation = station;
+        logger.info("listTable param:" + mStation);
+        return display("listTable");
+    }
+
+
+
+    @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<TakeTime> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("endDate");
         String partNumber = request.getParameter("partNumber");
+
+        DataSourceContextHolder.setDbType("dataSource");
 
         logger.info("TakeTimeController preAjaxList param:" + mStation + " startDate: " + startDate +
                 " endDate: " + endDate + " partNumber: " + partNumber);
@@ -69,4 +91,25 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
             }
         }
     }
+
+    @RequestMapping(value = "ajaxList_takttime", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_ouput(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("id","partNumber","station", "currentType", "nextType",
+                "measureDate","endDate","takeTime","changeType");
+
+        // ‘§¥¶¿Ì
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectTakeTimePage(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
+
+
 }
