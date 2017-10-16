@@ -53,6 +53,11 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         "770", "810", "950", "1090", "1310", "1610", "1620");
     public final static List gltFilteredStation = Arrays.asList("10", "300", "320","335","400","480",
             "540","810","990","960","1030","1050","1190","1350","1530","1560","1620");
+
+    public final static List filterStation = Arrays.asList("10", "140", "150", "210", "300", "320" , "335" ,
+            "400", "480", "540", "670", "770", "810", "820", "950", "960", "990", "1030", "1050", "1090", "1190",
+            "1310", "1350", "1530", "1560", "1610", "1650");
+
     @Autowired
     private IMeasureDataService measureDataService;
 
@@ -117,12 +122,13 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
-        if( type.equals("klt")){
-            entityWrapper.in("station",kltFilteredStation);
-        }
-        else{
-            entityWrapper.in("station",gltFilteredStation);
-        }
+//        if( type.equals("klt")){
+//            entityWrapper.in("station",kltFilteredStation);
+//        }
+//        else{
+//            entityWrapper.in("station",gltFilteredStation);
+//        }
+        entityWrapper.in("station",filterStation);
         entityWrapper.eq("Ok", true);
 //        propertyPreFilterable.addQueryProperty("id");
         //output json with query conditions

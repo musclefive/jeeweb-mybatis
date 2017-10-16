@@ -35,4 +35,14 @@
         </where>
     </select>
 
+    <select id="selectAvgTakeTime" resultType="TakeTime">
+        select
+        station, AVG( cast(takeTime as int)) as "avgTakTime"
+        from MeasureDataTakeTime
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by station order by station
+    </select>
+
 </mapper>

@@ -41,6 +41,10 @@ public class TakeTime extends AbstractEntity<Long> {
     @TableField(value = "changeType")
     private Long changeType;
 
+    /*output for query*/
+    @TableField(exist = false)
+    private String avgTakTime;
+
     @Override
     public Long getId() {
         return id;
@@ -113,5 +117,13 @@ public class TakeTime extends AbstractEntity<Long> {
 
     public void setChangeType(Long changeType) {
         this.changeType = changeType;
+    }
+
+    public String getAvgTakTime() {
+        return avgTakTime;
+    }
+
+    public void setAvgTakTime(String avgTakTime) {
+        this.avgTakTime = avgTakTime;
     }
 }

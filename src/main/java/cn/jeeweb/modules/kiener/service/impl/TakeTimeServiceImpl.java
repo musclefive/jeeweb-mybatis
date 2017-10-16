@@ -36,4 +36,12 @@ public class TakeTimeServiceImpl extends CommonServiceImpl<TakeTimeMapper,TakeTi
         return records;
     }
 
+    /*
+    * select all counts with no pages
+    * */
+    @Override
+    public List<TakeTime> selectAvgTakeTimePage(Queryable queryable, Wrapper<TakeTime> wrapper) {
+        List<TakeTime> records = baseMapper.selectAvgTakeTime(queryable, wrapper);
+        return records;
+    }
 }

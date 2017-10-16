@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,11 +54,15 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         return display("list");
     }
 
-    @Override
-    public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
-        logger.info("Enter TakeTimeController preList");
-//       change to the default datasource
-        DataSourceContextHolder.setDbType("dataSource");
+    /*
+    * the average taktTime for all key staions
+    * show in a chart.
+    * */
+    @RequestMapping(value = "/avg")
+    public String avgTakTime(HttpServletRequest request, HttpServletResponse response, Model model) {
+        //enter list to get station parm in the url and return the list view
+        preList(model, request, response);
+        return display("avgTakTime");
     }
 
     @RequestMapping(value = "/listTable/{station}")
@@ -69,7 +74,12 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         return display("listTable");
     }
 
-
+    @Override
+    public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Enter TakeTimeController preList");
+//       change to the default datasource
+        DataSourceContextHolder.setDbType("dataSource");
+    }
 
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<TakeTime> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
@@ -99,13 +109,57 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         preAjaxList(queryable, entityWrapper, request, response);
 
         //output json with query conditions
-        propertyPreFilterable.addQueryProperty("id","partNumber","station", "currentType", "nextType",
-                "measureDate","endDate","takeTime","changeType");
+        propertyPreFilterable.addQueryProperty("id", "partNumber", "station", "currentType", "nextType",
+                "measureDate", "endDate", "takeTime", "changeType");
 
-        // ‘§¥¶¿Ì
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
         List<TakeTime> record = takeTimeService.selectTakeTimePage(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
+
+
+    @RequestMapping(value = "ajaxList_avgTakttime", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_avgTakTime(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("endDate");
+//        String partNumber = request.getParameter("partNumber");
+        String currentType = request.getParameter("currentType");
+
+//        startDate =  "2017-08-25 06:30";
+//        endDate = "2017-08-26 06:30";
+//        currentType = "05710";
+
+        DataSourceContextHolder.setDbType("dataSource");
+
+        logger.info("TakeTimeController ajaxList_avgTakTime param:" + mStation + " startDate: " + startDate +
+                " endDate: " + endDate + " currentType: " + currentType);
+
+        //add condition select all the Ok parts
+        entityWrapper.eq("currentType", currentType);
+        entityWrapper.lt("cast(takeTime as int)", 90);
+//        entityWrapper.lt("takeTime", 90);
+
+
+        //customize search condition; will improve later
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("station","avgTakTime");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectAvgTakeTimePage(queryable, entityWrapper);
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);

@@ -15,5 +15,6 @@ public interface TakeTimeMapper extends BaseMapper<TakeTime> {
 
     List<TakeTime> selectTakeTime(Queryable queryable, @Param("ew") Wrapper<TakeTime> wrapper);
 
+    List<TakeTime> selectAvgTakeTime(Queryable queryable, @Param("ew") Wrapper<TakeTime> wrapper);
 
 }
