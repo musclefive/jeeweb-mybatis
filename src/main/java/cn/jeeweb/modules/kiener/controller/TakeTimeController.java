@@ -44,6 +44,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     private ITakeTimeService takeTimeService;
 
     private String mStation = "";
+    private String mPartNumber = "";
 
     @RequestMapping(value = "/list/{station}")
     public String list(@PathVariable String station,Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -52,6 +53,15 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         mStation = station;
         logger.info("preAjaxList param:" + mStation);
         return display("list");
+    }
+
+    @RequestMapping(value = "/single/{partNumber}")
+    public String listSingle(@PathVariable String partNumber,Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter list to get station parm in the url and return the list view
+        preList(model, request, response);
+        mPartNumber = partNumber;
+        logger.info("preAjaxList mPartNumber param:" + mPartNumber);
+        return display("singleEngine");
     }
 
     /*
@@ -102,10 +112,15 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         }
     }
 
+    /*
+    * query takt time list for a datatable
+    *
+    * */
     @RequestMapping(value = "ajaxList_takttime", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_ouput(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
         EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+        //input the start and end param
         preAjaxList(queryable, entityWrapper, request, response);
 
         //output json with query conditions
@@ -120,7 +135,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         StringUtils.printJson(response, content);
     }
 
-
+    /*
+    * query the avgerage takt time for all station in one day
+    * */
     @RequestMapping(value = "ajaxList_avgTakttime", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_avgTakTime(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
@@ -165,5 +182,27 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         StringUtils.printJson(response, content);
     }
 
+    /*
+    * query one single engine to show in a chart
+    * */
+    @RequestMapping(value = "ajaxList_singleEngine", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_singleEngine(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                     HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+
+
+        DataSourceContextHolder.setDbType("dataSource");
+        entityWrapper.eq("partNumber", mPartNumber);
+        entityWrapper.orderBy("station");
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("station","takeTime","partNumber","currentType");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectTakeTimePage(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
 
 }
