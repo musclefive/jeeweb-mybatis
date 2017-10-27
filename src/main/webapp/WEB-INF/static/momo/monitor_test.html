@@ -299,7 +299,7 @@
 										</div>
 									</div>
 									<div class="col-sm-1 col-sm-offset-1" style="padding-left:1px;padding-right: 1px">
-										<div><br/><br/><br/><br/><br/></div>
+										<div><br/><br/><br/></div>
 										<div class="widget-box widget-color-blue3">
 											<div class="widget-header align-center">
 												<h2 class="widget-title smaller">M990</h2>
@@ -319,6 +319,48 @@
 									</div>
 									<!--show today's plan and output-->
 									<div class="col-sm-4 col-sm-offset-1">
+										<!--<div class="widget-box widget-color-blue">-->
+											<!--&lt;!&ndash; #section:custom/widget-box.options &ndash;&gt;-->
+											<!--<div class="widget-header align-center">-->
+												<!--<h3 class="widget-title bigger lighter" id="currentTime">-->
+													<!--&lt;!&ndash;<i class="ace-icon fa fa-table"></i>&ndash;&gt;-->
+													<!--&lt;!&ndash;Tables & Colors&ndash;&gt;-->
+												<!--</h3>-->
+											<!--</div>-->
+
+											<!--&lt;!&ndash; /section:custom/widget-box.options &ndash;&gt;-->
+											<!--<div class="widget-body">-->
+												<!--<div class="widget-main no-padding">-->
+													<!--<table id="sample-table-1" class="table table-bordered">-->
+														<!--<thead>-->
+														<!--<tr class="success">-->
+															<!--<th>Engine Type</th>-->
+															<!--<th>Plan</th>-->
+															<!--<th>Output</th>-->
+														<!--</tr>-->
+														<!--</thead>-->
+														<!--<tbody>-->
+														<!--<tr>-->
+															<!--<td>5710</td>-->
+															<!--<td>1090</td>-->
+															<!--<td>300</td>-->
+														<!--</tr>-->
+														<!--<tr>-->
+															<!--<td>5710</td>-->
+															<!--<td>1090</td>-->
+															<!--<td>300</td>-->
+														<!--</tr>-->
+														<!--<tr>-->
+															<!--<td>5710</td>-->
+															<!--<td>1090</td>-->
+															<!--<td>300</td>-->
+														<!--</tr>-->
+														<!--</tbody>-->
+													<!--</table>-->
+												<!--</div>-->
+											<!--</div>-->
+										<!--</div>-->
+
 										<table id="sample-table-1" class="table table-bordered">
 											<thead>
 												<tr style="padding: 0px;">
@@ -334,24 +376,24 @@
 												<td style="font-size: 20px"><button class="btn btn-primary btn-xs">1</button></td>
 												<td style="font-size: 20px" id="firstType"></td>
 												<td style="font-size: 20px" id="firstTypePlan"></td>
-												<td style="font-size: 20px" id="firstTypeOutput">0</td>
-												<td style="font-size: 20px" id="firstTypeOnline">0</td>
+												<td style="font-size: 20px" id="firstTypeOutput"></td>
+												<td style="font-size: 20px" id="firstTypeOnline"></td>
 
 											</tr>
 											<tr id="trSecondType" class="hidden">
 												<td style="font-size: 20px"><button class="btn btn-danger btn-xs">2</button></td>
 												<td style="font-size: 20px" id="secondType"></td>
 												<td style="font-size: 20px" id="secondTypePlan"></td>
-												<td style="font-size: 20px" id="secondTypeOutput">0</td>
-												<td style="font-size: 20px" id="secondTypeOnline">0</td>
+												<td style="font-size: 20px" id="secondTypeOutput"></td>
+												<td style="font-size: 20px" id="secondTypeOnline"></td>
 
 											</tr>
 											<tr id="trThirdType" class="hidden">
 												<td style="font-size: 20px"><button class="btn btn-success btn-xs">3</button></td>
 												<td style="font-size: 20px" id="thirdType"></td>
 												<td style="font-size: 20px" id="thirdTypePlan"></td>
-												<td style="font-size: 20px" id="thirdTypeOutput">0</td>
-												<td style="font-size: 20px" id="thirdTypeOnline">0</td>
+												<td style="font-size: 20px" id="thirdTypeOutput"></td>
+												<td style="font-size: 20px" id="thirdTypeOnline"></td>
 											</tr>
 											</tbody>
 										</table>
@@ -379,7 +421,7 @@
 								</div>
 								<div class="space-10"></div>
 								<div class="space-30"></div>
-								<!--<div class="space-30"></div>-->
+								<div class="space-30"></div>
 								<div class="row">
 									<div class="space-6"></div>
 									<div class="col-sm-1 col-sm-offset-2" style="padding-left:1px;padding-right: 1px">
@@ -564,7 +606,6 @@
 									</div>
 
 								</div><!-- /.row -->
-								<div class="space-10"></div>
 								<div class="row">
 									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
 										<div class="widget-box widget-color-blue3">
@@ -700,63 +741,44 @@
 			* */
 			function setOutputPanel(object, variety, output, varietyNumber, flag){
 
-				console.info("variety:" + variety + " output:" + output + " " +
-				"varietyNumber:" + varietyNumber + " flag:" + flag);
-//				console.info("firstType:" + firstEType + " secondType:" + secondEType + " thirdEType:" + thirdEType);
 				if (varietyNumber == 1){
 					object.children().first().append(variety);
 					object.children().last().append(output);
-
-					if(variety == firstEType){
-						//if current produce enginee typ is the secondType, change to the color
-						console.info("this the firstType:" + variety);
-						object.parent().parent().parent().removeClass("widget-color-blue3");
-						object.parent().parent().parent().removeClass("widget-color-red");
-						object.parent().parent().parent().removeClass("widget-color-green");
-
-						object.parent().parent().parent().addClass("widget-color-blue3");
-						object.removeClass("alert-success");
-						object.removeClass("alert-danger");
-						object.addClass("alert-info");
-					}
-
-					else if(variety == secondEType){
-						console.info("this the second type:" + variety);
-
-						//if current produce enginee typ is the secondType, change to the color
-						object.parent().parent().parent().removeClass("widget-color-blue3");
-						object.parent().parent().parent().removeClass("widget-color-red");
-						object.parent().parent().parent().removeClass("widget-color-green");
-
-						object.parent().parent().parent().addClass("widget-color-red");
-						object.removeClass("alert-info");
-						object.removeClass("alert-success");
-						object.addClass("alert-danger");
-					}
-					else if(variety == thirdEType){
-						console.info("this the third Type:" + variety);
-
-						//if current produce enginee typ is the secondType, change to the color
-						object.parent().parent().parent().removeClass("widget-color-blue3");
-						object.parent().parent().parent().removeClass("widget-color-red");
-						object.parent().parent().parent().removeClass("widget-color-green");
-
-						object.parent().parent().parent().addClass("widget-color-green");
-
-						object.removeClass("alert-danger");
-						object.removeClass("alert-info");
-						object.addClass("alert-success");
-					}else{
-						//none of the list 3 type, then it has to be the qianpiliang
-						object.parent().parent().parent().removeClass("widget-color-blue3");
-						object.parent().parent().parent().removeClass("widget-color-red");
-						object.parent().parent().parent().removeClass("widget-color-green");
-						object.removeClass("alert-danger");
-						object.removeClass("alert-info");
-						object.removeClass("alert-success");
-					}
+				}
+				if(variety == firstEType){
+					//if current produce enginee typ is the secondType, change to the color
+					object.parent().parent().parent().removeClass("widget-color-red");
+					object.parent().parent().parent().addClass("widget-color-blue3");
+					object.removeClass("alert-success");
+					object.removeClass("alert-danger");
+					object.addClass("alert-info");
 				}
 
+				else if(variety == secondEType){
+					//if current produce enginee typ is the secondType, change to the color
+					object.parent().parent().parent().removeClass("widget-color-blue3");
+					object.parent().parent().parent().addClass("widget-color-red");
+					object.removeClass("alert-info");
+					object.removeClass("alert-success");
+					object.addClass("alert-danger");
+				}
+				else if(variety == thirdEType){
+					//if current produce enginee typ is the secondType, change to the color
+					object.parent().parent().parent().removeClass("widget-color-red");
+					object.parent().parent().parent().removeClass("widget-color-blue3");
+					object.addClass("widget-color-green");
+					object.removeClass("alert-danger");
+					object.removeClass("alert-info");
+					object.addClass("alert-success");
+				}else{
+					//none of the list 3 type, then it has to be the qianpiliang
+					object.parent().parent().parent().removeClass("widget-color-red");
+					object.parent().parent().parent().removeClass("widget-color-blue3");
+					object.parent().parent().parent().removeClass("widget-color-green");
+					object.removeClass("alert-danger");
+					object.removeClass("alert-info");
+					object.removeClass("alert-success");
+				}
 				if(flag == 1){
 					if(variety == firstEType){
 						$("#firstTypeOnline").html(output);
@@ -839,7 +861,7 @@
 //				production eviroment setting
 				var queryDate = moment().format("YYYY-MM-DD");
 				var startDate = queryDate + " 06:30";
-				var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+				var endDate = moment().format("YYYY-MM-DD hh:mm:ss");
 
 //				testing eviroment setting
 //				var queryDate = "2017-08-17";
@@ -857,7 +879,7 @@
 					success : function(data) {
 						var record = data.results;
 						var size = record.length;
-						console.info("plan info data: " + record + " size: " + size);
+						console.info("data: " + record + " size: " + size);
 						if( size == 0){
 							//no production plan
 //							tbody_plan.hide();
@@ -900,10 +922,10 @@
 				//enable the interval by default when refreshing the page
 				var realtimeOutput = function (){
 
-					endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD HH:mm:ss");
-//					console.info("endDate: " + endDate);
+					endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD hh:mm:ss");
+
 					$("#currentTime").html(new Date().format("yyyy-MM-dd hh:mm:ss") + " KW" + moment().format("WW") + " " +moment().format("ddd"));
-					if(moment().format("HH:mm") < "07:30" && moment().format("HH:mm") > "07:29"){
+					if(moment().format("hh:mm") < "07:30" && moment().format("hh:mm") > "07:29"){
 						console.info("refresh the whole page");
 						window.location.reload();
 					}
@@ -938,7 +960,7 @@
 					var m1610_typeNum = 0;
 					var m1650_typeNum = 0;
 
-					if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
+					if(moment(endDate).format("hh:mm") > beginHHMM || moment(endDate).format("hh:mm")("hh:mm") < endHHMM)
 					{
 						$.ajax({
 							type : "post",

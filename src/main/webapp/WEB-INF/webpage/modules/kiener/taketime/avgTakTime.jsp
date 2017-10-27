@@ -61,16 +61,16 @@
 									<label>&nbsp;Type:&nbsp;</label>
 
 									<select class="form-control" id="selectType">
-										<option value=""></option>
-										<option value="05703">--5703--</option>
-										<option value="05705">--5705--</option>
-										<option value="05710">--5710--</option>
-										<option value="05711">--5711--</option>
-										<option value="05732">--5732--</option>
-										<option value="05776">--5776--</option>
-										<option value="05778">--5778--</option>
-										<option value="05791">--5791--</option>
-										<option value="05792">--5792--</option>
+										<%--<option value="">please select</option>--%>
+										<%--<option value="05703">--5703--</option>--%>
+										<%--<option value="05705">--5705--</option>--%>
+										<%--<option value="05710">--5710--</option>--%>
+										<%--<option value="05711">--5711--</option>--%>
+										<%--<option value="05732">--5732--</option>--%>
+										<%--<option value="05776">--5776--</option>--%>
+										<%--<option value="05778">--5778--</option>--%>
+										<%--<option value="05791">--5791--</option>--%>
+										<%--<option value="05792">--5792--</option>--%>
 									</select>
 									<label>&nbsp;&nbsp;</label>
 
@@ -114,6 +114,7 @@
 	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
 	<script src="${staticPath}/assets/js/date-time/moment.min.js"></script>
 	<script src="${staticPath}/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+
 	<script src="${staticPath}/assets/js/ace.min.js"></script>
 	<script src="${staticPath}/assets/js/ace-elements.min.js"></script>
 
@@ -181,6 +182,35 @@
 //			"sideBySide" : true
 				"format" : "YYYY-MM-DD"
 //			"minDate" : moment().subtract(8, "days")
+			}).on('dp.change',function(){
+				var startDate = $("#date-timepicker-start").val();
+				var endDate = $("#date-timepicker-end").val();
+				console.info("startDate:" + startDate + " endDate:" + endDate);
+// 				dynamic show the engine type list
+				$.ajax({
+					type : "post",
+					url : "${adminPath}/kiener/taketime/ajaxList_engineType",
+					dataType : "json",
+					data: {"startDate":startDate,"endDate":endDate},
+					success : function(data) {
+						if(data.results.length == 0){
+							//handle empty
+							$("#selectType").empty();
+							$("#selectType").append("<option value=''>No Data</option>");
+
+						}else{
+							var record = data.results;
+							$("#selectType").empty();
+							for(var i = 0; i < record.length; i++) {
+								var text = "--" + record[i]["currentType"].substr(1) + "--";
+								var value = record[i]["currentType"];
+								$("#selectType").append("<option value='"+value+"'>"+text+"</option>");
+							}
+						}
+//					console.info(val_avgTakTime);
+//					console.info(val_station);
+					}
+				});
 			});
 
 			$("#btnQuery").click(function(){

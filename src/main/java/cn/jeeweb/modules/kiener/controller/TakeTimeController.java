@@ -15,6 +15,8 @@ import cn.jeeweb.modules.kiener.service.ITakeTimeService;
 import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeFilter;
+import org.apache.axis.client.Call;
+import org.apache.axis.encoding.XMLType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.namespace.QName;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
-
+import org.apache.axis.client.Service;
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
  */
@@ -39,6 +45,10 @@ import java.util.List;
 public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
     private static Logger logger = LoggerFactory.getLogger(TakeTimeController.class);
+
+    public final static List filterStation = Arrays.asList("10", "140", "150", "210", "300", "320", "335",
+            "400", "480", "540", "670", "770", "810", "820", "950", "960", "990", "1030", "1050", "1090", "1190",
+            "1310", "1350", "1530", "1560", "1610", "1650");
 
     @Autowired
     private ITakeTimeService takeTimeService;
@@ -82,6 +92,15 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         mStation = station;
         logger.info("listTable param:" + mStation);
         return display("listTable");
+    }
+
+    @RequestMapping(value = "/realTimeTakt")
+    public String realTimeTakt(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter list to get station parm in the url and return the list view
+        preList(model, request, response);
+//        mStation = station;
+//        logger.info("listTable param:" + mStation);
+        return display("realTimeTakt");
     }
 
     @Override
@@ -205,4 +224,64 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         StringUtils.printJson(response, content);
     }
 
+    /*
+    * query key staions for the real-time takt time
+    * */
+    @RequestMapping(value = "ajaxList_realTimeTaktTime", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_realTimeTaktTime(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                       HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+
+        DataSourceContextHolder.setDbType("dataSource");
+//        entityWrapper.eq("partNumber", mPartNumber);
+
+//        String measureStart = "2017-08-17 10:20";
+//        String measureEnd = "2017-08-17 10:30";
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("measureDateEnd");
+
+        entityWrapper.between("measureDate", startDate, endDate);
+        entityWrapper.in("station", filterStation);
+
+        entityWrapper.orderBy("station");
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("partNumber","station","currentType",
+                "takeTime","changeType");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectTakeTimePage(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
+
+    /*
+    * query key staions for the real-time takt time
+    * */
+    @RequestMapping(value = "ajaxList_engineType", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_engineType(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                           HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+
+        DataSourceContextHolder.setDbType("dataSource");
+
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+//        String startDate = "2017-08-16 06:30";
+//        String endDate = "2017-08-17 06:30";
+        entityWrapper.between("measureDate", startDate, endDate);
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("currentType");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectEngineType(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
 }

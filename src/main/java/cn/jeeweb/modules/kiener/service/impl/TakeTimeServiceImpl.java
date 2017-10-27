@@ -44,4 +44,14 @@ public class TakeTimeServiceImpl extends CommonServiceImpl<TakeTimeMapper,TakeTi
         List<TakeTime> records = baseMapper.selectAvgTakeTime(queryable, wrapper);
         return records;
     }
+
+    /*
+    * select all the available engine type
+    * */
+    @Override
+    public List<TakeTime> selectEngineType(Queryable queryable, Wrapper<TakeTime> wrapper){
+        List<TakeTime> records = baseMapper.selectEngineTypePage(queryable, wrapper);
+        return records;
+
+    }
 }

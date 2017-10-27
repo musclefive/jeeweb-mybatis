@@ -16,4 +16,5 @@ public interface ITakeTimeService extends ICommonService<TakeTime> {
 
     public List<TakeTime> selectAvgTakeTimePage(Queryable queryable, Wrapper<TakeTime> wrapper);
 
+    public List<TakeTime> selectEngineType(Queryable queryable, Wrapper<TakeTime> wrapper);
 }

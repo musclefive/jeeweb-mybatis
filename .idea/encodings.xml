@@ -16,15 +16,19 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets/js/prototype.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/bg_2.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/blank_MoMo.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/dashboard.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/datatable.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/datatime.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/kiener.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor.html" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/plan.json" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_1.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_test.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/listTable.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/realTimeTakt.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/singleEngine.jsp" charset="GBK" />
   </component>
 </project>

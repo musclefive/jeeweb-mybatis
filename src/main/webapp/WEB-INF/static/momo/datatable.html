@@ -1898,7 +1898,9 @@
 //			$(this).prev().focus();
 //		});
 		$('#date-timepicker-start').datetimepicker();
-		$('#date-timepicker-end').datetimepicker();
+		$('#date-timepicker-end').datetimepicker().on('dp.change',function(){
+			console.info($('#date-timepicker-start').val() + " :" + $('#date-timepicker-end').val());
+		});
 		var oTable1 =
 				$('#sample-table-2')
 					//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
@@ -1922,7 +1924,7 @@
 								null, null,null, null, null,
 								{ "bSortable": false }
 							],
-							"aaSorting": [],
+							"aaSorting": []
 
 							//,
 							//"sScrollY": "200px",

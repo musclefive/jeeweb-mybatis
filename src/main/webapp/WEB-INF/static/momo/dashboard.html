@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Real-Time Production</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />-->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="../assets/css/ace.min.css" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="../assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="../assets/js/html5shiv.min.js"></script>
+		<script src="../assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default">
+
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-tachometer"></i>
+							MoMo DashBoard
+						</small>
+					</a>
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<div class="main-content">
+				<!-- #section:basics/content.breadcrumbs -->
+				<!--<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="#">Real-Time Production Output</a>
+						</li>
+					</ul>&lt;!&ndash; /.breadcrumb &ndash;&gt;
+					&lt;!&ndash; #section:basics/content.searchbox &ndash;&gt;
+					<div class="nav-search" id="nav-search">
+						<form class="form-search">
+							<span class="input-icon">
+								<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+								<i class="ace-icon fa fa-search nav-search-icon"></i>
+							</span>
+						</form>
+					</div>&lt;!&ndash; /.nav-search &ndash;&gt;
+					&lt;!&ndash; /section:basics/content.searchbox &ndash;&gt;
+				</div>-->
+
+				<!-- /section:basics/content.breadcrumbs -->
+				<div class="page-content">
+
+					<div class="page-content-area">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="space-4"></div>
+								<div class="row">
+									<div class="col-sm-6">
+
+									</div>
+									<div class="col-sm-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="widget-title lighter">
+													<i class="ace-icon fa fa-signal"></i>
+													Real Time Takt Time
+												</h4>
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+														<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="taktTimePanel" style="height: 300px"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="widget-title lighter">
+													<i class="ace-icon fa fa-signal"></i>
+													Average Takt Time
+												</h4>
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+													<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="avgTaktTimePanel" style="height: 400px"></div>
+													<div id="noDataMsgForAvg" class="alert-danger align-center"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+									<div class="col-sm-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="widget-title lighter">
+													<i class="ace-icon fa fa-signal"></i>
+													Change Type
+												</h4>
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+													<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="changeTypePanel"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content-area -->
+
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">VWED CC</span>
+							&copy; 2017-2018
+						</span>
+
+						&nbsp; &nbsp;
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='../assets/js/jquery1x.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="../assets/js/prototype.js"></script>
+		<script src="../assets/js/date-time/moment.min.js"></script>
+		<script src="../assets/js/highcharts/highcharts.js"></script>
+		<script src="../assets/js/highcharts/exporting.js"></script>
+		<!-- ace scripts -->
+		<script src="../assets/js/ace-elements.min.js"></script>
+		<script src="../assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+
+			var val_avgTakTime = new Array();
+			var val_station = new Array();
+			var m10_num = 0;
+			var m30_num = 0;
+			$(document).ready(function() {
+
+				var startDate = "2017-08-16" +  " 06:30";
+				var endDate = "2017-08-17" + " 06:30";
+
+				var startDateForTaktTime = "2017-08-18 06:30";
+				var endDateForTaktTime = "2017-08-18 09:00";
+
+				var currentType = "05703";
+				var option_AvgTaktTime = {
+					chart: {
+						renderTo: 'avgTaktTimePanel',
+						type: 'column'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+//					text: ''
+					},
+					xAxis: {
+						crosshair: true
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Takt Time(ss)'
+						}
+					},
+					tooltip: {
+						headerFormat: '<span style="font-size:10px">Station:{point.key}</span><table>',
+						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>',
+						footerFormat: '</table>',
+						shared: true,
+						useHTML: true
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
+						}
+					},
+					series:[{
+						showInLegend: false
+//					name : "Avg Tak Time",
+//					data : [ 37, 38, 39, 38, 38, 40, 39, 39, 38, 38]
+					}]
+				};
+				var option_RealTimeTakt = {
+					chart: {
+						renderTo: 'taktTimePanel',
+						type: 'column'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+					},
+					yAxis: {
+						title: {
+							text: 'Second'
+						}
+					},
+					plotOptions: {
+						column: {
+							stacking: 'normal',
+							dataLabels: {
+								enabled: true,
+								style: {
+									textShadow: '0 0 3px black'
+								}
+							},
+							enableMouseTracking: false
+						}
+					},
+					series: [
+						{color: '#4572A7', showInLegend: false}
+//					{color: '#89A54E'}
+					]
+				};
+
+				$.ajax({
+					type : "post",
+					url : "../../admin/kiener/taketime/ajaxList_realTimeTaktTime",
+					dataType : "json",
+					data: {"measureDate":startDateForTaktTime,"measureDateEnd":endDateForTaktTime},
+					success : function(data) {
+						if (data.results.length == 0) {
+							//handle empty
+
+						} else {
+							var record = data.results;
+//							console.info("record: " + record);
+							for(var i = 0; i < record.length; i++){
+								if(record[i]["station"] = "10"){
+									m10_num = m10_num + 1;
+									if(m10_num == 1){
+										val_station.push(record[i]["station"]);
+										val_taktTime.push(record[i]["takeTime"]);
+									}
+								}
+								if(record[i]["station"] = "30"){
+									m30_num = m30_num + 1;
+									if(m30_num == 1){
+										val_station.push(record[i]["station"]);
+										val_taktTime.push(record[i]["takeTime"]);
+									}
+								}
+
+								type = record[i]["currentType"].substr(1);
+								partNumber = record[i]["partNumber"];
+							}
+							console.info("val_station:" + val_station);
+							console.info("val_taktTime:" + val_taktTime);
+							option_RealTimeTakt.xAxis.categories = eval('['+ val_station +']');
+							option_RealTimeTakt.series[0].name = "Takt Time";
+							option_RealTimeTakt.series[0].data = eval('['+ val_taktTime +']');
+//							option_RealTimeTakt.title.text = "Real Time Takt Time ";
+						}
+						new Highcharts.Chart(option_RealTimeTakt);
+						val_taktTime = [];
+						val_station = [];
+					}
+				});
+
+				val_taktTime = [];
+				val_station = [];
+
+				$.ajax({
+					type : "post",
+					url : "../../admin/kiener/taketime/ajaxList_avgTakttime",
+					dataType : "json",
+					data: {"measureDate":startDate,"endDate":endDate, "currentType":currentType},
+					success : function(data) {
+						if(data.results.length == 0){
+							//handle empty
+							$("#noDataMsgForAvg").show();
+							$("#avgTaktTimePanel").hide();
+							$("#noDataMsgForAvg").html("<h2>No Data</h2>");
+
+						}else{
+							$("#avgTaktTimePanel").show();
+							$("#noDataMsgForAvg").hide();
+							var record = data.results;
+							for(var p in record){
+								console.info("station:" + record[p]["station"] + " takTime: " + record[p]["avgTakTime"]);
+//							val_station.push("'" + record[p]["station"] + "'");
+//							val_avgTakTime.push("'" + record[p]["avgTakTime"] + "'")
+								val_station.push(record[p]["station"]);
+								val_avgTakTime.push(record[p]["avgTakTime"]);
+							}
+							option_AvgTaktTime.xAxis.categories = eval('['+ val_station +']');
+							option_AvgTaktTime.series[0].name = "Avg Tak Time";
+							option_AvgTaktTime.series[0].data = eval('['+ val_avgTakTime +']');
+//							option_AvgTaktTime.title.text = "Takt Time";
+//							option_AvgTaktTime.subtitle.text = "Engine Type:" + currentType.substr(1);
+						}
+						new Highcharts.Chart(option_AvgTaktTime);
+						val_avgTakTime = [];
+						val_station = [];
+//					console.info(val_avgTakTime);
+//					console.info(val_station);
+					}
+				});
+
+			});
+
+
+		</script>
+	</body>
+</html>

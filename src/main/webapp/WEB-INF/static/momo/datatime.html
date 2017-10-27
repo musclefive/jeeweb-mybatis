@@ -141,6 +141,7 @@
 
 <script src="../assets/js/date-time/moment.min.js"></script>
 <script src="../assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/js/prototype.js"></script>
 
 <!-- ace scripts -->
 <script src="../assets/js/ace.min.js"></script>
@@ -194,6 +195,20 @@
 			$("#selectType").val("");
 		});
 
+		var endDate = "2017-08-18 09:00";
+//		var endDate = moment().format("YYYY-MM-DD hh:mm:ss");
+//		var endDate = moment().format("YYYY-MM-DD hh:mm:ss");
+//		endDate = new Date(new Date(endDate).getTime() + 300000).format("yyyy-MM-dd hh:mm:ss");
+		endDate = moment(endDate).add(5, 'seconds');
+		endDate = moment(endDate).format("YYYY-MM-DD hh:mm:ss");
+
+		endDate = moment("2017-11-11 02:20");
+		console.info("endDate:" + endDate);
+
+		if(moment(endDate).format("hh:mm") < "06:59" && moment(endDate).format("hh:mm") > "02:00")
+		{
+			console.info("true");
+		}
 	})
 
 </script>

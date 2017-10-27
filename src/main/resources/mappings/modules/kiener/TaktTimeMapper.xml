@@ -45,4 +45,14 @@
         group by station order by station
     </select>
 
+    <select id="selectEngineTypePage" resultType="TakeTime">
+        select
+        DISTINCT currentType
+        from MeasureDataTakeTime
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+
 </mapper>

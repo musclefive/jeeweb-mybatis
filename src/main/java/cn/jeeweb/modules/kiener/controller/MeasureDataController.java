@@ -20,7 +20,11 @@ import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
 import cn.jeeweb.modules.sys.utils.MultipleDataSource;
 import cn.jeeweb.modules.sys.utils.UserUtils;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializeFilter;
+import org.apache.axis.client.Call;
+import org.apache.axis.client.Service;
+import org.apache.axis.encoding.XMLType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +38,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.namespace.QName;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -91,7 +98,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     @RequestMapping(value = "/output")
     public String showOutput(HttpServletRequest request, HttpServletRequest response, Model model) {
         //enter list to get station parm in the url and return the list view
-        logger.info("MeasureDataController showOutput Method:" + display("show") );
+        logger.info("MeasureDataController showOutput Method:" + display("show"));
 //        older version of output show page
 //        return "modules/kiener/production/production";
         return "modules/kiener/production/output_monitor";
@@ -119,6 +126,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 //        String endDate = "2017-09-02 06:30";
         if(startDate != null && endDate != null ){
             if(!startDate.equals("") && !startDate.equals("")){
+                logger.info("output querying startDate:" + startDate + " endDate:" + endDate);
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
@@ -141,6 +149,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 
         String content = JSON.toJSONString(record, filter);
         StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
     }
 
     @Override
@@ -164,6 +173,46 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
             }
         }
     }
+
+    /*
+    * query daily production from webservice
+    * */
+    @RequestMapping(value = "ajaxList_getPlan", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_getPlan(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+
+        try {
+
+            String service_url = "http://10.120.78.102:8031/GetProductInfo.svc?wsdl";
+            String service_method = "GetProductInfoByProduceDate";
+            Service service = new Service();
+//            String queryDate = "2017-10-25";
+            String queryDate = request.getParameter("queryDate");
+
+            Call call = null;
+            try {
+                call = (Call)service.createCall();
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
+            call.setTargetEndpointAddress(new URL(service_url));
+            call.setOperationName(new QName("http://tempuri.org/", service_method));
+            call.setSOAPActionURI("http://tempuri.org/IService1/GetProductInfoByProduceDate");
+            call.addParameter(new QName("http://tempuri.org/", "date"), XMLType.XSD_STRING, javax.xml.rpc.ParameterMode.IN);
+            call.setReturnType(XMLType.XSD_STRING);
+            String xmlString = call. invoke(new Object[]{queryDate}).toString();
+
+            JSONArray object = JSON.parseArray(xmlString.toString());
+
+            String content = "{\"results\":" + object.toJSONString() + "}";
+            StringUtils.printJson(response, content);
+            logger.info("Production plan from webservice:" + content + " length:" + object.size());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @RequestMapping(value = "ajaxList_measure", method = { RequestMethod.GET, RequestMethod.POST })
