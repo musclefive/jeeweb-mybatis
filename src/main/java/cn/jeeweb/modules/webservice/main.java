@@ -32,7 +32,7 @@ public class main {
             String service_url = "http://10.120.78.102:8031/GetProductInfo.svc?wsdl";
             String service_method = "GetProductInfoByProduceDate";
             Service service = new Service();
-            String queryDate = "2017-08-17";
+            String queryDate = "2017-08-16";
             Call call = null;
             try {
                 call = (Call)service.createCall();

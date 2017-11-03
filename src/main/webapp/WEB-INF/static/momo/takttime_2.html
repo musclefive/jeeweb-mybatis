@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Real-Time Production</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />-->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="../assets/css/ace.min.css" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="../assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="../assets/js/html5shiv.min.js"></script>
+		<script src="../assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default">
+
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-tachometer"></i>
+							MoMo line Real Time Takt Time
+						</small>
+					</a>
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<div class="main-content">
+				<div class="page-content">
+
+					<div class="page-content-area">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="space-4"></div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="widget-title lighter">
+													<i class="ace-icon fa fa-signal"></i>
+													Real Time Takt Time
+												</h4>
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+														<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="taktTimePanel" style="height: 300px"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content-area -->
+
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">VWED CC</span>
+							&copy; 2017-2018
+						</span>
+
+						&nbsp; &nbsp;
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='../assets/js/jquery1x.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="../assets/js/prototype.js"></script>
+		<script src="../assets/js/date-time/moment.min.js"></script>
+		<script src="../assets/js/highcharts/highcharts.js"></script>
+		<script src="../assets/js/highcharts/exporting.js"></script>
+		<!-- ace scripts -->
+		<script src="../assets/js/ace-elements.min.js"></script>
+		<script src="../assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+
+			var val_taktTime = new Array();
+			var val_station = new Array();
+			var val_changeTime = new Array();
+			var val_standard = new Array();
+			var beginHHMM = "07:00";
+			var endHHMM = "02:00";
+			$(document).ready(function() {
+				var sh; // Interval
+
+				var startDate = "2017-08-26 06:30";
+				var endDate = "2017-08-26 07:50";
+
+//				var option_RealTimeTakt = {
+//					chart: {
+//						renderTo: 'taktTimePanel',
+//						type: 'column'
+//					},
+//					title: {
+//						text: ''
+//					},
+//					subtitle: {
+//						text: ''
+//					},
+//					xAxis: {
+//					},
+//					yAxis: {
+//						title: {
+//							text: 'Second'
+//						}
+//					},
+//					plotOptions: {
+//						column: {
+//							stacking: 'normal',
+//							dataLabels: {
+//								enabled: true,
+//								style: {
+//									textShadow: '0 0 3px black'
+//								}
+//							},
+//							enableMouseTracking: false
+//						}
+//					},
+//					series: [
+//						{color: '#4572A7', showInLegend: false}
+////					{color: '#89A54E'}
+//					]
+//				};
+
+				var option_RealTimeTakt = {
+					chart: {
+						renderTo: 'taktTimePanel',
+						type: 'area'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+					},
+					yAxis: {
+						title: {
+							text: 'Second'
+						}
+//						plotLines:[{
+//							label:{
+//								text:'38s',     //标签的内容
+//								align:'left',                //标签的水平位置，水平居左,默认是水平居中center
+//								x:-10                         //标签相对于被定位的位置水平偏移的像素，重新定位，水平居左10px
+//							},
+//							color:'red',           //线的颜色，定义为红色
+//							dashStyle:'solid',     //默认值，这里定义为实线
+//							value:38,               //定义在那个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
+//							width:2               //标示线的宽度，2px
+//						}]
+					},
+					plotOptions: {
+						area: {
+							stacking: 'normal',
+							lineColor: '#666666',
+							lineWidth: 1,
+							marker: {
+								lineWidth: 1,
+								lineColor: '#666666'
+							}
+						}
+					},
+					series: [
+						{ showInLegend: true},
+						{showInLegend: true}
+//					{color: '#89A54E'}
+					]
+				};
+
+
+
+				var realtimeOutput = function (){
+
+					endDate = moment(endDate).add(60, 'seconds').format("YYYY-MM-DD HH:mm:ss");
+//					console.info("endDate: " + endDate);
+					if(moment().format("HH:mm") < "07:30" && moment().format("HH:mm") > "07:29"){
+						console.info("refresh the whole page");
+						window.location.reload();
+					}
+
+					var m010_num = 0;
+					var m140_num = 0;
+					var m150_num = 0;
+					var m210_num = 0;
+					var ha300_num = 0;
+					var m320_num = 0;
+					var m335_num = 0;
+					var ha400_num = 0;
+					var m480_num = 0;
+					var m540_num = 0;
+					var m670_num = 0;
+					var m770_num = 0;
+					var m810_num = 0;
+					var m820_num = 0;
+					var m950_num = 0;
+					var m960_num = 0;
+					var m990_num = 0;
+					var m1030_num = 0;
+					var m1050_num = 0;
+					var m1090_num = 0;
+					var m1190_num = 0;
+					var m1310_num = 0;
+					var m1350_num = 0;
+					var m1530_num = 0;
+					var m1560_num = 0;
+					var m1610_num = 0;
+					var m1650_num = 0;
+
+					if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
+					{
+						console.info("query takt time from " + startDate + " to: " + endDate);
+						$.ajax({
+							type : "post",
+							url : "../../admin/kiener/measure/ajaxList_realTimeTaktTime",
+							dataType : "json",
+							data: {"measureDate":startDate,"measureDateEnd":endDate},
+							success : function(data) {
+								if (data.length == 0) {
+									//handle empty
+
+								} else {
+									var record = data;
+//									console.info("record: " + record);
+									for(var i = 0; i < record.length; i++){
+										if(record[i]["station"] == "10"){
+											m010_num = m010_num + 1;
+											if(m010_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "140"){
+											m140_num = m140_num + 1;
+											if(m140_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "150"){
+											m150_num = m150_num + 1;
+											if(m150_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "210"){
+											m210_num = m210_num + 1;
+											if(m210_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "300"){
+											ha300_num = ha300_num + 1;
+											if(ha300_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "320"){
+											m320_num = m320_num + 1;
+											if(m320_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "335"){
+											m335_num = m335_num + 1;
+											if(m335_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "400"){
+											ha400_num = ha400_num + 1;
+											if(ha400_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "480"){
+											m480_num = m480_num + 1;
+											if(m480_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "540"){
+											m540_num = m540_num + 1;
+											if(m540_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "670"){
+											m670_num = m670_num + 1;
+											if(m670_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "770"){
+											m770_num = m770_num + 1;
+											if(m770_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "810"){
+											m810_num = m810_num + 1;
+											if(m810_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "820"){
+											m820_num = m820_num + 1;
+											if(m540_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "950"){
+											m950_num = m950_num + 1;
+											if(m950_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "960"){
+											m960_num = m960_num + 1;
+											if(m960_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "990"){
+											m990_num = m990_num + 1;
+											if(m990_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1030"){
+											m1030_num = m1030_num + 1;
+											if(m1030_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1050"){
+											m1050_num = m1050_num + 1;
+											if(m1050_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1090"){
+											m1090_num = m1090_num + 1;
+											if(m1090_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1190"){
+											m1190_num = m1190_num + 1;
+											if(m1190_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1310"){
+											m1310_num = m1310_num + 1;
+											if(m1310_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1350"){
+											m1350_num = m1350_num + 1;
+											if(m1350_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1530"){
+											m1530_num = m1530_num + 1;
+											if(m1530_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1560"){
+											m1560_num = m1560_num + 1;
+											if(m1560_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1610"){
+											m1610_num = m1610_num + 1;
+											if(m1610_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+										if(record[i]["station"] == "1650"){
+											m1650_num = m1650_num + 1;
+											if(m1650_num == 1){
+												setTaktTime(record, i);
+											}
+										}
+									}
+								}
+								console.info("val_station:" + val_station);
+								console.info("val_taktTime:" + val_taktTime);
+								option_RealTimeTakt.xAxis.categories = eval('['+ val_station +']');
+								option_RealTimeTakt.series[0].name = "Real Time Takt Time";
+								option_RealTimeTakt.series[0].data = eval('['+ val_taktTime +']');
+								option_RealTimeTakt.series[1].name = "Standard Takt Time (38s)";
+								option_RealTimeTakt.series[1].data = eval('['+ val_standard +']');
+//							option_RealTimeTakt.title.text = "Real Time Takt Time ";
+								new Highcharts.Chart(option_RealTimeTakt);
+								val_taktTime = [];
+								val_station = [];
+								val_standard = [];
+							}
+						});
+
+						val_taktTime = [];
+						val_station = [];
+					}
+					else{
+						console.info("stop query from the db during the night time");
+					}
+					return realtimeOutput;
+
+				};
+				realtimeOutput();
+
+				sh = setInterval(realtimeOutput, 6000);
+
+			});
+
+			function setTaktTime(record, i){
+				var currentTime = record[i]["measureDate"].toString();
+				var currentType = record[i]["variety"].toString();
+				var currentStation = record[i]["station"].toString();;
+
+				var previousTime = "";
+				var previousType = "";
+				var previousStation = "";
+				var taktTime = "";
+				var changeTime = "";
+				var standarTime  = "38";
+				if( i+1 < record.length){
+					previousTime = record[i+1]["measureDate"].toString();
+					previousType = record[i+1]["variety"].toString();
+					previousStation = record[i+1]["station"].toString();
+					if(currentStation == previousStation) {
+						if(currentType == previousType){
+							//the type is the same, then it is the takt time
+							taktTime = moment(currentTime).diff(moment(previousTime), "seconds");
+						}else{
+							//the type is not the same, it is the change time
+							changeTime = moment(currentTime).diff(moment(previousTime), "seconds");
+							val_changeTime.push(changeTime);
+						}
+					}else{
+						taktTime = 0;
+					}
+
+				}
+				console.info("currentTime:" + i + " :" + currentTime + " type:"
+						+ currentType + " previous type: " + previousType);
+				val_station.push(record[i]["station"]);
+				val_taktTime.push(taktTime);
+				val_standard.push(standarTime);
+
+//				console.info(" station: " + record[i]["station"]+ " taktTime: " + taktTime);
+			}
+
+		</script>
+	</body>
+</html>

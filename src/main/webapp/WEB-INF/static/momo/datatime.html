@@ -111,6 +111,34 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="row">
+							<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+								<div class="widget-box widget-color-pink">
+									<div class="widget-header align-center">
+										<h2 class="widget-title smaller">M1060
+											<span class="label label-danger hidden">
+												<i class="ace-icon fa fa-gavel bigger-120"></i>
+											</span>
+											<span class="label label-warning hidden">
+												<i class="ace-icon fa fa-info-circle bigger-120"></i>
+											</span>
+										</h2>
+										<div class="widget-toolbar">
+										</div>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main" style="padding: 0px">
+											<!-- #section:elements.popover -->
+											<div id="m960_type_1" class="alert alert- align-center " style="height: 80px;padding: 0px">
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
 			</div><!-- /.page-content-area -->
@@ -209,6 +237,20 @@
 		{
 			console.info("true");
 		}
+
+//		$("#m960_type_1").parent().parent().parent().first().removeClass("align-center");
+//
+//		var text = $("#m960_type_1").parent().parent().parent().find("h2").html();
+
+		$("#m960_type_1").parent().parent().parent().find(".label-danger").removeClass("hidden");
+//		$("#m960_type_1 .fa-info-circle").addClass("hidden");
+
+//		$("#m960_type_1").parent().parent().parent().find("i").addClass("hidden");
+
+
+//		console.info($("#m960_type_1 .fa-info-circle"));
+//
+//		$("#m960_type_1").parent().parent().parent().find("i").remove();
 	})
 
 </script>

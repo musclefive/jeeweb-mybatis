@@ -41,6 +41,16 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     }
 
     /*
+    * query the real time takt time for key stations
+    * */
+    @Override
+    public List<MeasureData> queryTaktTime(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1){
+        List<MeasureData> records = baseMapper.queryRealTimeTaktTime(queryable, wrapper, wrapper_1);
+        return records;
+    }
+
+
+    /*
     *
     * */
     public Page<MeasureData> listWithSQL(Queryable queryable, Wrapper<MeasureData> wrapper){

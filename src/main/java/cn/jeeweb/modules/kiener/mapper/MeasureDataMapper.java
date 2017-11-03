@@ -20,4 +20,6 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
 
     List<MeasureData> queryRealTimeOutput(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
 
+    List<MeasureData> queryRealTimeTaktTime(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper, @Param("ew_1") Wrapper<MeasureData> wrapper_1);
+
 }

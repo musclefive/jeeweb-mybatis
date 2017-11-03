@@ -19,4 +19,6 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> queryOutput(Queryable queryable, Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> queryTaktTime(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1);
+
 }

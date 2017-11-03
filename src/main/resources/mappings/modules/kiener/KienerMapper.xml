@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="MeasureData" >
         <id column="ID" property="id" jdbcType="BIGINT" />
         <result column="ID" property="id" jdbcType="BIGINT" />
+        <result column="rowId" property="rowId" jdbcType="BIGINT" />
         <result column="PartNumber" property="partNumber" jdbcType="VARCHAR" />
         <result column="Station" property="station" jdbcType="INTEGER" />
         <result column="Variety" property="variety" jdbcType="VARCHAR" />
@@ -49,11 +50,28 @@
 
 
     <select id="queryRealTimeOutput" resultType="MeasureData">
-        SELECT  Count(*) as "output", Station ,Variety, MAX(Date) as latest
-        FROM MeasurementGeneralData
+        SELECT  Count(*) as "output", Station ,Variety, MAX(Date) as "nextDate"
+        FROM caq.MeasurementGeneralData
         <where>
             ${ew.sqlSegment}
         </where>
-        group by Station, Variety order by Station, latest desc
+        group by Station, Variety order by Station, nextDate desc
     </select>
+
+    <select id="queryRealTimeTaktTime" resultType="MeasureData">
+
+        SELECT * from (SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,ID,
+        PartNumber, Station, Variety,
+        Date as "measureDate"
+        FROM caq.MeasurementGeneralData
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        ) as b
+        <where>
+            b.rowId = 1 or b.rowId = 2
+        </where>
+        order by b.Station, b.rowId
+    </select>
+
 </mapper>

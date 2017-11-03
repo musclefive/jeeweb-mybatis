@@ -723,9 +723,9 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 
-			var firstEType = "";
-			var secondEType = "";
-			var thirdEType = "";
+			var firstEType = "5732";
+			var secondEType = "5785";
+			var thirdEType = "5703";
 			var beginHHMM = "07:00";
 			var endHHMM = "02:00";
 			/*initial the page method
@@ -741,44 +741,63 @@
 			* */
 			function setOutputPanel(object, variety, output, varietyNumber, flag){
 
+				console.info("variety:" + variety + " output:" + output + " " +
+						"varietyNumber:" + varietyNumber + " flag:" + flag);
+//				console.info("firstType:" + firstEType + " secondType:" + secondEType + " thirdEType:" + thirdEType);
 				if (varietyNumber == 1){
 					object.children().first().append(variety);
 					object.children().last().append(output);
-				}
-				if(variety == firstEType){
-					//if current produce enginee typ is the secondType, change to the color
-					object.parent().parent().parent().removeClass("widget-color-red");
-					object.parent().parent().parent().addClass("widget-color-blue3");
-					object.removeClass("alert-success");
-					object.removeClass("alert-danger");
-					object.addClass("alert-info");
+
+					if(variety == firstEType){
+						//if current produce enginee typ is the secondType, change to the color
+						console.info("this the firstType:" + variety);
+						object.parent().parent().parent().removeClass("widget-color-blue3");
+						object.parent().parent().parent().removeClass("widget-color-red");
+						object.parent().parent().parent().removeClass("widget-color-green");
+
+						object.parent().parent().parent().addClass("widget-color-blue3");
+						object.removeClass("alert-success");
+						object.removeClass("alert-danger");
+						object.addClass("alert-info");
+					}
+
+					else if(variety == secondEType){
+						console.info("this the second type:" + variety);
+
+						//if current produce enginee typ is the secondType, change to the color
+						object.parent().parent().parent().removeClass("widget-color-blue3");
+						object.parent().parent().parent().removeClass("widget-color-red");
+						object.parent().parent().parent().removeClass("widget-color-green");
+
+						object.parent().parent().parent().addClass("widget-color-red");
+						object.removeClass("alert-info");
+						object.removeClass("alert-success");
+						object.addClass("alert-danger");
+					}
+					else if(variety == thirdEType){
+						console.info("this the third Type:" + variety);
+
+						//if current produce enginee typ is the secondType, change to the color
+						object.parent().parent().parent().removeClass("widget-color-blue3");
+						object.parent().parent().parent().removeClass("widget-color-red");
+						object.parent().parent().parent().removeClass("widget-color-green");
+
+						object.parent().parent().parent().addClass("widget-color-green");
+
+						object.removeClass("alert-danger");
+						object.removeClass("alert-info");
+						object.addClass("alert-success");
+					}else{
+						//none of the list 3 type, then it has to be the qianpiliang
+						object.parent().parent().parent().removeClass("widget-color-blue3");
+						object.parent().parent().parent().removeClass("widget-color-red");
+						object.parent().parent().parent().removeClass("widget-color-green");
+						object.removeClass("alert-danger");
+						object.removeClass("alert-info");
+						object.removeClass("alert-success");
+					}
 				}
 
-				else if(variety == secondEType){
-					//if current produce enginee typ is the secondType, change to the color
-					object.parent().parent().parent().removeClass("widget-color-blue3");
-					object.parent().parent().parent().addClass("widget-color-red");
-					object.removeClass("alert-info");
-					object.removeClass("alert-success");
-					object.addClass("alert-danger");
-				}
-				else if(variety == thirdEType){
-					//if current produce enginee typ is the secondType, change to the color
-					object.parent().parent().parent().removeClass("widget-color-red");
-					object.parent().parent().parent().removeClass("widget-color-blue3");
-					object.addClass("widget-color-green");
-					object.removeClass("alert-danger");
-					object.removeClass("alert-info");
-					object.addClass("alert-success");
-				}else{
-					//none of the list 3 type, then it has to be the qianpiliang
-					object.parent().parent().parent().removeClass("widget-color-red");
-					object.parent().parent().parent().removeClass("widget-color-blue3");
-					object.parent().parent().parent().removeClass("widget-color-green");
-					object.removeClass("alert-danger");
-					object.removeClass("alert-info");
-					object.removeClass("alert-success");
-				}
 				if(flag == 1){
 					if(variety == firstEType){
 						$("#firstTypeOnline").html(output);
@@ -859,70 +878,70 @@
 				var sh; // Interval
 
 //				production eviroment setting
-				var queryDate = moment().format("YYYY-MM-DD");
-				var startDate = queryDate + " 06:30";
-				var endDate = moment().format("YYYY-MM-DD hh:mm:ss");
+//				var queryDate = moment().format("YYYY-MM-DD");
+//				var startDate = queryDate + " 06:30";
+//				var endDate = moment().format("YYYY-MM-DD hh:mm:ss");
 
 //				testing eviroment setting
-//				var queryDate = "2017-08-17";
-//				var startDate = "2017-08-17 06:30";
-//				var endDate = "2017-08-17 09:50";
+				var queryDate = "2017-08-17";
+				var startDate = "2017-08-17 06:30";
+				var endDate = "2017-08-17 09:50";
 
 				/*
 				* get the production plan
 				* */
-				$.ajax({
-					type : "post",
-					url : "../../admin/kiener/measure/ajaxList_getPlan",
-					dataType : "json",
-					data: {"queryDate":queryDate},
-					success : function(data) {
-						var record = data.results;
-						var size = record.length;
-						console.info("data: " + record + " size: " + size);
-						if( size == 0){
-							//no production plan
-//							tbody_plan.hide();
-						}
-						if (size == 1){
-							$("#trFirstType").removeClass("hidden");
-							firstEType = record[size-1]["SORTNO"];
-							$("#firstType").html(firstEType);
-							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-						}
-						if (size == 2){
-							$("#trFirstType").removeClass("hidden");
-							$("#trSecondType").removeClass("hidden");
-							firstEType = record[size-1]["SORTNO"];
-							secondEType = record[size-2]["SORTNO"];
-							$("#firstType").html(firstEType);
-							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-							$("#secondType").html(secondEType);
-							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-						}
-						if (size == 3){
-
-							$("#trFirstType").removeClass("hidden");
-							$("#trSecondType").removeClass("hidden");
-							$("#trThirdType").removeClass("hidden");
-							firstEType = record[size-1]["SORTNO"];
-							secondEType = record[size-2]["SORTNO"];
-							thirdEType = record[size-3]["SORTNO"];
-							$("#firstType").html(firstEType);
-							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-							$("#secondType").html(secondEType);
-							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-							$("#thirdType").html(thirdEType);
-							$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
-						}
-					}
-				});
+//				$.ajax({
+//					type : "post",
+//					url : "../../admin/kiener/measure/ajaxList_getPlan",
+//					dataType : "json",
+//					data: {"queryDate":queryDate},
+//					success : function(data) {
+//						var record = data.results;
+//						var size = record.length;
+//						console.info("data: " + record + " size: " + size);
+//						if( size == 0){
+//							//no production plan
+////							tbody_plan.hide();
+//						}
+//						if (size == 1){
+//							$("#trFirstType").removeClass("hidden");
+//							firstEType = record[size-1]["SORTNO"];
+//							$("#firstType").html(firstEType);
+//							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//						}
+//						if (size == 2){
+//							$("#trFirstType").removeClass("hidden");
+//							$("#trSecondType").removeClass("hidden");
+//							firstEType = record[size-1]["SORTNO"];
+//							secondEType = record[size-2]["SORTNO"];
+//							$("#firstType").html(firstEType);
+//							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//							$("#secondType").html(secondEType);
+//							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//						}
+//						if (size == 3){
+//
+//							$("#trFirstType").removeClass("hidden");
+//							$("#trSecondType").removeClass("hidden");
+//							$("#trThirdType").removeClass("hidden");
+//							firstEType = record[size-1]["SORTNO"];
+//							secondEType = record[size-2]["SORTNO"];
+//							thirdEType = record[size-3]["SORTNO"];
+//							$("#firstType").html(firstEType);
+//							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//							$("#secondType").html(secondEType);
+//							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//							$("#thirdType").html(thirdEType);
+//							$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+//						}
+//					}
+//				});
 
 
 				//enable the interval by default when refreshing the page
 				var realtimeOutput = function (){
 
-					endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD hh:mm:ss");
+					endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD HH:mm:ss");
 
 					$("#currentTime").html(new Date().format("yyyy-MM-dd hh:mm:ss") + " KW" + moment().format("WW") + " " +moment().format("ddd"));
 					if(moment().format("hh:mm") < "07:30" && moment().format("hh:mm") > "07:29"){
@@ -960,7 +979,7 @@
 					var m1610_typeNum = 0;
 					var m1650_typeNum = 0;
 
-					if(moment(endDate).format("hh:mm") > beginHHMM || moment(endDate).format("hh:mm")("hh:mm") < endHHMM)
+					if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
 					{
 						$.ajax({
 							type : "post",

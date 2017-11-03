@@ -53,6 +53,10 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String output;
 
+    /*real time takt for rowId*/
+    @TableField(exist = false)
+    private String rowId;
+
     @Override
     public Long getId() {
         return id;
@@ -156,5 +160,13 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setOutput(String output) {
         this.output = output;
+    }
+
+    public String getRowId() {
+        return rowId;
+    }
+
+    public void setRowId(String rowId) {
+        this.rowId = rowId;
     }
 }
