@@ -147,7 +147,18 @@
 					min: 0,
 					title: {
 						text: 'Takt Time(ss)'
-					}
+					},
+					plotLines:[{
+						label:{
+							text:'38s',     //鏍囩鐨勫唴瀹�
+							align:'left',                //鏍囩鐨勬按骞充綅缃紝姘村钩灞呭乏,榛樿鏄按骞冲眳涓璫enter
+							x:-10                         //鏍囩鐩稿浜庤瀹氫綅鐨勪綅缃按骞冲亸绉荤殑鍍忕礌锛岄噸鏂板畾浣嶏紝姘村钩灞呭乏10px
+						},
+						color:'red',           //绾跨殑棰滆壊锛屽畾涔変负绾㈣壊
+						dashStyle:'solid',     //榛樿鍊硷紝杩欓噷瀹氫箟涓哄疄绾�
+						value:38,               //瀹氫箟鍦ㄩ偅涓�间笂鏄剧ず鏍囩ず绾匡紝杩欓噷鏄湪x杞翠笂鍒诲害涓�3鐨勫�煎鍨傜洿鍖栦竴鏉＄嚎
+						width:2               //鏍囩ず绾跨殑瀹藉害锛�2px
+					}]
 				},
 				tooltip: {
 					headerFormat: '<span style="font-size:10px">Station:{point.key}</span><table>',
@@ -170,7 +181,7 @@
 			};
 
 			$('#date-timepicker-start').datetimepicker({
-				"maxDate" : moment().subtract(1, "days"),
+				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true,
 				"viewDate" : true,
 				"format" : "YYYY-MM-DD"
@@ -178,7 +189,7 @@
 //			"minDate" : moment().subtract(8, "days")
 			});
 			$('#date-timepicker-end').datetimepicker({
-				"maxDate" : moment().subtract(1, "days"),
+				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true
 				"format" : "YYYY-MM-DD"
 //			"minDate" : moment().subtract(8, "days")
@@ -255,8 +266,8 @@
 							options.xAxis.categories = eval('['+ val_station +']');
 							options.series[0].name = "Avg Tak Time";
 							options.series[0].data = eval('['+ val_avgTakTime +']');
-							options.title.text = "Takt Time";
-							options.subtitle.text = "Engine Type:" + currentType.substr(1);
+							options.title.text = "Average Takt Time - Engine Type: " + currentType.substr(1);;
+							options.subtitle.text = "From " + startDate + " To " + endDate;
 						}
 						new Highcharts.Chart(options);
 						val_avgTakTime = [];

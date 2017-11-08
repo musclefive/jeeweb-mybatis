@@ -57,6 +57,10 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String rowId;
 
+    /*latest Part Number for production*/
+    @TableField(exist = false)
+    private String latestNumber;
+
     @Override
     public Long getId() {
         return id;
@@ -168,5 +172,13 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setRowId(String rowId) {
         this.rowId = rowId;
+    }
+
+    public String getLatestNumber() {
+        return latestNumber;
+    }
+
+    public void setLatestNumber(String latestNumber) {
+        this.latestNumber = latestNumber;
     }
 }

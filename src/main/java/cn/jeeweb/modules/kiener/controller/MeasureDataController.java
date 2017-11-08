@@ -144,7 +144,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         entityWrapper.eq("Ok", true);
 //        propertyPreFilterable.addQueryProperty("id");
         //output json with query conditions
-        propertyPreFilterable.addQueryProperty("output", "station", "variety", "nextDate");
+        propertyPreFilterable.addQueryProperty("output", "station", "variety", "nextDate", "latestNumber");
 
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);

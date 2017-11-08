@@ -50,6 +50,8 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
             "400", "480", "540", "670", "770", "810", "820", "950", "960", "990", "1030", "1050", "1090", "1190",
             "1310", "1350", "1530", "1560", "1610", "1650");
 
+    public final static List excludedStation = Arrays.asList("40", "110", "310", "410", "1135", "1425", "1420", "1430",
+            "2002");
     @Autowired
     private ITakeTimeService takeTimeService;
 
@@ -63,6 +65,14 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         mStation = station;
         logger.info("preAjaxList param:" + mStation);
         return display("list");
+    }
+
+    @RequestMapping(value = "/takttimeList")
+    public String takttimeList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter the takt time list, then show the station list and query time
+        preList(model, request, response);
+        logger.info("takttimeList param:" + mStation);
+        return display("takttimeList");
     }
 
     @RequestMapping(value = "/single/{partNumber}")
@@ -107,28 +117,16 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
         logger.info("Enter TakeTimeController preList");
 //       change to the default datasource
-        DataSourceContextHolder.setDbType("dataSource");
+//        DataSourceContextHolder.setDbType("dataSource");
+        DataSourceContextHolder.setDbType("dataSource_production");
+
     }
 
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<TakeTime> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
-        String startDate = request.getParameter("measureDate");
-        String endDate = request.getParameter("endDate");
-        String partNumber = request.getParameter("partNumber");
 
-        DataSourceContextHolder.setDbType("dataSource");
-
-        logger.info("TakeTimeController preAjaxList param:" + mStation + " startDate: " + startDate +
-                " endDate: " + endDate + " partNumber: " + partNumber);
-
-        //add condition select all the Ok parts
-        entityWrapper.eq("station", mStation);
-        //customize search condition; will improve later
-        if(startDate != null && endDate != null ){
-            if(!startDate.equals("") && !startDate.equals("")){
-                entityWrapper.between("measureDate",startDate,endDate);
-            }
-        }
+//        DataSourceContextHolder.setDbType("dataSource");
+        DataSourceContextHolder.setDbType("dataSource_production");
     }
 
     /*
@@ -142,6 +140,17 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         //input the start and end param
         preAjaxList(queryable, entityWrapper, request, response);
 
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("endDate");
+        String station = request.getParameter("station");
+        //add condition select all the Ok parts
+        entityWrapper.eq("station", station);
+        //customize search condition; will improve later
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("id", "partNumber", "station", "currentType", "nextType",
                 "measureDate", "endDate", "takeTime", "changeType");
@@ -152,6 +161,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
     }
 
     /*
@@ -162,17 +172,15 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                                 HttpServletResponse response) throws IOException {
         EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
 
+        preAjaxList(queryable, entityWrapper, request, response);
 
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("endDate");
-//        String partNumber = request.getParameter("partNumber");
         String currentType = request.getParameter("currentType");
 
 //        startDate =  "2017-08-25 06:30";
 //        endDate = "2017-08-26 06:30";
 //        currentType = "05710";
-
-        DataSourceContextHolder.setDbType("dataSource");
 
         logger.info("TakeTimeController ajaxList_avgTakTime param:" + mStation + " startDate: " + startDate +
                 " endDate: " + endDate + " currentType: " + currentType);
@@ -180,8 +188,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         //add condition select all the Ok parts
         entityWrapper.eq("currentType", currentType);
         entityWrapper.lt("cast(takeTime as int)", 90);
+        entityWrapper.gt("cast(takeTime as int)", 10);
+        entityWrapper.notIn("station", excludedStation);
 //        entityWrapper.lt("takeTime", 90);
-
 
         //customize search condition; will improve later
         if(startDate != null && endDate != null ){
@@ -199,6 +208,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
+
+        DataSourceContextHolder.setDbType("dataSource");
+
     }
 
     /*
@@ -209,9 +221,11 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                                      HttpServletResponse response) throws IOException {
         EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
 
+        preAjaxList(queryable, entityWrapper, request, response);
 
-        DataSourceContextHolder.setDbType("dataSource");
         entityWrapper.eq("partNumber", mPartNumber);
+        entityWrapper.lt("cast(takeTime as int)", 200);
+        entityWrapper.gt("cast(takeTime as int)", 0);
         entityWrapper.orderBy("station");
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("station","takeTime","partNumber","currentType");
@@ -222,6 +236,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
+
+        DataSourceContextHolder.setDbType("dataSource");
+
     }
 
     /*
@@ -232,7 +249,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                                        HttpServletResponse response) throws IOException {
         EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
 
-        DataSourceContextHolder.setDbType("dataSource");
+        preAjaxList(queryable, entityWrapper, request, response);
 //        entityWrapper.eq("partNumber", mPartNumber);
 
 //        String measureStart = "2017-08-17 10:20";
@@ -256,6 +273,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
+
+        DataSourceContextHolder.setDbType("dataSource");
+
     }
 
     /*
@@ -266,7 +286,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                                            HttpServletResponse response) throws IOException {
         EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
 
-        DataSourceContextHolder.setDbType("dataSource");
+        preAjaxList(queryable, entityWrapper, request, response);
 
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
@@ -283,5 +303,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+
     }
 }

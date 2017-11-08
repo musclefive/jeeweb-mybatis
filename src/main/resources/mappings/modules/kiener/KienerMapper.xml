@@ -14,15 +14,9 @@
         <result column="nextDate" property="nextDate" jdbcType="DATE" />
         <result column="takeTime" property="takeTime" jdbcType="BIGINT" />
     </resultMap>
-    <sql id="Base_Column_List" >
-      ID,
-      PartNumber,
-      Station,
-      Variety,
-      A.Date as "measureDate",
-      B.Date as "nextDate",
-      DATEDIFF(ms , A.Date, B.Date ) as "takeTime"
-  </sql>
+    <sql id="queryTable" >
+      caq.MeasurementGeneralData
+     </sql>
     <sql id="Base_Column_List_1" >
         A.ID,
         A.PartNumber,
@@ -36,7 +30,7 @@
     <select id="selectTakeTime" resultType="MeasureData">
         select
         <include refid="Base_Column_List_1" />
-        from MeasurementGeneralData  A left join  MeasurementGeneralData  B on A.ID = B.ID - 1
+        from <include refid="queryTable" />  A left join  <include refid="queryTable" />  B on A.ID = B.ID - 1
         <where>
             ${ew.sqlSegment}
         </where>
@@ -50,8 +44,8 @@
 
 
     <select id="queryRealTimeOutput" resultType="MeasureData">
-        SELECT  Count(*) as "output", Station ,Variety, MAX(Date) as "nextDate"
-        FROM caq.MeasurementGeneralData
+        SELECT  Count(*) as "output", Station ,Variety, MAX(Date) as "nextDate", max(PartNumber) as latestNumber
+        FROM <include refid="queryTable" />
         <where>
             ${ew.sqlSegment}
         </where>
@@ -63,7 +57,7 @@
         SELECT * from (SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,ID,
         PartNumber, Station, Variety,
         Date as "measureDate"
-        FROM caq.MeasurementGeneralData
+        FROM <include refid="queryTable" />
         <where>
             ${ew.sqlSegment}
         </where>

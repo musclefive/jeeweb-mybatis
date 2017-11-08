@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Real-Time Production</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />-->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="../assets/css/ace.min.css" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="../assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="../assets/js/html5shiv.min.js"></script>
+		<script src="../assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default">
+
+			<div class="navbar-container" id="navbar-container">
+				<!-- #section:basics/sidebar.mobile.toggle -->
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							MoMo Line Real Time Output
+						</small>
+					</a>
+				</div>
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<br/>
+					<span class="label label-light"><i class="ace-icon fa fa-info-circle bigger-130"></i> <b>5 minutes no response</b></span>
+					<span class="label label-light"><i class="ace-icon fa fa-gavel bigger-130"></i> <b>10 minutes no respose</b></span>
+					<!--<ul class="nav ace-nav">-->
+					<!--<li class="grey">-->
+					<!--<a data-toggle="dropdown" class="dropdown-toggle" href="#">-->
+					<!--<i class="ace-icon fa fa-tasks"></i>-->
+					<!--<span class="badge badge-grey">4</span>-->
+					<!--</a>-->
+
+					<!--</li>-->
+
+					<!--<li class="purple">-->
+					<!--<a data-toggle="dropdown" class="dropdown-toggle" href="#">-->
+					<!--<i class="ace-icon fa fa-bell icon-animated-bell"></i>-->
+					<!--<span class="badge badge-important">8</span>-->
+					<!--</a>-->
+
+					<!--</li>-->
+
+					<!--<li class="green">-->
+					<!--<a data-toggle="dropdown" class="dropdown-toggle" href="#">-->
+					<!--<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+					<!--<span class="badge badge-success">5</span>-->
+					<!--</a>-->
+
+					<!--</li>-->
+
+					<!--&lt;!&ndash; #section:basics/navbar.user_menu &ndash;&gt;-->
+
+					<!--&lt;!&ndash; /section:basics/navbar.user_menu &ndash;&gt;-->
+					<!--</ul>-->
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<div class="main-content">
+
+				<!-- /section:basics/content.breadcrumbs -->
+				<div class="page-content">
+
+					<div class="page-content-area" style="background-image: url('bg_2.png');
+					background-repeat: no-repeat;background-size: contain;background-position: 0px 173px;">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="space-20"></div>
+								<div class="row">
+									<div class="col-sm-1 col-sm-offset-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M670
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m670_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M530
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m530_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M480
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m480_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">HA400
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="ha400_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M335
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m335_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M320
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m320_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">HA300
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="ha300_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M210
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m210_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1 " style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M150
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m150_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M140
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m140_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div><!-- /.row -->
+								<div class="space-6" ></div>
+								<!--<div class="space-26" ></div>-->
+								<!--<div class="space-26" ></div>-->
+								<div class="row">
+									<div class="col-sm-12 align-center">
+										<h1 id="currentTime"></h1>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M770
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m770_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1 col-sm-offset-1" style="padding-left:1px;padding-right: 1px">
+										<div><br/></div>
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M990
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m990_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--show today's plan and output-->
+									<div class="col-sm-6">
+										<table id="sample-table-1" class="table table-bordered">
+											<thead>
+												<tr style="padding: 0px">
+													<th class=" col-sm-1" >SN</th>
+													<th class=" col-sm-3" >Engine Type</th>
+													<th class=" col-sm-3" >Loading Plan</th>
+													<th class=" col-sm-2" >Input</th>
+													<th class=" col-sm-2" >Output</th>
+												</tr>
+											</thead>
+											<tbody id="tbody_plan">
+											<tr id="trFirstType" class="hidden">
+												<td style="font-size: 20px"><button class="btn btn-primary btn-xs">1</button></td>
+												<td style="font-size: 20px" id="firstType"></td>
+												<td style="font-size: 20px" id="firstTypePlan"></td>
+												<td style="font-size: 20px" id="firstTypeOnline">0</td>
+												<td style="font-size: 20px" id="firstTypeOutput">0</td>
+
+											</tr>
+											<tr id="trSecondType" class="hidden">
+												<td style="font-size: 20px"><button class="btn btn-warning btn-xs">2</button></td>
+												<td style="font-size: 20px" id="secondType"></td>
+												<td style="font-size: 20px" id="secondTypePlan"></td>
+												<td style="font-size: 20px" id="secondTypeOnline">0</td>
+												<td style="font-size: 20px" id="secondTypeOutput">0</td>
+											</tr>
+											<tr id="trThirdType" class="hidden">
+												<td style="font-size: 20px"><button class="btn btn-success btn-xs">3</button></td>
+												<td style="font-size: 20px" id="thirdType"></td>
+												<td style="font-size: 20px" id="thirdTypePlan"></td>
+												<td style="font-size: 20px" id="thirdTypeOnline">0</td>
+												<td style="font-size: 20px" id="thirdTypeOutput">0</td>
+
+											</tr>
+											<tr id="trFourthType" class="hidden">
+												<td style="font-size: 20px"><button class="btn btn-pink btn-xs">4</button></td>
+												<td style="font-size: 20px" id="fourthType"></td>
+												<td style="font-size: 20px" id="fourthTypePlan"></td>
+												<td style="font-size: 20px" id="fourthTypeOnline">0</td>
+												<td style="font-size: 20px" id="fourthTypeOutput">0</td>
+
+											</tr>
+											<tr id="trFifthType" class="hidden">
+												<td style="font-size: 20px"><button class="btn btn-yellow btn-xs">5</button></td>
+												<td style="font-size: 20px" id="fifthType"></td>
+												<td style="font-size: 20px" id="fifthTypePlan"></td>
+												<td style="font-size: 20px" id="fifthTypeOnline">0</td>
+												<td style="font-size: 20px" id="fifthTypeOutput">0</td>
+
+											</tr>
+											</tbody>
+										</table>
+
+									</div>
+									<div class="col-sm-1 col-sm-offset-2" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M010
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m010_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								<!--<div class="space-10"></div>-->
+								<!--<div class="space-30"></div>-->
+								<!--<div class="space-30"></div>-->
+								<div class="row">
+									<!--<div class="space-6"></div>-->
+									<div class="col-sm-1 col-sm-offset-2" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1030
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1030_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1050
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1050_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1090
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1090_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1190
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1190_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1310
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1310_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1350
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1350_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1530
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1530_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1560
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1560_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1610
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1610_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M1650
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m1650_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div><!-- /.row -->
+								<!--<div class="space-22"></div>-->
+								<div class="row">
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M810
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m810_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M950
+													<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m950_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-1" style="padding-left:1px;padding-right: 1px">
+										<div class="widget-box widget-color-blue3">
+											<div class="widget-header align-center">
+												<h3 class="widget-title smaller">M960</h3>
+												<div class="widget-toolbar">
+												</div>
+											</div>
+											<div class="widget-body">
+												<div class="widget-main" style="padding: 0px">
+													<!-- #section:elements.popover -->
+													<div id="m960_type_1" class="alert alert-info align-center" style="height: 80px;padding: 0px">
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px;"></h3>
+														<h3 style="padding: 0px;margin-top:10px;margin-bottom: 5px"></h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="space-30"></div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content-area -->
+
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">VWED CC IT</span>
+							&copy; 2017-2018
+						</span>
+
+						&nbsp; &nbsp;
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='../assets/js/jquery1x.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="../assets/js/prototype.js"></script>
+		<script src="../assets/js/date-time/moment.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="../assets/js/ace-elements.min.js"></script>
+		<script src="../assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+
+			var firstEType = "";
+			var secondEType = "";
+			var thirdEType = "";
+			var fourthEType = "";
+			var fifthEType = "";
+			var beginHHMM = "07:00";
+			var endHHMM = "02:00";
+			/*initial the page method
+			 * get the real output from ajax method*/
+
+			function clearShowingBox(){
+				$("#m010_type_1").children().first().html("");
+				$("#m010_type_1").children().last().html("");
+				$("#m140_type_1").children().first().html("");
+				$("#m140_type_1").children().last().html("");
+				$("#m150_type_1").children().first().html("");
+				$("#m150_type_1").children().last().html("");
+				$("#m210_type_1").children().first().html("");
+				$("#m210_type_1").children().last().html("");
+				$("#ha300_type_1").children().first().html("");
+				$("#ha300_type_1").children().last().html("");
+				$("#m320_type_1").children().first().html("");
+				$("#m320_type_1").children().last().html("");
+				$("#m335_type_1").children().first().html("");
+				$("#m335_type_1").children().last().html("");
+				$("#ha400_type_1").children().first().html("");
+				$("#ha400_type_1").children().last().html("");
+				$("#m480_type_1").children().first().html("");
+				$("#m480_type_1").children().last().html("");
+				$("#m530_type_1").children().first().html("");
+				$("#m530_type_1").children().last().html("");
+				$("#m670_type_1").children().first().html("");
+				$("#m670_type_1").children().last().html("");
+				$("#m770_type_1").children().first().html("");
+				$("#m770_type_1").children().last().html("");
+				$("#m810_type_1").children().first().html("");
+				$("#m810_type_1").children().last().html("");
+				$("#m820_type_1").children().first().html("");
+				$("#m820_type_1").children().last().html("");
+				$("#m950_type_1").children().first().html("");
+				$("#m950_type_1").children().last().html("");
+				$("#m960_type_1").children().first().html("");
+				$("#m960_type_1").children().last().html("");
+				$("#m990_type_1").children().first().html("");
+				$("#m990_type_1").children().last().html("");
+				$("#m1030_type_1").children().first().html("");
+				$("#m1030_type_1").children().last().html("");
+				$("#m1050_type_1").children().first().html("");
+				$("#m1050_type_1").children().last().html("");
+				$("#m1090_type_1").children().first().html("");
+				$("#m1090_type_1").children().last().html("");
+				$("#m1190_type_1").children().first().html("");
+				$("#m1190_type_1").children().last().html("");
+				$("#m1310_type_1").children().first().html("");
+				$("#m1310_type_1").children().last().html("");
+				$("#m1350_type_1").children().first().html("");
+				$("#m1350_type_1").children().last().html("");
+				$("#m1530_type_1").children().first().html("");
+				$("#m1530_type_1").children().last().html("");
+				$("#m1560_type_1").children().first().html("");
+				$("#m1560_type_1").children().last().html("");
+				$("#m1610_type_1").children().first().html("");
+				$("#m1610_type_1").children().last().html("");
+				$("#m1650_type_1").children().first().html("");
+				$("#m1650_type_1").children().last().html("");
+			}
+			$(document).ready(function() {
+				var sh; // Interval
+
+//				production eviroment setting
+				var queryDate = moment().format("YYYY-MM-DD");
+				var startDate = queryDate + " 06:30";
+				var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+
+//				testing eviroment setting
+//				var queryDate = "2017-08-16";
+//				var startDate = "2017-08-16 06:30";
+//				var endDate = "2017-08-16 15:50";
+//
+//				$("#trFirstType").removeClass("hidden");
+//				$("#trSecondType").removeClass("hidden");
+//				firstEType = "5732";
+//				secondEType = "5710";
+//				$("#firstType").html(firstEType);
+//				$("#secondType").html(secondEType);
+				/*
+				* get the production plan
+				* */
+				$.ajax({
+					type : "post",
+					url : "../../admin/kiener/measure/ajaxList_getPlan",
+					dataType : "json",
+					data: {"queryDate":queryDate},
+					success : function(data) {
+						var record = data.results;
+						var size = record.length;
+						console.info("plan info data: " + record + " size: " + size);
+						if( size == 0){
+							//no production plan
+//							tbody_plan.hide();
+						}
+						if (size == 1){
+							$("#trFirstType").removeClass("hidden");
+							firstEType = record[size-1]["SORTNO"];
+							$("#firstType").html(firstEType);
+							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+						}
+						if (size == 2){
+							$("#trFirstType").removeClass("hidden");
+							$("#trSecondType").removeClass("hidden");
+							firstEType = record[size-1]["SORTNO"];
+							secondEType = record[size-2]["SORTNO"];
+							$("#firstType").html(firstEType);
+							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+							$("#secondType").html(secondEType);
+							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+						}
+						if (size == 3){
+
+							$("#trFirstType").removeClass("hidden");
+							$("#trSecondType").removeClass("hidden");
+							$("#trThirdType").removeClass("hidden");
+							firstEType = record[size-1]["SORTNO"];
+							secondEType = record[size-2]["SORTNO"];
+							thirdEType = record[size-3]["SORTNO"];
+							$("#firstType").html(firstEType);
+							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+							$("#secondType").html(secondEType);
+							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+							$("#thirdType").html(thirdEType);
+							$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+						}
+						if (size == 4){
+
+							$("#trFirstType").removeClass("hidden");
+							$("#trSecondType").removeClass("hidden");
+							$("#trThirdType").removeClass("hidden");
+							$("#trFourthType").removeClass("hidden");
+
+							firstEType = record[size-1]["SORTNO"];
+							secondEType = record[size-2]["SORTNO"];
+							thirdEType = record[size-3]["SORTNO"];
+							fourthEType = record[size-4]["SORTNO"];
+
+							$("#firstType").html(firstEType);
+							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+							$("#secondType").html(secondEType);
+							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+							$("#thirdType").html(thirdEType);
+							$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+							$("#fourthType").html(fourthEType);
+							$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
+						}
+						if (size == 5){
+
+							$("#trFirstType").removeClass("hidden");
+							$("#trSecondType").removeClass("hidden");
+							$("#trThirdType").removeClass("hidden");
+							$("#trFourthType").removeClass("hidden");
+							$("#trFifthType").removeClass("hidden");
+
+							firstEType = record[size-1]["SORTNO"];
+							secondEType = record[size-2]["SORTNO"];
+							thirdEType = record[size-3]["SORTNO"];
+							fourthEType = record[size-4]["SORTNO"];
+							fifthEType = record[size-5]["SORTNO"];
+
+							$("#firstType").html(firstEType);
+							$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+							$("#secondType").html(secondEType);
+							$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+							$("#thirdType").html(thirdEType);
+							$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+							$("#fourthType").html(fourthEType);
+							$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
+							$("#fifthType").html(fifthEType);
+							$("#fifthTypePlan").html(record[size-5]["PLANQTY"]);
+						}
+					}
+				});
+
+
+				//enable the interval by default when refreshing the page
+				var realtimeOutput = function (){
+
+					endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD HH:mm:ss");
+					console.info("endDate: " + endDate + " " +  moment().format("HH:mm:ss"));
+					$("#currentTime").html(new Date().format("yyyy-MM-dd hh:mm:ss") + " KW" + moment().format("WW") + " " +moment().format("ddd"));
+					if(moment().format("HH:mm:ss") < "07:50:00" && moment().format("HH:mm:ss") > "07:49:40"){
+						console.info("refresh the whole page");
+						window.location.reload();
+					}
+//					clear the show box content
+					clearShowingBox();
+
+					var m010_typeNum = 0;
+					var m140_typeNum = 0;
+					var m150_typeNum = 0;
+					var m210_typeNum = 0;
+					var ha300_typeNum = 0;
+					var m320_typeNum = 0;
+					var m335_typeNum = 0;
+					var ha400_typeNum = 0;
+					var m480_typeNum = 0;
+					var m530_typeNum = 0;
+					var m670_typeNum = 0;
+					var m770_typeNum = 0;
+					var m810_typeNum = 0;
+					var m820_typeNum = 0;
+					var m950_typeNum = 0;
+					var m960_typeNum = 0;
+					var m990_typeNum = 0;
+					var m1030_typeNum = 0;
+					var m1050_typeNum = 0;
+					var m1090_typeNum = 0;
+					var m1190_typeNum = 0;
+					var m1310_typeNum = 0;
+					var m1350_typeNum = 0;
+					var m1530_typeNum = 0;
+					var m1560_typeNum = 0;
+					var m1610_typeNum = 0;
+					var m1650_typeNum = 0;
+
+					if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
+					{
+						console.info("endDate format: " + moment(endDate).format("HH:mm") + " begin:" + beginHHMM + " end:" + endHHMM)
+						$.ajax({
+							type : "post",
+							url : "../../admin/kiener/measure/ajaxList_output",
+							dataType : "json",
+							data: {"measureDate":startDate,"measureDateEnd":endDate, "type":"klt"},
+							success : function(data) {
+//                    [{"output":"1062","station":45,"variety":"05710"},{"output":"5","station":45,"variety":"05776"}]
+								for(var p in data){
+//                        console.info("output:" + data[p].output + " type:" + typeof(data[p].output)+
+//                                " station: " + data[p].station + " type: " + typeof(data[p].station) +
+//                                " variety: " + data[p].variety);
+									if(data[p].station == 10 ){
+										m010_typeNum = m010_typeNum + 1;
+//									 setOutputPanel(object, variety, output, varietyNumber, flag)
+										setOutputPanel($("#m010_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate, m010_typeNum,1);
+									}
+									if(data[p].station == 140 ){
+										m140_typeNum = m140_typeNum + 1;
+										setOutputPanel($("#m140_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate, m140_typeNum,0);
+									}
+									if(data[p].station == 150 ){
+										m150_typeNum = m150_typeNum + 1;
+										setOutputPanel($("#m150_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m150_typeNum,0);
+
+									}
+									if(data[p].station == 210 ){
+										m210_typeNum = m210_typeNum + 1;
+										setOutputPanel($("#m210_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m210_typeNum,0);
+
+									}
+									if(data[p].station == 300 ){
+										ha300_typeNum = ha300_typeNum + 1;
+										setOutputPanel($("#ha300_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,ha300_typeNum,0);
+
+									}
+									if(data[p].station == 320 ){
+										m320_typeNum = m320_typeNum + 1;
+										setOutputPanel($("#m320_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m320_typeNum,0);
+									}
+									if(data[p].station == 335 ){
+										m335_typeNum = m335_typeNum + 1;
+										setOutputPanel($("#m335_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m335_typeNum,0);
+									}
+									if(data[p].station == 400 ){
+										ha400_typeNum = ha400_typeNum + 1;
+										setOutputPanel($("#ha400_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,ha400_typeNum,0);
+									}
+									if(data[p].station == 480 ){
+										m480_typeNum = m480_typeNum + 1;
+										setOutputPanel($("#m480_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m480_typeNum,0);
+									}
+									if(data[p].station == 530 ){
+										m530_typeNum = m530_typeNum + 1;
+										setOutputPanel($("#m530_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m530_typeNum,0);
+									}
+									if(data[p].station == 670 ){
+										m670_typeNum = m670_typeNum + 1;
+										setOutputPanel($("#m670_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m670_typeNum,0);
+									}
+									if(data[p].station == 770 ){
+										m770_typeNum = m770_typeNum + 1;
+										setOutputPanel($("#m770_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m770_typeNum,0);
+									}
+									if(data[p].station == 810 ){
+										m810_typeNum = m810_typeNum + 1;
+										setOutputPanel($("#m810_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate, m810_typeNum,0);
+									}
+									if(data[p].station == 820 ){
+										m820_typeNum = m820_typeNum + 1;
+										setOutputPanel($("#m820_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m820_typeNum,0);
+									}
+									if(data[p].station == 950 ){
+										m950_typeNum = m950_typeNum + 1;
+										setOutputPanel($("#m950_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m950_typeNum,0);
+									}
+									if(data[p].station == 960 ){
+										m960_typeNum = m960_typeNum + 1;
+										setOutputPanel($("#m960_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m960_typeNum,0);
+									}
+									if(data[p].station == 990 ){
+										m990_typeNum = m990_typeNum + 1;
+										setOutputPanel($("#m990_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m990_typeNum,0);
+									}
+									if(data[p].station == 1030 ){
+										m1030_typeNum = m1030_typeNum + 1;
+										setOutputPanel($("#m1030_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1030_typeNum,0);
+									}
+									if(data[p].station == 1050 ){
+										m1050_typeNum = m1050_typeNum + 1;
+										setOutputPanel($("#m1050_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1050_typeNum,0);
+									}
+									if(data[p].station == 1090 ){
+										m1090_typeNum = m1090_typeNum + 1;
+										setOutputPanel($("#m1090_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1090_typeNum,0);
+									}
+									if(data[p].station == 1190 ){
+										m1190_typeNum = m1190_typeNum + 1;
+										setOutputPanel($("#m1190_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1190_typeNum,0);
+									}
+									if(data[p].station == 1310 ){
+										m1310_typeNum = m1310_typeNum + 1;
+										setOutputPanel($("#m1310_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1310_typeNum,0);
+									}
+									if(data[p].station == 1350 ){
+										m1350_typeNum = m1350_typeNum + 1;
+										setOutputPanel($("#m1350_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1350_typeNum,0);
+									}
+									if(data[p].station == 1530 ){
+										m1530_typeNum = m1530_typeNum + 1;
+										setOutputPanel($("#m1530_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1530_typeNum,0);
+									}
+									if(data[p].station == 1560 ){
+										m1560_typeNum = m1560_typeNum + 1;
+										setOutputPanel($("#m1560_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1560_typeNum,0);
+									}
+									if(data[p].station == 1610 ){
+										m1610_typeNum = m1610_typeNum + 1;
+										setOutputPanel($("#m1610_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1610_typeNum,0);
+									}
+									if(data[p].station == 1650 ){
+										m1650_typeNum = m1650_typeNum + 1;
+										setOutputPanel($("#m1650_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate,m1650_typeNum,2);
+									}
+								}
+							}
+						});
+					}
+					else{
+						console.info("stop query from the db during the night time");
+					}
+					return realtimeOutput;
+
+				};
+				realtimeOutput();
+
+				sh = setInterval(realtimeOutput, 6000);
+
+
+				/*
+				 * object : the div object
+				 * variety: the type of the engine
+				 * output: the output for this type of variety of a station
+				 * varietyNumber: the total engine types for today's production
+				 * flag=1 the first  station to show in the plan table
+				 * flag =2 the last station to show in the plan table
+				 * */
+				function setOutputPanel(object, variety, output, lastestTime, varietyNumber, flag){
+
+//				console.info("variety:" + variety + " output:" + output + " " +
+//				"varietyNumber:" + varietyNumber + " flag:" + flag);
+//				console.info("firstType:" + firstEType + " secondType:" + secondEType + " thirdEType:" + thirdEType);
+					var timeFrame = ""; // the time diff between current time and lastestTime
+					if (varietyNumber == 1){
+						object.children().first().append(variety);
+						object.children().last().append(output);
+
+						if(variety == firstEType){
+//						if current produce enginee typ is the secondType, change to the color
+//						console.info("this the firstType:" + variety);
+							object.parent().parent().parent().removeClass("widget-color-blue3");
+							object.parent().parent().parent().removeClass("widget-color-orange");
+							object.parent().parent().parent().removeClass("widget-color-green");
+							object.parent().parent().parent().removeClass("widget-color-pink");
+
+							object.parent().parent().parent().addClass("widget-color-blue3");
+							object.removeClass("alert-success");
+							object.removeClass("alert-danger");
+
+							object.addClass("alert-info");
+						}
+
+						else if(variety == secondEType){
+							console.info("this the second type:" + variety);
+
+							//if current produce enginee typ is the secondType, change to the color
+							object.parent().parent().parent().removeClass("widget-color-blue3");
+							object.parent().parent().parent().removeClass("widget-color-orange");
+							object.parent().parent().parent().removeClass("widget-color-green");
+							object.parent().parent().parent().removeClass("widget-color-pink");
+
+							object.parent().parent().parent().addClass("widget-color-orange");
+							object.removeClass("alert-warning");
+							object.removeClass("alert-success");
+							object.removeClass("alert-info");
+							object.addClass("alert-warning");
+						}
+						else if(variety == thirdEType){
+							console.info("this the third Type:" + variety);
+
+							//if current produce enginee typ is the secondType, change to the color
+							object.parent().parent().parent().removeClass("widget-color-blue3");
+							object.parent().parent().parent().removeClass("widget-color-orange");
+							object.parent().parent().parent().removeClass("widget-color-green");
+							object.parent().parent().parent().removeClass("widget-color-pink");
+
+							object.parent().parent().parent().addClass("widget-color-green");
+
+							object.removeClass("alert-warning");
+							object.removeClass("alert-info");
+							object.removeClass("alert-success");
+							object.addClass("alert-success");
+						}else if(variety == fourthEType){
+							console.info("this the third Type:" + variety);
+
+							//if current produce enginee typ is the secondType, change to the color
+							object.parent().parent().parent().removeClass("widget-color-blue3");
+							object.parent().parent().parent().removeClass("widget-color-orange");
+							object.parent().parent().parent().removeClass("widget-color-green");
+							object.parent().parent().parent().removeClass("widget-color-pink");
+
+							object.parent().parent().parent().addClass("widget-color-pink");
+
+							object.removeClass("alert-warning");
+							object.removeClass("alert-info");
+							object.removeClass("alert-success");
+//							object.addClass("alert-success");
+						} else{
+							//none of the list 3 type, then it has to be the qianpiliang
+							object.parent().parent().parent().removeClass("widget-color-blue3");
+							object.parent().parent().parent().removeClass("widget-color-orange");
+							object.parent().parent().parent().removeClass("widget-color-green");
+							object.parent().parent().parent().removeClass("widget-color-pink");
+
+							object.removeClass("alert-warning");
+							object.removeClass("alert-info");
+							object.removeClass("alert-success");
+						}
+						/*
+						* Caculate the timeFrame from the query endDate, show the icon depend on the timeframe
+						*
+						* */
+						timeFrame  = moment(endDate).diff(moment(lastestTime), "seconds");
+						if(timeFrame < 900){
+							object.parent().parent().parent().find(".fa-info-circle").addClass("hidden");
+							object.parent().parent().parent().find(".fa-gavel").addClass("hidden");
+						}else if(timeFrame < 1200){
+							//5 minutes with no output add + 10minutes delay from the system time
+							object.parent().parent().parent().find(".fa-info-circle").addClass("hidden");
+							object.parent().parent().parent().find(".fa-gavel").addClass("hidden");
+							object.parent().parent().parent().find(".fa-info-circle").removeClass("hidden");
+						}else{
+							//10 minutes with no output add
+							object.parent().parent().parent().find(".fa-info-circle").addClass("hidden");
+							object.parent().parent().parent().find(".fa-gavel").addClass("hidden");
+
+							object.parent().parent().parent().find(".fa-gavel").removeClass("hidden");
+						}
+						console.info("the Time Frame is :" +timeFrame + " lastestTime:" + lastestTime + " endDate:" +
+								endDate + " type:" + variety);
+					}
+
+					if(flag == 1){
+						if(variety == firstEType){
+							$("#firstTypeOnline").html(output);
+						} else if(variety == secondEType){
+							$("#secondTypeOnline").html(output);
+						}else if(variety == thirdEType){
+							$("#thirdTypeOnline").html(output);
+						}
+					}
+					if(flag == 2){
+						if(variety == firstEType){
+							$("#firstTypeOutput").html(output);
+						} else if(variety == secondEType){
+							$("#secondTypeOutput").html(output);
+						}else if(variety == thirdEType){
+							$("#thirdTypeOutput").html(output);
+						}
+					}
+				}
+
+			});
+
+
+		</script>
+	</body>
+</html>
