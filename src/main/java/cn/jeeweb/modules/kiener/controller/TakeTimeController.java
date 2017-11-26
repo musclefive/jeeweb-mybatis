@@ -117,20 +117,20 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     public void preList(Model model, HttpServletRequest request, HttpServletResponse response) {
         logger.info("Enter TakeTimeController preList");
 //       change to the default datasource
-//        DataSourceContextHolder.setDbType("dataSource");
-        DataSourceContextHolder.setDbType("dataSource_production");
+        DataSourceContextHolder.setDbType("dataSource");
+//        DataSourceContextHolder.setDbType("dataSource_production");
 
     }
 
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<TakeTime> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
-//        DataSourceContextHolder.setDbType("dataSource");
-        DataSourceContextHolder.setDbType("dataSource_production");
+        DataSourceContextHolder.setDbType("dataSource");
+//        DataSourceContextHolder.setDbType("dataSource_production");
     }
 
     /*
-    * query takt time list for a datatable
+    * query takt time list and takt time chcart
     *
     * */
     @RequestMapping(value = "ajaxList_takttime", method = { RequestMethod.GET, RequestMethod.POST })
@@ -145,6 +145,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         String station = request.getParameter("station");
         //add condition select all the Ok parts
         entityWrapper.eq("station", station);
+        entityWrapper.lt("cast(takeTime as int)", 2000);
+        entityWrapper.gt("cast(takeTime as int)", 0);
+        entityWrapper.orderBy("measureDate");
         //customize search condition; will improve later
         if(startDate != null && endDate != null ){
             if(!startDate.equals("") && !startDate.equals("")){

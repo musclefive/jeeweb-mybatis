@@ -58,7 +58,7 @@ public class StationController extends BaseCRUDController<Station, Long> {
                                 HttpServletResponse response) throws IOException {
         EntityWrapper<Station> entityWrapper = new EntityWrapper<>(entityClass);
         //input the start and end param
-//        preAjaxList(queryable, entityWrapper, request, response);
+        DataSourceContextHolder.setDbType("dataSource");
 
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("id", "identifier", "type");

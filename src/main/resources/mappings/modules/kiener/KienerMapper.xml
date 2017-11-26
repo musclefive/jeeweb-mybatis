@@ -15,7 +15,7 @@
         <result column="takeTime" property="takeTime" jdbcType="BIGINT" />
     </resultMap>
     <sql id="queryTable" >
-      caq.MeasurementGeneralData
+      MeasurementGeneralData
      </sql>
     <sql id="Base_Column_List_1" >
         A.ID,
@@ -66,6 +66,16 @@
             b.rowId = 1 or b.rowId = 2
         </where>
         order by b.Station, b.rowId
+    </select>
+    <select id="queryRealTimeTaktTimeSingle" resultType="MeasureData">
+
+        SELECT ID, PartNumber, Station, Variety,
+        Date as "measureDate"
+        FROM <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+
     </select>
 
 </mapper>

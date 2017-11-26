@@ -49,6 +49,15 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
         return records;
     }
 
+    /*
+    * query the real time takt time for single station
+    * */
+    @Override
+    public List<MeasureData> querySingleTaktTime(Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryRealTimeTaktTimeSingle(wrapper);
+        return records;
+    }
+
 
     /*
     *

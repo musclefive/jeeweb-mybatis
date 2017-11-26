@@ -843,107 +843,107 @@
 				var startDate = "2017-08-16 06:30";
 				var endDate = "2017-08-16 15:50";
 
-//				$("#trFirstType").removeClass("hidden");
-//				$("#trSecondType").removeClass("hidden");
-//				firstEType = "5732";
-//				secondEType = "5710";
-//				$("#firstType").html(firstEType);
-//				$("#secondType").html(secondEType);
+				$("#trFirstType").removeClass("hidden");
+				$("#trSecondType").removeClass("hidden");
+				firstEType = "5732";
+				secondEType = "5710";
+				$("#firstType").html(firstEType);
+				$("#secondType").html(secondEType);
 		/*
 		 * get the production plan
 		 * */
-		$.ajax({
-			type : "post",
-			url : "../../admin/kiener/measure/ajaxList_getPlan",
-			dataType : "json",
-			data: {"queryDate":queryDate},
-			success : function(data) {
-				var record = data.results;
-				var size = record.length;
-				console.info("plan info data: " + record + " size: " + size);
-				if( size == 0){
-					//no production plan
-//							tbody_plan.hide();
-				}
-				if (size == 1){
-					$("#trFirstType").removeClass("hidden");
-					firstEType = record[size-1]["SORTNO"];
-					$("#firstType").html(firstEType);
-					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-				}
-				if (size == 2){
-					$("#trFirstType").removeClass("hidden");
-					$("#trSecondType").removeClass("hidden");
-					firstEType = record[size-1]["SORTNO"];
-					secondEType = record[size-2]["SORTNO"];
-					$("#firstType").html(firstEType);
-					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-					$("#secondType").html(secondEType);
-					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-				}
-				if (size == 3){
-
-					$("#trFirstType").removeClass("hidden");
-					$("#trSecondType").removeClass("hidden");
-					$("#trThirdType").removeClass("hidden");
-					firstEType = record[size-1]["SORTNO"];
-					secondEType = record[size-2]["SORTNO"];
-					thirdEType = record[size-3]["SORTNO"];
-					$("#firstType").html(firstEType);
-					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-					$("#secondType").html(secondEType);
-					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-					$("#thirdType").html(thirdEType);
-					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
-				}
-				if (size == 4){
-
-					$("#trFirstType").removeClass("hidden");
-					$("#trSecondType").removeClass("hidden");
-					$("#trThirdType").removeClass("hidden");
-					$("#trFourthType").removeClass("hidden");
-
-					firstEType = record[size-1]["SORTNO"];
-					secondEType = record[size-2]["SORTNO"];
-					thirdEType = record[size-3]["SORTNO"];
-					fourthEType = record[size-4]["SORTNO"];
-
-					$("#firstType").html(firstEType);
-					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-					$("#secondType").html(secondEType);
-					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-					$("#thirdType").html(thirdEType);
-					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
-					$("#fourthType").html(fourthEType);
-					$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
-				}
-				if (size == 5){
-
-					$("#trFirstType").removeClass("hidden");
-					$("#trSecondType").removeClass("hidden");
-					$("#trThirdType").removeClass("hidden");
-					$("#trFourthType").removeClass("hidden");
-					$("#trFifthType").removeClass("hidden");
-
-					firstEType = record[size-1]["SORTNO"];
-					secondEType = record[size-2]["SORTNO"];
-					thirdEType = record[size-3]["SORTNO"];
-					fourthEType = record[size-4]["SORTNO"];
-					fifthEType = record[size-5]["SORTNO"];
-
-					$("#firstType").html(firstEType);
-					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
-					$("#secondType").html(secondEType);
-					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
-					$("#thirdType").html(thirdEType);
-					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
-					$("#fourthType").html(fourthEType);
-					$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
-					$("#fifthType").html(fifthEType);
-					$("#fifthTypePlan").html(record[size-5]["PLANQTY"]);
-				}
-			}
-		});
+//		$.ajax({
+//			type : "post",
+//			url : "../../admin/kiener/measure/ajaxList_getPlan",
+//			dataType : "json",
+//			data: {"queryDate":queryDate},
+//			success : function(data) {
+//				var record = data.results;
+//				var size = record.length;
+//				console.info("plan info data: " + record + " size: " + size);
+//				if( size == 0){
+//					//no production plan
+////							tbody_plan.hide();
+//				}
+//				if (size == 1){
+//					$("#trFirstType").removeClass("hidden");
+//					firstEType = record[size-1]["SORTNO"];
+//					$("#firstType").html(firstEType);
+//					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//				}
+//				if (size == 2){
+//					$("#trFirstType").removeClass("hidden");
+//					$("#trSecondType").removeClass("hidden");
+//					firstEType = record[size-1]["SORTNO"];
+//					secondEType = record[size-2]["SORTNO"];
+//					$("#firstType").html(firstEType);
+//					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//					$("#secondType").html(secondEType);
+//					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//				}
+//				if (size == 3){
+//
+//					$("#trFirstType").removeClass("hidden");
+//					$("#trSecondType").removeClass("hidden");
+//					$("#trThirdType").removeClass("hidden");
+//					firstEType = record[size-1]["SORTNO"];
+//					secondEType = record[size-2]["SORTNO"];
+//					thirdEType = record[size-3]["SORTNO"];
+//					$("#firstType").html(firstEType);
+//					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//					$("#secondType").html(secondEType);
+//					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//					$("#thirdType").html(thirdEType);
+//					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+//				}
+//				if (size == 4){
+//
+//					$("#trFirstType").removeClass("hidden");
+//					$("#trSecondType").removeClass("hidden");
+//					$("#trThirdType").removeClass("hidden");
+//					$("#trFourthType").removeClass("hidden");
+//
+//					firstEType = record[size-1]["SORTNO"];
+//					secondEType = record[size-2]["SORTNO"];
+//					thirdEType = record[size-3]["SORTNO"];
+//					fourthEType = record[size-4]["SORTNO"];
+//
+//					$("#firstType").html(firstEType);
+//					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//					$("#secondType").html(secondEType);
+//					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//					$("#thirdType").html(thirdEType);
+//					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+//					$("#fourthType").html(fourthEType);
+//					$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
+//				}
+//				if (size == 5){
+//
+//					$("#trFirstType").removeClass("hidden");
+//					$("#trSecondType").removeClass("hidden");
+//					$("#trThirdType").removeClass("hidden");
+//					$("#trFourthType").removeClass("hidden");
+//					$("#trFifthType").removeClass("hidden");
+//
+//					firstEType = record[size-1]["SORTNO"];
+//					secondEType = record[size-2]["SORTNO"];
+//					thirdEType = record[size-3]["SORTNO"];
+//					fourthEType = record[size-4]["SORTNO"];
+//					fifthEType = record[size-5]["SORTNO"];
+//
+//					$("#firstType").html(firstEType);
+//					$("#firstTypePlan").html(record[size-1]["PLANQTY"]);
+//					$("#secondType").html(secondEType);
+//					$("#secondTypePlan").html(record[size-2]["PLANQTY"]);
+//					$("#thirdType").html(thirdEType);
+//					$("#thirdTypePlan").html(record[size-3]["PLANQTY"]);
+//					$("#fourthType").html(fourthEType);
+//					$("#fourthTypePlan").html(record[size-4]["PLANQTY"]);
+//					$("#fifthType").html(fifthEType);
+//					$("#fifthTypePlan").html(record[size-5]["PLANQTY"]);
+//				}
+//			}
+//		});
 
 
 		//enable the interval by default when refreshing the page

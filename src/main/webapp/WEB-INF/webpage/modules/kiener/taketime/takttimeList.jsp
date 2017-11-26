@@ -43,7 +43,7 @@
 							<div class="col-sm-12 table-bordered border">
 								<div class="row">
 									<div class="col-sm-2">
-										<label for="selectStationType">Chosen</label>
+										<label for="selectStationType">Station</label>
 
 										<br />
 										<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">
@@ -68,16 +68,20 @@
 											</span>
 										</div>
 									</div>
-									<div class="col-sm-2">
+									<div class="col-sm-4">
 										<br/>
 										<!-- #section:plugins/date-time.datetimepicker -->
-										<button class="btn btn-sm btn-success" id="btnQuery">
-											<i class="ace-icon fa fa-refresh bigger-110"></i>
-											Reload
+										<button class="btn btn-sm btn-info" id="btnQuery">
+											<i class="ace-icon fa fa-tachometer  bigger-110"></i>
+											Show Chart
+										</button>
+										<button class="btn btn-sm btn-success" id="btnChart">
+											<i class="ace-icon fa fa-tasks bigger-110"></i>
+											Show Table
 										</button>
 										<button class="btn btn-sm btn-warning" id="btnClear">
 											<i class="ace-icon fa fa-undo bigger-110"></i>
-											Undo
+											Clear
 										</button>
 									</div>
 								</div>
@@ -87,32 +91,32 @@
 						<div class="row">
 
 							<div class="tabbable">
-								<ul class="nav nav-tabs" id="myTab3">
+								<ul class="nav nav-tabs" id="myTab">
 									<li class="active">
-										<a data-toggle="tab" href="#home3">
-											<i class="pink ace-icon fa fa-tachometer bigger-110"></i>
-											Home
+										<a data-toggle="tab" href="#divChart">
+											<i class="blue ace-icon fa fa-tachometer bigger-110"></i>
+											Chart
 										</a>
 									</li>
 
 									<li>
-										<a data-toggle="tab" href="#profile3">
-											<i class="blue ace-icon fa fa-user bigger-110"></i>
-											Profile
+										<a data-toggle="tab" href="#divTable">
+											<i class="green ace-icon fa fa-tasks bigger-110"></i>
+											Table
 										</a>
 									</li>
 								</ul>
 
 								<div class="tab-content">
-									<div id="home3" class="tab-pane in active">
+
+									<div id="divChart" class="tab-pane  in active">
+										<div id="chartPanel"></div>
+									</div>
+
+									<div id="divTable" class="tab-pane fade">
 										<table id="tableTakttime" class="table table-striped table-bordered table-hover">
 
 										</table>
-									</div>
-
-									<div id="profile3" class="tab-pane">
-										<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
-										<p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
 									</div>
 								</div>
 							</div>
@@ -141,13 +145,14 @@
 	<script src="${staticPath}/assets/js/ace.min.js"></script>
 	<script src="${staticPath}/assets/js/ace-elements.min.js"></script>
 	<script src="${staticPath}/assets/js/chosen.jquery.min.js"></script>
+	<script src="${staticPath}/assets/js/highcharts/highcharts.js"></script>
+	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
 
 	<script type="text/javascript">
 
 		var tableList;
 
 		$(document).ready(function() {
-
 
 			$('#date-timepicker-start').datetimepicker({
 				"maxDate" : moment().subtract(1, "days"),
@@ -164,6 +169,7 @@
 //			"minDate" : moment().subtract(8, "days")
 			});
 
+//			get all the stations ajax method
 			$.ajax({
 				type : "post",
 				url : "${adminPath}/kiener/station/ajaxList_station",
@@ -174,7 +180,7 @@
 
 					}else{
 						var record = data.results;
-						console.info("record:" + record.length);
+						console.info("total station record:" + record.length);
 						$("#selectStationType").empty();
 						$("#selectStationType").append("<option value=''>  </option>");
 
@@ -203,17 +209,118 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
+				var stationName = $("#selectStationType").find("option:selected").text();
+
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
 				if (startDate == "" || endDate == "" || selectStation == "") {
 					return false;
 				}
-//				startDate = startDate + " 06:30";
-//				endDate = endDate + " 06:30";
+				$("#myTab a[href='#divChart']").tab('show');
+				var options = {
+					chart: {
+						renderTo: "chartPanel",
+						zoomType: 'x'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+						text: document.ontouchstart === undefined ?
+								'鼠标拖动可以进行缩放' : '手势操作进行缩放'
+					},
+					xAxis: {
+						tickInterval : 30,
+						tickmarkPlacement : 'on',
+						type: 'datetime',
+						dateTimeLabelFormats: {
+							millisecond: '%H:%M:%S.%L',
+							second: '%H:%M:%S',
+							minute: '%H:%M',
+							hour: '%H:%M',
+							day: '%m-%d',
+							week: '%m-%d',
+							month: '%Y-%m',
+							year: '%Y'
+						},
+						labels: {
+							formatter: function () {
+								return moment(this.value).format("HH:mm")
+							},
+							align: 'right'
+						}
+					},
+					tooltip: {
+						dateTimeLabelFormats: {
+							millisecond: '%H:%M:%S.%L',
+							second: '%H:%M:%S',
+							minute: '%H:%M',
+							hour: '%H:%M',
+							day: '%Y-%m-%d',
+							week: '%m-%d',
+							month: '%Y-%m',
+							year: '%Y'
+						}
+					},
+					yAxis: {
+						title: {
+							text: 'Takt Time'
+						}
+					},
+					legend: {
+						enabled: false
+					},
+					plotOptions: {
+						area: {
+							fillColor: {
+								linearGradient: {
+									x1: 0,
+									y1: 0,
+									x2: 0,
+									y2: 1
+								},
+								stops: [
+									[0, Highcharts.getOptions().colors[0]],
+									[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+								]
+							},
+							marker: {
+								radius: 2
+							},
+							lineWidth: 1,
+							states: {
+								hover: {
+									lineWidth: 1
+								}
+							},
+							threshold: null
+						}
+					},
+					series: [{
+						type: 'area',
+						name: 'Takt Time'
+//						data: data
+					}]
+				};
 
+				initChart(startDate, endDate, selectStation,stationName, options);
+
+			});
+
+			$("#btnChart").click(function() {
+				var startDate = $("#date-timepicker-start").val();
+				var endDate = $("#date-timepicker-end").val();
+				var selectStation = $("#selectStationType").find("option:selected").val();
+				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
+
+				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
+				if (startDate == "" || endDate == "" || selectStation == "") {
+					return false;
+				}
+				$("#myTab a[href='#divTable']").tab('show');
 				if(tableList){
 					$('#tableTakttime').dataTable().fnDestroy();
 				}
-				initTable(startDate,endDate, selectStation);
+				initTable(startDate, endDate, selectStation);
 			});
 
 			$("#btnClear").click(function(){
@@ -221,10 +328,59 @@
 				$("#date-timepicker-end").val("");
 			});
 
+//			$('a[href="#divTable"]').on('shown.bs.tab', function (e) {
+////				console.info("show the Table:" + dataResult.length );
+////				if(tableList){
+////					$('#tableTakttime').dataTable().fnDestroy();
+////				}
+//				initTable();
+//
+//			});
+
 //			initTable("2017-08-10 06:30","2017-08-17 06:30");
+
 		});
 
+		function initChart(start, end, station,stationName, options) {
+			var val_time = [];
+			var val_takttime = [];
+			$.ajax({
+				type : "post",
+				url : "${adminPath}/kiener/taketime/ajaxList_takttime",
+				dataType : "json",
+				data: {"measureDate":start,"endDate":end, "station":station},
+				error : function (xhr, textStatus){
+					console.info("queryData ajax error,textStatus:" + textStatus);
+				},
+				success : function(data) {
+					if(data.results.length == 0){
+						//handle empty
+						console.info("empty");
+
+					}else{
+						var record = data.results;
+						console.info("chart data: " + record.length);
+						for(var i = 0; i < record.length; i++) {
+							val_time.push("'" + record[i]["measureDate"] + "'");
+							val_takttime.push(record[i]["takeTime"]);
+						}
+					}
+					options.series[0].name = "Takt Time";
+					options.series[0].data = eval('['+ val_takttime +']');
+					options.xAxis.categories = eval('['+ val_time +']');
+					options.title.text = stationName + " Takt Time";
+					console.info(val_time);
+					console.info(val_takttime);
+					new Highcharts.Chart(options);
+					val_takttime = [];
+					val_time = [];
+				}
+			});
+
+		}
+
 		function initTable(start, end, station){
+//			console.info("inti table :" + dataResult.length);
 			tableList = $('#tableTakttime').dataTable( {
 				"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
 				oTableTools: {
