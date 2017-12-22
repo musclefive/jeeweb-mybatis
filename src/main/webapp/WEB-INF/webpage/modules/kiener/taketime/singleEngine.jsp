@@ -133,6 +133,7 @@
 				success : function(data) {
 					if (data.results.length == 0) {
 						//handle empty
+						top.layer.alert('没有数据！', {icon: 0, title:'警告'});
 
 					} else {
 						var record = data.results;

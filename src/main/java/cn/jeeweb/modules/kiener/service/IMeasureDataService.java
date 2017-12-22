@@ -23,4 +23,8 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> querySingleTaktTime(Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> queryZKGDMC(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1);
+
+    public List<MeasureData> queryLeakTest(Wrapper<MeasureData> wrapper);
+
 }

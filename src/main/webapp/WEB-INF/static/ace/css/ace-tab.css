@@ -81,10 +81,15 @@ nav.page-tabs .page-tabs-content {
     color: #c00;
 }
 
+.page-tabs a.active {
+    background : #438EB9;
+    color: #fff;
+}
+
 .page-tabs a:hover,
 .content-tabs .roll-nav:hover {
     color: #777;
-    background: #f2f2f2;
+    background: #438EB9;
     cursor: pointer;
 }
 

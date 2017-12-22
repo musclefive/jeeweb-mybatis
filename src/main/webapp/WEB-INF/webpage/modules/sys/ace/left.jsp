@@ -6,14 +6,14 @@
 <div class="sidebar-shortcuts" id="sidebar-shortcuts">
 	<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 		<button class="btn btn-success"
-				onclick="javascript:window.open('../../../../static/momo/monitor.html','_blank')">
+				onclick="javascript:window.open('/jeeweb-mybatis/static/momo/monitor.html','_blank')">
 			<%--<a href="" target="_blank">--%>
 				<i class="ace-icon fa fa-signal"></i>
 			<%--</a>--%>
 		</button>
 
 		<button class="btn btn-info"
-				onclick="javascript:window.open('../../../../static/momo/takttime.html','_blank')">
+				onclick="javascript:window.open('/jeeweb-mybatis/static/momo/takttime.html','_blank')">
 			<i class="ace-icon fa fa-pencil"></i>
 		</button>
 

@@ -26,7 +26,7 @@
       changeType
   </sql>
     <sql id="queryTable" >
-          MeasureDataTakeTime
+          caq.MeasureDataTakeTime
     </sql>
     <select id="selectTakeTime" resultType="TakeTime">
         select

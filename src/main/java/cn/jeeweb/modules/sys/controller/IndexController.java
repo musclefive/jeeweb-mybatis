@@ -68,7 +68,8 @@ public class IndexController {
 		logger.error("IndexController getTheme():" + theme);
 
 		if (StringUtils.isEmpty(theme)) {
-			theme = "uadmin";
+//			theme = "uadmin";
+			theme = "ace";
 		}
 		// cookies配置中的模版
 		Cookie[] cookies = request.getCookies();

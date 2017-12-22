@@ -20,7 +20,7 @@
 				<%--<spring:message code="sys.site.title" arguments="${platformName}"/>--%>
 				<a href="#" class="navbar-brand">
 					<small>
-						MoMo
+						MoMo Data Analysis
 					</small>
 				</a>
 			</small>
@@ -309,13 +309,13 @@
 							修改密码
 						</a>
 					</li>
-					<li class="divider"></li>
-                    <li>
-                    	<a href="#" onclick="changeStyle('uadmin')"><i class="ace-icon fa  fa-wikipedia-w"></i>FLAT主题</a>
-                    </li>
-                    <li>
-                    	<a href="#" onclick="changeStyle('inspinia')"><i class="ace-icon fa  fa-wikipedia-w"></i>INSPINIA主题</a>
-                    </li>
+					<%--<li class="divider"></li>--%>
+                    <%--<li>--%>
+                    	<%--<a href="#" onclick="changeStyle('uadmin')"><i class="ace-icon fa  fa-wikipedia-w"></i>FLAT主题</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                    	<%--<a href="#" onclick="changeStyle('inspinia')"><i class="ace-icon fa  fa-wikipedia-w"></i>INSPINIA主题</a>--%>
+                    <%--</li>--%>
 					<li class="divider"></li>
 					<li>
 						<a href="${adminPath}/logout">

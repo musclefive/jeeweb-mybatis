@@ -68,6 +68,20 @@
 											</span>
 										</div>
 									</div>
+									<div class="col-sm-1">
+										<label>&nbsp;Min:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtMinTaktTime" type="text" class="form-control" placeholder="0s" value="0"/>
+										</div>
+									</div>
+									<div class="col-sm-1">
+										<label>&nbsp;Max:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtMaxTaktTime" type="text" class="form-control" placeholder="2000s" value="2000"/>
+										</div>
+									</div>
 									<div class="col-sm-4">
 										<br/>
 										<!-- #section:plugins/date-time.datetimepicker -->
@@ -100,6 +114,13 @@
 									</li>
 
 									<li>
+										<a data-toggle="tab" href="#divPie">
+											<i class="pink ace-icon fa fa-bar-chart-o bigger-110"></i>
+											Pie & Bar
+										</a>
+									</li>
+
+									<li>
 										<a data-toggle="tab" href="#divTable">
 											<i class="green ace-icon fa fa-tasks bigger-110"></i>
 											Table
@@ -110,7 +131,20 @@
 								<div class="tab-content">
 
 									<div id="divChart" class="tab-pane  in active">
-										<div id="chartPanel"></div>
+										<div class="row">
+											<div id="chartPanel"></div>
+										</div>
+									</div>
+
+									<div id="divPie" class="tab-pane fade">
+										<div class="row">
+											<div class="col-sm-6">
+												<div id="chartPie"></div>
+											</div>
+											<div class="col-sm-6">
+												<div id="chartBar"></div>
+											</div>
+										</div>
 									</div>
 
 									<div id="divTable" class="tab-pane fade">
@@ -147,10 +181,17 @@
 	<script src="${staticPath}/assets/js/chosen.jquery.min.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/highcharts.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
+	<script src="${staticPath}/assets/js/jquery.blockUI.js"></script>
 
 	<script type="text/javascript">
 
 		var tableList;
+		var minTakt = "";
+		var maxTakt = "";
+
+		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
+		$.blockUI.defaults.overlayCSS.opacity = .2;
+		$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 		$(document).ready(function() {
 
@@ -159,14 +200,16 @@
 				"sideBySide" : true,
 				"viewDate" : true,
 //				"format" : "YYYY-MM-DD"
-				"format" : "YYYY-MM-DD HH:mm"
+				"format" : "YYYY-MM-DD HH:mm",
+				"defaultDate" : moment().subtract(1,"days").format("YYYY-MM-DD 07:30")
 //				"minDate" : moment().subtract(8, "days")
 			});
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(1, "days"),
-			"sideBySide" : true,
-				"format" : "YYYY-MM-DD HH:mm"
-//			"minDate" : moment().subtract(8, "days")
+				"sideBySide" : true,
+				"format" : "YYYY-MM-DD HH:mm",
+				"defaultDate" : moment().format("YYYY-MM-DD 01:30")
+//				"minDate" : moment().subtract(8, "days")
 			});
 
 //			get all the stations ajax method
@@ -210,9 +253,11 @@
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
 				var stationName = $("#selectStationType").find("option:selected").text();
-
+				minTakt = $("#txtMinTaktTime").val();
+				maxTakt = $("#txtMaxTaktTime").val();
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
 				if (startDate == "" || endDate == "" || selectStation == "") {
+					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
 				}
 				$("#myTab a[href='#divChart']").tab('show');
@@ -302,7 +347,92 @@
 					}]
 				};
 
-				initChart(startDate, endDate, selectStation,stationName, options);
+				var pieOption = {
+					chart: {
+						renderTo: "chartPie",
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: ''
+					},
+					tooltip: {
+						headerFormat: '{series.name}<br>',
+						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+								style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+							},
+							showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie'
+//						name: '浏览器访问量占比'
+//						data: [
+//							['Firefox',   45.0],
+//							['IE',       26.8],
+//							['Safari',    8.5],
+//							['Opera',     6.2],
+//							['其他',   0.7]
+//						]
+					}]
+				};
+
+				var barOption = {
+					chart: {
+						renderTo: 'chartBar',
+						type: 'column'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+//					categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+					},
+					yAxis: {
+						title: {
+							text: 'Quantity'
+						}
+//						plotLines:[{
+//							label:{
+//								text:'Standard 38s',     //标签的内容
+//								align:'left',                //标签的水平位置，水平居左,默认是水平居中center
+//								x:-60                         //标签相对于被定位的位置水平偏移的像素，重新定位，水平居左10px
+//							},
+//							color:'grey',           //线的颜色，定义为红色
+//							dashStyle:'solid',     //默认值，这里定义为实线
+//							value:38,               //定义在那个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
+//							width:2               //标示线的宽度，2px
+//						}]
+					},
+					plotOptions: {
+						line: {
+							dataLabels: {
+								enabled: true          // 开启数据标签
+							},
+							enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+						}
+					},
+					series: [
+						{color: '#4572A7'}
+//					{color: '#89A54E'}
+					]
+				};
+
+				initChart(startDate, endDate, selectStation,stationName, options, pieOption, barOption);
 
 			});
 
@@ -310,10 +440,13 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
+				minTakt = $("#txtMinTaktTime").val();
+				maxTakt = $("#txtMaxTaktTime").val();
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
 
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
 				if (startDate == "" || endDate == "" || selectStation == "") {
+					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
 				}
 				$("#myTab a[href='#divTable']").tab('show');
@@ -324,8 +457,8 @@
 			});
 
 			$("#btnClear").click(function(){
-				$("#date-timepicker-start").val("");
-				$("#date-timepicker-end").val("");
+				$("#date-timepicker-start").val(moment().subtract(1,"days").format("YYYY-MM-DD 07:30"));
+				$("#date-timepicker-end").val( moment().format("YYYY-MM-DD 01:30"));
 			});
 
 //			$('a[href="#divTable"]').on('shown.bs.tab', function (e) {
@@ -341,14 +474,31 @@
 
 		});
 
-		function initChart(start, end, station,stationName, options) {
+		function initChart(start, end, station,stationName, options, pieOption, barOption) {
 			var val_time = [];
 			var val_takttime = [];
+			var val_pie = [];
+			var val_bar_xCategory = []; //show the category for the Bar Chart
+			var val_bar_quantity = [];
+			var strTemp = "";
+			var map_takt = {"<33s":0,"34s":0,"35s":0,"36s":0,"37s":0,"Standard 38s":0,"39s":0,"40s":0,"41s":0,"42s":0,">43s":0};
+			var count_lt_33 = 0;
+			var count_34 = 0;
+			var count_35 = 0;
+			var count_36 = 0;
+			var count_37 = 0;
+			var count_38 = 0;
+			var count_39 = 0;
+			var count_40 = 0;
+			var count_41 = 0;
+			var count_42 = 0;
+			var count_gt_42 = 0;
+
 			$.ajax({
 				type : "post",
 				url : "${adminPath}/kiener/taketime/ajaxList_takttime",
 				dataType : "json",
-				data: {"measureDate":start,"endDate":end, "station":station},
+				data: {"measureDate":start,"endDate":end, "station":station, "min":minTakt, "max": maxTakt},
 				error : function (xhr, textStatus){
 					console.info("queryData ajax error,textStatus:" + textStatus);
 				},
@@ -356,24 +506,100 @@
 					if(data.results.length == 0){
 						//handle empty
 						console.info("empty");
+						top.layer.alert('没有数据！', {icon: 0, title:'警告'});
 
 					}else{
 						var record = data.results;
-						console.info("chart data: " + record.length);
+						console.info("chart data total length: " + record.length);
 						for(var i = 0; i < record.length; i++) {
 							val_time.push("'" + record[i]["measureDate"] + "'");
 							val_takttime.push(record[i]["takeTime"]);
+
+							if(record[i]["takeTime"] <= 33){
+								count_lt_33 = count_lt_33 + 1;
+							}else if (record[i]["takeTime"] == 34){
+								count_34 = count_34 + 1;
+							}else if (record[i]["takeTime"] == 35){
+								count_35 = count_35 + 1;
+							}else if (record[i]["takeTime"] == 36){
+								count_36 = count_36 + 1;
+							}else if (record[i]["takeTime"] == 37){
+								count_37 = count_37 + 1;
+							}else if (record[i]["takeTime"] == 38){
+								count_38 = count_38 + 1;
+							}else if (record[i]["takeTime"] == 39){
+								count_39 = count_39 + 1;
+							}else if (record[i]["takeTime"] == 40){
+								count_40 = count_40 + 1;
+							}else if (record[i]["takeTime"] == 41){
+								count_41 = count_41 + 1;
+							}else if (record[i]["takeTime"] == 42){
+								count_42 = count_42 + 1;
+							}else{
+								count_gt_42 = count_gt_42 + 1;
+							}
 						}
 					}
+
+					console.info("<33:" + count_lt_33 + " 34:" + count_34 + " 35:" + count_35 + " 36:" + count_36
+					+ " 37:" + count_37 + " 38:" + count_38 + " 39:" + count_39 + " 40:" + count_40 + " 41:"
+							+count_41 + " 42:" + count_42 + " >42:" + count_gt_42);
+					map_takt['<33s'] = count_lt_33;
+					map_takt['34s'] = count_34;
+					map_takt['35s'] = count_35;
+					map_takt['36s'] = count_36;
+					map_takt['37s'] = count_37;
+					map_takt['Standard 38s'] = count_38;
+					map_takt['39s'] = count_39;
+					map_takt['40s'] = count_40;
+					map_takt['41s'] = count_41;
+					map_takt['42s'] = count_42;
+					map_takt['>43s'] = count_gt_42;
+
+					/*strTemp = "['Firefox',45.0],['IE',26.8],['Safari',8.5],['Opera',6.2],['其他',0.7]";
+					* map_takt is the data for the pie chart*/
+					$.each(map_takt, function(key, value){
+						console.info("map_takt:" + key + " " + value);
+						strTemp = strTemp + "[";
+						strTemp = strTemp + "'"+key + "'" + "," + value +"],";
+						val_bar_xCategory.push("'"+key+"'");
+						val_bar_quantity.push(value);
+					});
+//					strTemp = strTemp.substr(strTemp.length - 1);
+					val_pie.push(strTemp);
+					console.info("val_pie:" + val_pie);
+					console.info("val_time:" + val_time);
+					console.info("val_takttime:" + val_takttime);
+					console.info("val_bar_xCategory:" + val_bar_xCategory);
+					console.info("val_bar_quantity:" + val_bar_quantity);
+
+
 					options.series[0].name = "Takt Time";
 					options.series[0].data = eval('['+ val_takttime +']');
 					options.xAxis.categories = eval('['+ val_time +']');
 					options.title.text = stationName + " Takt Time";
-					console.info(val_time);
-					console.info(val_takttime);
+
+					pieOption.series[0].name = "Percentage for Takt Time";
+					pieOption.title.text = "Percentage for Takt Time";
+					pieOption.series[0].data = eval('['+ val_pie +']');
+
+					barOption.series[0].name = "Takt Time";
+					barOption.title.text = "Takt Time Distribution";
+					barOption.series[0].data = eval('['+ val_pie +']');
+					barOption.xAxis.categories = eval('['+ val_bar_xCategory +']');
+
+//					barOption.series[0].name = "Takt Time";
+//					barOption.series[0].data = eval('['+ val_bar_quantity +']');
+
 					new Highcharts.Chart(options);
+					new Highcharts.Chart(pieOption);
+					new Highcharts.Chart(barOption);
+
 					val_takttime = [];
 					val_time = [];
+					val_pie = [];
+					val_bar_xCategory = []; //show the category for the Bar Chart
+					val_bar_quantity = [];
 				}
 			});
 
@@ -396,7 +622,8 @@
 					]
 				},
 				"ajax": {
-					"url" : "${adminPath}/kiener/taketime/ajaxList_takttime?measureDate="+start + "&endDate=" + end + "&station=" + station,
+					"url" : "${adminPath}/kiener/taketime/ajaxList_takttime?measureDate="+start +
+					"&endDate=" + end + "&station=" + station + "&min=" + minTakt +"&max=" + maxTakt ,
 					"dataSrc" : "results"
 				},
 				bAutoWidth: false,

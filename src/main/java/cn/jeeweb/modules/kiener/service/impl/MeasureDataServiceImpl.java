@@ -58,6 +58,23 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
         return records;
     }
 
+    /*
+    * query the real time takt time for single station
+    * */
+    @Override
+    public List<MeasureData> queryZKGDMC(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1 ){
+        List<MeasureData> records = baseMapper.queryZKGDMCbm(queryable, wrapper, wrapper_1);
+        return records;
+    }
+
+    /*
+    * query the leak test for a list or chart
+    * */
+    @Override
+    public List<MeasureData> queryLeakTest(Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryLeasTestbm(wrapper);
+        return records;
+    }
 
     /*
     *

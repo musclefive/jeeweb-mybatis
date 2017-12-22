@@ -197,8 +197,8 @@
 			$(document).ready(function() {
 				var sh; // Interval
 
-				var startDate = "2017-08-26 06:30";
-				var endDate = "2017-08-26 12:50";
+				var startDate = "2017-08-25 07:30";
+				var endDate = "2017-08-26 07:30";
 				var station = '10';
 				var stationName = "M10";
 				var taktTime = "";
@@ -302,7 +302,8 @@
 						{
 							showInLegend: false,
 							lineColor: Highcharts.getOptions().colors[1],
-							color: Highcharts.getOptions().colors[2]
+							color: Highcharts.getOptions().colors[2],
+							turboThreshold:0
 						}
 //						{showInLegend: true}
 //					{color: '#89A54E'}
@@ -382,7 +383,7 @@
 
 								} else {
 									var record = data;
-//									console.info("record: " + record);
+									console.info("total srecord: " + record.length);
 									for(var i = 0; i < record.length; i++){
 										var currentTime = record[i]["measureDate"].toString();
 										var currentType = record[i]["variety"].toString();

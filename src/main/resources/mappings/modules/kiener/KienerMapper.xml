@@ -13,10 +13,17 @@
         <!--<result column="nextId" property="nextId" jdbcType="BIGINT" />-->
         <result column="nextDate" property="nextDate" jdbcType="DATE" />
         <result column="takeTime" property="takeTime" jdbcType="BIGINT" />
+
     </resultMap>
     <sql id="queryTable" >
-      MeasurementGeneralData
+      caq.MeasurementGeneralData
      </sql>
+    <sql id="queryTable_DMC" >
+        caq.DMCMeasurements
+    </sql>
+    <sql id="queryTable_Leak" >
+        caq.LeakTestMeasurements
+    </sql>
     <sql id="Base_Column_List_1" >
         A.ID,
         A.PartNumber,
@@ -78,4 +85,47 @@
 
     </select>
 
+
+    <select id="queryZKGDMCbm" resultType="MeasureData">
+
+        select MIN(C.ID) as "ID", MIN(C.PartNumber) as "PartNumber", MIN(C.Variety) as "Variety", MIN(C.Date) as "measureDate",
+        MIN(C.DMC) as "dmc",MIN(D.DMC) as "dmcNew" from
+        (
+        SELECT distinct A.ID, PartNumber, Station, Variety, A.Date, B.DMC, B.JobID
+          FROM <include refid="queryTable" /> A
+          left join <include refid="queryTable_DMC" /> B on A.ID = B.General
+          <where>
+            ${ew.sqlSegment}
+          </where>
+        ) as C
+        left join
+        (
+        SELECT distinct A.ID, PartNumber, Station, Variety, A.Date, B.DMC, B.JobID
+          FROM <include refid="queryTable" /> A
+          left join <include refid="queryTable_DMC" /> B on A.ID = B.General
+          <where>
+            ${ew.sqlSegment}
+          </where>
+        ) as D
+        on C.ID =  D.ID
+        where C.JobID = 13 and D.JobID = 14
+        group by D.DMC order by measureDate
+
+    </select>
+
+
+    <select id="queryLeasTestbm" resultType="MeasureData">
+
+        select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",
+        B.ID as "leakID",B.TestPressureA as "pressure",B.LeakRateA as "leakRate",B.CheckProg as "checkProg"
+        FROM <include refid="queryTable" /> A
+        left join
+        <include refid="queryTable_Leak" /> B
+        on A.ID = B.General
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        order by DATE
+
+    </select>
 </mapper>

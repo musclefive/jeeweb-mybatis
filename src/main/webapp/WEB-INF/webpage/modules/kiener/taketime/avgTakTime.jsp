@@ -117,13 +117,16 @@
 
 	<script src="${staticPath}/assets/js/ace.min.js"></script>
 	<script src="${staticPath}/assets/js/ace-elements.min.js"></script>
+	<script src="${staticPath}/assets/js/jquery.blockUI.js"></script>
 
 	<script type="text/javascript">
 
 		var val_avgTakTime = new Array();
 		var val_station = new Array();
 
-
+		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
+		$.blockUI.defaults.overlayCSS.opacity = .2;
+//		$("#btnQuery").ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 		$(document).ready(function() {
 
@@ -184,6 +187,7 @@
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true,
 				"viewDate" : true,
+				"defaultDate" : moment().format("YYYY-MM-DD"),
 				"format" : "YYYY-MM-DD"
 //			"format" : "YYYY-MM-DD h:mm"
 //			"minDate" : moment().subtract(8, "days")
@@ -191,9 +195,10 @@
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true
+				"defaultDate" : moment().subtract(-1,"days").format("YYYY-MM-DD"),
 				"format" : "YYYY-MM-DD"
 //			"minDate" : moment().subtract(8, "days")
-			}).on('dp.change',function(){
+			}).on('dp.change, click',function(){
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				console.info("startDate:" + startDate + " endDate:" + endDate);
@@ -234,6 +239,7 @@
 					$("#noDataMsg").html("<h2>Input the query parameter</h2>");
 					$("#noDataMsg").show();
 					$("#chartPanel").hide();
+					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
 				}
 				startDate = startDate +  " 06:30";

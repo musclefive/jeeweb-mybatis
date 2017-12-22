@@ -106,3 +106,23 @@ function validformJqgrid(value, datatype, nullmsg, errormsg) {
     }
 	return [ true, "" ];
 }
+
+/*
+* 根据平均值和方差计算正态分布值
+* x = 传入的值
+* mean 均值
+* stdev 方差值
+* https://baike.baidu.com/item/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83#1
+* */
+function normalDist(x, mean, stdev){
+	var temp1 = 1/(Math.sqrt(2*Math.PI)*stdev);
+	var temp2 = 1/Math.E;
+	var temp3 = Math.pow(x-mean,2)/(Math.pow(stdev,2) *2);
+	var temp4 = Math.pow(temp2,temp3);
+	var temp5 = temp1 * temp4;
+	return temp5.toFixed(2);
+	//console.info("temp1:" + temp1 + " " + temp1.toFixed(2));
+	//console.info("temp2:" + temp2 + " " + temp2.toFixed(2));
+	//console.info("temp3:" + temp3 + " " + temp3.toFixed(2));
+	//console.info("temp4:" + temp4 + " " + temp4.toFixed(2));
+}

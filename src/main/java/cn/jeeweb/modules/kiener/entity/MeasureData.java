@@ -1,7 +1,6 @@
 package cn.jeeweb.modules.kiener.entity;
 
 import cn.jeeweb.core.common.entity.AbstractEntity;
-import cn.jeeweb.core.common.entity.DataEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.util.Date;
@@ -60,6 +59,31 @@ public class MeasureData extends AbstractEntity<Long> {
     /*latest Part Number for production*/
     @TableField(exist = false)
     private String latestNumber;
+
+    /*old dmc code for ZKG*/
+    @TableField(exist = false)
+    private String dmc;
+
+    /*new dmc code for ZKG*/
+    @TableField(exist = false)
+    private String dmcNew;
+
+    /*new dmc code for ZKG*/
+    @TableField(exist = false)
+    private String leakID;
+
+    /*old dmc code for ZKG*/
+    @TableField(exist = false)
+    private String pressure;
+
+    /*new dmc code for ZKG*/
+    @TableField(exist = false)
+    private String leakRate;
+
+    /*new dmc code for ZKG*/
+    @TableField(exist = false)
+    private String checkProg;
+
 
     @Override
     public Long getId() {
@@ -180,5 +204,53 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setLatestNumber(String latestNumber) {
         this.latestNumber = latestNumber;
+    }
+
+    public String getDmc() {
+        return dmc;
+    }
+
+    public void setDmc(String dmc) {
+        this.dmc = dmc;
+    }
+
+    public String getDmcNew() {
+        return dmcNew;
+    }
+
+    public void setDmcNew(String dmcNew) {
+        this.dmcNew = dmcNew;
+    }
+
+    public String getLeakID() {
+        return leakID;
+    }
+
+    public void setLeakID(String leakID) {
+        this.leakID = leakID;
+    }
+
+    public String getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(String pressure) {
+        this.pressure = pressure;
+    }
+
+    public String getLeakRate() {
+        return leakRate;
+    }
+
+    public void setLeakRate(String leakRate) {
+        this.leakRate = leakRate;
+    }
+
+    public String getCheckProg() {
+        return checkProg;
+    }
+
+    public void setCheckProg(String checkProg) {
+        this.checkProg = checkProg;
     }
 }

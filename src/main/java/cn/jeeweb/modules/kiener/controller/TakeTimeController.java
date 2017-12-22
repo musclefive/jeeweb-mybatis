@@ -125,8 +125,8 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<TakeTime> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
-        DataSourceContextHolder.setDbType("dataSource");
-//        DataSourceContextHolder.setDbType("dataSource_production");
+//        DataSourceContextHolder.setDbType("dataSource");
+        DataSourceContextHolder.setDbType("dataSource_production");
     }
 
     /*
@@ -143,10 +143,13 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("endDate");
         String station = request.getParameter("station");
+
+        String minTaktTime = request.getParameter("min");
+        String maxTaktTime = request.getParameter("max");
         //add condition select all the Ok parts
         entityWrapper.eq("station", station);
-        entityWrapper.lt("cast(takeTime as int)", 2000);
-        entityWrapper.gt("cast(takeTime as int)", 0);
+        entityWrapper.lt("cast(takeTime as int)", Integer.valueOf(maxTaktTime));
+        entityWrapper.gt("cast(takeTime as int)", Integer.valueOf(minTaktTime));
         entityWrapper.orderBy("measureDate");
         //customize search condition; will improve later
         if(startDate != null && endDate != null ){

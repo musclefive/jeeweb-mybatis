@@ -23,4 +23,10 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
     List<MeasureData> queryRealTimeTaktTime(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper, @Param("ew_1") Wrapper<MeasureData> wrapper_1);
 
     List<MeasureData> queryRealTimeTaktTimeSingle(@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryZKGDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper ,@Param("ew_1") Wrapper<MeasureData> wrapper_1);
+
+    List<MeasureData> queryLeasTestbm(@Param("ew") Wrapper<MeasureData> wrapper);
+
+
 }
