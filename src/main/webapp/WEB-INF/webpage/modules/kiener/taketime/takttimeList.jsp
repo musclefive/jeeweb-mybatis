@@ -72,31 +72,49 @@
 										<label>&nbsp;Min:&nbsp;</label>
 
 										<div class="input-group">
-											<input id="txtMinTaktTime" type="text" class="form-control" placeholder="0s" value="0"/>
+											<input id="txtMinTaktTime" type="text" class="form-control" placeholder="0s" value="30"/>
 										</div>
 									</div>
 									<div class="col-sm-1">
 										<label>&nbsp;Max:&nbsp;</label>
 
 										<div class="input-group">
-											<input id="txtMaxTaktTime" type="text" class="form-control" placeholder="2000s" value="2000"/>
+											<input id="txtMaxTaktTime" type="text" class="form-control" placeholder="2000s" value="100"/>
 										</div>
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-1">
+										<label>&nbsp;Start:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtStartTaktTime" type="text" class="form-control input-mini"  value="30"/>
+										</div>
+									</div>
+									<div class="col-sm-1">
+										<label>&nbsp;End:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtEndTaktTime" type="text" class="form-control" value="40"/>
+										</div>
+									</div>
+									<div class="col-sm-1">
+										<label>&nbsp;Step:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtStep" type="text" class="form-control" placeholder="1s" value="1"/>
+										</div>
+									</div>
+									<div class="col-sm-1">
 										<br/>
 										<!-- #section:plugins/date-time.datetimepicker -->
 										<button class="btn btn-sm btn-info" id="btnQuery">
 											<i class="ace-icon fa fa-tachometer  bigger-110"></i>
-											Show Chart
+											Query
 										</button>
-										<button class="btn btn-sm btn-success" id="btnChart">
-											<i class="ace-icon fa fa-tasks bigger-110"></i>
-											Show Table
-										</button>
-										<button class="btn btn-sm btn-warning" id="btnClear">
-											<i class="ace-icon fa fa-undo bigger-110"></i>
-											Clear
-										</button>
+
+										<%--<button class="btn btn-sm btn-warning" id="btnClear">--%>
+											<%--<i class="ace-icon fa fa-undo bigger-110"></i>--%>
+											<%--Clear--%>
+										<%--</button>--%>
 									</div>
 								</div>
 							</div>
@@ -182,12 +200,17 @@
 	<script src="${staticPath}/assets/js/highcharts/highcharts.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
 	<script src="${staticPath}/assets/js/jquery.blockUI.js"></script>
+	<script src="${staticPath}/assets/js/fuelux/fuelux.spinner.min.js"></script>
 
 	<script type="text/javascript">
 
 		var tableList;
 		var minTakt = "";
 		var maxTakt = "";
+		var map_column_x = {}; //record the map column for distribution
+		var record; //the total data record
+		var colum_max_end; //map_column_x the last index
+
 
 		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
 		$.blockUI.defaults.overlayCSS.opacity = .2;
@@ -212,6 +235,18 @@
 //				"minDate" : moment().subtract(8, "days")
 			});
 
+			$('#txtStartTaktTime').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+					.on('change', function(){
+						//alert(this.value)
+					});
+			$('#txtEndTaktTime').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+					.on('change', function(){
+						//alert(this.value)
+					});
+			$('#txtStep').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+					.on('change', function(){
+						//alert(this.value)
+					});
 //			get all the stations ajax method
 			$.ajax({
 				type : "post",
@@ -255,7 +290,9 @@
 				var stationName = $("#selectStationType").find("option:selected").text();
 				minTakt = $("#txtMinTaktTime").val();
 				maxTakt = $("#txtMaxTaktTime").val();
+
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
+
 				if (startDate == "" || endDate == "" || selectStation == "") {
 					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
@@ -347,6 +384,29 @@
 					}]
 				};
 
+				initChart(startDate, endDate, selectStation,stationName, options);
+
+			});
+
+			/*
+			* click or double click the Pie tab, show the takt time distribution
+			*
+			* */
+			$("#myTab a[href='#divPie']").on('shown.bs.tab dblclick', function(e){
+//
+				var start = parseInt($("#txtStartTaktTime").val());
+				var end = parseInt($("#txtEndTaktTime").val());
+				var step = parseInt($("#txtStep").val());
+				var tmpTakttime = 0;
+				var tmpInt = 0;
+				var index = 0;
+
+				var val_pie = [];
+				var val_bar_xCategory = []; //show the category for the Bar Chart
+				var strTemp = "";
+
+				initColumCategory(start, end, step);
+
 				var pieOption = {
 					chart: {
 						renderTo: "chartPie",
@@ -432,11 +492,54 @@
 					]
 				};
 
-				initChart(startDate, endDate, selectStation,stationName, options, pieOption, barOption);
+				for(var i = 0; i < record.length; i++) {
+					//inital map_column_x for column chart
+					tmpTakttime =  parseInt(record[i]["takeTime"]);
+//					console.info("tmpTaktTime: " + tmpTakttime);
+					if(tmpTakttime <= start){
+						map_column_x[start] =  map_column_x[start] + 1;
+					}else if (tmpTakttime >= colum_max_end){
+						map_column_x[colum_max_end] =  map_column_x[colum_max_end] + 1;
+					}else{
+						tmpInt = Math.ceil(parseFloat(((tmpTakttime-start)/step)));
+						index = start + tmpInt*step;
+						map_column_x[index] = map_column_x[index] + 1;
+//						console.info("tmpTakttime:" + tmpTakttime + " tmpInt:" + tmpInt + " index:" + index)
+					}
+				}
+
+				$.each(map_column_x, function(key, value){
+
+					console.info("map_column_x after caculate:" + key + " " + value);
+					strTemp = strTemp + "[";
+					strTemp = strTemp + "'"+key + "'" + "," + value +"],";
+					val_bar_xCategory.push("'"+key+"'");
+
+				});
+
+				val_pie.push(strTemp);
+
+				pieOption.series[0].name = "Percentage for Takt Time";
+				pieOption.title.text = "Percentage for Takt Time";
+				pieOption.series[0].data = eval('['+ val_pie +']');
+
+				barOption.series[0].name = "Takt Time";
+				barOption.title.text = "Takt Time Distribution";
+				barOption.series[0].data = eval('['+ val_pie +']');
+				barOption.xAxis.categories = eval('['+ val_bar_xCategory +']');
+
+				new Highcharts.Chart(pieOption);
+				new Highcharts.Chart(barOption);
+				val_pie = [];
+				val_bar_xCategory = []; //show the category for the Bar Chart
 
 			});
 
-			$("#btnChart").click(function() {
+
+				/*
+                 * click the tab and query the data in the DataTable.
+                 * */
+			$("#myTab a[href='#divTable']").on('shown.bs.tab dblclick', function(e){
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
@@ -456,43 +559,14 @@
 				initTable(startDate, endDate, selectStation);
 			});
 
-			$("#btnClear").click(function(){
-				$("#date-timepicker-start").val(moment().subtract(1,"days").format("YYYY-MM-DD 07:30"));
-				$("#date-timepicker-end").val( moment().format("YYYY-MM-DD 01:30"));
-			});
-
-//			$('a[href="#divTable"]').on('shown.bs.tab', function (e) {
-////				console.info("show the Table:" + dataResult.length );
-////				if(tableList){
-////					$('#tableTakttime').dataTable().fnDestroy();
-////				}
-//				initTable();
-//
-//			});
-
-//			initTable("2017-08-10 06:30","2017-08-17 06:30");
-
 		});
 
-		function initChart(start, end, station,stationName, options, pieOption, barOption) {
+		function initChart(start, end, station,stationName, options) {
 			var val_time = [];
 			var val_takttime = [];
-			var val_pie = [];
-			var val_bar_xCategory = []; //show the category for the Bar Chart
-			var val_bar_quantity = [];
-			var strTemp = "";
+
 			var map_takt = {"<33s":0,"34s":0,"35s":0,"36s":0,"37s":0,"Standard 38s":0,"39s":0,"40s":0,"41s":0,"42s":0,">43s":0};
-			var count_lt_33 = 0;
-			var count_34 = 0;
-			var count_35 = 0;
-			var count_36 = 0;
-			var count_37 = 0;
-			var count_38 = 0;
-			var count_39 = 0;
-			var count_40 = 0;
-			var count_41 = 0;
-			var count_42 = 0;
-			var count_gt_42 = 0;
+
 
 			$.ajax({
 				type : "post",
@@ -509,97 +583,30 @@
 						top.layer.alert('没有数据！', {icon: 0, title:'警告'});
 
 					}else{
-						var record = data.results;
+						record = data.results;
 						console.info("chart data total length: " + record.length);
 						for(var i = 0; i < record.length; i++) {
 							val_time.push("'" + record[i]["measureDate"] + "'");
 							val_takttime.push(record[i]["takeTime"]);
-
-							if(record[i]["takeTime"] <= 33){
-								count_lt_33 = count_lt_33 + 1;
-							}else if (record[i]["takeTime"] == 34){
-								count_34 = count_34 + 1;
-							}else if (record[i]["takeTime"] == 35){
-								count_35 = count_35 + 1;
-							}else if (record[i]["takeTime"] == 36){
-								count_36 = count_36 + 1;
-							}else if (record[i]["takeTime"] == 37){
-								count_37 = count_37 + 1;
-							}else if (record[i]["takeTime"] == 38){
-								count_38 = count_38 + 1;
-							}else if (record[i]["takeTime"] == 39){
-								count_39 = count_39 + 1;
-							}else if (record[i]["takeTime"] == 40){
-								count_40 = count_40 + 1;
-							}else if (record[i]["takeTime"] == 41){
-								count_41 = count_41 + 1;
-							}else if (record[i]["takeTime"] == 42){
-								count_42 = count_42 + 1;
-							}else{
-								count_gt_42 = count_gt_42 + 1;
-							}
 						}
 					}
 
-					console.info("<33:" + count_lt_33 + " 34:" + count_34 + " 35:" + count_35 + " 36:" + count_36
-					+ " 37:" + count_37 + " 38:" + count_38 + " 39:" + count_39 + " 40:" + count_40 + " 41:"
-							+count_41 + " 42:" + count_42 + " >42:" + count_gt_42);
-					map_takt['<33s'] = count_lt_33;
-					map_takt['34s'] = count_34;
-					map_takt['35s'] = count_35;
-					map_takt['36s'] = count_36;
-					map_takt['37s'] = count_37;
-					map_takt['Standard 38s'] = count_38;
-					map_takt['39s'] = count_39;
-					map_takt['40s'] = count_40;
-					map_takt['41s'] = count_41;
-					map_takt['42s'] = count_42;
-					map_takt['>43s'] = count_gt_42;
-
-					/*strTemp = "['Firefox',45.0],['IE',26.8],['Safari',8.5],['Opera',6.2],['其他',0.7]";
-					* map_takt is the data for the pie chart*/
-					$.each(map_takt, function(key, value){
-						console.info("map_takt:" + key + " " + value);
-						strTemp = strTemp + "[";
-						strTemp = strTemp + "'"+key + "'" + "," + value +"],";
-						val_bar_xCategory.push("'"+key+"'");
-						val_bar_quantity.push(value);
-					});
-//					strTemp = strTemp.substr(strTemp.length - 1);
-					val_pie.push(strTemp);
-					console.info("val_pie:" + val_pie);
 					console.info("val_time:" + val_time);
 					console.info("val_takttime:" + val_takttime);
-					console.info("val_bar_xCategory:" + val_bar_xCategory);
-					console.info("val_bar_quantity:" + val_bar_quantity);
-
 
 					options.series[0].name = "Takt Time";
 					options.series[0].data = eval('['+ val_takttime +']');
 					options.xAxis.categories = eval('['+ val_time +']');
 					options.title.text = stationName + " Takt Time";
 
-					pieOption.series[0].name = "Percentage for Takt Time";
-					pieOption.title.text = "Percentage for Takt Time";
-					pieOption.series[0].data = eval('['+ val_pie +']');
-
-					barOption.series[0].name = "Takt Time";
-					barOption.title.text = "Takt Time Distribution";
-					barOption.series[0].data = eval('['+ val_pie +']');
-					barOption.xAxis.categories = eval('['+ val_bar_xCategory +']');
-
 //					barOption.series[0].name = "Takt Time";
 //					barOption.series[0].data = eval('['+ val_bar_quantity +']');
 
 					new Highcharts.Chart(options);
-					new Highcharts.Chart(pieOption);
-					new Highcharts.Chart(barOption);
 
 					val_takttime = [];
 					val_time = [];
-					val_pie = [];
-					val_bar_xCategory = []; //show the category for the Bar Chart
-					val_bar_quantity = [];
+
 				}
 			});
 
@@ -685,6 +692,22 @@
 
 		}
 
+		/*
+		 * create a map to store all the min, step and max
+		 * */
+		function initColumCategory(min, max, step){
+			//initial first
+			map_column_x = {};
+			while(min < max){
+				map_column_x[min] = 0;
+
+				min = min + step;
+				if(min >= max){
+					colum_max_end = min;
+					map_column_x[colum_max_end] = 0;
+				}
+			}
+		}
 
 	</script>
 

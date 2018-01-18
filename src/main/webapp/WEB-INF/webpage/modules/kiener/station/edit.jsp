@@ -18,15 +18,17 @@
 		              <label><font color="red">*</font>identifier</label>
 		         </td>
 		         <td class="width-35" >
-		             <form:input path="identifier" class="form-control " datatype="/^[a-zA-Z 0-9]+$/" errormsg="数据库关键字必须为英文" htmlEscape="false" />
+		             <form:input path="identifier" class="form-control "
+								 datatype="/^[a-zA-Z 0-9]+$/"
+								 errormsg="数据库关键字必须为英文" htmlEscape="false"
+								 readonly="true"/>
 		             <label class="Validform_checktip"></label>
 		         </td>
 		         <td  class="width-15 active text-right">	
 		          	<label><font color="red">*</font>type</label>
 		         </td>
 		         <td  class="width-35" >
-		             <%--<form:select path="dbType" dict="dbtype" class="form-control"  htmlEscape="false"  datatype="*"  nullmsg="请输入数据库类型！"/>--%>
-					 <form:input path="type" class="form-control " />
+					 <form:input path="type" class="form-control " readonly="true"/>
 					 <label class="Validform_checktip"></label>
 		         </td>
 		      </tr>
@@ -35,7 +37,7 @@
 					   <label><font color="red">*</font>address</label>
 				   </td>
 				   <td class="width-35" >
-					   <form:input path="address" class="form-control " />
+					   <form:input path="address" class="form-control " readonly="true"/>
 					   <label class="Validform_checktip"></label>
 				   </td>
 				   <td  class="width-15 active text-right">
@@ -47,26 +49,25 @@
 					   <label class="Validform_checktip"></label>
 				   </td>
 			   </tr>
-
+			   <tr>
+				   <td  class="width-15 active text-right">
+					   <label><font color="red">*</font>首页显示</label>
+				   </td>
+				   <td class="width-35" >
+					   <form:radiobuttons path="isShowDashboard"  dict="bFlag" defaultvalue="0"  htmlEscape="false" cssClass="i-checks required" />
+					   <label class="Validform_checktip"></label>
+				   </td>
+				   <td  class="width-15 active text-right">
+					   <label><font color="red">*</font>实时节拍</label>
+				   </td>
+				   <td  class="width-35" >
+					   <form:radiobuttons path="isShowTaktTime" dict="bFlag" defaultvalue="0"  htmlEscape="false" cssClass="i-checks required" />
+						   <%--<form:input path="isOffline" class="form-control"  htmlEscape="false"  datatype="*"  nullmsg="请输入角色编码！"/>--%>
+					   <label class="Validform_checktip"></label>
+				   </td>
+			   </tr>
 		   </tbody>
 		</table>   
 	</form:form>
-	<script type="text/javascript">
-		$(function(){
-			$('#dbType').change(function(){
-				var dbType = $("#dbType").val();
-				$.ajax({
-					type: "POST",
-					url: "${adminPath}/sys/datasource/dataSourceParameter",
-					data: "dbType=" + dbType,
-					success: function(data){
-						var driverData=data.data;
-						$('#driverClass').val(driverData.driverClass);
-						$('#url').val(driverData.url);
-					}
-				});
-			});
-		});
-	</script>
 </body>
 </html>

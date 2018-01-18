@@ -35,15 +35,18 @@
 		              <label><font color="red">*</font>邮箱:</label>
 		         </td>
 		         <td class="width-35" >
-		             <form:input path="email" class="form-control" ajaxurl="${adminPath}/sys/user/validate"   datatype="e" nullmsg="请输入邮箱！"  htmlEscape="false" />
-		             <label class="Validform_checktip"></label>
+		             <%--<form:input path="email" class="form-control" ajaxurl="${adminPath}/sys/user/validate"   datatype="e" nullmsg="请输入邮箱！"  htmlEscape="false" />--%>
+					 <form:input path="email" class="form-control"    datatype="*" nullmsg="请输入邮箱！"  htmlEscape="false" />
+					 <%--<label class="Validform_checktip"></label>--%>
 		         </td>
 		         <td  class="width-15 active text-right">	
 		           	 <label><font color="red">*</font>联系电话:</label>
 		         </td>
 		         <td  class="width-35" >
-		             <form:input path="phone" class="form-control" ajaxurl="${adminPath}/sys/user/validate"  htmlEscape="false"  datatype="m"  nullmsg="请输入用户名！"/>
-		             <label class="Validform_checktip"></label>
+		             <%--<form:input path="phone" class="form-control" ajaxurl="${adminPath}/sys/user/validate"  htmlEscape="false"  datatype="m"  nullmsg="请输入用户名！"/>--%>
+					 <form:input path="phone" class="form-control"   htmlEscape="false"  datatype="*"  nullmsg="请输入用户名！"/>
+
+					 <%--<label class="Validform_checktip"></label>--%>
 		         </td>
 		      </tr>
 		      <tr>

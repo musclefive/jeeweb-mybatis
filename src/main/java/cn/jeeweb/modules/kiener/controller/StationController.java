@@ -3,15 +3,14 @@ package cn.jeeweb.modules.kiener.controller;
 import cn.jeeweb.core.common.controller.BaseCRUDController;
 import cn.jeeweb.core.query.data.PropertyPreFilterable;
 import cn.jeeweb.core.query.data.Queryable;
-import cn.jeeweb.core.query.utils.QueryableConvertUtils;
 import cn.jeeweb.core.query.wrapper.EntityWrapper;
 import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
 import cn.jeeweb.core.utils.StringUtils;
 import cn.jeeweb.modules.kiener.entity.Station;
-import cn.jeeweb.modules.kiener.entity.TakeTime;
 import cn.jeeweb.modules.kiener.service.IStationService;
-import cn.jeeweb.modules.kiener.service.ITakeTimeService;
+import cn.jeeweb.modules.sys.entity.Role;
 import cn.jeeweb.modules.sys.utils.DataSourceContextHolder;
+import cn.jeeweb.modules.sys.utils.UserUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeFilter;
 import org.slf4j.Logger;
@@ -19,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -47,6 +45,17 @@ public class StationController extends BaseCRUDController<Station, Long> {
         //enter list to get station parm in the url and return the list view
         preList(model, request, response);
         return display("list");
+    }
+
+    @Override
+    public void preAjaxList(Queryable queryable,EntityWrapper<Station> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
+
+        entityWrapper.eq("enabled", true);
+        entityWrapper.eq("isRework", false);
+        entityWrapper.eq("isOffline", "0");
+        entityWrapper.eq("isConveyorSystem", false);
+        entityWrapper.orderBy("identifier");
+
     }
 
     /*

@@ -39,5 +39,7 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/listTable.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/singleEngine.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/calendar.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/list.jsp" charset="GBK" />
   </component>
 </project>

@@ -299,31 +299,31 @@
 						<small>欢迎您,</small>
 						${fns:getUser().realname}
 					</span>
-					<i class="ace-icon fa fa-caret-down"></i>
+					<%--<i class="ace-icon fa fa-caret-down"></i>--%>
 				</a>
 
-				<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-					<li>
-						<a class="J_menuItem" href="${adminPath}/sys/user/${fns:getUser().id}/avatar">
-							<i class="ace-icon fa fa-user"></i>
-							修改密码
-						</a>
-					</li>
-					<%--<li class="divider"></li>--%>
-                    <%--<li>--%>
-                    	<%--<a href="#" onclick="changeStyle('uadmin')"><i class="ace-icon fa  fa-wikipedia-w"></i>FLAT主题</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                    	<%--<a href="#" onclick="changeStyle('inspinia')"><i class="ace-icon fa  fa-wikipedia-w"></i>INSPINIA主题</a>--%>
-                    <%--</li>--%>
-					<li class="divider"></li>
-					<li>
-						<a href="${adminPath}/logout">
-							<i class="ace-icon fa fa-power-off"></i>
-							安全退出
-						</a>
-					</li>
-				</ul>
+				<%--<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">--%>
+					<%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+						<%--&lt;%&ndash;<a class="J_menuItem" href="${adminPath}/sys/user/${fns:getUser().id}/avatar">&ndash;%&gt;--%>
+							<%--&lt;%&ndash;<i class="ace-icon fa fa-user"></i>&ndash;%&gt;--%>
+							<%--&lt;%&ndash;修改密码&ndash;%&gt;--%>
+						<%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+					<%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+					<%--&lt;%&ndash;<li class="divider"></li>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+                    	<%--&lt;%&ndash;<a href="#" onclick="changeStyle('uadmin')"><i class="ace-icon fa  fa-wikipedia-w"></i>FLAT主题</a>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+                    	<%--&lt;%&ndash;<a href="#" onclick="changeStyle('inspinia')"><i class="ace-icon fa  fa-wikipedia-w"></i>INSPINIA主题</a>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+					<%--&lt;%&ndash;<li class="divider"></li>&ndash;%&gt;--%>
+					<%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+						<%--&lt;%&ndash;<a href="${adminPath}/logout">&ndash;%&gt;--%>
+							<%--&lt;%&ndash;<i class="ace-icon fa fa-power-off"></i>&ndash;%&gt;--%>
+							<%--&lt;%&ndash;安全退出&ndash;%&gt;--%>
+						<%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+					<%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+				<%--</ul>--%>
 			</li>
 
 			<!-- /section:basics/navbar.user_menu -->

@@ -14,9 +14,11 @@
     <grid:column label="address"  name="address" width="100"/>
     <grid:column label="isOffline"  name="isOffline" dict="sf"  width="50"/>
     <grid:column label="IsALM"  name="isALM"  dict="sf"  width="50"/>
-    <grid:column label="IsUpload"  name="isUpload" dict="sf" width="50"    />
-    <grid:column label="isRework"  name="isRework" dict="sf" width="50"    />
-    <grid:column label="enabled"  name="enabled" dict="sf" width="50"    />
+    <%--<grid:column label="IsUpload"  name="isUpload" dict="sf" width="50"    />--%>
+    <%--<grid:column label="isRework"  name="isRework" dict="sf" width="50"    />--%>
+    <%--<grid:column label="enabled"  name="enabled" dict="sf" width="50"    />--%>
+    <grid:column label="首页显示"  name="isShowTaktTime" dict="sf" width="50"    />
+    <grid:column label="实时节拍显示"  name="isShowDashboard" dict="sf" width="50"    />
 
     <%--<grid:toolbar function="create"/>--%>
     <grid:toolbar   function="update"/>

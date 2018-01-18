@@ -43,6 +43,15 @@ public class Station extends AbstractEntity<Long> {
     @TableField(value = "Enabled")
     private Boolean enabled;
 
+    @TableField(value = "isShowOutput")
+    private Boolean isShowOutput;
+
+    @TableField(value = "isShowTaktTime")
+    private Boolean isShowTaktTime;
+
+    @TableField(value = "isShowDashboard")
+    private Boolean isShowDashboard;
+
     @Override
     public Long getId() {
         return id;
@@ -123,5 +132,29 @@ public class Station extends AbstractEntity<Long> {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Boolean getIsShowOutput() {
+        return isShowOutput;
+    }
+
+    public void setIsShowOutput(Boolean isShowOutput) {
+        this.isShowOutput = isShowOutput;
+    }
+
+    public Boolean getIsShowTaktTime() {
+        return isShowTaktTime;
+    }
+
+    public void setIsShowTaktTime(Boolean isShowTaktTime) {
+        this.isShowTaktTime = isShowTaktTime;
+    }
+
+    public Boolean getIsShowDashboard() {
+        return isShowDashboard;
+    }
+
+    public void setIsShowDashboard(Boolean isShowDashboard) {
+        this.isShowDashboard = isShowDashboard;
     }
 }

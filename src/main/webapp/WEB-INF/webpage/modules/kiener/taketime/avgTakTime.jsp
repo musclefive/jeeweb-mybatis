@@ -76,17 +76,17 @@
 
 									<button class="btn btn-sm btn-success" id="btnQuery">
 										<i class="ace-icon fa fa-refresh bigger-110"></i>
-										Reload
+										Query
 									</button>
-									<button class="btn btn-sm btn-warning" id="btnClear">
-										<i class="ace-icon fa fa-undo bigger-110"></i>
-										Undo
-									</button>
+									<%--<button class="btn btn-sm btn-warning" id="btnClear">--%>
+										<%--<i class="ace-icon fa fa-undo bigger-110"></i>--%>
+										<%--Undo--%>
+									<%--</button>--%>
 								</div>
 							</div>
 						</div>
 						<div class="space-20"></div>
-						<div class="row">
+						<div class="row" id="divShowChart">
 							<div class="col-xs-12">
 								<div id="chartPanel" style="min-width:400px;height: 400px"></div>
 								<div id="noDataMsg" class="alert-danger align-center"></div>
@@ -126,7 +126,7 @@
 
 		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
 		$.blockUI.defaults.overlayCSS.opacity = .2;
-//		$("#btnQuery").ajaxStart($.blockUI).ajaxStop($.unblockUI);
+		$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
 		$(document).ready(function() {
 
@@ -187,7 +187,7 @@
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true,
 				"viewDate" : true,
-				"defaultDate" : moment().format("YYYY-MM-DD"),
+				"defaultDate" : moment().subtract(7,"days").format("YYYY-MM-DD"),
 				"format" : "YYYY-MM-DD"
 //			"format" : "YYYY-MM-DD h:mm"
 //			"minDate" : moment().subtract(8, "days")
@@ -195,39 +195,18 @@
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true
-				"defaultDate" : moment().subtract(-1,"days").format("YYYY-MM-DD"),
+				"defaultDate" : moment().subtract(0,"days").format("YYYY-MM-DD"),
 				"format" : "YYYY-MM-DD"
 //			"minDate" : moment().subtract(8, "days")
-			}).on('dp.change, click',function(){
+			}).on('dp.change',function(){
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				console.info("startDate:" + startDate + " endDate:" + endDate);
-// 				dynamic show the engine type list
-				$.ajax({
-					type : "post",
-					url : "${adminPath}/kiener/taketime/ajaxList_engineType",
-					dataType : "json",
-					data: {"startDate":startDate,"endDate":endDate},
-					success : function(data) {
-						if(data.results.length == 0){
-							//handle empty
-							$("#selectType").empty();
-							$("#selectType").append("<option value=''>No Data</option>");
-
-						}else{
-							var record = data.results;
-							$("#selectType").empty();
-							for(var i = 0; i < record.length; i++) {
-								var text = "--" + record[i]["currentType"].substr(1) + "--";
-								var value = record[i]["currentType"];
-								$("#selectType").append("<option value='"+value+"'>"+text+"</option>");
-							}
-						}
-//					console.info(val_avgTakTime);
-//					console.info(val_station);
-					}
-				});
+				getAllEngineType(startDate, endDate);
 			});
+
+//			inital the engine type with the default date
+			getAllEngineType($("#date-timepicker-start").val(), $("#date-timepicker-end").val());
 
 			$("#btnQuery").click(function(){
 				var startDate = $("#date-timepicker-start").val();
@@ -263,7 +242,7 @@
 							$("#noDataMsg").hide();
 							var record = data.results;
 							for(var p in record){
-								console.info("station:" + record[p]["station"] + " takTime: " + record[p]["avgTakTime"]);
+//								console.info("station:" + record[p]["station"] + " takTime: " + record[p]["avgTakTime"]);
 //							val_station.push("'" + record[p]["station"] + "'");
 //							val_avgTakTime.push("'" + record[p]["avgTakTime"] + "'")
 								val_station.push(record[p]["station"]);
@@ -272,7 +251,7 @@
 							options.xAxis.categories = eval('['+ val_station +']');
 							options.series[0].name = "Avg Tak Time";
 							options.series[0].data = eval('['+ val_avgTakTime +']');
-							options.title.text = "Average Takt Time - Engine Type: " + currentType.substr(1);;
+							options.title.text = "Average Takt Time - Engine Type: " + currentType.substr(1);
 							options.subtitle.text = "From " + startDate + " To " + endDate;
 						}
 						new Highcharts.Chart(options);
@@ -283,12 +262,42 @@
 					}
 				});
 			});
-			$("#btnClear").click(function(){
-				$("#date-timepicker-start").val("");
-				$("#date-timepicker-end").val("");
-				$("#selectType").val("");
+//			$("#btnClear").click(function(){
+//				$("#date-timepicker-start").val("");
+//				$("#date-timepicker-end").val("");
+//				$("#selectType").val("");
+//			});
+		});
+
+		function getAllEngineType(startDate, endDate){
+			// 				dynamic show the engine type list
+			$.ajax({
+				type : "post",
+				url : "${adminPath}/kiener/taketime/ajaxList_engineType",
+				dataType : "json",
+				data: {"startDate":startDate,"endDate":endDate},
+				success : function(data) {
+					if(data.results.length == 0){
+						//handle empty
+						$("#selectType").empty();
+						$("#selectType").append("<option value=''>No Data</option>");
+
+					}else{
+						var record = data.results;
+						$("#selectType").empty();
+						for(var i = 0; i < record.length; i++) {
+							var text = "--" + record[i]["currentType"].substr(1) + "--";
+							var value = record[i]["currentType"];
+							if(value != ""){
+								$("#selectType").append("<option value='"+value+"'>"+text+"</option>");
+							}
+						}
+					}
+//					console.info(val_avgTakTime);
+//					console.info(val_station);
+				}
 			});
-		})
+		}
 
 	</script>
 

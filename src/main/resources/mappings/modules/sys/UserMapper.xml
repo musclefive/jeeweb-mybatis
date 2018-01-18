@@ -34,7 +34,7 @@
 	  select 
    	    <include refid="Base_Column_List" />
       from sys_user t 
-      <!--<include refid="userOrganizationJoins"/>-->
+      <include refid="userOrganizationJoins"/>
        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">  
 		  <where>
 		    ${ew.sqlSegment} 
