@@ -11,7 +11,7 @@
 	 
 </head>
 
-<body class="white-bg"  formid="userLeaveForm">
+<body class="white-bg"  formid="userLeaveForm" beforeSubmit="beforeSubmit">
      <form:form id="userLeaveForm" modelAttribute="data" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
@@ -49,7 +49,8 @@
 		           	 <label><font color="red">*</font>结束日期:</label>
 		         </td>
 		         <td  class="width-35" >
-					 <form:input path="enddate" htmlEscape="false" class="form-control layer-date" placeholder="YYYY-MM-DD" datefmt="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"       />
+					 <form:input path="enddate" htmlEscape="false" class="form-control layer-date" placeholder="YYYY-MM-DD" datefmt="YYYY-MM-DD"
+								 onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"/>
 					 <label class="Validform_checktip"></label>
 		         </td>
 		      </tr>
@@ -64,6 +65,24 @@
 		   </tbody>
 		   </table>   
 	</form:form>
+
+	 <script type="text/javascript">
+		 /**
+		  *提交回调方法，判断结束日期不能小于开始日期
+		  */
+		 function beforeSubmit(curform){
+
+			 var startDate = $("#startdate").val();
+			 var endDate = $("#enddate").val();
+			 if(endDate < startDate) {
+				 top.layer.alert('结束日期小于开始日期，重新填写！', {icon: 0, title:'警告'});
+				 return false
+			 }
+			 return true;
+		 }
+
+
+	 </script>
 
 </body>
 </html>

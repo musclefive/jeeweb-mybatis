@@ -74,6 +74,19 @@
 									</select>
 									<label>&nbsp;&nbsp;</label>
 
+									<label>&nbsp;Max:&nbsp;</label>
+
+									<div class="input-group">
+										<input id="txtMaxTaktTime" type="text" class="form-control input-mini"  value="90"/>
+									</div>
+
+									<label>&nbsp;Min:&nbsp;</label>
+
+									<div class="input-group">
+										<input id="txtMinTaktTime" type="text" class="form-control input-mini"  value="30"/>
+									</div>
+
+									<label>&nbsp;&nbsp;</label>
 									<button class="btn btn-sm btn-success" id="btnQuery">
 										<i class="ace-icon fa fa-refresh bigger-110"></i>
 										Query
@@ -118,6 +131,7 @@
 	<script src="${staticPath}/assets/js/ace.min.js"></script>
 	<script src="${staticPath}/assets/js/ace-elements.min.js"></script>
 	<script src="${staticPath}/assets/js/jquery.blockUI.js"></script>
+	<script src="${staticPath}/assets/js/fuelux/fuelux.spinner.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -131,6 +145,15 @@
 		$(document).ready(function() {
 
 			$("#noDataMsg").hide();
+
+			$('#txtMaxTaktTime').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+					.on('change', function(){
+						//alert(this.value)
+					});
+			$('#txtMinTaktTime').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+					.on('change', function(){
+						//alert(this.value)
+					});
 
 			var options = {
 				chart: {
@@ -212,6 +235,8 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var currentType = $("#selectType").find("option:selected").val();
+				var max = $("#txtMaxTaktTime").val();
+				var min = $("#txtMinTaktTime").val();
 
 				if(startDate == "" || endDate == "" || currentType == "")
 				{
@@ -229,7 +254,7 @@
 					type : "post",
 					url : "${adminPath}/kiener/taketime/ajaxList_avgTakttime",
 					dataType : "json",
-					data: {"measureDate":startDate,"endDate":endDate, "currentType":currentType},
+					data: {"measureDate":startDate,"endDate":endDate, "currentType":currentType, "max": max,"min":min},
 					success : function(data) {
 						if(data.results.length == 0){
 							//handle empty

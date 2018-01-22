@@ -200,7 +200,7 @@
 	<script src="${staticPath}/assets/js/highcharts/highcharts.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
 	<script src="${staticPath}/assets/js/jquery.blockUI.js"></script>
-	<script src="${staticPath}/assets/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="${staticPath}/assets/js/fuelux/fuelux.spinner.min.js"></script>
 
 	<script type="text/javascript">
 

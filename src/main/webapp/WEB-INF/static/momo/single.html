@@ -71,11 +71,10 @@
 						</small>
 					</a>
 				</div>
-				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+				<div class="navbar-buttons navbar-header pull-right col-sm-2" role="navigation">
 					<br/>
-					<span class="label label-info">Normal</span>
-					<span class="label label-warning">warning</span>
-					<span class="label label-danger">Danger</span>
+					<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">
+					</select>
 
 				</div>
 			</div><!-- /.navbar-container -->
@@ -91,36 +90,217 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="space-30"></div>
-								<div class="col-sm-12">
-									<div class="widget-box transparent">
-										<div class="widget-header widget-header-flat">
-											<!--<h4 class="widget-title lighter">-->
-											<div class="col-sm-3 widget-title">
-												<h4>
-													<i class="ace-icon fa fa-signal"></i>
-													Real Time Takt Time for Stations
-												</h4>
-												<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">
-												</select>
+								<!--<div class="row">-->
+									<!--<div class="col-xs-2">-->
+										<!--<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">-->
+										<!--</select>-->
+									<!--</div>-->
+								<!--</div>-->
+								<div class="space-10"></div>
+
+								<div class="row">
+									<div class="col-xs-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<!--<h4 class="widget-title lighter">-->
+												<div class="col-xs-6 widget-title">
+													<h4 id="divProducingInfo">
+													</h4>
+
+												</div>
+												<!--</h4>-->
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+													<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
 											</div>
-											<!--</h4>-->
 
-											<div class="widget-toolbar">
-												<!--<a href="#" data-action="collapse">-->
-												<!--<i class="ace-icon fa fa-chevron-up"></i>-->
-												<!--</a>-->
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<h2> Output:</h2>
+													<div class="row" id="divAllProducingTypeInfo">
+														<!--<div class="infobox infobox-green">-->
+															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
+																<!--&lt;!&ndash;<i class="ace-icon fa fa-comments"></i>&ndash;&gt;-->
+															<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+															<!--<div class="infobox-data">-->
+																<!--<span class="infobox-data-number bigger-200">32</span>-->
+																<!--<div class="infobox-content">Engine Type: 5701</div>-->
+															<!--</div>-->
+															<!--<div class="badge badge-transparent">-->
+																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
+															<!--</div>-->
+
+														<!--</div>-->
+
+														<!--<div class="infobox infobox-blue">-->
+															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
+																<!--&lt;!&ndash;<i class="ace-icon fa fa-twitter"></i>&ndash;&gt;-->
+															<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+															<!--<div class="infobox-data">-->
+																<!--<span class="infobox-data-number bigger-200">11</span>-->
+																<!--<div class="infobox-content">Engine Type: 5701</div>-->
+															<!--</div>-->
+															<!--<div class="badge badge-transparent">-->
+																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
+															<!--</div>-->
+
+														<!--</div>-->
+														<!--<div class="infobox infobox-pink">-->
+															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
+																<!--&lt;!&ndash;<i class="ace-icon fa fa-shopping-cart"></i>&ndash;&gt;-->
+															<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+															<!--<div class="infobox-data">-->
+																<!--<span class="infobox-data-number bigger-200">8</span>-->
+																<!--<div class="infobox-content">Engine Type: 5701</div>-->
+															<!--</div>-->
+															<!--<div class="badge badge-transparent">-->
+																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
+															<!--</div>-->
+														<!--</div>-->
+														<!--<div class="infobox infobox-red">-->
+															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
+																<!--&lt;!&ndash;<i class="ace-icon fa fa-flask"></i>&ndash;&gt;-->
+															<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+															<!--<div class="infobox-data">-->
+																<!--<span class="infobox-data-number bigger-200">7</span>-->
+																<!--<div class="infobox-content">Engine Type: 5701</div>-->
+															<!--</div>-->
+															<!--<div class="badge badge-transparent">-->
+																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
+															<!--</div>-->
+														<!--</div>-->
+													</div>
+													<div class="space-20"></div>
+													<h2>Takt Time Statistic:</h2>
+													<div class="row">
+														<div class="infobox infobox-green infobox-dark infobox">
+															<div class="infobox-icon">
+																<i class="ace-icon fa fa-flask"></i>
+															</div>
+
+															<div class="infobox-data">
+																<div class="infobox-data-number" id="divMaxTaktTime"></div>
+																<div class="infobox-content">Max Takt Time</div>
+															</div>
+														</div>
+														<div class="infobox infobox-blue infobox infobox-dark">
+															<div class="infobox-icon">
+																<i class="ace-icon fa fa-flask"></i>
+															</div>
+
+															<div class="infobox-data">
+																<div class="infobox-data-number" id="divMinTaktTime"></div>
+																<div class="infobox-content">Min Takt Time</div>
+															</div>
+														</div>
+
+														<div class="infobox infobox-grey infobox infobox-dark">
+															<div class="infobox-icon">
+																<i class="ace-icon fa fa-flask"></i>
+															</div>
+
+															<div class="infobox-data">
+																<div class="infobox-data-number" id="divAvgTaktTime"></div>
+																<div class="infobox-content">Avg Takt Time</div>
+															</div>
+														</div>
+														<div class="infobox infobox-orange2 infobox infobox-dark">
+															<div class="infobox-icon">
+																<i class="ace-icon fa fa-flask"></i>
+															</div>
+
+															<div class="infobox-data">
+																<div class="infobox-data-number" id="divCurrentTaktTime"></div>
+																<div class="infobox-content">Current Takt Time</div>
+															</div>
+														</div>
+													</div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+
+									</div>
+									<div class="col-xs-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<!--<h4 class="widget-title lighter">-->
+												<div class="col-xs-6 widget-title">
+													<h4 id="divTopTaktTimeInfo">
+
+													</h4>
+
+												</div>
+												<!--</h4>-->
+
+												<div class="widget-toolbar">
+													<!--<a href="#" data-action="collapse">-->
+													<!--<i class="ace-icon fa fa-chevron-up"></i>-->
+													<!--</a>-->
+												</div>
 											</div>
-										</div>
 
-										<div class="widget-body">
-											<div class="widget-main padding-4">
-
-												<div id="singleTaktTimePanel" style="height: 300px"></div>
-											</div><!-- /.widget-main -->
-										</div><!-- /.widget-body -->
-									</div><!-- /.widget-box -->
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="topTaktTimePanel"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
 								</div>
+								<!--<div class="space-20"></div>-->
+								<div class="row">
+
+									<div class="col-xs-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<!--<h4 class="widget-title lighter">-->
+												<div class="col-xs-6 widget-title">
+													<h4 id="divProducingChart">
+													</h4>
+												</div>
+												<!--</h4>-->
+												<div class="widget-toolbar">
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="singleTaktTimePanel" style="height: 300px"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+
+									<div class="col-xs-6">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<!--<h4 class="widget-title lighter">-->
+												<div class="col-xs-6 widget-title">
+													<h4 id="divProducingBarChart">
+														fdfafd
+													</h4>
+												</div>
+												<!--</h4>-->
+												<div class="widget-toolbar">
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="singleTaktTimeBarPanel" style="height: 300px"></div>
+												</div><!-- /.widget-main -->
+											</div><!-- /.widget-body -->
+										</div><!-- /.widget-box -->
+									</div>
+								</div>
+
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -186,26 +366,36 @@
 		<script type="text/javascript">
 
 			var val_taktTime = new Array();
+			var val_allTaktTime = new Array();
+			var val_onlyTaktTime = new Array();
 			var val_station = new Array();
 			var val_changeTime = new Array();
 			var val_standard = new Array();
 			var val_time = new Array();
+
+			var val_topTaktTime = new Array();
+			var val_topCategory = new Array();
+			var map_allTaktTimeInfo = [];
+			var map_topTaktTimeInfo = [];
+			var topNumber = 10;
 			var beginHHMM = "07:00";
 			var endHHMM = "02:00";
 			var currentEngineType = "";
 
 			$(document).ready(function() {
+
 				var sh; // Interval
 
-				var startDate = "2017-08-25 07:30";
-				var endDate = "2017-08-26 07:30";
+//				var startDate = "2017-08-25 07:30";
+//				var endDate = "2017-08-25 10:30";
+				/*default station*/
 				var station = '10';
 				var stationName = "M10";
 				var taktTime = "";
 
-//				var queryDate = moment().format("YYYY-MM-DD");
-//				var startDate = queryDate + " 06:30";
-//				var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+				var queryDate = moment().format("YYYY-MM-DD");
+				var startDate = queryDate + " 06:30";
+				var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
 
 				var option_RealTimeTakt = {
 					chart: {
@@ -310,6 +500,43 @@
 					]
 				};
 
+				var bar_option_top_takttime = {
+					chart: {
+						renderTo: 'topTaktTimePanel',
+						type: 'bar'
+					},
+					title: {
+						text: null
+					},
+					xAxis: {
+//						categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: null
+						},
+						stackLabels:{
+							enabled : true
+						}
+					},
+					tooltip:{
+
+					},
+					legend: {
+						reversed: true,
+						enabled : false
+					},
+					plotOptions: {
+						series: {
+							stacking: 'normal'
+						}
+					},
+					series: [{
+//						name: '小张',
+//						data: [5, 3, 4, 7, 2]
+					}]
+				};
 
 //				get all the stations ajax method
 				$.ajax({
@@ -361,17 +588,18 @@
 				var realtimeOutput = function (){
 
 					endDate = moment(endDate).add(30, 'seconds').format("YYYY-MM-DD HH:mm:ss");
-//					console.info("endDate: " + endDate);
+					var showFlag = true;
 					if(moment().format("HH:mm:ss") < "07:50:00" && moment().format("HH:mm:ss") > "07:49:00"){
 						console.info("refresh the whole page");
 						window.location.reload();
 					}
 
-
 					if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
 					{
 						var strTaktTime = "";
-						console.info("endDate format: " + moment(endDate).format("HH:mm") + " begin:" + beginHHMM + " end:" + endHHMM)
+						var strOnlyTaktTime = 0;
+						var sumTaktTime = 0;
+						console.info("endDate format: " + moment(endDate).format("HH:mm:ss") + " begin:" + beginHHMM + " end:" + endHHMM)
 						$.ajax({
 							type : "post",
 							url : "../../admin/kiener/measure/ajaxList_realTimeTaktTimeForSingleStation",
@@ -380,13 +608,14 @@
 							success : function(data) {
 								if (data.length == 0) {
 									//handle empty
-
 								} else {
 									var record = data;
 									console.info("total srecord: " + record.length);
 									for(var i = 0; i < record.length; i++){
 										var currentTime = record[i]["measureDate"].toString();
 										var currentType = record[i]["variety"].toString();
+										var currentPartNumber = record[i]["partNumber"].toString();
+
 //											val_time.push(record[i]["measureDate"]);
 										if( i+1 < record.length) {
 											var previousTime = record[i + 1]["measureDate"].toString();
@@ -403,7 +632,12 @@
 												console.info("return to the index of the " + currentTime + " :" + index);
 //														val_changeTime.push(changeTime);
 											}
-											strTaktTime = "{y:" +taktTime + ",variety:'" + currentType.substr(1) + "'}";
+//											record all the information from the server, show in the bar and area chart
+											strTaktTime = "{y:" +taktTime + ",variety:'" + currentType.substr(1) + "'" +
+													",partNumber:'" + currentPartNumber + "'" +
+													",currentTime:'" + currentTime + "'}";
+//											only for takt time for max, min, avg caculate
+											strOnlyTaktTime = parseInt(taktTime);
 										}
 										/*
 										* set the condition for taktTime
@@ -411,27 +645,86 @@
 										if(taktTime < 100 && taktTime > 20){
 											val_time.push("'" + currentTime + "'");
 											val_taktTime.push(strTaktTime);
-//												console.info("strTaktTime: " + strTaktTime + " station: " + station);
+//											console.info("strTaktTime: " + strTaktTime + " currentTime: " + currentTime);
+											showFlag = true;
+										}else {
+											showFlag = false;
 										}
+										//put all the strTaktTime to the array for later Max, Min, Avg, Current calcuation
+										sumTaktTime = sumTaktTime + parseInt(taktTime);
+
+//										record all the str tatk time for top 10 analysis
+//										if the currentTime happens in the shift break, then do not count it
+										if(!(moment(currentTime).format("HH:mm") < "11:40" &&
+												moment(currentTime).format("HH:mm") > "11:00" && parseInt(taktTime) >= 600) &&
+												!(moment(currentTime).format("HH:mm") < "19:40" &&
+												moment(currentTime).format("HH:mm") > "19:00" && parseInt(taktTime) >= 600)){
+//											console.info("info:" + moment(currentTime).format("HH:mm") + " " + taktTime);
+											val_allTaktTime.push(strTaktTime);
+											val_onlyTaktTime.push(strOnlyTaktTime);
+										}
+//										console.info("format:" + moment(currentTime).format("HH:mm") + " :" + )
 									}
 								}
-//								console.info("val_time:" + val_time);
-//								console.info("val_taktTime:" + val_taktTime);
+
+								/*
+								* set the statistic for max, min, average, current and so on:
+								* */
+//								convert to map type
+								map_allTaktTimeInfo = eval('['+val_allTaktTime+']');
+//								sort the map by y column
+								customSort(map_allTaktTimeInfo, 'y',false);
+//								console.table(map_allTaktTimeInfo);
+
+								var maxTaktTime = Math.max.apply(null, val_onlyTaktTime);
+								var minTaktTime = Math.min.apply(null, val_onlyTaktTime);
+								var currentTaktTime = val_onlyTaktTime[val_onlyTaktTime.length-1];
+								var avgTaktTime = (sumTaktTime/record.length).toFixed(2);
+
+								if(record.length <= topNumber ){
+									topNumber = record.length;
+								}
+								for(var i = 0; i < topNumber; i ++){
+									var str = "Top " + (i+1);
+									var tmp = map_allTaktTimeInfo[i];
+									map_topTaktTimeInfo.push(tmp);
+									val_topCategory.push(str);
+								}
+
+//								console.table(map_topTaktTimeInfo);
+
+//								console.info("val_topCategory:" + val_topCategory);
+//								console.info("val_topTaktTime:" + val_topTaktTime);
+
+								$("#divMaxTaktTime").html(maxTaktTime + "s");
+								$("#divMinTaktTime").html(minTaktTime + "s");
+								$("#divCurrentTaktTime").html(currentTaktTime + "s");
+								$("#divAvgTaktTime").html(avgTaktTime + "s");
+								$("#divProducingInfo").html("<i class='ace-icon fa fa-star orange'></i> General Producing for " + stationName);
+								$("#divTopTaktTimeInfo").html("<i class='ace-icon fa fa-flag green2'></i> Top 10 Takt Time for " + stationName);
+								$("#divProducingChart").html("<i class='ace-icon fa fa-bar-chart-o purple'></i> Chart Display for " + stationName);
+
+								console.info("maxTaktTime:" + maxTaktTime + " minTaktTime:"  + minTaktTime);
+
 								option_RealTimeTakt.xAxis.categories = eval('['+ val_time +']');
 								option_RealTimeTakt.series[0].name = "Real Time Takt Time";
 								option_RealTimeTakt.series[0].data = eval('['+ val_taktTime +']');
 								option_RealTimeTakt.title.text = "Real Time Takt Time - " + stationName;
 								option_RealTimeTakt.subtitle.text = endDate;
 
-//								option_RealTimeTakt.annotations[0].labels[0].addPoint(1,2,3,4);
-//								option_RealTimeTakt.annotations[0].labels[0].point.y = 100;
-//								option_RealTimeTakt.annotations[0].labels[0].text = "Bcc";
+
+								bar_option_top_takttime.xAxis.categories = val_topCategory;
+								bar_option_top_takttime.series[0].data = map_topTaktTimeInfo ;
+//								bar_option_top_takttime.series[0].name = "Top 10";
+
 								/*格式化提示框显示内容，增加当时产量信息*/
 								option_RealTimeTakt.tooltip.formatter = function(){
 //                             var s = '<b>' + this.x + '</b>';
 									var s = '<b>' + this.x + '</b>';
 									s += '<br/>' + 'Takt Time:' + this.y + 's';
 									s += '<br/>' + 'Variety:' + this.point.variety;
+									s += '<br/>' + 'PartNumber:' + this.point.partNumber;
+
 //									$.each(this.points, function (index) {
 //										s += '<br/>' + this.series.name + ': ' +
 //												this.y + '%';
@@ -441,13 +734,96 @@
 //									});
 									return s;
 								};
+
+								bar_option_top_takttime.tooltip.formatter = function(){
+//                             var s = '<b>' + this.x + '</b>';
+									var s = '<b>' + this.x + '</b>';
+									s += '<br/>' + 'Takt Time:' + this.y + 's';
+									s += '<br/>' + 'Variety:' + this.point.variety;
+									s += '<br/>' + 'PartNumber:' + this.point.partNumber;
+									s += '<br/>' + 'Time:' + this.point.currentTime;
+
+//									$.each(this.points, function (index) {
+//										s += '<br/>' + this.series.name + ': ' +
+//												this.y + '%';
+									if(index == 1){
+//											s += '<br/>' + 'Actual:' + this.point.variety + '台';
+									}
+//									});
+									return s;
+								};
 								new Highcharts.Chart(option_RealTimeTakt);
+								new Highcharts.Chart(bar_option_top_takttime);
 							}
 						});
 
+						$.ajax({
+							type : "post",
+							url : "../../admin/kiener/measure/ajaxList_outputForSingleStation",
+							dataType : "json",
+							data: {"measureDate":startDate,"measureDateEnd":endDate, "station": station},
+//							data: {"measureDate":"2018-01-04 07:30","measureDateEnd":"2018-01-08 09:10", "station": station},
+							success : function(data) {
+								if (data.length == 0) {
+									//handle empty
+								} else {
+									var record = data;
+									var str = "";
+									var timeFrame = "";
+									var statusIcon = "";
+									console.info("total producing engine for today: " + record.length);
+									for(var i = 0; i < record.length; i++){
+										var output = record[i]["output"].toString();
+										var type = record[i]["variety"].toString().substr(1);
+										var nextDate = record[i]["nextDate"].toString();
+										if(i == 0){
+											//the first record is the current producing engine type
+											timeFrame  = moment(endDate).diff(moment(nextDate), "seconds");
+											/*decide the panel color depend on the time between measureDate and
+											 current time
+											 the diff is 5minutes  = 5*60 300
+											 the diff is 10minutes + 10 minutes = 20*60 900s
+											 */
+											console.info("timeFrame:" + timeFrame);
+											if(timeFrame < 300){
+												// show the normal color blue
+												statusIcon = "<div class='badge badge-transparent'>" +
+														"<i class='ace-icon fa bigger-120 fa-circle green'></i></div> "
+											}else if(timeFrame < 600){
+												//if the latest measure date is 5 minutes from the current query
+												//time, show the box in yellow color
+												statusIcon = "<div class='badge badge-transparent'>" +
+														"<i class='ace-icon fa bigger-120 fa-circle orange2'></i></div> "
+											}else {
+												//the station must have issue or error
+												//show the box in danger color
+												statusIcon = "<div class='badge badge-transparent'>" +
+														"<i class='ace-icon fa bigger-120 fa-circle red2'></i></div> ";
+											}
+										}else{
+											statusIcon = "";
+										}
+
+										str =  str + "<div class='infobox infobox-blue'>" +
+												"<div class='infobox-data'>" +
+												"<span class='infobox-data-number bigger-200'>" + output + "</span>" +
+												"<div class='infobox-content'>Engine Type: "+ type +" </div>" +
+												"</div>" + statusIcon +
+												"</div>";
+									}
+
+									$("#divAllProducingTypeInfo").html(str);
+								}
+							}
+						});
 						val_taktTime = [];
 //						val_station = [];
 						val_time = [];
+						val_allTaktTime = [];
+						val_topCategory = [];
+						val_topTaktTime = [];
+						map_topTaktTimeInfo = [];
+						map_allTaktTimeInfo = [];
 					}
 					else{
 						console.info("stop query from the db during the night time");
@@ -456,7 +832,11 @@
 
 				};
 
+				/*
+				* Get the station information, chart, max, min, average, top 10 takt time
+				* */
 				realtimeOutput();
+
 
 				sh = setInterval(realtimeOutput, 30000);
 
@@ -509,6 +889,17 @@
 					returnIndex = returnIndex + 1;
 				}
 				return returnIndex;
+			}
+
+			function customSort(array,type,asc) {
+				var asc=asc||false;
+				array.sort(function(a,b) {
+					if(!asc) {
+						return parseFloat(b[type])-parseFloat(a[type]);
+					} else {
+						return parseFloat(a[type])-parseFloat(b[type]);
+					}
+				})
 			}
 
 		</script>

@@ -183,7 +183,8 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("endDate");
         String currentType = request.getParameter("currentType");
-
+        int max = Integer.valueOf(request.getParameter("max").toString());
+        int min = Integer.valueOf(request.getParameter("min").toString());
 //        startDate =  "2017-08-25 06:30";
 //        endDate = "2017-08-26 06:30";
 //        currentType = "05710";
@@ -193,8 +194,8 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         //add condition select all the Ok parts
         entityWrapper.eq("currentType", currentType);
-        entityWrapper.lt("cast(takeTime as int)", 90);
-        entityWrapper.gt("cast(takeTime as int)", 10);
+        entityWrapper.lt("cast(takeTime as int)", max);
+        entityWrapper.gt("cast(takeTime as int)", min);
         entityWrapper.notIn("station", excludedStation);
 //        entityWrapper.lt("takeTime", 90);
 
@@ -285,7 +286,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
     }
 
     /*
-    * query key staions for the real-time takt time
+    * query all the engine type during start date and end date
     * */
     @RequestMapping(value = "ajaxList_engineType", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_engineType(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
