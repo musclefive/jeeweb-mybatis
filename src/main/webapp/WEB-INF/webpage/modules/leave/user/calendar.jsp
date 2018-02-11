@@ -170,7 +170,7 @@
 					initLeaveTable(startOfMonth, endOfMonth);
 
 					$.ajax({
-						url : "${adminPath}/leave/user/ajaxList_event",
+						url : "${adminPath}/leave/user/ajaxList_event_dep",
 						cache : false,
 						data:{
 							start: startOfMonth,

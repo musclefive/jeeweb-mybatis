@@ -66,6 +66,13 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         return display("zkgList");
     }
 
+    @RequestMapping(value = "/zkList")
+    public String zkList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter the takt time list, then show the station list and query time
+        preList(model, request, response);
+        return display("zkList");
+    }
+
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
@@ -90,17 +97,18 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         String endDate = request.getParameter("endDate").toString();
 //        String zkgType = request.getParameter("endDate").toString();
 //        zkgType = "06K103011CP014693";
-//        startDate = "2017-11-18 07:30";
-//        endDate = "2017-11-19 07:30";
-        entityWrapper.eq("station", "10");
-        entityWrapper.eq("B.Ok", true);
-        entityWrapper.between("A.Date", startDate, endDate);
+//        String startDate = "2018-01-30 07:30";
+//        String endDate = "2018-01-31 07:30";
 
-//        entityWrapper_1.eq("C.JobID", 13);
-//        entityWrapper_1.eq("D.JobID", 14);
-//        entityWrapper_1.like("A.Date","06K103011CP014693");
-        //output json with query conditions
-        propertyPreFilterable.addQueryProperty("id","partNumber", "variety", "measureDate", "dmc", "dmcNew");
+        entityWrapper.between("Date", startDate, endDate);
+
+        entityWrapper_1.groupBy("DMC");
+
+        entityWrapper_1.having("Min(A.Date) > {0}", startDate);
+        entityWrapper_1.having("Min(A.Date) < {0}", endDate);
+
+//        propertyPreFilterable.addQueryProperty("id","partNumber", "variety", "measureDate", "dmc", "dmcNew");
+        propertyPreFilterable.addQueryProperty("id", "partNumber", "variety", "measureDate", "dmc","summary");
 
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
@@ -112,5 +120,136 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         StringUtils.printJson(response, content);
         DataSourceContextHolder.setDbType("dataSource");
     }
+
+
+    /*
+    * query the DMC code from the table[DMCMeasurements]
+    * to show the ZK and KW part table
+    * */
+    @RequestMapping(value = "ajaxList_dmc_zk_kw", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_dmc_zk(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+        EntityWrapper<MeasureData> entityWrapper_1 = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate").toString();
+        String endDate = request.getParameter("endDate").toString();
+        String station = request.getParameter("station").toString();
+//        String zkgType = request.getParameter("endDate").toString();
+//        zkgType = "06K103011CP014693";
+//        String startDate = "2018-01-30 07:30";
+//        String endDate = "2018-01-31 07:30";
+//        String type = "590";
+//        type = "70"; KW
+
+        entityWrapper.eq("station", station);
+        entityWrapper.between("Date", startDate, endDate);
+
+
+        entityWrapper_1.eq("station", station);
+        entityWrapper_1.groupBy("DMC");
+
+        entityWrapper_1.having("Min(A.Date) > {0}", startDate);
+        entityWrapper_1.having("Min(A.Date) < {0}", endDate);
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("id","partNumber", "variety", "measureDate", "dmc","summary");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryZKGAndKWDMC(queryable, entityWrapper, entityWrapper_1);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+    /*
+    * query the DMC code from the table[DMCMeasureDailyData]
+    * to show the daily zk/zkg/kw output group by zk/zk/kw type
+    * */
+    @RequestMapping(value = "ajaxList_dailydmc", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_dailydmc(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                 HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate").toString();
+        String endDate = request.getParameter("endDate").toString();
+//        String station = request.getParameter("station").toString();
+//        String zkgType = request.getParameter("endDate").toString();
+//        zkgType = "06K103011CP014693";
+//        String startDate = "2018-01-30 07:30";
+//        String endDate = "2018-01-31 07:30";
+//        String type = "590";
+//        type = "70"; KW
+
+//        entityWrapper.eq("station", station);
+//        entityWrapper.between("Date", startDate, endDate);
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("station","maxDate", "type", "summary", "total");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryDailyDMC(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+
+    /*
+* query the DMC code from the table[DMCMeasurements]
+* to show the ZKG part table
+* */
+    @RequestMapping(value = "ajaxList_dmc_single", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_dmc_single(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+        List filterString;
+//        zkgType = "06K103011CP014693";
+        String dmc = request.getParameter("dmc").toString();
+        String station = request.getParameter("station").toString();
+//        String dmc = "06K103011CP01555189RRRRR";
+        String queryType = request.getParameter("queryType").toString();
+        logger.info("ajaxList_dmc_single method queryType: " + queryType + " dmc:" + dmc + " station:" + station);
+
+        entityWrapper.eq("station", station);
+//        entityWrapper.eq("B.Ok", true);
+
+        if(queryType.equals("list")){
+            String[] ss = dmc.split("\n");
+            filterString = Arrays.asList(ss);
+            logger.info("After Split" + filterString.size());
+            entityWrapper.in("B.DMC", filterString);
+
+        }else{
+            entityWrapper.eq("B.DMC", dmc);
+        }
+
+        propertyPreFilterable.addQueryProperty("partNumber", "variety", "measureDate", "dmcNew");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.querySingleDMC(queryable, entityWrapper);
+
+        String content = "{\"single\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
 
 }

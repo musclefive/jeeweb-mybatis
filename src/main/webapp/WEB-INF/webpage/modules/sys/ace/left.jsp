@@ -18,7 +18,8 @@
 		</button>
 
 		<!-- #section:basics/sidebar.layout.shortcuts -->
-		<button class="btn btn-warning">
+		<button class="btn btn-warning"
+				onclick="javascript:window.open('/jeeweb-mybatis/static/momo/single.html','_blank')">
 			<i class="ace-icon fa fa-users"></i>
 		</button>
 

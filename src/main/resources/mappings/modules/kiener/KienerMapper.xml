@@ -88,31 +88,94 @@
 
     <select id="queryZKGDMCbm" resultType="MeasureData">
 
-        select MIN(C.ID) as "ID", MIN(C.PartNumber) as "PartNumber", MIN(C.Variety) as "Variety", MIN(C.Date) as "measureDate",
-        MIN(C.DMC) as "dmc",MIN(D.DMC) as "dmcNew" from
+        <!--select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",-->
+        <!--Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary-->
+        <!--from caq.DMCMeasurements C, caq.MeasurementGeneralData A  where DMC in-->
+        <!--(-->
+        <!--SELECT distinct C.DMC-->
+        <!--FROM caq.MeasurementGeneralData A-->
+        <!--left join caq.DMCMeasurements C on A.ID = C.General-->
+        <!--where station = '10' and C.Ok = 1-->
+        <!--and JobID = 14-->
+        <!--and Date < '2018-01-31 07:00' and Date > '2018-01-30 07:30'-->
+        <!--)  and A.station = '10' and A.OK = 1 and C.General = A.ID-->
+        <!--group by DMC-->
+        <!--having Min(A.Date) < '2018-01-31 07:00'  and Min(A.Date) >  '2018-01-30 07:30'-->
+        <!--order by summary desc, measureDate-->
+
+        select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",
+        Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary
+        from <include refid="queryTable_DMC" /> C, <include refid="queryTable" /> A  where DMC in
         (
-        SELECT distinct A.ID, PartNumber, Station, Variety, A.Date, B.DMC, B.JobID
-          FROM <include refid="queryTable" /> A
-          left join <include refid="queryTable_DMC" /> B on A.ID = B.General
-          <where>
-            ${ew.sqlSegment}
-          </where>
-        ) as C
-        left join
-        (
-        SELECT distinct A.ID, PartNumber, Station, Variety, A.Date, B.DMC, B.JobID
-          FROM <include refid="queryTable" /> A
-          left join <include refid="queryTable_DMC" /> B on A.ID = B.General
-          <where>
-            ${ew.sqlSegment}
-          </where>
-        ) as D
-        on C.ID =  D.ID
-        where C.JobID = 13 and D.JobID = 14
-        group by D.DMC order by measureDate
+        SELECT distinct C.DMC
+        FROM <include refid="queryTable" /> A
+        left join <include refid="queryTable_DMC" /> C on A.ID = C.General
+        where station = '10' and C.Ok = 1
+        and JobID = 14
+
+        ${ew.sqlSegment}
+        )
+        and A.station = '10' and A.OK = 1 and C.General = A.ID
+        ${ew_1.sqlSegment}
+
+        order by summary desc, measureDate
+
+
+        <!--SELECT Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",-->
+        <!--Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(B.DMC) as dmc,-->
+        <!--count(*) as summary-->
+        <!--FROM <include refid="queryTable" /> A-->
+        <!--left join-->
+        <!--(-->
+        <!--select distinct * from <include refid="queryTable_DMC" />  where DMC in-->
+        <!--(-->
+        <!--SELECT distinct C.DMC-->
+        <!--FROM <include refid="queryTable" /> A-->
+        <!--left join <include refid="queryTable_DMC" /> C on A.ID = C.General-->
+        <!--where station = '10' and C.OK = 1 and JobID = 14-->
+            <!--${ew.sqlSegment}-->
+        <!--)-->
+        <!--) B-->
+        <!--on A.ID = B.General-->
+        <!--where station = '10' and B.OK = 1-->
+
+            <!--${ew_1.sqlSegment}-->
+
+        <!--order by summary desc, measureDate-->
 
     </select>
 
+    <select id="queryZKAndKWDMCbm" resultType="MeasureData">
+
+        select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",
+        Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary
+        from <include refid="queryTable_DMC" /> C, <include refid="queryTable" /> A  where DMC in
+        (
+        SELECT distinct C.DMC
+        FROM <include refid="queryTable" /> A
+        left join <include refid="queryTable_DMC" /> C on A.ID = C.General
+        where  C.Ok = 1
+        ${ew.sqlSegment}
+        )
+        and A.OK = 1 and C.General = A.ID
+        ${ew_1.sqlSegment}
+
+        order by summary desc, measureDate
+
+    </select>
+
+
+    <select id="querySingleDMCbm" resultType="MeasureData">
+
+        SELECT A.PartNumber as "PartNumber", A.Variety as "Variety",
+        A.Date as "measureDate", B.DMC as "dmcNew"
+        FROM <include refid="queryTable" /> A, <include refid="queryTable_DMC" /> B
+        WHERE  B.Ok = 1
+        ${ew.sqlSegment}
+        and A.ID = B.General
+        order by Date
+
+    </select>
 
     <select id="queryLeasTestbm" resultType="MeasureData">
 
@@ -128,4 +191,30 @@
         order by DATE
 
     </select>
+
+    <select id="queryDailyDMCbm" resultType="MeasureData">
+
+        select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
+        A.summary as "summary", B.total as "total" from
+        (
+        select station, maxDate, left(dmc,11) as type,count(*) as summary from
+        [Vertiscape].[caq].[DMCMeasureDailyData]
+        where station = '10'
+        group by maxDate, station,left(dmc,11)
+        ) A
+
+        left join
+        (
+        select station, maxDate,count(*) as total
+        from [Vertiscape].[caq].[DMCMeasureDailyData]
+        where station = '10'
+        group by maxDate, station
+        ) B on A.maxDate = B.maxDate
+        order by A.maxDate desc
+
+    </select>
+
+
+
+
 </mapper>

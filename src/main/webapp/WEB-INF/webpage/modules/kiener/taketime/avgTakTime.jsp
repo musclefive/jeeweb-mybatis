@@ -83,7 +83,7 @@
 									<label>&nbsp;Min:&nbsp;</label>
 
 									<div class="input-group">
-										<input id="txtMinTaktTime" type="text" class="form-control input-mini"  value="30"/>
+										<input id="txtMinTaktTime" type="text" class="form-control input-mini"  value="20"/>
 									</div>
 
 									<label>&nbsp;&nbsp;</label>
@@ -125,6 +125,8 @@
 	<script src="${staticPath}/assets/js/tableexport/ZeroClipboard.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/highcharts.js"></script>
 	<script src="${staticPath}/assets/js/highcharts/exporting.js"></script>
+	<script src="${staticPath}/assets/js/highcharts/annotations.js"></script>
+
 	<script src="${staticPath}/assets/js/date-time/moment.min.js"></script>
 	<script src="${staticPath}/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
 
@@ -158,6 +160,7 @@
 			var options = {
 				chart: {
 					renderTo: 'chartPanel',
+					zoomType: 'x',
 					type: 'column'
 				},
 				title: {
@@ -165,6 +168,18 @@
 				},
 				subtitle: {
 //					text: ''
+				},
+				labels:{
+					style:{
+						color : "#ff0000"
+					},
+					items:[{
+						html:'',
+						style:{
+							left:'0px',
+							top:'-40px'
+						}
+					}]
 				},
 				xAxis: {
 					crosshair: true
@@ -235,6 +250,10 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var currentType = $("#selectType").find("option:selected").val();
+				console.info("current type:" + currentType);
+				if(currentType != "all"){
+					currentType = currentType.substr(1);
+				}
 				var max = $("#txtMaxTaktTime").val();
 				var min = $("#txtMinTaktTime").val();
 
@@ -274,9 +293,11 @@
 								val_avgTakTime.push(record[p]["avgTakTime"]);
 							}
 							options.xAxis.categories = eval('['+ val_station +']');
+							options.labels.items[0].html = "Total Record:" + record.length + "<br/>" + "Mean:cc";
+
 							options.series[0].name = "Avg Tak Time";
 							options.series[0].data = eval('['+ val_avgTakTime +']');
-							options.title.text = "Average Takt Time - Engine Type: " + currentType.substr(1);
+							options.title.text = "Average Takt Time - Engine Type: " + currentType;
 							options.subtitle.text = "From " + startDate + " To " + endDate;
 						}
 						new Highcharts.Chart(options);
@@ -310,6 +331,8 @@
 					}else{
 						var record = data.results;
 						$("#selectType").empty();
+						$("#selectType").append("<option value='all' selected>--All--</option>");
+
 						for(var i = 0; i < record.length; i++) {
 							var text = "--" + record[i]["currentType"].substr(1) + "--";
 							var value = record[i]["currentType"];

@@ -71,12 +71,34 @@
 						</small>
 					</a>
 				</div>
-				<div class="navbar-buttons navbar-header pull-right col-sm-2" role="navigation">
-					<br/>
-					<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">
-					</select>
+
+				<div class="pull-right col-sm-7">
+					<div class="col-sm-2 pull-right">
+						<br/>
+						<select class="chosen-select" id="selectStationType" data-placeholder="Select">
+						</select>
+
+					</div>
+					<div class="col-sm-2 pull-right">
+						<br/>
+						<select class="chosen-select" id="selectType" data-placeholder="Engine Type">
+							<option value='all' selected>--All Type--</option>
+						</select>
+					</div>
+					<div class="col-sm-3 pull-right align-right">
+						<div class="form-inline">
+							<br/>
+							<input type="text" id="txtMaxTaktTime" class="input-mini input-sm" value="100"/>
+							<input type="text" id="txtMinTaktTime" class="input-mini input-sm" value="20" />
+							<button class="btn btn-success btn-minier" id="btnRefreshPage">
+								<i class="ace-icon fa fa-refresh"></i>
+							</button>
+							<br/>
+						</div>
+					</div>
 
 				</div>
+
 			</div><!-- /.navbar-container -->
 		</div>
 
@@ -96,8 +118,6 @@
 										<!--</select>-->
 									<!--</div>-->
 								<!--</div>-->
-								<div class="space-10"></div>
-
 								<div class="row">
 									<div class="col-xs-6">
 										<div class="widget-box transparent">
@@ -121,68 +141,13 @@
 												<div class="widget-main padding-4">
 													<h2> Output:</h2>
 													<div class="row" id="divAllProducingTypeInfo">
-														<!--<div class="infobox infobox-green">-->
-															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
-																<!--&lt;!&ndash;<i class="ace-icon fa fa-comments"></i>&ndash;&gt;-->
-															<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-															<!--<div class="infobox-data">-->
-																<!--<span class="infobox-data-number bigger-200">32</span>-->
-																<!--<div class="infobox-content">Engine Type: 5701</div>-->
-															<!--</div>-->
-															<!--<div class="badge badge-transparent">-->
-																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
-															<!--</div>-->
-
-														<!--</div>-->
-
-														<!--<div class="infobox infobox-blue">-->
-															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
-																<!--&lt;!&ndash;<i class="ace-icon fa fa-twitter"></i>&ndash;&gt;-->
-															<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-															<!--<div class="infobox-data">-->
-																<!--<span class="infobox-data-number bigger-200">11</span>-->
-																<!--<div class="infobox-content">Engine Type: 5701</div>-->
-															<!--</div>-->
-															<!--<div class="badge badge-transparent">-->
-																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
-															<!--</div>-->
-
-														<!--</div>-->
-														<!--<div class="infobox infobox-pink">-->
-															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
-																<!--&lt;!&ndash;<i class="ace-icon fa fa-shopping-cart"></i>&ndash;&gt;-->
-															<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-															<!--<div class="infobox-data">-->
-																<!--<span class="infobox-data-number bigger-200">8</span>-->
-																<!--<div class="infobox-content">Engine Type: 5701</div>-->
-															<!--</div>-->
-															<!--<div class="badge badge-transparent">-->
-																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
-															<!--</div>-->
-														<!--</div>-->
-														<!--<div class="infobox infobox-red">-->
-															<!--&lt;!&ndash;<div class="infobox-icon">&ndash;&gt;-->
-																<!--&lt;!&ndash;<i class="ace-icon fa fa-flask"></i>&ndash;&gt;-->
-															<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-															<!--<div class="infobox-data">-->
-																<!--<span class="infobox-data-number bigger-200">7</span>-->
-																<!--<div class="infobox-content">Engine Type: 5701</div>-->
-															<!--</div>-->
-															<!--<div class="badge badge-transparent">-->
-																<!--<i class="ace-icon fa bigger-120 fa-circle green"></i>-->
-															<!--</div>-->
-														<!--</div>-->
 													</div>
 													<div class="space-20"></div>
 													<h2>Takt Time Statistic:</h2>
 													<div class="row">
 														<div class="infobox infobox-green infobox-dark infobox">
 															<div class="infobox-icon">
-																<i class="ace-icon fa fa-flask"></i>
+																<i class="ace-icon fa fa-bell-o	"></i>
 															</div>
 
 															<div class="infobox-data">
@@ -192,7 +157,7 @@
 														</div>
 														<div class="infobox infobox-blue infobox infobox-dark">
 															<div class="infobox-icon">
-																<i class="ace-icon fa fa-flask"></i>
+																<i class="ace-icon fa 	fa-bullhorn  "></i>
 															</div>
 
 															<div class="infobox-data">
@@ -213,7 +178,7 @@
 														</div>
 														<div class="infobox infobox-orange2 infobox infobox-dark">
 															<div class="infobox-icon">
-																<i class="ace-icon fa fa-flask"></i>
+																<i class="ace-icon fa 	fa-glass "></i>
 															</div>
 
 															<div class="infobox-data">
@@ -284,7 +249,7 @@
 												<!--<h4 class="widget-title lighter">-->
 												<div class="col-xs-6 widget-title">
 													<h4 id="divProducingBarChart">
-														fdfafd
+
 													</h4>
 												</div>
 												<!--</h4>-->
@@ -294,7 +259,7 @@
 
 											<div class="widget-body">
 												<div class="widget-main padding-4">
-													<div id="singleTaktTimeBarPanel" style="height: 300px"></div>
+													<div id="singleTaktTimeBarPanel"></div>
 												</div><!-- /.widget-main -->
 											</div><!-- /.widget-body -->
 										</div><!-- /.widget-box -->
@@ -381,6 +346,15 @@
 			var beginHHMM = "07:00";
 			var endHHMM = "02:00";
 			var currentEngineType = "";
+//			var currentType_select = $("#selectType").find("option:selected").val();
+
+
+			/*
+			* following for the bar and column chart to display the distribution of the takt time
+			* */
+			var map_column_x = {}; //record the map column for distribution
+			var val_pie = [];
+			var val_bar_xCategory = []; //show the category for the Bar Chart
 
 			$(document).ready(function() {
 
@@ -392,18 +366,30 @@
 				var station = '10';
 				var stationName = "M10";
 				var taktTime = "";
+				/*
+				* the max and min takt time to be filtered
+				* */
+
+				var lowerLimit = 30;
+				var upperLimit = 40;
+				var stepLimit = 1;
 
 				var queryDate = moment().format("YYYY-MM-DD");
 				var startDate = queryDate + " 06:30";
 				var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
-
+				/*
+				* The max and min Takt Time should be filtered on the real-time takt time
+				* */
+				$("#txtMaxTaktTime").val("100");
+				$("#txtMinTaktTime").val("20");
+				currentEngineType = $("#selectType").find("option:selected").val();
 				var option_RealTimeTakt = {
 					chart: {
 						renderTo: 'singleTaktTimePanel',
 						type: 'area'
 					},
 					title: {
-						text: ''
+						text: null
 					},
 					subtitle: {
 						text: ''
@@ -538,6 +524,83 @@
 					}]
 				};
 
+				var pieOption = {
+					chart: {
+						renderTo: "topTaktTimePanel",
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: null
+					},
+					tooltip: {
+						headerFormat: '{series.name}<br>',
+						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+								style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+							},
+							showInLegend: false
+						}
+					},
+					series: [{
+						type: 'pie'
+//						name: '浏览器访问量占比'
+//						data: [
+//							['Firefox',   45.0],
+//							['IE',       26.8],
+//							['Safari',    8.5],
+//							['Opera',     6.2],
+//							['其他',   0.7]
+//						]
+					}]
+				};
+
+				var barOption = {
+					chart: {
+						renderTo: 'singleTaktTimeBarPanel',
+						type: 'column'
+					},
+					title: {
+						text: null
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+//					categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+					},
+					yAxis: {
+						title: {
+							text: 'Quantity'
+						}
+					},
+					plotOptions: {
+						line: {
+							dataLabels: {
+								enabled: true          // 开启数据标签
+							},
+							enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+						}
+					},
+					series: [
+						{color: '#4572A7'}
+//					{color: '#89A54E'}
+					]
+				};
+
+				/*init the column category 30,31,32,...40*/
+				initColumCategory(lowerLimit,upperLimit,stepLimit);
+
 //				get all the stations ajax method
 				$.ajax({
 					type : "post",
@@ -557,7 +620,11 @@
 								var text =  record[i]["type"] + record[i]["identifier"];
 								var value = record[i]["identifier"];
 //							console.info(text);
-								$("#selectStationType").append("<option value='"+value+"'>"+text+"</option>");
+								if(i == 0){
+									$("#selectStationType").append("<option value='"+value+"' selected>"+text+"</option>");
+								}else{
+									$("#selectStationType").append("<option value='"+value+"'>"+text+"</option>");
+								}
 							}
 							$("#selectStationType").chosen({allow_single_deselect:true});
 
@@ -575,18 +642,29 @@
 								station = val;
 								stationName = text;
 								console.info(val+ " " + text);
-
+								/*when refresh the station, the endDate should be retrive again*/
+								endDate = moment().format("YYYY-MM-DD HH:mm:ss");
 								realtimeOutput();
 
-								sh = setInterval(realtimeOutput, 30000);
+//								sh = setInterval(realtimeOutput, 30000);
 							});
 						}
 					}
 				});
 
+				$("#btnRefreshPage").on('click',function(){
+					/*when refresh the station, the endDate should be retrive again*/
+					endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+					currentEngineType = $("#selectType	").find("option:selected").val();
+
+//					if($(this).find("option:selected").val() != "all"){
+//						currentEngineType = $(this).find("option:selected").val();
+//					}
+					realtimeOutput();
+				});
 
 				var realtimeOutput = function (){
-
+					var record;
 					endDate = moment(endDate).add(30, 'seconds').format("YYYY-MM-DD HH:mm:ss");
 					var showFlag = true;
 					if(moment().format("HH:mm:ss") < "07:50:00" && moment().format("HH:mm:ss") > "07:49:00"){
@@ -599,18 +677,26 @@
 						var strTaktTime = "";
 						var strOnlyTaktTime = 0;
 						var sumTaktTime = 0;
+						var maxFilterTaktTime = parseInt($("#txtMaxTaktTime").val());
+						var minFilterTaktTime = parseInt($("#txtMinTaktTime").val());
+
+//						var currentType_select = $("#selectType").find("option:selected").val();
+						console.info("currentType :" + currentEngineType);
+
+
 						console.info("endDate format: " + moment(endDate).format("HH:mm:ss") + " begin:" + beginHHMM + " end:" + endHHMM)
 						$.ajax({
 							type : "post",
 							url : "../../admin/kiener/measure/ajaxList_realTimeTaktTimeForSingleStation",
 							dataType : "json",
-							data: {"measureDate":startDate,"measureDateEnd":endDate, "station": station},
+							data: {"measureDate":startDate,"measureDateEnd":endDate, "station": station, "currentType":currentEngineType},
 							success : function(data) {
+								console.info("print data length:" + data.length);
 								if (data.length == 0) {
 									//handle empty
 								} else {
-									var record = data;
-									console.info("total srecord: " + record.length);
+									record = data;
+									console.info("total record: " + record.length);
 									for(var i = 0; i < record.length; i++){
 										var currentTime = record[i]["measureDate"].toString();
 										var currentType = record[i]["variety"].toString();
@@ -628,59 +714,85 @@
 												changeTime = moment(previousTime).diff(moment( currentTime), "seconds");
 												taktTime = changeTime;
 												var index = getIndexOfArray(currentTime);
-
-												console.info("return to the index of the " + currentTime + " :" + index);
-//														val_changeTime.push(changeTime);
+//												console.info("return to the index of the " + currentTime + " :" + index);
+//												val_changeTime.push(changeTime);
 											}
 //											record all the information from the server, show in the bar and area chart
 											strTaktTime = "{y:" +taktTime + ",variety:'" + currentType.substr(1) + "'" +
 													",partNumber:'" + currentPartNumber + "'" +
 													",currentTime:'" + currentTime + "'}";
-//											only for takt time for max, min, avg caculate
+//											only record the takt time for max, min, avg caculate
 											strOnlyTaktTime = parseInt(taktTime);
-										}
-										/*
-										* set the condition for taktTime
-										* */
-										if(taktTime < 100 && taktTime > 20){
-											val_time.push("'" + currentTime + "'");
-											val_taktTime.push(strTaktTime);
-//											console.info("strTaktTime: " + strTaktTime + " currentTime: " + currentTime);
-											showFlag = true;
-										}else {
-											showFlag = false;
-										}
-										//put all the strTaktTime to the array for later Max, Min, Avg, Current calcuation
-										sumTaktTime = sumTaktTime + parseInt(taktTime);
 
-//										record all the str tatk time for top 10 analysis
-//										if the currentTime happens in the shift break, then do not count it
-										if(!(moment(currentTime).format("HH:mm") < "11:40" &&
-												moment(currentTime).format("HH:mm") > "11:00" && parseInt(taktTime) >= 600) &&
-												!(moment(currentTime).format("HH:mm") < "19:40" &&
-												moment(currentTime).format("HH:mm") > "19:00" && parseInt(taktTime) >= 600)){
-//											console.info("info:" + moment(currentTime).format("HH:mm") + " " + taktTime);
-											val_allTaktTime.push(strTaktTime);
-											val_onlyTaktTime.push(strOnlyTaktTime);
+											/*
+											 * set the condition for taktTime
+											 * */
+											if(taktTime < maxFilterTaktTime && taktTime > minFilterTaktTime){
+												val_time.push("'" + currentTime + "'");
+												val_taktTime.push(strTaktTime);
+//												console.info("strTaktTime: " + strTaktTime + " currentTime: " + currentTime);
+												showFlag = true;
+											}else {
+												showFlag = false;
+											}
+											//put all the strTaktTime to the array for later Max, Min, Avg, Current calcuation
+											sumTaktTime = sumTaktTime + parseInt(taktTime);
+
+//											record all the str tatk time for top 10 analysis
+//											if the currentTime happens in the shift break, then do not count it
+											if(!(moment(currentTime).format("HH:mm") < "11:40" &&
+													moment(currentTime).format("HH:mm") > "11:00" && parseInt(taktTime) >= 600) &&
+													!(moment(currentTime).format("HH:mm") < "19:40" &&
+													moment(currentTime).format("HH:mm") > "19:00" && parseInt(taktTime) >= 600)){
+//												console.info("info:" + moment(currentTime).format("HH:mm") + " " + taktTime);
+												val_allTaktTime.push(strTaktTime);
+												val_onlyTaktTime.push(strOnlyTaktTime);
+											}
+
+											/*
+											 *caculate the bar, column for takt time ditribution, recorded in the map_column_x
+											 * */
+											if(strOnlyTaktTime <= lowerLimit){
+												map_column_x[lowerLimit] =  map_column_x[lowerLimit] + 1;
+											}else if (strOnlyTaktTime >= upperLimit){
+												map_column_x[upperLimit] =  map_column_x[upperLimit] + 1;
+											}else{
+												var tmpInt = Math.ceil(parseFloat(((strOnlyTaktTime-lowerLimit)/stepLimit)));
+												var index = lowerLimit + tmpInt*stepLimit;
+												map_column_x[index] = map_column_x[index] + 1;
+											}
 										}
-//										console.info("format:" + moment(currentTime).format("HH:mm") + " :" + )
 									}
 								}
+								var strTemp = "";
+								$.each(map_column_x, function(key, value){
 
+//									console.info("map_column_x after caculate:" + key + " " + value);
+									strTemp = strTemp + "[";
+									strTemp = strTemp + "'"+key + "'" + "," + value +"],";
+									val_bar_xCategory.push("'"+key+"'");
+								});
+								val_pie.push(strTemp);
+
+								$.each(map_column_x, function(key, value){
+									map_column_x[key] = 0;
+								});
 								/*
 								* set the statistic for max, min, average, current and so on:
 								* */
-//								convert to map type
+								var maxTaktTime = Math.max.apply(null, val_onlyTaktTime);
+								var minTaktTime = Math.min.apply(null, val_onlyTaktTime);
+								var currentTaktTime = val_onlyTaktTime[val_onlyTaktTime.length-1];
+//								console.info("indentify record:" + record);
+								var avgTaktTime = (sumTaktTime/record.length).toFixed(2);
+
+								/*
+								* set the top 10 takt time column chart
+								* */
 								map_allTaktTimeInfo = eval('['+val_allTaktTime+']');
 //								sort the map by y column
 								customSort(map_allTaktTimeInfo, 'y',false);
 //								console.table(map_allTaktTimeInfo);
-
-								var maxTaktTime = Math.max.apply(null, val_onlyTaktTime);
-								var minTaktTime = Math.min.apply(null, val_onlyTaktTime);
-								var currentTaktTime = val_onlyTaktTime[val_onlyTaktTime.length-1];
-								var avgTaktTime = (sumTaktTime/record.length).toFixed(2);
-
 								if(record.length <= topNumber ){
 									topNumber = record.length;
 								}
@@ -695,27 +807,37 @@
 
 //								console.info("val_topCategory:" + val_topCategory);
 //								console.info("val_topTaktTime:" + val_topTaktTime);
-
+								if(currentEngineType != "all"){
+									currentEngineType = currentEngineType.substr(1);
+								}
 								$("#divMaxTaktTime").html(maxTaktTime + "s");
 								$("#divMinTaktTime").html(minTaktTime + "s");
 								$("#divCurrentTaktTime").html(currentTaktTime + "s");
 								$("#divAvgTaktTime").html(avgTaktTime + "s");
 								$("#divProducingInfo").html("<i class='ace-icon fa fa-star orange'></i> General Producing for " + stationName);
-								$("#divTopTaktTimeInfo").html("<i class='ace-icon fa fa-flag green2'></i> Top 10 Takt Time for " + stationName);
-								$("#divProducingChart").html("<i class='ace-icon fa fa-bar-chart-o purple'></i> Chart Display for " + stationName);
+								$("#divTopTaktTimeInfo").html("<i class='ace-icon fa fa-flag green2'></i> Takt Time Pie Chart for " + stationName + " Engine Type:" + currentEngineType);
+								$("#divProducingChart").html("<i class='ace-icon fa fa-bar-chart-o purple'></i> Real Time Takt Time for " + stationName + " Engine Type:" + currentEngineType);
+								$("#divProducingBarChart").html("<i class='ace-icon fa fa-globe blue'></i> Chart Display for " + stationName + " Engine Type:" + currentEngineType);
 
-								console.info("maxTaktTime:" + maxTaktTime + " minTaktTime:"  + minTaktTime);
+//								console.info("maxTaktTime:" + maxTaktTime + " minTaktTime:"  + minTaktTime);
 
 								option_RealTimeTakt.xAxis.categories = eval('['+ val_time +']');
 								option_RealTimeTakt.series[0].name = "Real Time Takt Time";
 								option_RealTimeTakt.series[0].data = eval('['+ val_taktTime +']');
-								option_RealTimeTakt.title.text = "Real Time Takt Time - " + stationName;
+//								option_RealTimeTakt.title.text = "Real Time Takt Time - " + stationName;
 								option_RealTimeTakt.subtitle.text = endDate;
 
-
-								bar_option_top_takttime.xAxis.categories = val_topCategory;
-								bar_option_top_takttime.series[0].data = map_topTaktTimeInfo ;
+//								bar_option_top_takttime.xAxis.categories = val_topCategory;
+//								bar_option_top_takttime.series[0].data = map_topTaktTimeInfo ;
 //								bar_option_top_takttime.series[0].name = "Top 10";
+
+								barOption.series[0].name = "Takt Time";
+//								barOption.title.text = "Takt Time Distribution";
+								barOption.series[0].data = eval('['+ val_pie +']');
+								barOption.xAxis.categories = eval('['+ val_bar_xCategory +']');
+
+								pieOption.series[0].name = "Percentage for Takt Time";
+								pieOption.series[0].data = eval('['+ val_pie +']');
 
 								/*格式化提示框显示内容，增加当时产量信息*/
 								option_RealTimeTakt.tooltip.formatter = function(){
@@ -735,25 +857,28 @@
 									return s;
 								};
 
-								bar_option_top_takttime.tooltip.formatter = function(){
-//                             var s = '<b>' + this.x + '</b>';
-									var s = '<b>' + this.x + '</b>';
-									s += '<br/>' + 'Takt Time:' + this.y + 's';
-									s += '<br/>' + 'Variety:' + this.point.variety;
-									s += '<br/>' + 'PartNumber:' + this.point.partNumber;
-									s += '<br/>' + 'Time:' + this.point.currentTime;
-
-//									$.each(this.points, function (index) {
-//										s += '<br/>' + this.series.name + ': ' +
-//												this.y + '%';
-									if(index == 1){
-//											s += '<br/>' + 'Actual:' + this.point.variety + '台';
-									}
-//									});
-									return s;
-								};
+//								bar_option_top_takttime.tooltip.formatter = function(){
+////                             var s = '<b>' + this.x + '</b>';
+//									var s = '<b>' + this.x + '</b>';
+//									s += '<br/>' + 'Takt Time:' + this.y + 's';
+//									s += '<br/>' + 'Variety:' + this.point.variety;
+//									s += '<br/>' + 'PartNumber:' + this.point.partNumber;
+//									s += '<br/>' + 'Time:' + this.point.currentTime;
+//
+////									$.each(this.points, function (index) {
+////										s += '<br/>' + this.series.name + ': ' +
+////												this.y + '%';
+//									if(index == 1){
+////											s += '<br/>' + 'Actual:' + this.point.variety + '台';
+//									}
+////									});
+//									return s;
+//								};
 								new Highcharts.Chart(option_RealTimeTakt);
-								new Highcharts.Chart(bar_option_top_takttime);
+//								new Highcharts.Chart(bar_option_top_takttime);
+								new Highcharts.Chart(barOption);
+								new Highcharts.Chart(pieOption);
+
 							}
 						});
 
@@ -766,16 +891,26 @@
 							success : function(data) {
 								if (data.length == 0) {
 									//handle empty
+									$("#selectType").empty();
+									$("#selectType").append("<option value='all' selected>--All Type--</option>");
 								} else {
 									var record = data;
 									var str = "";
 									var timeFrame = "";
 									var statusIcon = "";
 									console.info("total producing engine for today: " + record.length);
+									$("#selectType").empty();
+									$("#selectType").append("<option value='all' selected>--All Type--</option>");
+
 									for(var i = 0; i < record.length; i++){
 										var output = record[i]["output"].toString();
 										var type = record[i]["variety"].toString().substr(1);
 										var nextDate = record[i]["nextDate"].toString();
+										var text = "--" + record[i]["variety"].substr(1) + "--";
+										var value = record[i]["variety"];
+										if(value != ""){
+											$("#selectType").append("<option value='"+value+"'>"+text+"</option>");
+										}
 										if(i == 0){
 											//the first record is the current producing engine type
 											timeFrame  = moment(endDate).diff(moment(nextDate), "seconds");
@@ -784,7 +919,7 @@
 											 the diff is 5minutes  = 5*60 300
 											 the diff is 10minutes + 10 minutes = 20*60 900s
 											 */
-											console.info("timeFrame:" + timeFrame);
+//											console.info("timeFrame:" + timeFrame);
 											if(timeFrame < 300){
 												// show the normal color blue
 												statusIcon = "<div class='badge badge-transparent'>" +
@@ -812,6 +947,27 @@
 												"</div>";
 									}
 
+									$("#selectType").chosen({
+										allow_single_deselect:true,
+										disable_search_threshold: 10
+									});
+
+									$("#selectType").off('resize.chosen').on('resize.chosen', function() {
+										$('.chosen-select').each(function() {
+											var $this = $(this);
+											$this.next().css({'width': $this.parent().width()});
+										})
+									}).trigger('resize.chosen');
+
+									$("#selectType").chosen().change(function(){
+										currentEngineType = $(this).find("option:selected").val();
+//										var text = $(this).find("option:selected").text();
+//										currentEngineType = val;
+										console.info("select Type onchange: " + currentEngineType);
+										/*when refresh the station, the endDate should be retrive again*/
+//										endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+//										realtimeOutput();
+									});
 									$("#divAllProducingTypeInfo").html(str);
 								}
 							}
@@ -824,6 +980,9 @@
 						val_topTaktTime = [];
 						map_topTaktTimeInfo = [];
 						map_allTaktTimeInfo = [];
+
+						val_bar_xCategory = [];
+						val_pie = [];
 					}
 					else{
 						console.info("stop query from the db during the night time");
@@ -836,6 +995,7 @@
 				* Get the station information, chart, max, min, average, top 10 takt time
 				* */
 				realtimeOutput();
+
 
 
 				sh = setInterval(realtimeOutput, 30000);
@@ -891,6 +1051,9 @@
 				return returnIndex;
 			}
 
+			/*
+			* custom sort method
+			* */
 			function customSort(array,type,asc) {
 				var asc=asc||false;
 				array.sort(function(a,b) {
@@ -900,6 +1063,23 @@
 						return parseFloat(a[type])-parseFloat(b[type]);
 					}
 				})
+			}
+
+			/*
+			 * create a map to store all the min, step and max
+			 * */
+			function initColumCategory(min, max, step){
+				//initial first
+				map_column_x = {};
+				while(min < max){
+					map_column_x[min] = 0;
+
+					min = min + step;
+					if(min >= max){
+						colum_max_end = min;
+						map_column_x[colum_max_end] = 0;
+					}
+				}
 			}
 
 		</script>

@@ -10,6 +10,7 @@
         <result column="Remark" property="remark" jdbcType="VARCHAR" />
         <result column="LeaveName" property="leavename" jdbcType="VARCHAR" />
         <result column="User_ID" property="userid" jdbcType="VARCHAR" />
+
     </resultMap>
     <sql id="Base_Column_List" >
       id,
@@ -36,6 +37,21 @@
 
     </select>
 
+    <select id="selectUserLeaveEventByDepartment" resultMap="BaseResultMap">
+        select p.Name,  LeaveType, StartDate,EndDate,LeaveName,Remark,p.User_ID, q.name as 'orgname'
+        from user_leave p left join
+        (
+        SELECT user_id, organization_id, name
+        FROM sys_organization u left join sys_user_organization  o
+        on u.id = o.organization_id where parent_id is not NULL and organization_id is not null
+        ) q
+        on p.User_ID = q.user_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+
+    </select>
+
     <select id="selectUserLeaveStatics" resultMap="BaseResultMap">
         select Name, sum(case LeaveType when '事假' then Days+1 else 0 end) 'affair',
         sum(case LeaveType when '病假' then Days+1 else 0 end) 'sick',
@@ -56,6 +72,34 @@
         group by Name, LeaveType
         ) b
 
+        group by Name
+
+    </select>
+
+    <select id="selectUserLeaveStaticsByDepartment" resultMap="BaseResultMap">
+        select Name, sum(case LeaveType when '事假' then Days else 0 end) 'affair',
+        sum(case LeaveType when '病假' then Days else 0 end) 'sick',
+        sum(case LeaveType when '带薪年假' then Days else 0 end) 'paid',
+        sum(case LeaveType when '补充年假' then Days else 0 end) 'addition',
+        sum(case LeaveType when '加班串休' then Days else 0 end) 'workover',
+        sum(case LeaveType when '加班' then Days else 0 end) 'overtime',
+        sum(case LeaveType when '特殊加班' then Days else 0 end) 'special',
+        sum(case LeaveType when '国内差旅' then Days else 0 end) 'domestic',
+        sum(case LeaveType when '国际差旅' then Days else 0 end) 'international'
+        from
+        (
+        SELECT p.Name, LeaveType, sum(DATEDIFF(day, StartDate,EndDate) + 1) as Days
+        from user_leave
+        p left join
+        (     SELECT user_id, organization_id, name
+        FROM sys_organization u left join sys_user_organization  o
+        on u.id = o.organization_id where parent_id is not NULL and organization_id is not null         ) q
+        on p.User_ID = q.user_id
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by p.Name, LeaveType
+        ) b
         group by Name
 
     </select>

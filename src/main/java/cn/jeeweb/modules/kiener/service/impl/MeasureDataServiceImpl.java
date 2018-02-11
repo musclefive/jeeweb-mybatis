@@ -59,11 +59,39 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     }
 
     /*
-    * query the real time takt time for single station
+    * query the zkg id list
     * */
     @Override
     public List<MeasureData> queryZKGDMC(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1 ){
         List<MeasureData> records = baseMapper.queryZKGDMCbm(queryable, wrapper, wrapper_1);
+        return records;
+    }
+
+    /*
+    * query the  dmc  list by single DMC code
+    * */
+    @Override
+    public List<MeasureData> querySingleDMC(Queryable queryable, Wrapper<MeasureData> wrapper ){
+        List<MeasureData> records = baseMapper.querySingleDMCbm(queryable, wrapper);
+        return records;
+    }
+
+    /*
+    * query the DMC code from the table[DMCMeasureDailyData]
+    * to show the daily zk/zkg/kw output group by zk/zk/kw type
+    * */
+    @Override
+    public List<MeasureData> queryDailyDMC(Queryable queryable, Wrapper<MeasureData> wrapper ){
+        List<MeasureData> records = baseMapper.queryDailyDMCbm(queryable, wrapper);
+        return records;
+    }
+
+    /*
+    * query the ZK and KW id list
+    * */
+    @Override
+    public List<MeasureData> queryZKGAndKWDMC(Queryable queryable, Wrapper<MeasureData> wrapper,Wrapper<MeasureData> wrapper_1){
+        List<MeasureData> records = baseMapper.queryZKAndKWDMCbm(queryable, wrapper,wrapper_1);
         return records;
     }
 

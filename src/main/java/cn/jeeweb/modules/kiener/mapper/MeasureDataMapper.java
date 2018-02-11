@@ -26,7 +26,12 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
 
     List<MeasureData> queryZKGDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper ,@Param("ew_1") Wrapper<MeasureData> wrapper_1);
 
+    List<MeasureData> queryZKAndKWDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper, @Param("ew_1") Wrapper<MeasureData> wrapper_1);
+
     List<MeasureData> queryLeasTestbm(@Param("ew") Wrapper<MeasureData> wrapper);
 
+    List<MeasureData> querySingleDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryDailyDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
 }

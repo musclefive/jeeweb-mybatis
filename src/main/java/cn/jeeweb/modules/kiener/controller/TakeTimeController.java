@@ -146,7 +146,12 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
 
         String minTaktTime = request.getParameter("min");
         String maxTaktTime = request.getParameter("max");
+        String currentType = request.getParameter("currentType");
+
         //add condition select all the Ok parts
+        if(!currentType.equals("all")){
+            entityWrapper.eq("currentType", currentType);
+        }
         entityWrapper.eq("station", station);
         entityWrapper.lt("cast(takeTime as int)", Integer.valueOf(maxTaktTime));
         entityWrapper.gt("cast(takeTime as int)", Integer.valueOf(minTaktTime));
@@ -193,7 +198,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                 " endDate: " + endDate + " currentType: " + currentType);
 
         //add condition select all the Ok parts
-        entityWrapper.eq("currentType", currentType);
+        if(!currentType.equals("all")){
+            entityWrapper.eq("currentType", currentType);
+        }
         entityWrapper.lt("cast(takeTime as int)", max);
         entityWrapper.gt("cast(takeTime as int)", min);
         entityWrapper.notIn("station", excludedStation);

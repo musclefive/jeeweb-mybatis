@@ -25,6 +25,12 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> queryZKGDMC(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1);
 
+    public List<MeasureData> queryZKGAndKWDMC(Queryable queryable, Wrapper<MeasureData> wrapper,Wrapper<MeasureData> wrapper_1);
+
     public List<MeasureData> queryLeakTest(Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> querySingleDMC(Queryable queryable, Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> queryDailyDMC(Queryable queryable, Wrapper<MeasureData> wrapper);
 
 }

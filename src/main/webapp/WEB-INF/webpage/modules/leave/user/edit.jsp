@@ -22,6 +22,7 @@
 		             <form:input path="username" defaultValue="${fns:getUser().realname}" class="form-control"
 								 htmlEscape="false"  datatype="*"
 							 readonly="true"/>
+					 <form:hidden path="userid" defaultValue="${fns:getUser().id}"/>
 		             <label class="Validform_checktip"></label>
 		         </td>
 		          <td  class="width-15 active text-right">

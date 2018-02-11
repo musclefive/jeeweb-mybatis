@@ -18,4 +18,8 @@ public interface UserLeaveMapper extends BaseMapper<UserLeave> {
 
     List<UserLeave> selectUserLeaveStatics(Queryable queryable, @Param("ew") Wrapper<UserLeave> wrapper);
 
+    List<UserLeave> selectUserLeaveEventByDepartment(Queryable queryable, @Param("ew") Wrapper<UserLeave> wrapper);
+
+    List<UserLeave> selectUserLeaveStaticsByDepartment(Queryable queryable, @Param("ew") Wrapper<UserLeave> wrapper);
+
 }

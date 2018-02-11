@@ -28,4 +28,14 @@ public class UserLeaveServiceImpl extends CommonServiceImpl<UserLeaveMapper,User
         List<UserLeave> records = baseMapper.selectUserLeaveStatics(queryable, wrapper);
         return records;
     }
+
+    public List<UserLeave> selectUserLeaveEventByDepartment(Queryable queryable, Wrapper<UserLeave> wrapper){
+        List<UserLeave> records = baseMapper.selectUserLeaveEventByDepartment(queryable, wrapper);
+        return records;
+    }
+
+    public List<UserLeave> selectUserLeaveStaticsByDepartment(Queryable queryable, Wrapper<UserLeave> wrapper){
+        List<UserLeave> records = baseMapper.selectUserLeaveStaticsByDepartment(queryable, wrapper);
+        return records;
+    }
 }

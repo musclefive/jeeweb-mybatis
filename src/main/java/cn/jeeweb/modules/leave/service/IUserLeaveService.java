@@ -16,4 +16,8 @@ public interface IUserLeaveService extends ICommonService<UserLeave> {
 
     public List<UserLeave> selectUserLeaveStatics(Queryable queryable, Wrapper<UserLeave> wrapper);
 
+    public List<UserLeave> selectUserLeaveEventByDepartment(Queryable queryable, Wrapper<UserLeave> wrapper);
+
+    public List<UserLeave> selectUserLeaveStaticsByDepartment(Queryable queryable, Wrapper<UserLeave> wrapper);
+
 }

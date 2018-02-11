@@ -67,6 +67,9 @@ public class UserLeave extends AbstractEntity<String> {
     @TableField(exist = false)
     private String international;
 
+    @TableField(exist = false)
+    private String orgname;
+
     @Override
     public String getId() {
         return id;
@@ -203,5 +206,13 @@ public class UserLeave extends AbstractEntity<String> {
 
     public void setInternational(String international) {
         this.international = international;
+    }
+
+    public String getOrgname() {
+        return orgname;
+    }
+
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
     }
 }

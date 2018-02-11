@@ -294,6 +294,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         String startDate = request.getParameter("measureDate");
         String endDate = request.getParameter("measureDateEnd");
         String station = request.getParameter("station");
+        String currentType = request.getParameter("currentType");
 
         logger.info("ajaxList_realTimeTaktTimeForSingleStation para: " + startDate + " to: " + endDate + " station:" + station);
 //        String startDate = "2017-08-26 06:30";
@@ -303,6 +304,11 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
                 logger.info("output querying startDate:" + startDate + " endDate:" + endDate);
                 entityWrapper.between("measureDate",startDate,endDate);
             }
+        }
+
+        //add condition select all the Ok parts
+        if(!currentType.equals("all")){
+            entityWrapper.eq("variety", currentType);
         }
 
         entityWrapper.eq("station", station);

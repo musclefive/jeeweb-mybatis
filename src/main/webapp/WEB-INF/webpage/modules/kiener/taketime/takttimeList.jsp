@@ -42,11 +42,11 @@
 						<div class="row">
 							<div class="col-sm-12 table-bordered border">
 								<div class="row">
-									<div class="col-sm-2">
+									<div class="col-sm-1">
 										<label for="selectStationType">Station</label>
 
 										<br />
-										<select class="chosen-select" id="selectStationType" data-placeholder="Choose a Station...">
+										<select class="chosen-select" id="selectStationType" data-placeholder="Select">
 										</select>
 									</div>
 									<div class="col-sm-2">
@@ -69,10 +69,17 @@
 										</div>
 									</div>
 									<div class="col-sm-1">
+										<label>&nbsp;Engine Type:&nbsp;</label>
+
+										<select class="form-control" id="selectType">
+
+										</select>
+									</div>
+									<div class="col-sm-1">
 										<label>&nbsp;Min:&nbsp;</label>
 
 										<div class="input-group">
-											<input id="txtMinTaktTime" type="text" class="form-control" placeholder="0s" value="30"/>
+											<input id="txtMinTaktTime" type="text" class="form-control" placeholder="0s" value="25"/>
 										</div>
 									</div>
 									<div class="col-sm-1">
@@ -233,6 +240,11 @@
 				"format" : "YYYY-MM-DD HH:mm",
 				"defaultDate" : moment().format("YYYY-MM-DD 01:30")
 //				"minDate" : moment().subtract(8, "days")
+			}).on('dp.change',function(){
+				var startDate = $("#date-timepicker-start").val();
+				var endDate = $("#date-timepicker-end").val();
+				console.info("after change the timepicker startDate:" + startDate + " endDate:" + endDate);
+				getAllEngineType(startDate, endDate);
 			});
 
 			$('#txtStartTaktTime').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
@@ -247,6 +259,11 @@
 					.on('change', function(){
 						//alert(this.value)
 					});
+
+//			inital the engine type with the default date
+			getAllEngineType($("#date-timepicker-start").val(), $("#date-timepicker-end").val());
+
+
 //			get all the stations ajax method
 			$.ajax({
 				type : "post",
@@ -288,6 +305,9 @@
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
 				var stationName = $("#selectStationType").find("option:selected").text();
+
+				var currentType = $("#selectType").find("option:selected").val();
+
 				minTakt = $("#txtMinTaktTime").val();
 				maxTakt = $("#txtMaxTaktTime").val();
 
@@ -307,8 +327,8 @@
 						text: ''
 					},
 					subtitle: {
-						text: document.ontouchstart === undefined ?
-								'鼠标拖动可以进行缩放' : '手势操作进行缩放'
+//						text: document.ontouchstart === undefined ?
+//								'鼠标拖动可以进行缩放' : '手势操作进行缩放'
 					},
 					xAxis: {
 						tickInterval : 30,
@@ -384,7 +404,7 @@
 					}]
 				};
 
-				initChart(startDate, endDate, selectStation,stationName, options);
+				initChart(startDate, endDate, selectStation,stationName,currentType, options);
 
 			});
 
@@ -397,6 +417,8 @@
 				var start = parseInt($("#txtStartTaktTime").val());
 				var end = parseInt($("#txtEndTaktTime").val());
 				var step = parseInt($("#txtStep").val());
+
+				console.info(start + " " + end + " " + step);
 				var tmpTakttime = 0;
 				var tmpInt = 0;
 				var index = 0;
@@ -510,7 +532,7 @@
 
 				$.each(map_column_x, function(key, value){
 
-					console.info("map_column_x after caculate:" + key + " " + value);
+//					console.info("map_column_x after caculate:" + key + " " + value);
 					strTemp = strTemp + "[";
 					strTemp = strTemp + "'"+key + "'" + "," + value +"],";
 					val_bar_xCategory.push("'"+key+"'");
@@ -543,6 +565,8 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
+				var currentType = $("#selectType").find("option:selected").val();
+
 				minTakt = $("#txtMinTaktTime").val();
 				maxTakt = $("#txtMaxTaktTime").val();
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " selectStation:" + selectStation);
@@ -556,23 +580,20 @@
 				if(tableList){
 					$('#tableTakttime').dataTable().fnDestroy();
 				}
-				initTable(startDate, endDate, selectStation);
+				initTable(startDate, endDate, selectStation,currentType);
 			});
 
 		});
 
-		function initChart(start, end, station,stationName, options) {
+		function initChart(start, end, station,stationName,currentType, options) {
 			var val_time = [];
 			var val_takttime = [];
-
-			var map_takt = {"<33s":0,"34s":0,"35s":0,"36s":0,"37s":0,"Standard 38s":0,"39s":0,"40s":0,"41s":0,"42s":0,">43s":0};
-
 
 			$.ajax({
 				type : "post",
 				url : "${adminPath}/kiener/taketime/ajaxList_takttime",
 				dataType : "json",
-				data: {"measureDate":start,"endDate":end, "station":station, "min":minTakt, "max": maxTakt},
+				data: {"measureDate":start,"endDate":end, "station":station, "min":minTakt, "max": maxTakt, "currentType":currentType},
 				error : function (xhr, textStatus){
 					console.info("queryData ajax error,textStatus:" + textStatus);
 				},
@@ -597,7 +618,11 @@
 					options.series[0].name = "Takt Time";
 					options.series[0].data = eval('['+ val_takttime +']');
 					options.xAxis.categories = eval('['+ val_time +']');
+					if(currentType != "all"){
+						currentType = currentType.substr(1);
+					}
 					options.title.text = stationName + " Takt Time";
+					options.subtitle.text = "Engine Type:" + currentType + ";  Total Record:" + record.length;
 
 //					barOption.series[0].name = "Takt Time";
 //					barOption.series[0].data = eval('['+ val_bar_quantity +']');
@@ -612,7 +637,7 @@
 
 		}
 
-		function initTable(start, end, station){
+		function initTable(start, end, station,currentType){
 //			console.info("inti table :" + dataResult.length);
 			tableList = $('#tableTakttime').dataTable( {
 				"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
@@ -630,7 +655,7 @@
 				},
 				"ajax": {
 					"url" : "${adminPath}/kiener/taketime/ajaxList_takttime?measureDate="+start +
-					"&endDate=" + end + "&station=" + station + "&min=" + minTakt +"&max=" + maxTakt ,
+					"&endDate=" + end + "&station=" + station + "&min=" + minTakt +"&max=" + maxTakt+"&currentType=" + currentType ,
 					"dataSrc" : "results"
 				},
 				bAutoWidth: false,
@@ -708,6 +733,39 @@
 				}
 			}
 		}
+
+		function getAllEngineType(startDate, endDate){
+// 				dynamic show the engine type list
+			$.ajax({
+				type : "post",
+				url : "${adminPath}/kiener/taketime/ajaxList_engineType",
+				dataType : "json",
+				data: {"startDate":startDate,"endDate":endDate},
+				success : function(data) {
+					if(data.results.length == 0){
+						//handle empty
+						$("#selectType").empty();
+						$("#selectType").append("<option value=''>No Data</option>");
+
+					}else{
+						var record = data.results;
+						$("#selectType").empty();
+						$("#selectType").append("<option value='all' selected>--All--</option>");
+
+						for(var i = 0; i < record.length; i++) {
+							var text = "--" + record[i]["currentType"].substr(1) + "--";
+							var value = record[i]["currentType"];
+							if(value != ""){
+								$("#selectType").append("<option value='"+value+"'>"+text+"</option>");
+							}
+						}
+					}
+//					console.info(val_avgTakTime);
+//					console.info(val_station);
+				}
+			});
+		}
+
 
 	</script>
 

@@ -68,6 +68,22 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String dmcNew;
 
+    /*sum count for ZKG*/
+    @TableField(exist = false)
+    private String summary;
+
+    /*maxDate code for ZKG*/
+    @TableField(exist = false)
+    private String maxDate;
+
+    /*type zkg zk kw code for ZKG*/
+    @TableField(exist = false)
+    private String type;
+
+    /*total zkg zk kw code for ZKG*/
+    @TableField(exist = false)
+    private String total;
+
     /*new dmc code for ZKG*/
     @TableField(exist = false)
     private String leakID;
@@ -220,6 +236,38 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setDmcNew(String dmcNew) {
         this.dmcNew = dmcNew;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getMaxDate() {
+        return maxDate;
+    }
+
+    public void setMaxDate(String maxDate) {
+        this.maxDate = maxDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getLeakID() {
