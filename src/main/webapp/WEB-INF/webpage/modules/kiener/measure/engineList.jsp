@@ -71,16 +71,15 @@
 										</div>
 									</div>
 
+									<%--<div class="col-sm-1">--%>
+
+									<%--</div>--%>
+
+									<%--<div class="col-sm-1">--%>
+
+									<%--</div>--%>
 									<div class="col-sm-1">
-
-
-									</div>
-
-									<div class="col-sm-1">
-
-									</div>
-									<div class="col-sm-1">
-										<br/>
+										<label>&nbsp;&nbsp;</label><br/>
 										<button class="btn btn-sm btn-success" id="btnQuery">
 											<i class="ace-icon fa fa-refresh bigger-110"></i>
 											Query
@@ -109,10 +108,10 @@
 	</div><!-- /.main-content -->
 
 </div><!-- /.main-container -->
-<!-- 闁稿繈鍔岄惇鐞穝 -->
+<!-- 闂佺绻堥崝宀勬儑閻炵 -->
 	<%--<html:js  name="jquery,bootstrap,ace-theme"/>--%>
 
-	<!-- 闁煎浜滈悾鐐▕婵夌灚 -->
+	<!-- 闂佺厧顨庢禍婊堟偩閻愵剛鈻曞┑澶岀仛 -->
 	<script src="${staticPath}/assets/js/jquery.min.js"></script>
 	<script src="${staticPath}/assets/js/bootstrap.min.js"></script>
 	<script src="${staticPath}/assets/js/jquery.dataTables.min.js"></script>
@@ -134,9 +133,7 @@
 
 	<script type="text/javascript">
 
-		var val_avgTakTime = new Array();
-		var val_station = new Array();
-
+		var tableEngineList;
 		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
 		$.blockUI.defaults.overlayCSS.opacity = .2;
 		$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
@@ -214,21 +211,83 @@
 //				var currentType = $("#selectType").find("option:selected").val();
 				var selectStation = $("#selectStationType").find("option:selected").val();
 				var stationName = $("#selectStationType").find("option:selected").text();
-				var currentType = "all"; //temp value no use
-				var max = $("#txtMaxTaktTime").val();
-				var min = $("#txtMinTaktTime").val();
-
 				if(startDate == "" || endDate == "" || selectStation == "")
 				{
-					top.layer.alert('璇烽�夋嫨宀椾綅锛�', {icon: 0, title:'璀﹀憡'});
+					top.layer.alert('选择岗位', {icon: 0, title:'警告'});
 					return false;
 				}
-				startDate = startDate +  " 06:30";
-				endDate = endDate + " 06:30";
-				console.info("startDate: " + startDate + "  to : " + endDate + " currentType:" + currentType);
-
+//				startDate = startDate +  " 06:30";
+//				endDate = endDate + " 06:30";
+				console.info("startDate: " + startDate + "  to : " + endDate + " selectStation:" + selectStation);
+				if(tableEngineList){
+					$('#tableEngineList').dataTable().fnDestroy();
+				}
+				initEgineListTable(startDate,endDate,selectStation)
 			});
 		});
+
+		function initEgineListTable(start, end, station){
+			tableEngineList = $('#tableEngineList').dataTable( {
+				"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
+				oTableTools: {
+					"aButtons": [
+						{
+							"sExtends": "copy",
+							"sButtonText": "Copy"
+						},
+						{
+							"sExtends": "xls",
+							"sButtonText": "Excel"
+						}
+					]
+				},
+				"displayLength": 100,
+				"language" :{
+					"zeroRecords" : "No Record for this period"
+				},
+				"ajax": {
+					"url" : "${adminPath}/kiener/measure/ajaxList_engineList?measureDate="+start +
+					"&endDate=" + end + "&station=" + station,
+					"dataSrc" : "results",
+//					"success": fnCallback,
+					"timeout": 35000,   // optional if you want to handle timeouts (which you should)
+					"error": handleAjaxError // this sets up jQuery to give me errors
+				},
+				"order": [[ 2, "desc" ]],
+				bAutoWidth: false,
+				"columns":[
+					{
+						"data": "partNumber",
+						"sTitle":"发动机序列号"
+					},
+					{
+						"data": "variety",
+						"sTitle":"发动机型号"
+					},
+
+					{
+						"data": "measureDate",
+						"sTitle":"发动机生成时间"
+					},
+					{
+						"data": "ok",
+						"sTitle":"是否合格"
+					}
+				]
+			} );
+		}
+
+		function handleAjaxError( xhr, textStatus, error ) {
+			if ( textStatus === 'timeout' ) {
+				alert( 'The server took too long to send the data.' );
+			}
+			else {
+				alert( 'An error occurred on the server. Please try again again.');
+			}
+
+//			$('.dataTable').dataTable().fnProcessingIndicator( false );
+		}
+
 
 
 	</script>

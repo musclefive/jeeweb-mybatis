@@ -90,7 +90,7 @@
 										</div>
 									</div>
 									<div class="col-sm-3">
-										<br/>
+										<label>&nbsp;</label><br/>
 										<!-- #section:plugins/date-time.datetimepicker -->
 										<button class="btn btn-sm btn-info" id="btnQuery">
 											<i class="ace-icon fa fa-tachometer  bigger-110"></i>

@@ -17,12 +17,18 @@
     </resultMap>
     <sql id="queryTable" >
       caq.MeasurementGeneralData
-     </sql>
+    </sql>
+    <sql id="queryTable_MeasureTemp" >
+        caq.MeasurementGeneralTemp
+    </sql>
     <sql id="queryTable_DMC" >
         caq.DMCMeasurements
     </sql>
     <sql id="queryTable_Leak" >
         caq.LeakTestMeasurements
+    </sql>
+    <sql id="queryTable_DMCDaily" >
+        caq.DMCMeasureDailyData
     </sql>
     <sql id="Base_Column_List_1" >
         A.ID,
@@ -43,6 +49,15 @@
         </where>
     </select>
 
+    <select id="queryEngineList" resultType="MeasureData">
+        select ID as "id", PartNumber as "partNumber", Date as "measureDate",
+        Variety as "variety", Ok as "ok"
+        from <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
     <select id="selectTakeTimePage" resultType="MeasureData">
         select <include refid="Base_Column_List_1" />
         from tmpMeasureData_1 A left join tmpMeasureData_2  B on A.rowId = B.rowId -1
@@ -57,6 +72,21 @@
             ${ew.sqlSegment}
         </where>
         group by Station, Variety order by Station, nextDate desc
+    </select>
+
+    <select id="queryRealTimeOutputChangeType" resultType="MeasureData">
+        select output,A.Station, B.Variety, nextDate, latestNumber,Summary as "changeCount" from
+        <include refid="queryTable_MeasureTemp" /> A left join
+        (
+        SELECT  Count(*) as 'output', Station ,Variety, MAX(Date) as 'nextDate', max(PartNumber) as latestNumber
+        FROM <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by Station, Variety
+        ) B on A.station = B.Station
+        where output is not NULL
+        order by A.station, B.nextDate desc
     </select>
 
     <select id="queryRealTimeTaktTime" resultType="MeasureData">
@@ -198,16 +228,64 @@
         A.summary as "summary", B.total as "total" from
         (
         select station, maxDate, left(dmc,11) as type,count(*) as summary from
-        [Vertiscape].[caq].[DMCMeasureDailyData]
-        where station = '10'
+        <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
         group by maxDate, station,left(dmc,11)
         ) A
 
         left join
         (
         select station, maxDate,count(*) as total
-        from [Vertiscape].[caq].[DMCMeasureDailyData]
-        where station = '10'
+        from <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by maxDate, station
+        ) B on A.maxDate = B.maxDate
+        order by A.maxDate desc
+
+    </select>
+
+    <select id="queryDailyDMCbmforZK" resultType="MeasureData">
+
+        /*select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
+        A.summary as "summary", B.total as "total" from
+        (
+        select station, maxDate, zk as type,count(*) as summary from
+        caq.DMCMeasureDailyData
+        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
+        group by maxDate, station,zk
+        ) A
+
+        left join
+        (
+        select station, maxDate,count(*) as total
+        from caq.DMCMeasureDailyData
+        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
+        group by maxDate, station
+        ) B on A.maxDate = B.maxDate
+        order by A.maxDate desc*/
+
+        select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
+        A.summary as "summary", B.total as "total" from
+        (
+        select station, maxDate, zk as type,count(*) as summary from
+        <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by maxDate, station,zk
+        ) A
+
+        left join
+        (
+        select station, maxDate,count(*) as total
+        from <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
         group by maxDate, station
         ) B on A.maxDate = B.maxDate
         order by A.maxDate desc
@@ -215,6 +293,49 @@
     </select>
 
 
+    <select id="queryDailyDMCbmforZK" resultType="MeasureData">
+
+        /*select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
+        A.summary as "summary", B.total as "total" from
+        (
+        select station, maxDate, zk as type,count(*) as summary from
+        caq.DMCMeasureDailyData
+        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
+        group by maxDate, station,zk
+        ) A
+
+        left join
+        (
+        select station, maxDate,count(*) as total
+        from caq.DMCMeasureDailyData
+        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
+        group by maxDate, station
+        ) B on A.maxDate = B.maxDate
+        order by A.maxDate desc*/
+
+        select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
+        A.summary as "summary", B.total as "total" from
+        (
+        select station, maxDate, zk as type,count(*) as summary from
+        <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by maxDate, station,zk
+        ) A
+
+        left join
+        (
+        select station, maxDate,count(*) as total
+        from <include refid="queryTable_DMCDaily" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        group by maxDate, station
+        ) B on A.maxDate = B.maxDate
+        order by A.maxDate desc
+
+    </select>
 
 
 </mapper>

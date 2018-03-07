@@ -69,7 +69,7 @@
 										</div>
 									</div>
 									<div class="col-sm-1">
-										<label>&nbsp;Engine Type:&nbsp;</label>
+										<label>&nbsp;Type:&nbsp;</label>
 
 										<select class="form-control" id="selectType">
 
@@ -233,6 +233,11 @@
 				"format" : "YYYY-MM-DD HH:mm",
 				"defaultDate" : moment().subtract(1,"days").format("YYYY-MM-DD 07:30")
 //				"minDate" : moment().subtract(8, "days")
+			}).on('dp.change',function(){
+				var startDate = $("#date-timepicker-start").val();
+				var endDate = $("#date-timepicker-end").val();
+				console.info("after change the timepicker startDate:" + startDate + " endDate:" + endDate);
+				getAllEngineType(startDate, endDate);
 			});
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(1, "days"),
@@ -602,6 +607,7 @@
 						//handle empty
 						console.info("empty");
 						top.layer.alert('没有数据！', {icon: 0, title:'警告'});
+						$.unblockUI();
 
 					}else{
 						record = data.results;

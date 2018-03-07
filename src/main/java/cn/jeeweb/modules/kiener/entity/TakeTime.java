@@ -45,6 +45,14 @@ public class TakeTime extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String avgTakTime;
 
+    /*worker ID for query*/
+    @TableField(exist = false)
+    private String workerID;
+
+    /*total count for worker ID for query*/
+    @TableField(exist = false)
+    private String total;
+
     @Override
     public Long getId() {
         return id;
@@ -125,5 +133,21 @@ public class TakeTime extends AbstractEntity<Long> {
 
     public void setAvgTakTime(String avgTakTime) {
         this.avgTakTime = avgTakTime;
+    }
+
+    public String getWorkerID() {
+        return workerID;
+    }
+
+    public void setWorkerID(String workerID) {
+        this.workerID = workerID;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 }

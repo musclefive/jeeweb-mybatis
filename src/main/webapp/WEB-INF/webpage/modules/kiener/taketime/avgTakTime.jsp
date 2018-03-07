@@ -229,6 +229,11 @@
 				"format" : "YYYY-MM-DD"
 //			"format" : "YYYY-MM-DD h:mm"
 //			"minDate" : moment().subtract(8, "days")
+			}).on('dp.change',function(){
+				var startDate = $("#date-timepicker-start").val();
+				var endDate = $("#date-timepicker-end").val();
+				console.info("startDate:" + startDate + " endDate:" + endDate);
+				getAllEngineType(startDate, endDate);
 			});
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(0, "days"),
@@ -250,10 +255,7 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var currentType = $("#selectType").find("option:selected").val();
-				console.info("current type:" + currentType);
-				if(currentType != "all"){
-					currentType = currentType.substr(1);
-				}
+
 				var max = $("#txtMaxTaktTime").val();
 				var min = $("#txtMinTaktTime").val();
 
@@ -293,10 +295,13 @@
 								val_avgTakTime.push(record[p]["avgTakTime"]);
 							}
 							options.xAxis.categories = eval('['+ val_station +']');
-							options.labels.items[0].html = "Total Record:" + record.length + "<br/>" + "Mean:cc";
+//							options.labels.items[0].html = "Total Record:" + record.length + "<br/>" + "Mean:cc";
 
 							options.series[0].name = "Avg Tak Time";
 							options.series[0].data = eval('['+ val_avgTakTime +']');
+							if(currentType != "all"){
+								currentType = currentType.substr(1);
+							}
 							options.title.text = "Average Takt Time - Engine Type: " + currentType;
 							options.subtitle.text = "From " + startDate + " To " + endDate;
 						}

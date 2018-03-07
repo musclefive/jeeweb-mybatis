@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -19,6 +20,8 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
     List<MeasureData> selectTakeTimePage(Page<MeasureData> page, @Param("ew") Wrapper<MeasureData> wrapper);
 
     List<MeasureData> queryRealTimeOutput(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryRealTimeOutputChangeType(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
 
     List<MeasureData> queryRealTimeTaktTime(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper, @Param("ew_1") Wrapper<MeasureData> wrapper_1);
 
@@ -33,5 +36,9 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
     List<MeasureData> querySingleDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
     List<MeasureData> queryDailyDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryDailyDMCbmforZK(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryEngineList(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
 }

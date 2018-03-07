@@ -60,6 +60,10 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String latestNumber;
 
+    /*latest Part Number for production*/
+    @TableField(exist = false)
+    private Integer changeCount;
+
     /*old dmc code for ZKG*/
     @TableField(exist = false)
     private String dmc;
@@ -220,6 +224,14 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setLatestNumber(String latestNumber) {
         this.latestNumber = latestNumber;
+    }
+
+    public Integer getChangeCount() {
+        return changeCount;
+    }
+
+    public void setChangeCount(Integer changeCount) {
+        this.changeCount = changeCount;
     }
 
     public String getDmc() {

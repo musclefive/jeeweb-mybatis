@@ -9,34 +9,33 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/blank_MoMo.html" line="265" />
     <bookmark url="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/controller/UserLeaveController.java" line="133" />
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp" line="195" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html" line="1232" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3531e913-fd0a-457b-9f4e-94d7694422cc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/efficiency.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/engineList.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/IUserLeaveService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/IUserLeaveService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/ITakeTimeService.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/ITakeTimeService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappings/modules/leave/LeaveMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappings/modules/leave/LeaveMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/MeasureDataMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/MeasureDataMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/MeasureDataServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/MeasureDataServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/TakeTime.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/TakeTime.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/entity/UserLeave.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/entity/UserLeave.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/controller/UserLeaveController.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/controller/UserLeaveController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/mapper/UserLeaveMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/mapper/UserLeaveMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/impl/UserLeaveServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/impl/UserLeaveServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/TakeTimeMapper.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/TakeTimeMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/TakeTimeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/TakeTimeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/TaktTimeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/TaktTimeMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/calendar.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/calendar.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/edit.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/email.properties" afterPath="$PROJECT_DIR$/src/main/resources/email.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/left.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/left.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/i18n/messages.properties" afterPath="$PROJECT_DIR$/src/main/resources/i18n/messages.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-config-shiro.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-config-shiro.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp" />
     </list>
     <ignored path="jeeweb-mybatis.iws" />
@@ -66,104 +65,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="KienerMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml">
+      <file leaf-file-name="takttimeList.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.457143">
-              <caret line="194" column="31" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="31" />
+            <state vertical-scroll-proportion="-1.9009901">
+              <caret line="232" column="46" selection-start-line="232" selection-start-column="27" selection-end-line="232" selection-end-column="46" />
               <folding>
-                <marker date="1518314356640" expanded="true" signature="1908:2072" placeholder="select from ..tmpMeasureData_1..." />
-                <marker date="1518314356640" expanded="true" signature="2160:2436" placeholder="SELECT Count..." />
-                <marker date="1518314356640" expanded="true" signature="2526:2925" placeholder="SELECT * fro..ROW_NUMBER..." />
-                <marker date="1518314356640" expanded="true" signature="3284:4132" placeholder="select Min(A..." />
-                <marker date="1518314356640" expanded="true" signature="3596:3861" placeholder="SELECT disti..MeasurementGeneralData..." />
-                <marker date="1518314356640" expanded="true" signature="4145:4825" placeholder="select Min(A..." />
-                <marker date="1518314356640" expanded="true" signature="4448:4655" placeholder="SELECT disti..A..." />
-                <marker date="1518314356640" expanded="true" signature="4840:5642" placeholder="SELECT Min(A..A..." />
-                <marker date="1518314356640" expanded="true" signature="4840:5728" placeholder="SELECT Min(A..." />
-                <marker date="1518314356640" expanded="true" signature="5158:5518" placeholder="select disti..where..." />
-                <marker date="1518314356640" expanded="true" signature="5158:5535" placeholder="select disti..where..." />
-                <marker date="1518314356640" expanded="true" signature="5818:6435" placeholder="SELECT disti..A..." />
-                <marker date="1518314356640" expanded="true" signature="6121:6287" placeholder="SELECT disti..A..." />
-                <marker date="1518314356640" expanded="true" signature="6522:6817" placeholder="SELECT A.Par..MeasurementGeneralData..." />
-                <marker date="1518314356640" expanded="true" signature="6902:7352" placeholder="select A.ID ..A..." />
-                <marker date="1518314356640" expanded="true" signature="7437:8054" placeholder="select A.sta..." />
-                <marker date="1518314356640" expanded="true" signature="7582:7777" placeholder="select stati..." />
-                <marker date="1518314356640" expanded="true" signature="7827:7985" placeholder="select stati..." />
+                <element signature="e#11633#13305#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="single.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html">
+      <file leaf-file-name="TakeTimeController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.96039605">
-              <caret line="645" column="47" selection-start-line="645" selection-start-column="47" selection-end-line="645" selection-end-column="47" />
-              <folding>
-                <element signature="e#12598#15050#0" expanded="false" />
-                <element signature="e#15675#16592#0" expanded="false" />
-                <element signature="e#16615#17225#0" expanded="false" />
-                <element signature="e#21013#24303#0" expanded="false" />
-                <marker date="1518070015705" expanded="true" signature="9945:10067" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="monitor.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="26.939394">
-              <caret line="1014" column="40" selection-start-line="1014" selection-start-column="40" selection-end-line="1014" selection-end-column="40" />
-              <folding>
-                <element signature="e#35968#39317#0" expanded="false" />
-                <element signature="e#47851#53243#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DMCController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70542634">
-              <caret line="195" column="34" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.5714286">
+              <caret line="211" column="9" selection-start-line="211" selection-start-column="9" selection-end-line="211" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zkgList.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp">
+      <file leaf-file-name="monitor_circle.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.5544555">
-              <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.818182">
+              <caret line="972" column="76" selection-start-line="972" selection-start-column="54" selection-end-line="972" selection-end-column="76" />
               <folding>
-                <element signature="e#16886#19247#0#HTML" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#31987#34669#0" expanded="false" />
+                <element signature="e#48241#53281#0" expanded="false" />
+                <marker date="1520296842852" expanded="true" signature="30722:30828" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MeasureData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java">
+      <file leaf-file-name="avgTakTime.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5142856">
-              <caret line="252" column="33" selection-start-line="252" selection-start-column="33" selection-end-line="252" selection-end-column="33" />
+            <state vertical-scroll-proportion="-31.0">
+              <caret line="304" column="98" selection-start-line="304" selection-start-column="98" selection-end-line="304" selection-end-column="98" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1519708788756" expanded="true" signature="7213:7227" placeholder="..." />
+                <marker date="1519708788756" expanded="true" signature="7299:7329" placeholder="..." />
+                <marker date="1519708788756" expanded="true" signature="7372:7381" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMeasureDataService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java">
+      <file leaf-file-name="efficiency.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/efficiency.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="42" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="42" />
-              <folding />
+            <state vertical-scroll-proportion="0.49279538">
+              <caret line="272" column="30" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="30" />
+              <folding>
+                <element signature="e#6423#7528#0#HTML" expanded="false" />
+                <marker date="1520402470252" expanded="true" signature="8601:8615" placeholder="..." />
+                <marker date="1520402470252" expanded="true" signature="8698:8728" placeholder="..." />
+                <marker date="1520402470252" expanded="true" signature="8771:8780" placeholder="..." />
+                <marker date="1520402470252" expanded="true" signature="8839:8869" placeholder="..." />
+                <marker date="1520402470252" expanded="true" signature="8911:8920" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -190,17 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/common/js/func.js" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/LeakTestController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/userLeave/list.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leave/list.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/test/controller/TestOrderMainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/test/controller/SingleTableController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/tags/html/vendors-js-html-component.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets/js/tableexport/TableTools.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/create.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/user/changePassword.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/header.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/user/create.jsp" />
@@ -218,29 +174,40 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/left.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/email.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/i18n/messages.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/entity/UserLeave.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-config-mybatis.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/mapper/UserLeaveMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/IUserLeaveService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/impl/UserLeaveServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/calendar.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/mappings/modules/leave/LeaveMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/controller/UserLeaveController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/DMCData.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-config-mybatis.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/TakeTime.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/TakeTimeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/ITakeTimeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/TakeTimeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/TaktTimeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/engineList.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/MeasureDataMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/MeasureDataServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/engineList.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring-config-shiro.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/efficiency.jsp" />
       </list>
     </option>
   </component>
@@ -268,8 +235,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1600" />
-    <option name="height" value="860" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -294,13 +263,10 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files" />
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -550,6 +516,90 @@
               <option name="myItemId" value="kiener" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taketime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webpage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kiener" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webpage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kiener" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="measure" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -662,40 +712,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webpage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jeeweb-mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jeeweb-mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -898,6 +914,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="kiener" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jeeweb-mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codegen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1361,6 +1407,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1404,11 +1453,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\webpage\modules\kiener\measure" />
+      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\webpage\modules\kiener\taketime" />
+      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\static\momo" />
       <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\webpage\modules\kiener\dmc" />
       <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\static\assets\js" />
-      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\static\assets\css" />
-      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\resources\mappings\modules\leave" />
-      <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\webpage\modules\leave\user" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\01project\jeeweb\jeeweb-mybatis\src\main\webapp\WEB-INF\webpage\modules\leave\user" />
@@ -1824,7 +1873,8 @@
       <workItem from="1516770518916" duration="47372000" />
       <workItem from="1517818670868" duration="10234000" />
       <workItem from="1517891590426" duration="13341000" />
-      <workItem from="1517978891849" duration="34671000" />
+      <workItem from="1517978891849" duration="41346000" />
+      <workItem from="1519371220866" duration="54956000" />
     </task>
     <task id="LOCAL-00001" summary="first demo commit by cc">
       <created>1503497205700</created>
@@ -1836,7 +1886,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1150724000" />
+    <option name="totallyTimeSpent" value="1212355000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1848,7 +1898,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1600" height="860" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1860,24 +1910,24 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.8869509" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33972603" sideWeight="0.8869509" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2784314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28848642" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898173" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963446" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3739726" sideWeight="0.89844763" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967659" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3697479" sideWeight="0.49741602" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37123287" sideWeight="0.49741602" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09315068" sideWeight="0.89844763" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1890,22 +1940,22 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963446" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967659" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3697479" sideWeight="0.49741602" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37123287" sideWeight="0.49741602" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913166" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32352942" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.8869509" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23150685" sideWeight="0.8869509" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2784314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28848642" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898173" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09315068" sideWeight="0.89844763" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3739726" sideWeight="0.89844763" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1932,12 +1982,6 @@
           <line>116</line>
           <properties />
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java</url>
-          <line>135</line>
-          <properties />
-          <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java</url>
@@ -2012,7 +2056,7 @@
           <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="85" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2021,191 +2065,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/common/taglibs.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.636364">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/sys/ace/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.0">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/email.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/i18n/messages.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/sys/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/TaktTimeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7764706">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/jeeweb-functions.tld">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2580645">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/UserOnlineController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/UserLastOnlineController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.1774194">
-          <caret line="183" column="13" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.548387">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.878788">
-          <caret line="21" column="72" selection-start-line="21" selection-start-column="72" selection-end-line="21" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/entity/UserLeave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.0">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/mapper/UserLeaveMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="54" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/impl/UserLeaveServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="79" selection-start-line="37" selection-start-column="79" selection-end-line="37" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/leave/service/IUserLeaveService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/utils/UserUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.935867">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/leave/user/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92156863">
-          <caret line="295" column="100" selection-start-line="295" selection-start-column="100" selection-end-line="295" selection-end-column="100" />
-          <folding>
-            <element signature="e#11288#12224#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/assets/js/chosen.jquery.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2216,34 +2079,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="622" column="21" selection-start-line="620" selection-start-column="20" selection-end-line="622" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-config-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7272725">
-          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus/2.1-gamma/mybatis-plus-2.1-gamma.jar!/com/baomidou/mybatisplus/mapper/Wrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7272727">
-          <caret line="311" column="22" selection-start-line="311" selection-start-column="22" selection-end-line="311" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -2269,23 +2109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.0.3.RELEASE/spring-webmvc-4.0.3.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15926893">
-          <caret line="483" column="0" selection-start-line="483" selection-start-column="0" selection-end-line="483" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.3.RELEASE/spring-web-4.0.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15926893">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2293,32 +2116,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15926893">
           <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82225657">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.96039605">
+        <state vertical-scroll-proportion="0.0">
           <caret line="645" column="47" selection-start-line="645" selection-start-column="47" selection-end-line="645" selection-end-column="47" />
           <folding>
             <element signature="e#12598#15050#0" expanded="false" />
             <element signature="e#15675#16592#0" expanded="false" />
             <element signature="e#16615#17225#0" expanded="false" />
             <element signature="e#21013#24303#0" expanded="false" />
-            <marker date="1518070015705" expanded="true" signature="9945:10067" placeholder="..." />
+            <marker date="1518070015705" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -2339,72 +2149,235 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/dbconfig.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.457143">
-          <caret line="194" column="31" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-config-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="131" column="18" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.3.RELEASE/spring-web-4.0.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.121212">
+          <caret line="144" column="26" selection-start-line="144" selection-start-column="26" selection-end-line="144" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.0.3.RELEASE/spring-webmvc-4.0.3.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0">
+          <caret line="421" column="0" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.0.3.RELEASE/spring-webmvc-4.0.3.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0">
+          <caret line="481" column="0" selection-start-line="481" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/core/model/AjaxJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
           <folding>
-            <marker date="1518314356640" expanded="true" signature="1908:2072" placeholder="select from ..tmpMeasureData_1..." />
-            <marker date="1518314356640" expanded="true" signature="2160:2436" placeholder="SELECT Count..." />
-            <marker date="1518314356640" expanded="true" signature="2526:2925" placeholder="SELECT * fro..ROW_NUMBER..." />
-            <marker date="1518314356640" expanded="true" signature="3284:4132" placeholder="select Min(A..." />
-            <marker date="1518314356640" expanded="true" signature="3596:3861" placeholder="SELECT disti..MeasurementGeneralData..." />
-            <marker date="1518314356640" expanded="true" signature="4145:4825" placeholder="select Min(A..." />
-            <marker date="1518314356640" expanded="true" signature="4448:4655" placeholder="SELECT disti..A..." />
-            <marker date="1518314356640" expanded="true" signature="4840:5642" placeholder="SELECT Min(A..A..." />
-            <marker date="1518314356640" expanded="true" signature="4840:5728" placeholder="SELECT Min(A..." />
-            <marker date="1518314356640" expanded="true" signature="5158:5518" placeholder="select disti..where..." />
-            <marker date="1518314356640" expanded="true" signature="5158:5535" placeholder="select disti..where..." />
-            <marker date="1518314356640" expanded="true" signature="5818:6435" placeholder="SELECT disti..A..." />
-            <marker date="1518314356640" expanded="true" signature="6121:6287" placeholder="SELECT disti..A..." />
-            <marker date="1518314356640" expanded="true" signature="6522:6817" placeholder="SELECT A.Par..MeasurementGeneralData..." />
-            <marker date="1518314356640" expanded="true" signature="6902:7352" placeholder="select A.ID ..A..." />
-            <marker date="1518314356640" expanded="true" signature="7437:8054" placeholder="select A.sta..." />
-            <marker date="1518314356640" expanded="true" signature="7582:7777" placeholder="select stati..." />
-            <marker date="1518314356640" expanded="true" signature="7827:7985" placeholder="select stati..." />
+            <element signature="e#1045#1061#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/MeasureDataMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/sys/controller/AttachmentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="37" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="37" />
+          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="e#5402#5418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/codegen/mapper/TableMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/MeasureDataServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/codegen/service/ITableService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="62" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="62" />
+          <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/codegen/TableMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0511627">
-          <caret line="294" column="29" selection-start-line="294" selection-start-column="29" selection-end-line="294" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="27" />
+          <folding>
+            <marker date="1503466437679" expanded="true" signature="-1:-1" placeholder="select DISTI..codegen_table..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/codegen/service/impl/TableServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="180" column="24" selection-start-line="180" selection-start-column="24" selection-end-line="180" selection-end-column="24" />
+          <folding>
+            <element signature="e#8526#8542#0" expanded="false" />
+            <element signature="e#9049#9050#0" expanded="false" />
+            <element signature="e#9098#9099#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus/2.1-gamma/mybatis-plus-2.1-gamma.jar!/com/baomidou/mybatisplus/mapper/Wrapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36153847">
+          <caret line="143" column="22" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
+          <folding>
+            <element signature="e#4614#4615#0" expanded="true" />
+            <element signature="e#4666#4667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/core/query/wrapper/EntityWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="899" column="34" selection-start-line="899" selection-start-column="22" selection-end-line="899" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.714286">
+          <caret line="229" column="26" selection-start-line="229" selection-start-column="15" selection-end-line="229" selection-end-column="26" />
+          <folding>
+            <element signature="e#4766#4767#0" expanded="false" />
+            <element signature="e#4800#4801#0" expanded="false" />
+            <element signature="e#4855#4856#0" expanded="false" />
+            <element signature="e#4901#4902#0" expanded="false" />
+            <element signature="e#5425#5426#0" expanded="false" />
+            <element signature="e#5463#5464#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="26.939394">
-          <caret line="1014" column="40" selection-start-line="1014" selection-start-column="40" selection-end-line="1014" selection-end-column="40" />
+        <state vertical-scroll-proportion="2.8808446">
+          <caret line="1256" column="26" selection-start-line="1256" selection-start-column="26" selection-end-line="1256" selection-end-column="26" />
           <folding>
             <element signature="e#35968#39317#0" expanded="false" />
-            <element signature="e#47851#53243#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/TakeTimeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="243" column="20" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.79310346">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/ITakeTimeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51724136">
+          <caret line="20" column="49" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/TakeTimeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51724136">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/TakeTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5962733">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="24" />
+          <folding>
+            <element signature="e#2877#2878#0" expanded="false" />
+            <element signature="e#2908#2909#0" expanded="false" />
+            <element signature="e#2956#2957#0" expanded="false" />
+            <element signature="e#2996#2997#0" expanded="false" />
+            <element signature="e#3028#3029#0" expanded="false" />
+            <element signature="e#3056#3057#0" expanded="false" />
+            <element signature="e#3098#3099#0" expanded="false" />
+            <element signature="e#3132#3133#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/singleEngine.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0859729">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/TaktTimeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+          <folding>
+            <marker date="1519864544835" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1519864544835" expanded="true" signature="-1:-1" placeholder="SELECT Max(A..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/listTable.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.181818">
+          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/core/common/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33271027">
+          <caret line="100" column="18" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2412,36 +2385,174 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/IMeasureDataService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="42" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="42" />
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/entity/MeasureData.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/service/impl/MeasureDataServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5142856">
-          <caret line="252" column="33" selection-start-line="252" selection-start-column="33" selection-end-line="252" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="54" selection-start-line="132" selection-start-column="54" selection-end-line="132" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/mapper/MeasureDataMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="241" column="0" selection-start-line="241" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappings/modules/kiener/KienerMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="75" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="75" />
+          <folding>
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select from ..tmpMeasureData_1..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="SELECT Count..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select outpu..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="SELECT * fro..ROW_NUMBER..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select Min(A..C..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="SELECT disti..A..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select Min(A..C..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="SELECT disti..A..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="SELECT A.Par..A..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select A.ID ..A..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select A.sta..station..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="/*select A.s..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select A.sta..station..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="/*select A.s..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select A.sta..station..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+            <marker date="1520225910404" expanded="true" signature="-1:-1" placeholder="select stati..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/MeasureDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="149" column="46" selection-start-line="149" selection-start-column="30" selection-end-line="149" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/engineList.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.5544555">
-          <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.5643563">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
-            <element signature="e#16886#19247#0#HTML" expanded="false" />
+            <element signature="e#5407#6512#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/DMCController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70542634">
-          <caret line="195" column="34" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
+        <state vertical-scroll-proportion="-3.7558138">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3676472">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52388537">
+          <caret line="409" column="60" selection-start-line="409" selection-start-column="60" selection-end-line="409" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.0">
+          <caret line="304" column="98" selection-start-line="304" selection-start-column="98" selection-end-line="304" selection-end-column="98" />
+          <folding>
+            <marker date="1519708788756" expanded="true" signature="7213:7227" placeholder="..." />
+            <marker date="1519708788756" expanded="true" signature="7299:7329" placeholder="..." />
+            <marker date="1519708788756" expanded="true" signature="7372:7381" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-config-shiro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67420816">
+          <caret line="155" column="73" selection-start-line="155" selection-start-column="73" selection-end-line="155" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.818182">
+          <caret line="972" column="76" selection-start-line="972" selection-start-column="54" selection-end-line="972" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#9;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#31987#34669#0" expanded="false" />
+            <element signature="e#48241#53281#0" expanded="false" />
+            <marker date="1520296842852" expanded="true" signature="30722:30828" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jeeweb/modules/kiener/controller/TakeTimeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5714286">
+          <caret line="211" column="9" selection-start-line="211" selection-start-column="9" selection-end-line="211" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/takttimeList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9009901">
+          <caret line="232" column="46" selection-start-line="232" selection-start-column="27" selection-end-line="232" selection-end-column="46" />
+          <folding>
+            <element signature="e#11633#13305#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/efficiency.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49279538">
+          <caret line="272" column="30" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="30" />
+          <folding>
+            <element signature="e#6423#7528#0#HTML" expanded="false" />
+            <marker date="1520402470252" expanded="true" signature="8601:8615" placeholder="..." />
+            <marker date="1520402470252" expanded="true" signature="8698:8728" placeholder="..." />
+            <marker date="1520402470252" expanded="true" signature="8771:8780" placeholder="..." />
+            <marker date="1520402470252" expanded="true" signature="8839:8869" placeholder="..." />
+            <marker date="1520402470252" expanded="true" signature="8911:8920" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

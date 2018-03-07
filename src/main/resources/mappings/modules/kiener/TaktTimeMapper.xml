@@ -57,4 +57,43 @@
     </select>
 
 
+    <select id="selectEmployeeEfficient" resultType="TakeTime">
+
+        <!--SELECT Max(A.measureDate) as "measureDate",C.WorkerID as "workerID", Max(A.partNumber) as "partNumber",-->
+        <!--Max(A.currentType) as "currentType", Avg(cast(A.takeTime as int)) as "takeTime",-->
+        <!--Count(*) as "total"-->
+        <!--FROM [Vertiscape].[caq].[TafOkNok] C, [Vertiscape].[caq].[MeasureDataTakeTime] A-->
+        <!--where C.General in (-->
+        <!--Select ID from [Vertiscape].[caq].[MeasureDataTakeTime] A-->
+        <!--WHERE (station = '10' AND measureDate BETWEEN '2018-02-27 07:00' AND '2018-03-01 07:00'-->
+        <!--AND cast(takeTime as int) < 100 AND cast(takeTime as int) > 0) )-->
+        <!--AND (station = '10' AND measureDate BETWEEN '2018-02-27 07:00' AND '2018-03-01 07:00'-->
+        <!--AND cast(takeTime as int) < 100 AND cast(takeTime as int) > 0) and-->
+        <!--C.General = A.id group by WorkerID-->
+
+        SELECT Max(A.measureDate) as "measureDate",C.WorkerID as "workerID",
+        Max(A.partNumber) as "partNumber",
+        Max(A.currentType) as "currentType",
+        Avg(cast(A.takeTime as int)) as "avgTakTime",
+        Count(*) as "total"
+        FROM [Vertiscape].[caq].[TafOkNok] C, [Vertiscape].[caq].[MeasureDataTakeTime] A
+        where C.General in
+        (
+        Select ID from [Vertiscape].[caq].[MeasureDataTakeTime] A
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        )
+
+            ${ew.sqlSegment}
+
+        and C.General = A.id
+        group by WorkerID
+
+    </select>
+
+
+
+
+
 </mapper>

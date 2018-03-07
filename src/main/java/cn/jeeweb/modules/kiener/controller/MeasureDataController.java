@@ -106,6 +106,60 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
 
     }
 
+    @RequestMapping(value = "/engine")
+    public String engineList(HttpServletRequest request, HttpServletRequest response, Model model) {
+        //enter list to get station parm in the url and return the list view
+        logger.info("MeasureDataController engineList Method:" + display("show"));
+//        older version of output show page
+//        return "modules/kiener/production/production";
+        return display("engineList");
+    }
+
+
+    /*
+    * query the real time output production from startDate to endDate
+    * change the datasource if needed
+    * return json object with no pages
+    * */
+    @RequestMapping(value = "ajaxList_engineList", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_engineList(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("endDate");
+        String station = request.getParameter("station");
+
+//        String startDate = "2017-09-01 06:30";
+//        String endDate = "2017-09-02 06:30";
+//        String station = "10";
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                logger.info("output querying startDate:" + startDate + " endDate:" + endDate);
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+
+        entityWrapper.eq("station", station);
+        entityWrapper.orderBy("measureDate");
+//        entityWrapper.eq("Ok", true);
+//        propertyPreFilterable.addQueryProperty("id");
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("id", "partNumber", "measureDate", "variety", "ok");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryEngineList(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
     /*
     * query the real time output production from startDate to endDate
     * change the datasource if needed
@@ -141,6 +195,47 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
         List<MeasureData> record = measureDataService.queryOutput(queryable,entityWrapper);
+
+        String content = JSON.toJSONString(record, filter);
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+
+    /*
+    * query the real time output production from startDate to endDate
+    * return json object with no pages
+    * get the change time number from table [MeasurementGeneralTemp]
+    *
+    * */
+    @RequestMapping(value = "ajaxList_output_change", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_ouput_change(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("measureDateEnd");
+
+//        String startDate = "2018-02-27 06:30";
+//        String endDate = "2018-02-28 06:30";
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                logger.info("output querying startDate:" + startDate + " endDate:" + endDate);
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+
+        entityWrapper.in("station",filterStation);
+        entityWrapper.eq("Ok", true);
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("output", "station", "variety", "nextDate", "latestNumber", "changeCount");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryOutputChangeType(queryable, entityWrapper);
 
         String content = JSON.toJSONString(record, filter);
         StringUtils.printJson(response, content);

@@ -43,6 +43,12 @@
 							<div class="tabbable">
 								<ul class="nav nav-tabs" id="myTab">
 									<li class="active">
+										<a data-toggle="tab" href="#divZKDailyList">
+											<i class="green ace-icon fa fa-bell-o bigger-110"></i>
+											<span id="spanDailyCount">缸盖历史发交 </span>
+										</a>
+									</li>
+									<li>
 										<a data-toggle="tab" href="#divZKList">
 											<i class="blue ace-icon fa fa-tachometer bigger-110"></i>
 											<span id="spanCount">缸盖发交数量 </span>
@@ -59,7 +65,54 @@
 
 								<div class="tab-content">
 
-									<div id="divZKList" class="tab-pane in active">
+									<div id="divZKDailyList" class="tab-pane in active">
+
+										<div class="space-6"></div>
+										<div class="row">
+											<div class="col-sm-12 table-bordered border">
+												<div class="row">
+													<div class="col-sm-2">
+														<label>&nbsp;From:&nbsp;</label>
+														<div class="input-group">
+															<input id="txtDailyStart" type="text" class="form-control" placeholder="Start Time" />
+															<span class="input-group-addon">
+																<i class="fa fa-clock-o bigger-110"></i>
+															</span>
+														</div>
+													</div>
+													<div class="col-sm-2">
+														<label>&nbsp;To:&nbsp;</label>
+
+														<div class="input-group">
+															<input id="txtDailyEnd" type="text" class="form-control" placeholder="End Time" />
+															<span class="input-group-addon">
+																<i class="fa fa-clock-o bigger-110"></i>
+															</span>
+														</div>
+													</div>
+
+													<div class="col-sm-3">
+														<label>&nbsp;</label><br/>
+														<!-- #section:plugins/date-time.datetimepicker -->
+														<button class="btn btn-sm btn-success" id="btnDailyQuery">
+															查询
+															<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+														</button>
+													</div>
+												</div>
+												<div class="space-6"></div>
+											</div>
+										</div>
+										<div class="space-6"></div>
+
+										<div class="row">
+											<table id="tableZKDailyList" class="table table-striped table-bordered table-hover">
+
+											</table>
+										</div>
+									</div>
+
+									<div id="divZKList" class="tab-pane fade">
 
 										<div class="space-6"></div>
 										<div class="row">
@@ -230,6 +283,8 @@
 	var tableList;
 	var tableDetailList;
 	var tableQueryList;
+	var tableZKDailyList;
+
 	var minTakt = "";
 	var maxTakt = "";
 	var station = "590";
@@ -255,6 +310,25 @@
 			"viewDate" : true,
 			"format" : "YYYY-MM-DD HH:mm",
 			"defaultDate" : moment().subtract(-1,"days").format("YYYY-MM-DD 01:30")
+//				"format" : "YYYY-MM-DD HH:mm"
+//				"minDate" : moment().subtract(8, "days")
+		});
+
+		$('#txtDailyStart').datetimepicker({
+			"maxDate" : moment().subtract(1, "days"),
+//				"sideBySide" : true,
+			"viewDate" : true,
+			"format" : "YYYY-MM-DD",
+			"defaultDate" : moment().subtract(8,"days").format("YYYY-MM-DD")
+//				"format" : "YYYY-MM-DD HH:mm"
+//				"minDate" : moment().subtract(8, "days")
+		});
+		$('#txtDailyEnd').datetimepicker({
+			"maxDate" : moment().subtract(1, "days"),
+//				"sideBySide" : true,
+			"viewDate" : true,
+			"format" : "YYYY-MM-DD",
+			"defaultDate" : moment().subtract(1,"days").format("YYYY-MM-DD")
 //				"format" : "YYYY-MM-DD HH:mm"
 //				"minDate" : moment().subtract(8, "days")
 		});
@@ -351,13 +425,110 @@
 
 		});
 
+		$("#btnDailyQuery").click(function() {
+			var startDate = $("#txtDailyStart").val();
+			var endDate = $("#txtDailyEnd").val();
+
+			if(tableZKDailyList){
+				$('#tableZKDailyList').dataTable().fnDestroy();
+			}
+			initDailyTable(startDate,endDate,station);
+		});
+
 		$("#btnClear").click(function(){
 			$("#date-timepicker-start").val("");
 			$("#date-timepicker-end").val("");
 		});
 
+		initDailyTable($("#txtDailyStart").val(),$("#txtDailyEnd").val(),station);
+
 	});
 
+	function initDailyTable(start, end, station){
+		tableZKDailyList = $('#tableZKDailyList').dataTable( {
+			"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
+			oTableTools: {
+				"aButtons": [
+					{
+						"sExtends": "copy",
+						"sButtonText": "Copy"
+					},
+					{
+						"sExtends": "xls",
+						"sButtonText": "Excel"
+					}
+				]
+			},
+			"displayLength": 25,
+			"language" :{
+				"zeroRecords" : "No Record for this period"
+			},
+			"ajax": {
+				"url" : "${adminPath}/kiener/dmc/ajaxList_dailydmcforZK?measureDate="+start +
+				"&endDate=" + end + "&station=" + station,
+				"dataSrc" : "results",
+//					"success": fnCallback,
+				"timeout": 35000,   // optional if you want to handle timeouts (which you should)
+				"error": handleAjaxError // this sets up jQuery to give me errors
+			},
+			"order": [[ 0, "desc" ]],
+			"drawCallback": function(settings) {
+				var api = this.api();
+				var rows = api.rows({
+					page: 'current'
+				}).nodes();
+				var last = null;
+
+				api.column(0).data().each(function(group, i,object) {
+					console.info(object[0] + " group:  " + group + " " + object[1] + " " + object[2]);
+					if (last !== group) {
+						$(rows).eq(i).before('<tr class="group"><td colspan="5"><b>' + group + '</b></td></tr>');
+
+						last = group;
+					}
+				});
+			},
+			"createdRow": function ( row, data, index ) {
+//				if ( data[3].replace(/[\$,]/g, '') * 1 > 4000 ) {
+				$('td', row).eq(3).css('font-weight',"bold").css("color","red");
+//				}
+			},
+			bAutoWidth: false,
+//								"aoColumns": [
+//									{ "bSortable": false },
+//									null, null,null, null, null,
+//									{ "bSortable": false }
+//								],
+//								"aaSorting": [],
+			"columns":[
+//				{
+//					"data": "station",
+//					"sTitle":"上线岗位"
+////						"render": function(data, type, row) {
+//////							var url = "cc";
+////							return "<a href='../taketime/single/"+data+"' target='_self'>" + data+ "</a>";
+////						}
+//				},
+				{
+					"data": "maxDate",
+					"sTitle":"日期"
+				},
+				{
+					"data": "type",
+					"sTitle":"型号"
+				},
+
+				{
+					"data": "summary",
+					"sTitle":"数量"
+				},
+				{
+					"data": "total",
+					"sTitle":"总数"
+				}
+			]
+		} );
+	}
 
 	function initTable(start, end, station){
 //			console.info("inti table :" + dataResult.length);

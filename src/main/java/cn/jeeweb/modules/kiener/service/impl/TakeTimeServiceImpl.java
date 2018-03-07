@@ -54,4 +54,14 @@ public class TakeTimeServiceImpl extends CommonServiceImpl<TakeTimeMapper,TakeTi
         return records;
 
     }
+
+    /*
+    * select all the employee efficent from TafOK table
+    * */
+    @Override
+    public List<TakeTime> selectEmployeeEfficient(Queryable queryable, Wrapper<TakeTime> wrapper){
+        List<TakeTime> records = baseMapper.selectEmployeeEfficient(queryable, wrapper);
+        return records;
+
+    }
 }

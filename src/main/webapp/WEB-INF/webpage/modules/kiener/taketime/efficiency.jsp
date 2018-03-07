@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%--<meta name="decorator" content="single"/>--%>
-    <title>AVG Takt Time</title>
+    <title>Employee Efficiency Analysis</title>
 
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" href="${staticPath}/assets/css/bootstrap.min.css" />
@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="${staticPath}/assets/css/datatable/buttons.bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${staticPath}/assets/css/datatable/TableTools.css">
 	<link rel="stylesheet" type="text/css" href="${staticPath}/assets/css/bootstrap-datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="${staticPath}/assets/css/chosen.css" />
 
 	<!-- text fonts -->
 	<link rel="stylesheet" href="${staticPath}/assets/css/ace-fonts.css" />
@@ -40,57 +41,70 @@
 						<div class="space-10"></div>
 						<div class="row">
 							<div class="col-sm-12">
-								<div class="form-inline">
+								<div class="row">
 									<!-- #section:plugins/date-time.datetimepicker -->
+									<div class="col-sm-2">
+										<label for="selectStationType">Station</label>
 
-									<label>&nbsp;From:&nbsp;</label>
-									<div class="input-group">
-										<input id="date-timepicker-start" type="text" class="form-control" placeholder="Start Time" />
+										<br />
+										<select class="chosen-select" id="selectStationType" data-placeholder="Select">
+										</select>
+									</div>
+									<div class="col-sm-2">
+
+										<label>&nbsp;From:&nbsp;</label>
+										<div class="input-group">
+											<input id="date-timepicker-start" type="text" class="form-control" placeholder="Start Time" />
+											<span class="input-group-addon">
+												<i class="fa fa-clock-o bigger-110"></i>
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<label>&nbsp;To:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="date-timepicker-end" type="text" class="form-control" placeholder="End Time" />
 										<span class="input-group-addon">
 											<i class="fa fa-clock-o bigger-110"></i>
 										</span>
-									</div>
-									<label>&nbsp;To:&nbsp;</label>
-
-									<div class="input-group">
-										<input id="date-timepicker-end" type="text" class="form-control" placeholder="End Time" />
-										<span class="input-group-addon">
-											<i class="fa fa-clock-o bigger-110"></i>
-										</span>
-									</div>
-									<label>&nbsp;Type:&nbsp;</label>
-
-									<select class="form-control" id="selectType">
-										<%--<option value="">please select</option>--%>
-										<%--<option value="05703">--5703--</option>--%>
-										<%--<option value="05705">--5705--</option>--%>
-										<%--<option value="05710">--5710--</option>--%>
-										<%--<option value="05711">--5711--</option>--%>
-										<%--<option value="05732">--5732--</option>--%>
-										<%--<option value="05776">--5776--</option>--%>
-										<%--<option value="05778">--5778--</option>--%>
-										<%--<option value="05791">--5791--</option>--%>
-										<%--<option value="05792">--5792--</option>--%>
-									</select>
-									<label>&nbsp;&nbsp;</label>
-
-									<label>&nbsp;Max:&nbsp;</label>
-
-									<div class="input-group">
-										<input id="txtMaxTaktTime" type="text" class="form-control input-mini"  value="90"/>
+										</div>
 									</div>
 
-									<label>&nbsp;Min:&nbsp;</label>
+									<div class="col-sm-1">
+										<label>&nbsp;Type:&nbsp;</label>
 
-									<div class="input-group">
-										<input id="txtMinTaktTime" type="text" class="form-control input-mini"  value="20"/>
+										<select class="form-control" id="selectType">
+
+										</select>
 									</div>
 
-									<label>&nbsp;&nbsp;</label>
-									<button class="btn btn-sm btn-success" id="btnQuery">
-										<i class="ace-icon fa fa-refresh bigger-110"></i>
-										Query
-									</button>
+									<div class="col-sm-1">
+										<label>&nbsp;Max:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtMaxTaktTime" type="text" class="form-control input-mini"  value="90"/>
+										</div>
+
+									</div>
+
+									<div class="col-sm-1">
+										<label>&nbsp;Min:&nbsp;</label>
+
+										<div class="input-group">
+											<input id="txtMinTaktTime" type="text" class="form-control input-mini"  value="20"/>
+										</div>
+
+										<label>&nbsp;&nbsp;</label>
+									</div>
+
+									<div class="col-sm-1">
+										<label>&nbsp;&nbsp;</label><br/>
+										<button class="btn btn-sm btn-success" id="btnQuery">
+											<i class="ace-icon fa fa-refresh bigger-110"></i>
+											Query
+										</button>
+									</div>
 									<%--<button class="btn btn-sm btn-warning" id="btnClear">--%>
 										<%--<i class="ace-icon fa fa-undo bigger-110"></i>--%>
 										<%--Undo--%>
@@ -113,10 +127,10 @@
 	</div><!-- /.main-content -->
 
 </div><!-- /.main-container -->
-<!-- 鍏ㄥ眬js -->
+<!-- 閸忋劌鐪琷s -->
 	<%--<html:js  name="jquery,bootstrap,ace-theme"/>--%>
 
-	<!-- 鑷畾涔塲s -->
+	<!-- 閼奉亜鐣炬稊濉瞫 -->
 	<script src="${staticPath}/assets/js/jquery.min.js"></script>
 	<script src="${staticPath}/assets/js/bootstrap.min.js"></script>
 	<script src="${staticPath}/assets/js/jquery.dataTables.min.js"></script>
@@ -129,6 +143,7 @@
 
 	<script src="${staticPath}/assets/js/date-time/moment.min.js"></script>
 	<script src="${staticPath}/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+	<script src="${staticPath}/assets/js/chosen.jquery.min.js"></script>
 
 	<script src="${staticPath}/assets/js/ace.min.js"></script>
 	<script src="${staticPath}/assets/js/ace-elements.min.js"></script>
@@ -156,6 +171,41 @@
 					.on('change', function(){
 						//alert(this.value)
 					});
+
+//			get all the stations ajax method
+			$.ajax({
+				type : "post",
+				url : "${adminPath}/kiener/station/ajaxList_station",
+				dataType : "json",
+				success : function(data) {
+					if(data.results.length == 0){
+						//handle empty
+
+					}else{
+						var record = data.results;
+						console.info("total station record:" + record.length);
+						$("#selectStationType").empty();
+						$("#selectStationType").append("<option value=''>  </option>");
+
+						for(var i = 0; i < record.length; i++) {
+							var text =  record[i]["type"] + record[i]["identifier"];
+							var value = record[i]["identifier"];
+//							console.info(text);
+							$("#selectStationType").append("<option value='"+value+"'>"+text+"</option>");
+						}
+						$("#selectStationType").chosen({allow_single_deselect:true});
+
+						$("#selectStationType").off('resize.chosen').on('resize.chosen', function() {
+							$('.chosen-select').each(function() {
+								var $this = $(this);
+								$this.next().css({'width': $this.parent().width()});
+							})
+						}).trigger('resize.chosen');
+					}
+//					console.info(val_avgTakTime);
+//					console.info(val_station);
+				}
+			});
 
 			var options = {
 				chart: {
@@ -191,20 +241,22 @@
 					},
 					plotLines:[{
 						label:{
-							text:'38s',     //鏍囩鐨勫唴瀹�
-							align:'left',                //鏍囩鐨勬按骞充綅缃紝姘村钩灞呭乏,榛樿鏄按骞冲眳涓璫enter
-							x:-10                         //鏍囩鐩稿浜庤瀹氫綅鐨勪綅缃按骞冲亸绉荤殑鍍忕礌锛岄噸鏂板畾浣嶏紝姘村钩灞呭乏10px
+							text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
+							align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
+							x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
 						},
-						color:'red',           //绾跨殑棰滆壊锛屽畾涔変负绾㈣壊
-						dashStyle:'solid',     //榛樿鍊硷紝杩欓噷瀹氫箟涓哄疄绾�
-						value:38,               //瀹氫箟鍦ㄩ偅涓�间笂鏄剧ず鏍囩ず绾匡紝杩欓噷鏄湪x杞翠笂鍒诲害涓�3鐨勫�煎鍨傜洿鍖栦竴鏉＄嚎
-						width:2               //鏍囩ず绾跨殑瀹藉害锛�2px
+						color:'red',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
+						dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
+						value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
+						width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
 					}]
 				},
 				tooltip: {
-					headerFormat: '<span style="font-size:10px">Station:{point.key}</span><table>',
+					headerFormat: '<span style="font-size:10px"><B>Employee ID:{point.key}</B></span><table>',
 					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>',
+					'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>' +
+					'<tr><td style="color:{series.color};padding:0">Total Record: </td>' +
+					'<td style="padding:0"><b>{point.total:.0f}</b></td></tr>',
 					footerFormat: '</table>',
 					shared: true,
 					useHTML: true
@@ -218,6 +270,18 @@
 				series:[{
 //					name : "Avg Tak Time",
 //					data : [ 37, 38, 39, 38, 38, 40, 39, 39, 38, 38]
+					dataLabels: {
+						enabled: true,
+						rotation: 0,
+						color: '#FFFFFF',
+						align: 'center',
+						format: '{point.total}', // one decimal
+						y: 25, // 10 pixels down from the top
+						style: {
+							fontSize: '13px',
+							fontFamily: 'Verdana, sans-serif'
+						}
+					}
 				}]
 			};
 
@@ -225,9 +289,9 @@
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true,
 				"viewDate" : true,
-				"defaultDate" : moment().subtract(7,"days").format("YYYY-MM-DD"),
-				"format" : "YYYY-MM-DD"
-//			"format" : "YYYY-MM-DD h:mm"
+				"defaultDate" : moment().subtract(4,"days").format("YYYY-MM-DD 07:30"),
+//				"format" : "YYYY-MM-DD"
+			"format" : "YYYY-MM-DD HH:mm"
 //			"minDate" : moment().subtract(8, "days")
 			}).on('dp.change',function(){
 				var startDate = $("#date-timepicker-start").val();
@@ -238,8 +302,8 @@
 			$('#date-timepicker-end').datetimepicker({
 				"maxDate" : moment().subtract(0, "days"),
 //			"sideBySide" : true
-				"defaultDate" : moment().subtract(0,"days").format("YYYY-MM-DD"),
-				"format" : "YYYY-MM-DD"
+				"defaultDate" : moment().subtract(0,"days").format("YYYY-MM-DD 01:30"),
+				"format" : "YYYY-MM-DD HH:mm"
 //			"minDate" : moment().subtract(8, "days")
 			}).on('dp.change',function(){
 				var startDate = $("#date-timepicker-start").val();
@@ -255,27 +319,28 @@
 				var startDate = $("#date-timepicker-start").val();
 				var endDate = $("#date-timepicker-end").val();
 				var currentType = $("#selectType").find("option:selected").val();
-
+				var selectStation = $("#selectStationType").find("option:selected").val();
+				var stationName = $("#selectStationType").find("option:selected").text();
+//				var currentType = "all"; //temp value no use
 				var max = $("#txtMaxTaktTime").val();
 				var min = $("#txtMinTaktTime").val();
 
-				if(startDate == "" || endDate == "" || currentType == "")
+				if(startDate == "" || endDate == "" || selectStation == "")
 				{
-					$("#noDataMsg").html("<h2>Input the query parameter</h2>");
-					$("#noDataMsg").show();
-					$("#chartPanel").hide();
 					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
 				}
-				startDate = startDate +  " 06:30";
-				endDate = endDate + " 06:30";
+//				startDate = startDate +  " 06:30";
+//				endDate = endDate + " 06:30";
 				console.info("startDate: " + startDate + "  to : " + endDate + " currentType:" + currentType);
 
 				$.ajax({
 					type : "post",
-					url : "${adminPath}/kiener/taketime/ajaxList_avgTakttime",
+					url : "${adminPath}/kiener/taketime/ajaxList_takttime_employee",
 					dataType : "json",
-					data: {"measureDate":startDate,"endDate":endDate, "currentType":currentType, "max": max,"min":min},
+					data: {"measureDate":startDate,"endDate":endDate,
+						"currentType":currentType, "max": max,"min":min,
+						"station":selectStation,"currentType":currentType},
 					success : function(data) {
 						if(data.results.length == 0){
 							//handle empty
@@ -287,23 +352,42 @@
 							$("#chartPanel").show();
 							$("#noDataMsg").hide();
 							var record = data.results;
+							var tempStr ="";
+							var workerID = "";
+							console.info("record:" + record.length);
 							for(var p in record){
-//								console.info("station:" + record[p]["station"] + " takTime: " + record[p]["avgTakTime"]);
-//							val_station.push("'" + record[p]["station"] + "'");
-//							val_avgTakTime.push("'" + record[p]["avgTakTime"] + "'")
-								val_station.push(record[p]["station"]);
-								val_avgTakTime.push(record[p]["avgTakTime"]);
-							}
-							options.xAxis.categories = eval('['+ val_station +']');
-//							options.labels.items[0].html = "Total Record:" + record.length + "<br/>" + "Mean:cc";
+								console.info("WorkerID: " + record[p]["workerID"] + " avgTakTime:" +
+										record[p]["avgTakTime"] + " total:" + record[i]["total"]);
+								if(!record[p].hasOwnProperty("workerID") ){
+									workerID = "None";
+								}else{
+									workerID = record[p]["workerID"];
+								}
+								val_station.push(workerID);
+//								val_avgTakTime.push(record[p]["avgTakTime"]);
+								tempStr = "{y:" + record[p]["avgTakTime"] + ",total:'" + record[p]["total"] + "'}";
+								val_avgTakTime.push(tempStr);
 
-							options.series[0].name = "Avg Tak Time";
-							options.series[0].data = eval('['+ val_avgTakTime +']');
+							}
+							console.info("val_station:" + val_station);
+							console.info("val_avgTakTime:" + val_avgTakTime);
+
+//							options.xAxis.categories = eval('['+ val_station +']');
+							options.xAxis.categories = val_station;
 							if(currentType != "all"){
 								currentType = currentType.substr(1);
 							}
-							options.title.text = "Average Takt Time - Engine Type: " + currentType;
-							options.subtitle.text = "From " + startDate + " To " + endDate;
+////							options.labels.items[0].html = "Total Record:" + record.length + "<br/>" + "Mean:cc";
+//
+							options.series[0].name = "Avg Tak Time";
+							options.series[0].data = eval('['+ val_avgTakTime +']');
+//							options.series[0].data = val_avgTakTime;
+
+//							if(currentType != "all"){
+//								currentType = currentType.substr(1);
+//							}
+							options.title.text = "Average Takt Time for Employees --" + stationName;
+							options.subtitle.text = "From " + startDate + " To " + endDate + " Engine Type:" + currentType;
 						}
 						new Highcharts.Chart(options);
 						val_avgTakTime = [];
@@ -321,7 +405,7 @@
 		});
 
 		function getAllEngineType(startDate, endDate){
-			// 				dynamic show the engine type list
+// 				dynamic show the engine type list
 			$.ajax({
 				type : "post",
 				url : "${adminPath}/kiener/taketime/ajaxList_engineType",

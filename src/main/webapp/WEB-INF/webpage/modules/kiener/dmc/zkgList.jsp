@@ -45,8 +45,8 @@
 
 								<li class="active">
 									<a data-toggle="tab" href="#divZKGDailyList">
-										<i class="blue ace-icon fa fa-tachometer bigger-110"></i>
-										<span id="spanDailyCount">缸体每日发交 </span>
+										<i class="green ace-icon fa fa-bell-o bigger-110"></i>
+										<span id="spanDailyCount">缸体历史发交 </span>
 									</a>
 								</li>
 
@@ -94,7 +94,7 @@
 												</div>
 
 												<div class="col-sm-3">
-													<br/>
+													<label>&nbsp;</label><br/>
 													<!-- #section:plugins/date-time.datetimepicker -->
 													<button class="btn btn-sm btn-success" id="btnDailyQuery">
 														查询
@@ -172,7 +172,7 @@
 												</div>
 
 												<div class="col-sm-3">
-													<br/>
+													<label>&nbsp;</label><br/>
 													<!-- #section:plugins/date-time.datetimepicker -->
 													<button class="btn btn-sm btn-success" id="btnQuery">
 														查询
@@ -428,17 +428,26 @@
 
 		});
 
+		$("#btnDailyQuery").click(function() {
+			var startDate = $("#txtDailyStart").val();
+			var endDate = $("#txtDailyEnd").val();
+
+			if(tableZKGDailyList){
+				$('#tableZKGDailyList').dataTable().fnDestroy();
+			}
+			initDailyTable(startDate,endDate,station);
+		});
+
 		$("#btnClear").click(function(){
 			$("#date-timepicker-start").val("");
 			$("#date-timepicker-end").val("");
 		});
 
-		initDailyTable($("#txtDailyStart").val(),$("#txtDailyEnd").val(),'');
+		initDailyTable($("#txtDailyStart").val(),$("#txtDailyEnd").val(),station);
 
 	});
 
-	function initDailyTable(start, end, type){
-			console.info("initDailyTable");
+	function initDailyTable(start, end, station){
 		tableZKGDailyList = $('#tableZKGDailyList').dataTable( {
 			"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
 			oTableTools: {
@@ -459,11 +468,33 @@
 			},
 			"ajax": {
 				"url" : "${adminPath}/kiener/dmc/ajaxList_dailydmc?measureDate="+start +
-				"&endDate=" + end + "&type=" + type,
+				"&endDate=" + end + "&station=" + station,
 				"dataSrc" : "results",
 //					"success": fnCallback,
 				"timeout": 35000,   // optional if you want to handle timeouts (which you should)
 				"error": handleAjaxError // this sets up jQuery to give me errors
+			},
+			"order": [[ 0, "desc" ]],
+			"drawCallback": function(settings) {
+				var api = this.api();
+				var rows = api.rows({
+					page: 'current'
+				}).nodes();
+				var last = null;
+
+				api.column(0).data().each(function(group, i,object) {
+					console.info(object[0] + " group:  " + group + " " + object[1] + " " + object[2]);
+					if (last !== group) {
+						$(rows).eq(i).before('<tr class="group"><td colspan="5"><b>' + group + '</b></td></tr>');
+
+						last = group;
+					}
+				});
+			},
+			"createdRow": function ( row, data, index ) {
+//				if ( data[3].replace(/[\$,]/g, '') * 1 > 4000 ) {
+					$('td', row).eq(3).css('font-weight',"bold").css("color","red");
+//				}
 			},
 			bAutoWidth: false,
 //								"aoColumns": [
@@ -473,14 +504,14 @@
 //								],
 //								"aaSorting": [],
 			"columns":[
-				{
-					"data": "station",
-					"sTitle":"上线岗位"
-//						"render": function(data, type, row) {
-////							var url = "cc";
-//							return "<a href='../taketime/single/"+data+"' target='_self'>" + data+ "</a>";
-//						}
-				},
+//				{
+//					"data": "station",
+//					"sTitle":"上线岗位"
+////						"render": function(data, type, row) {
+//////							var url = "cc";
+////							return "<a href='../taketime/single/"+data+"' target='_self'>" + data+ "</a>";
+////						}
+//				},
 				{
 					"data": "maxDate",
 					"sTitle":"日期"

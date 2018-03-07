@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -37,6 +38,16 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     public List<MeasureData> queryOutput(Queryable queryable, Wrapper<MeasureData> wrapper) {
 //        wrapper.eq("1", "1");
         List<MeasureData> records = baseMapper.queryRealTimeOutput(queryable, wrapper);
+        return records;
+    }
+
+    /*
+    * 联合表MeasurementGeneralTemp 获取每个岗位的换型次数
+    * */
+    @Override
+    public List<MeasureData> queryOutputChangeType(Queryable queryable, Wrapper<MeasureData> wrapper) {
+//        wrapper.eq("1", "1");
+        List<MeasureData> records = baseMapper.queryRealTimeOutputChangeType(queryable, wrapper);
         return records;
     }
 
@@ -78,7 +89,7 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
 
     /*
     * query the DMC code from the table[DMCMeasureDailyData]
-    * to show the daily zk/zkg/kw output group by zk/zk/kw type
+    * to show the daily zkg output group by zk/zk/kw type
     * */
     @Override
     public List<MeasureData> queryDailyDMC(Queryable queryable, Wrapper<MeasureData> wrapper ){
@@ -87,11 +98,21 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     }
 
     /*
+    * query the DMC code from the table[DMCMeasureDailyData]
+    * to show the daily zk/zkg/kw output group by zk/zk/kw type
+    * */
+    @Override
+    public List<MeasureData> queryDailyDMCforZK(Queryable queryable, Wrapper<MeasureData> wrapper ){
+        List<MeasureData> records = baseMapper.queryDailyDMCbmforZK(queryable, wrapper);
+        return records;
+    }
+
+    /*
     * query the ZK and KW id list
     * */
     @Override
     public List<MeasureData> queryZKGAndKWDMC(Queryable queryable, Wrapper<MeasureData> wrapper,Wrapper<MeasureData> wrapper_1){
-        List<MeasureData> records = baseMapper.queryZKAndKWDMCbm(queryable, wrapper,wrapper_1);
+        List<MeasureData> records = baseMapper.queryZKAndKWDMCbm(queryable, wrapper, wrapper_1);
         return records;
     }
 
@@ -103,6 +124,16 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
         List<MeasureData> records = baseMapper.queryLeasTestbm(wrapper);
         return records;
     }
+
+    /*
+    * query the Engine List from the MeasureGeneralData Table
+    * */
+    @Override
+    public List<MeasureData> queryEngineList(Queryable queryable, Wrapper<MeasureData> wrapper ){
+        List<MeasureData> records = baseMapper.queryEngineList(queryable, wrapper);
+        return records;
+    }
+
 
     /*
     *

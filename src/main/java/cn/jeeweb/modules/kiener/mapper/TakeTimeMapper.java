@@ -19,4 +19,6 @@ public interface TakeTimeMapper extends BaseMapper<TakeTime> {
 
     List<TakeTime> selectEngineTypePage(Queryable queryable, @Param("ew") Wrapper<TakeTime> wrapper);
 
+    List<TakeTime> selectEmployeeEfficient(Queryable queryable, @Param("ew") Wrapper<TakeTime> wrapper);
+
 }

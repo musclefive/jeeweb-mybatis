@@ -35,7 +35,9 @@ import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -170,7 +172,7 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
 
     /*
     * query the DMC code from the table[DMCMeasureDailyData]
-    * to show the daily zk/zkg/kw output group by zk/zk/kw type
+    * to show the daily zkg output group by zk/zk/kw type
     * */
     @RequestMapping(value = "ajaxList_dailydmc", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_dailydmc(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
@@ -181,7 +183,7 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
 
         String startDate = request.getParameter("measureDate").toString();
         String endDate = request.getParameter("endDate").toString();
-//        String station = request.getParameter("station").toString();
+        String station = request.getParameter("station").toString();
 //        String zkgType = request.getParameter("endDate").toString();
 //        zkgType = "06K103011CP014693";
 //        String startDate = "2018-01-30 07:30";
@@ -189,16 +191,53 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
 //        String type = "590";
 //        type = "70"; KW
 
-//        entityWrapper.eq("station", station);
-//        entityWrapper.between("Date", startDate, endDate);
-
+        entityWrapper.eq("station", station);
+        entityWrapper.between("maxDate", startDate, endDate);
         //output json with query conditions
-        propertyPreFilterable.addQueryProperty("station","maxDate", "type", "summary", "total");
+        propertyPreFilterable.addQueryProperty("station", "maxDate", "type", "summary", "total");
 
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
         List<MeasureData> record = measureDataService.queryDailyDMC(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+
+    /*
+    * query the DMC code from the table[DMCMeasureDailyData]
+    * to show the daily zkg output group by zk/zk/kw type
+    * */
+    @RequestMapping(value = "ajaxList_dailydmcforZK", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_dailydmcforZK(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                   HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate").toString();
+        String endDate = request.getParameter("endDate").toString();
+        String station = request.getParameter("station").toString();
+//        String zkgType = request.getParameter("endDate").toString();
+//        zkgType = "06K103011CP014693";
+//        String startDate = "2018-01-30 07:30";
+//        String endDate = "2018-01-31 07:30";
+//        String type = "590";
+//        type = "70"; KW
+
+        entityWrapper.eq("station", station);
+        entityWrapper.between("maxDate", startDate, endDate);
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("station", "maxDate", "type", "summary", "total");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryDailyDMCforZK(queryable, entityWrapper);
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
 

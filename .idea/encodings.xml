@@ -22,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/kiener.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_2.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_circle.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_show.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/monitor_test.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/momo/single.html" charset="GBK" />
@@ -33,9 +34,12 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/dmc/zkgList.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/leak/leakList_1.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/engineList.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/measure/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/station/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/avgTakTime.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/efficiency.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/engineList.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/listTable.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/webpage/modules/kiener/taketime/singleEngine.jsp" charset="GBK" />

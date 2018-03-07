@@ -95,6 +95,17 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         return display("avgTakTime");
     }
 
+    /*
+    * the average taktTime for all key staions
+    * show in a chart.
+    * */
+    @RequestMapping(value = "/efficiency")
+    public String avgTakTimeforEfficiency(HttpServletRequest request, HttpServletResponse response, Model model) {
+        //enter list to get station parm in the url and return the list view
+        preList(model, request, response);
+        return display("efficiency");
+    }
+
     @RequestMapping(value = "/listTable/{station}")
     public String listTable(@PathVariable String station,Model model, HttpServletRequest request, HttpServletResponse response) {
         //enter list to get station parm in the url and return the list view
@@ -153,8 +164,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
             entityWrapper.eq("currentType", currentType);
         }
         entityWrapper.eq("station", station);
-        entityWrapper.lt("cast(takeTime as int)", Integer.valueOf(maxTaktTime));
-        entityWrapper.gt("cast(takeTime as int)", Integer.valueOf(minTaktTime));
+
         entityWrapper.orderBy("measureDate");
         //customize search condition; will improve later
         if(startDate != null && endDate != null ){
@@ -162,6 +172,8 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
+        entityWrapper.lt("cast(takeTime as int)", Integer.valueOf(maxTaktTime));
+        entityWrapper.gt("cast(takeTime as int)", Integer.valueOf(minTaktTime));
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("id", "partNumber", "station", "currentType", "nextType",
                 "measureDate", "endDate", "takeTime", "changeType");
@@ -169,6 +181,59 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
         List<TakeTime> record = takeTimeService.selectTakeTimePage(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+
+    /*
+   * query takt time list and takt time chcart
+   *
+   * */
+    @RequestMapping(value = "ajaxList_takttime_employee", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_takttime_employee(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+        EntityWrapper<TakeTime> entityWrapper = new EntityWrapper<>(entityClass);
+        //input the start and end param
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("endDate");
+        String station = request.getParameter("station");
+        String minTaktTime = request.getParameter("min");
+        String maxTaktTime = request.getParameter("max");
+        String currentType = request.getParameter("currentType");
+
+        //add condition select all the Ok parts
+        if(!currentType.equals("all")){
+            entityWrapper.eq("currentType", currentType);
+        }
+//        String startDate = "2018-02-27 07:00";
+//        String endDate = "2018-03-01 07:00";
+//        String station = "10";
+//        String minTaktTime = "0";
+//        String maxTaktTime = "100";
+
+        entityWrapper.eq("station", station);
+
+//        entityWrapper.orderBy("measureDate");
+        //customize search condition; will improve later
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+        entityWrapper.lt("cast(takeTime as int)", Integer.valueOf(maxTaktTime));
+        entityWrapper.gt("cast(takeTime as int)", Integer.valueOf(minTaktTime));
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("workerID", "partNumber", "currentType",
+                "measureDate", "avgTakTime", "total");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<TakeTime> record = takeTimeService.selectEmployeeEfficient(queryable, entityWrapper);
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
         StringUtils.printJson(response, content);
@@ -201,8 +266,7 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
         if(!currentType.equals("all")){
             entityWrapper.eq("currentType", currentType);
         }
-        entityWrapper.lt("cast(takeTime as int)", max);
-        entityWrapper.gt("cast(takeTime as int)", min);
+
         entityWrapper.notIn("station", excludedStation);
 //        entityWrapper.lt("takeTime", 90);
 
@@ -212,6 +276,9 @@ public class TakeTimeController extends BaseCRUDController<TakeTime, Long> {
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
+
+        entityWrapper.lt("cast(takeTime as int)", max);
+        entityWrapper.gt("cast(takeTime as int)", min);
 
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("station","avgTakTime");
