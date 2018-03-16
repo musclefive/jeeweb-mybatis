@@ -126,6 +126,16 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     }
 
     /*
+    * query the screw data for a list or chart
+    * */
+    @Override
+    public List<MeasureData> queryScrweList(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryScrewListbm(queryable,wrapper);
+        return records;
+    }
+
+
+    /*
     * query the Engine List from the MeasureGeneralData Table
     * */
     @Override

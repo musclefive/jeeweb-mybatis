@@ -66,6 +66,15 @@
 					   <label class="Validform_checktip"></label>
 				   </td>
 			   </tr>
+			   <tr>
+				   <td  class="width-15 active text-right">
+					   <label><font color="red">*</font>拧紧</label>
+				   </td>
+				   <td class="width-35" >
+					   <form:input path="screw"  defaultvalue="0"  class="form-control " />
+					   <label class="Validform_checktip"></label>
+				   </td>
+			   </tr>
 		   </tbody>
 		</table>   
 	</form:form>

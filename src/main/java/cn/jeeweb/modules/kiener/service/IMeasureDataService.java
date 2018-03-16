@@ -40,4 +40,6 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> queryEngineList(Queryable queryable, Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> queryScrweList(Queryable queryable, Wrapper<MeasureData> wrapper);
+
 }

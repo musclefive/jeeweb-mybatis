@@ -17,6 +17,7 @@
     <%--<grid:column label="IsUpload"  name="isUpload" dict="sf" width="50"    />--%>
     <%--<grid:column label="isRework"  name="isRework" dict="sf" width="50"    />--%>
     <%--<grid:column label="enabled"  name="enabled" dict="sf" width="50"    />--%>
+    <grid:column label="拧紧"  name="screw"  width="50" />
     <grid:column label="首页显示"  name="isShowTaktTime" dict="sf" width="50"    />
     <grid:column label="实时节拍显示"  name="isShowDashboard" dict="sf" width="50"    />
 

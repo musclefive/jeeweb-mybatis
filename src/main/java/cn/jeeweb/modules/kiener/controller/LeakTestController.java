@@ -57,6 +57,13 @@ public class LeakTestController extends BaseCRUDController<MeasureData, Long> {
         return display("leakList");
     }
 
+    @RequestMapping(value = "/screwList")
+    public String screwList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter the takt time list, then show the station list and query time
+        preList(model, request, response);
+        return display("screwList");
+    }
+
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
@@ -66,8 +73,7 @@ public class LeakTestController extends BaseCRUDController<MeasureData, Long> {
     }
 
     /*
-    * query the DMC code from the table[DMCMeasurements]
-    * to show the ZKG part table
+    * query the Leak Test
     * */
     @RequestMapping(value = "ajaxList_leaktest", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_leaktest(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
@@ -97,6 +103,45 @@ public class LeakTestController extends BaseCRUDController<MeasureData, Long> {
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
         List<MeasureData> record = measureDataService.queryLeakTest(entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+    /*
+    * query the screw data list from table [ScrewingMeasurements]
+    * */
+    @RequestMapping(value = "ajaxList_screwinfo", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_screwinfo(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                   HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate").toString();
+        String endDate = request.getParameter("endDate").toString();
+        String station = request.getParameter("station").toString();
+        String pos = request.getParameter("pos").toString();
+        String spin = request.getParameter("spin").toString();
+
+
+        entityWrapper.between("A.Date", startDate, endDate);
+        entityWrapper.eq("A.station", station);
+        entityWrapper.eq("A.Ok", true);
+
+        entityWrapper.eq("B.ScrewPos", Integer.valueOf(pos));
+        entityWrapper.eq("B.SpindleID", Integer.valueOf(spin));
+        entityWrapper.eq("B.OK", true);
+
+        propertyPreFilterable.addQueryProperty("id", "partNumber", "station", "variety", "measureDate", "scewID",
+                "spinID", "screwpos", "torqueMin","torqueMax","torqueAct","angleMin","angleMax","angleAct");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryScrweList(queryable,entityWrapper);
 
         String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
 

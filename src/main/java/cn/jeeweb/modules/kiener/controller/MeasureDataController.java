@@ -185,7 +185,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
             }
         }
 
-        entityWrapper.in("station",filterStation);
+//        entityWrapper.in("station",filterStation);
         entityWrapper.eq("Ok", true);
 //        propertyPreFilterable.addQueryProperty("id");
         //output json with query conditions

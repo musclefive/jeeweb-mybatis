@@ -104,6 +104,35 @@ public class MeasureData extends AbstractEntity<Long> {
     @TableField(exist = false)
     private String checkProg;
 
+    /*screw information begin*/
+    @TableField(exist = false)
+    private String scewID;
+
+    @TableField(exist = false)
+    private String spinID;
+
+    @TableField(exist = false)
+    private String screwpos;
+
+    @TableField(exist = false)
+    private String torqueMin;
+
+    @TableField(exist = false)
+    private String torqueMax;
+
+    @TableField(exist = false)
+    private String torqueAct;
+
+    @TableField(exist = false)
+    private String angleMin;
+
+    @TableField(exist = false)
+    private String angleMax;
+
+    @TableField(exist = false)
+    private String angleAct;
+    /*screw information end*/
+
 
     @Override
     public Long getId() {
@@ -312,5 +341,78 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setCheckProg(String checkProg) {
         this.checkProg = checkProg;
+    }
+
+
+    public String getScewID() {
+        return scewID;
+    }
+
+    public void setScewID(String scewID) {
+        this.scewID = scewID;
+    }
+
+    public String getSpinID() {
+        return spinID;
+    }
+
+    public void setSpinID(String spinID) {
+        this.spinID = spinID;
+    }
+
+    public String getScrewpos() {
+        return screwpos;
+    }
+
+    public void setScrewpos(String screwpos) {
+        this.screwpos = screwpos;
+    }
+
+    public String getTorqueMin() {
+        return torqueMin;
+    }
+
+    public void setTorqueMin(String torqueMin) {
+        this.torqueMin = torqueMin;
+    }
+
+    public String getTorqueMax() {
+        return torqueMax;
+    }
+
+    public void setTorqueMax(String torqueMax) {
+        this.torqueMax = torqueMax;
+    }
+
+    public String getTorqueAct() {
+        return torqueAct;
+    }
+
+    public void setTorqueAct(String torqueAct) {
+        this.torqueAct = torqueAct;
+    }
+
+    public String getAngleMin() {
+        return angleMin;
+    }
+
+    public void setAngleMin(String angleMin) {
+        this.angleMin = angleMin;
+    }
+
+    public String getAngleMax() {
+        return angleMax;
+    }
+
+    public void setAngleMax(String angleMax) {
+        this.angleMax = angleMax;
+    }
+
+    public String getAngleAct() {
+        return angleAct;
+    }
+
+    public void setAngleAct(String angleAct) {
+        this.angleAct = angleAct;
     }
 }

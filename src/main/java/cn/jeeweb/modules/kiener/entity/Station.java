@@ -43,8 +43,8 @@ public class Station extends AbstractEntity<Long> {
     @TableField(value = "Enabled")
     private Boolean enabled;
 
-    @TableField(value = "isShowOutput")
-    private Boolean isShowOutput;
+    @TableField(value = "screw")
+    private String screw;
 
     @TableField(value = "isShowTaktTime")
     private Boolean isShowTaktTime;
@@ -134,12 +134,12 @@ public class Station extends AbstractEntity<Long> {
         this.enabled = enabled;
     }
 
-    public Boolean getIsShowOutput() {
-        return isShowOutput;
+    public String getScrew() {
+        return screw;
     }
 
-    public void setIsShowOutput(Boolean isShowOutput) {
-        this.isShowOutput = isShowOutput;
+    public void setScrew(String screw) {
+        this.screw = screw;
     }
 
     public Boolean getIsShowTaktTime() {

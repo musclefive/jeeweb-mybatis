@@ -27,6 +27,9 @@
     <sql id="queryTable_Leak" >
         caq.LeakTestMeasurements
     </sql>
+    <sql id="queryTable_screw" >
+        caq.ScrewingMeasurements
+    </sql>
     <sql id="queryTable_DMCDaily" >
         caq.DMCMeasureDailyData
     </sql>
@@ -208,6 +211,31 @@
     </select>
 
     <select id="queryLeasTestbm" resultType="MeasureData">
+        <!--select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",-->
+        <!--B.ID as "leakID",B.TestPressureA as "pressure",B.LeakRateA as "leakRate",B.CheckProg as "checkProg"-->
+        <!--FROM [Vertiscape].[caq].[MeasurementGeneralData] A-->
+        <!--left join-->
+        <!--[Vertiscape].[caq].[LeakTestMeasurements] B-->
+        <!--on A.ID = B.General-->
+        <!--where A.station = '1420' and-->
+        <!--A.Ok = 1 and B.ok = 1 and A.Date < '2018-03-13 07:00' and A.Date > '2017-01-01'-->
+        <!--order by DATE-->
+
+
+        <!--select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",-->
+        <!--B.ID as "leakID",B.TestPressureA as "pressure",B.LeakRateA as "leakRate",B.CheckProg as "checkProg"-->
+        <!--from-->
+        <!--(select *-->
+        <!--FROM [Vertiscape].[caq].[MeasurementGeneralData]  where Date < '2018-03-13 07:00'-->
+        <!--and Date > '2017-01-01' and Ok = 1-->
+        <!--and station ='1420'-->
+        <!--) A-->
+
+        <!--left join-->
+        <!--( select * from [Vertiscape].[caq].[LeakTestMeasurements] where Ok = 1-->
+        <!--) B-->
+
+        <!--on A.ID = B.General-->
 
         select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",
         B.ID as "leakID",B.TestPressureA as "pressure",B.LeakRateA as "leakRate",B.CheckProg as "checkProg"
@@ -292,48 +320,34 @@
 
     </select>
 
+    <select id="queryScrewListbm" resultType="MeasureData">
 
-    <select id="queryDailyDMCbmforZK" resultType="MeasureData">
+        <!--select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",-->
+        <!--B.ID as "scewID",B.SpindleID as "spinID",B.ScrewPos as "screwpos",B.TorqueMin as "torqueMin",-->
+        <!--B.TorqueMax as "torqueMax", B.TorqueAct as "torqueAct" ,B.AngleMin as "angleMin", B.AngleMax as "angleMax", B.AngleAct as "angleAct",-->
+        <!--B.JobCode-->
+        <!--from [Vertiscape].[caq].[MeasurementGeneralData] A-->
+        <!--left join-->
+        <!--[Vertiscape].[caq].[ScrewingMeasurements] B-->
+        <!--on A.ID = B.General-->
+        <!--where  A.station ='880' and A.Date  < '2018-03-15 07:00' and-->
+        <!--A.Date > '2018-01-02 07:00' and A.Ok = 1-->
+        <!--and B.SpindleID = '10' and B.ScrewPos = 1 and B.Ok = 1-->
+        <!--order by A.Date-->
 
-        /*select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
-        A.summary as "summary", B.total as "total" from
-        (
-        select station, maxDate, zk as type,count(*) as summary from
-        caq.DMCMeasureDailyData
-        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
-        group by maxDate, station,zk
-        ) A
-
+        select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",
+        A.Date as "measureDate",B.ID as "scewID",B.SpindleID as "spinID",B.ScrewPos as "screwpos",
+        B.TorqueMin as "torqueMin",B.TorqueMax as "torqueMax", B.TorqueAct as "torqueAct" ,
+        B.AngleMin as "angleMin", B.AngleMax as "angleMax", B.AngleAct as "angleAct"
+        from <include refid="queryTable" /> A
         left join
-        (
-        select station, maxDate,count(*) as total
-        from caq.DMCMeasureDailyData
-        where station = '590' and maxDate between '2018-02-20' and '2018-02-26'
-        group by maxDate, station
-        ) B on A.maxDate = B.maxDate
-        order by A.maxDate desc*/
-
-        select A.station as "Station",A.maxDate as "maxDate",A.type as "type",
-        A.summary as "summary", B.total as "total" from
-        (
-        select station, maxDate, zk as type,count(*) as summary from
-        <include refid="queryTable_DMCDaily" />
+        <include refid="queryTable_screw" /> B
+        on A.ID = B.General
         <where>
             ${ew.sqlSegment}
         </where>
-        group by maxDate, station,zk
-        ) A
 
-        left join
-        (
-        select station, maxDate,count(*) as total
-        from <include refid="queryTable_DMCDaily" />
-        <where>
-            ${ew.sqlSegment}
-        </where>
-        group by maxDate, station
-        ) B on A.maxDate = B.maxDate
-        order by A.maxDate desc
+        order by A.Date
 
     </select>
 
