@@ -18,8 +18,10 @@
     <%--<grid:column label="isRework"  name="isRework" dict="sf" width="50"    />--%>
     <%--<grid:column label="enabled"  name="enabled" dict="sf" width="50"    />--%>
     <grid:column label="拧紧"  name="screw"  width="50" />
-    <grid:column label="首页显示"  name="isShowTaktTime" dict="sf" width="50"    />
-    <grid:column label="实时节拍显示"  name="isShowDashboard" dict="sf" width="50"    />
+    <grid:column label="试漏"  name="leak"  width="50" />
+    <grid:column label="压装"  name="force"  width="50" />
+    <grid:column label="首页显示"  name="isShowTaktTime" width="50"    />
+    <grid:column label="实时节拍显示"  name="isShowDashboard" width="50"    />
 
     <%--<grid:toolbar function="create"/>--%>
     <grid:toolbar   function="update"/>

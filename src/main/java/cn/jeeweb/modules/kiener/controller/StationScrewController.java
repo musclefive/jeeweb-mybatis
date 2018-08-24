@@ -128,10 +128,15 @@ public class StationScrewController extends BaseCRUDController<StationScrew, Str
         EntityWrapper<StationScrew> entityWrapper = new EntityWrapper<>(entityClass);
         //input the start and end param
         DataSourceContextHolder.setDbType("dataSource");
+        //type = screw|force
+        String type = request.getParameter("type").toString();
+
+        logger.info("ajaxList_screw query type:" + type);
 
         //output json with query conditions
         propertyPreFilterable.addQueryProperty("identifier", "type");
 
+        entityWrapper.eq("measureType", type);
         entityWrapper.groupBy("identifier");
         entityWrapper.groupBy("type");
         entityWrapper.orderBy("identifier");

@@ -4,6 +4,7 @@ import cn.jeeweb.core.common.service.ICommonService;
 import cn.jeeweb.core.query.data.Page;
 import cn.jeeweb.core.query.data.Queryable;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
+import cn.jeeweb.modules.kiener.entity.TakeTime;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 
 import java.util.List;
@@ -26,6 +27,8 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> querySingleTaktTime(Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> queryGroupData(Wrapper<MeasureData> wrapper);
+
     public List<MeasureData> queryZKGDMC(Queryable queryable, Wrapper<MeasureData> wrapper, Wrapper<MeasureData> wrapper_1);
 
     public List<MeasureData> queryZKGAndKWDMC(Queryable queryable, Wrapper<MeasureData> wrapper,Wrapper<MeasureData> wrapper_1);
@@ -41,5 +44,13 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
     public List<MeasureData> queryEngineList(Queryable queryable, Wrapper<MeasureData> wrapper);
 
     public List<MeasureData> queryScrweList(Queryable queryable, Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> queryForceList(Queryable queryable, Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> queryOKRate(Queryable queryable, Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> queryOKRatewithNoVariety(Queryable queryable, Wrapper<MeasureData> wrapper);
+
+    public List<MeasureData> selectEngineType(Queryable queryable, Wrapper<MeasureData> wrapper);
 
 }

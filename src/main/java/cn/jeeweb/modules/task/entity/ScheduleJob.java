@@ -2,9 +2,11 @@ package cn.jeeweb.modules.task.entity;
 
 import java.util.Date;
 
+import cn.jeeweb.modules.sys.entity.User;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import cn.jeeweb.core.common.entity.AbstractEntity;
 
@@ -42,7 +44,7 @@ public class ScheduleJob extends AbstractEntity<String> {
 	@TableField(value = "bean_class")
 	private String beanClass;
 	/** 创建时间 */
-	@TableField(value = "create_date")
+	@TableField(value = "create_date",fill = FieldFill.INSERT)
 	private Date createDate;
 	/** 任务状态 */
 	@TableField(value = "job_status")
@@ -51,11 +53,16 @@ public class ScheduleJob extends AbstractEntity<String> {
 	@TableField(value = "job_group")
 	private String jobGroup;
 	/** 更新时间 */
-	@TableField(value = "update_date")
+	@TableField(value = "update_date",fill = FieldFill.INSERT_UPDATE)
 	private Date updateDate;
 	/** 创建者 */
-	@TableField(value = "create_by")
-	private String createBy;
+//	@TableField(value = "create_by")
+//	private String createBy;
+
+	/** 创建者 */
+	@TableField(value = "create_by", el = "createBy.id", fill = FieldFill.INSERT)
+	private User createBy;
+
 	/** Spring bean */
 	@TableField(value = "spring_bean")
 	private String springBean;
@@ -166,11 +173,11 @@ public class ScheduleJob extends AbstractEntity<String> {
 		this.updateBy = updateBy;
 	}
 
-	public String getCreateBy() {
+	public User getCreateBy() {
 		return createBy;
 	}
 
-	public void setCreateBy(String createBy) {
+	public void setCreateBy(User createBy) {
 		this.createBy = createBy;
 	}
 

@@ -47,6 +47,15 @@
 					   <label class="Validform_checktip"></label>
 				   </td>
 			   </tr>
+			   <tr>
+				   <td  class="width-15 active text-right">
+					   <label><font color="red">*</font>Type</label>
+				   </td>
+				   <td class="width-35" >
+					   <form:input path="measureType" class="form-control "/>
+					   <label class="Validform_checktip"></label>
+				   </td>
+			   </tr>
 		   </tbody>
 		</table>   
 	</form:form>

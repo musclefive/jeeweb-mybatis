@@ -89,7 +89,7 @@
 
 
     <!-- 全局js -->
-    <html:js  name="iCheck,Validform"/>
+    <html:js  name="iCheck,Validform,bootstrap"/>
 
 	<!-- 自定义js -->
 	<script src="${staticPath}/common/js/content.js?v=1.0.0"></script>
@@ -117,7 +117,7 @@
 			$(document).ready(function() {
 				$(".i-checks").iCheck({
 			           checkboxClass: 'icheckbox_square-green',
-			           radioClass: 'iradio_square-green',
+			           radioClass: 'iradio_square-green'
 			    });
 			});
 			

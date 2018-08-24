@@ -16,7 +16,7 @@
 
     </resultMap>
     <sql id="queryTable" >
-      caq.MeasurementGeneralData
+        MeasurementGeneralData
     </sql>
     <sql id="queryTable_MeasureTemp" >
         caq.MeasurementGeneralTemp
@@ -30,6 +30,11 @@
     <sql id="queryTable_screw" >
         caq.ScrewingMeasurements
     </sql>
+
+    <sql id="queryTable_force" >
+        caq.ForceMeasurements
+    </sql>
+
     <sql id="queryTable_DMCDaily" >
         caq.DMCMeasureDailyData
     </sql>
@@ -78,7 +83,7 @@
     </select>
 
     <select id="queryRealTimeOutputChangeType" resultType="MeasureData">
-        select output,A.Station, B.Variety, nextDate, latestNumber,Summary as "changeCount" from
+        select output,A.Station, B.Variety, nextDate, latestNumber,Summary as "changeCount" ,Total as "total" from
         <include refid="queryTable_MeasureTemp" /> A left join
         (
         SELECT  Count(*) as 'output', Station ,Variety, MAX(Date) as 'nextDate', max(PartNumber) as latestNumber
@@ -94,6 +99,17 @@
 
     <select id="queryRealTimeTaktTime" resultType="MeasureData">
 
+        <!--SELECT * from (SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,ID,-->
+        <!--PartNumber, Station, Variety,-->
+        <!--Date as "measureDate"-->
+        <!--FROM MeasurementGeneralData-->
+        <!--where station in ('10','30','40','45')-->
+        <!--and Ok = 1 and Date < '2017-08-16 15:50' and Date > '2017-08-16 06:30'-->
+        <!--) as b-->
+        <!--where-->
+        <!--b.rowId = 1 or b.rowId = 2-->
+        <!--order by b.Station, b.rowId-->
+
         SELECT * from (SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,ID,
         PartNumber, Station, Variety,
         Date as "measureDate"
@@ -107,7 +123,34 @@
         </where>
         order by b.Station, b.rowId
     </select>
+
+    <select id="queryGroupData" resultType="MeasureData">
+
+        <!--SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,ID,-->
+        <!--PartNumber, Station, Variety,-->
+        <!--Date as "measureDate"-->
+        <!--FROM MeasurementGeneralData-->
+        <!--where station in ('10','30','40','45')-->
+        <!--and Ok = 1 and Date < '2017-08-16 15:50' and Date > '2017-08-16 06:30'-->
+        <!--order by station, rowId-->
+
+        SELECT ROW_NUMBER() over(PARTITION by Station order by Station, Date desc) as rowId,
+        ID,PartNumber, Station, Variety,
+        Date as "measureDate"
+        FROM <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        order by Station, rowId
+    </select>
+
     <select id="queryRealTimeTaktTimeSingle" resultType="MeasureData">
+
+        <!--SELECT ID, PartNumber, Station, Variety,-->
+        <!--Date as "measureDate"-->
+        <!--FROM MeasurementGeneralData-->
+        <!--where Ok = 1 and Date < '2017-08-16 15:50' and Date > '2017-08-16 06:30'-->
+        <!--and station = '10'-->
 
         SELECT ID, PartNumber, Station, Variety,
         Date as "measureDate"
@@ -351,5 +394,89 @@
 
     </select>
 
+    <select id="queryForceListbm" resultType="MeasureData">
+
+        <!--select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",-->
+        <!--B.ID as "forceID",B.StrokeNumber as "strokeNumber",B.Hardware as "hardware",B.ForceMin as "forceMin",-->
+        <!--B.ForceMax as "forceMax", B.ForceAct as "forceAct" ,B.DistMin as "distMin", B.DistMax as "distMax", B.DistAct as "distAct",-->
+        <!--B.JobCode-->
+        <!--from [MeasurementGeneralData] A-->
+        <!--left join-->
+        <!--[ForceMeasurements] B-->
+        <!--on A.ID = B.General-->
+        <!--where  A.station ='250' and A.Date  < '2017-11-12 07:00' and-->
+        <!--A.Date > '2017-11-11 07:00' and A.Ok = 1-->
+        <!--and B.StrokeNumber = 4 and B.Hardware = 1 and B.Ok = 1-->
+        <!--order by A.Date-->
+
+        select A.ID as "ID", A.PartNumber as "PartNumber",A.Station as "Station",A.Variety as "Variety",A.Date as "measureDate",
+        B.ID as "forceID",B.StrokeNumber as "strokeNumber",B.Hardware as "hardware",B.ForceMin as "forceMin",
+        B.ForceMax as "forceMax", B.ForceAct as "forceAct" ,B.DistMin as "distMin", B.DistMax as "distMax", B.DistAct as "distAct",
+        B.JobCode
+        from <include refid="queryTable" /> A
+        left join
+        <include refid="queryTable_force" /> B
+        on A.ID = B.General
+        <where>
+            ${ew.sqlSegment}
+        </where>
+
+        order by A.Date
+
+    </select>
+
+
+    <select id="queryOKRatebm" resultType="MeasureData">
+
+        <!--&#45;&#45;当Ok = 1  and ReworkInStation = 1 表示有一个发动机重装后才成功,所以之前有Nok的情况,-->
+        <!--&#45;&#45;可能Nok的情况多次重复,只记录一次-->
+        <!--SELECT station as "Station",variety as "Variety", count(distinct PartNumber) as "total",-->
+        <!--sum (case when (OK = 1 and ReworkInStation = 0) then 1  else 0 end) as "summary",-->
+        <!--sum ( case when Ok = 1  and ReworkInStation = 1 then 1 else 0 end) as "totalNok"-->
+        <!--FROM [MoMo].[dbo].[MeasurementGeneralData]-->
+        <!--where-->
+        <!--Date > '2017-11-14 07:00' and Date < '2017-11-15 07:00'-->
+        <!--group by station, variety order by station-->
+
+        SELECT station as "Station",variety as "Variety", count(*) as "total",
+        sum (case when (OK = 1 and ReworkInStation = 0) then 1  else 0 end) as "summary",
+        sum ( case when (OK = 1 and ReworkInStation = 1 )then 1 else 0 end) as "totalNok"
+        FROM <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        order by station
+
+    </select>
+
+    <select id="queryOKRatebmwithNoVariety" resultType="MeasureData">
+
+        <!--SELECT station as "Station",variety as "Variety", count(*) as "total", -->
+        <!--sum (case when OK = 1 then 1  else 0 end) as "summary",-->
+        <!--sum ( case when Nok = 1 then 1 else 0 end) as "totalNok"-->
+        <!--FROM [MoMo].[dbo].[MeasurementGeneralData]-->
+        <!--where-->
+        <!--Date > '2017-11-14 07:00' and Date < '2017-11-15 07:00'-->
+        <!--group by station, variety order by station-->
+
+        SELECT station as "Station", count(*) as "total",
+        sum (case when (OK = 1 and ReworkInStation = 0 )then 1  else 0 end) as "summary",
+        sum ( case when (Ok = 1 and ReworkInStation = 1) then 1 else 0 end) as "totalNok"
+        FROM <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        order by station
+
+    </select>
+
+    <select id="selectEngineTypePage" resultType="MeasureData">
+        select
+        DISTINCT variety as "Variety"
+        from <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
 
 </mapper>

@@ -11,6 +11,7 @@ import cn.jeeweb.core.query.wrapper.EntityWrapper;
 import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
 import cn.jeeweb.core.utils.StringUtils;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
+import cn.jeeweb.modules.kiener.entity.TakeTime;
 import cn.jeeweb.modules.kiener.service.IMeasureDataService;
 import cn.jeeweb.modules.sys.data.HySmsSetting;
 import cn.jeeweb.modules.sys.entity.Attachment;
@@ -43,7 +44,9 @@ import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chao.Cui.VWED on 2017/8/25.
@@ -69,10 +72,20 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
             "420", "480", "640", "670", "770", "810", "820", "950", "960", "990", "1030", "1050", "1090", "1190",
             "1310", "1390", "1530", "1560", "1610", "1650");
 
+    public final static List filterStationGroup_1 = Arrays.asList("10","30","40","45","50","60","70","80","90","100","110");
+
+    public Map<String,String> map = new HashMap<>();
+
     @Autowired
     private IMeasureDataService measureDataService;
 
     private String mStation = "";
+
+    private MeasureDataController(){
+        this.map.put("group1","10,30,40,45,50,60,70,80,90,100,110");
+        this.map.put("group2","200,300");
+    }
+
     @RequestMapping(value = "/login")
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletRequest response, Model model) {
@@ -194,7 +207,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
-        List<MeasureData> record = measureDataService.queryOutput(queryable,entityWrapper);
+        List<MeasureData> record = measureDataService.queryOutput(queryable, entityWrapper);
 
         String content = JSON.toJSONString(record, filter);
         StringUtils.printJson(response, content);
@@ -230,7 +243,8 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         entityWrapper.in("station",filterStation);
         entityWrapper.eq("Ok", true);
         //output json with query conditions
-        propertyPreFilterable.addQueryProperty("output", "station", "variety", "nextDate", "latestNumber", "changeCount");
+        //total is for all the number for serveral days
+        propertyPreFilterable.addQueryProperty("output", "station", "variety", "nextDate", "latestNumber", "changeCount", "total");
 
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
@@ -276,7 +290,7 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         // 预处理
         QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
         SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
-        List<MeasureData> record = measureDataService.queryOutput(queryable,entityWrapper);
+        List<MeasureData> record = measureDataService.queryOutput(queryable, entityWrapper);
 
         String content = JSON.toJSONString(record, filter);
         StringUtils.printJson(response, content);
@@ -286,9 +300,9 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
-//        DataSourceContextHolder.setDbType("dataSource1");
+        DataSourceContextHolder.setDbType("dataSource1");
 //      change to the production enviroment
-      DataSourceContextHolder.setDbType("dataSource_production");
+//      DataSourceContextHolder.setDbType("dataSource_production");
     }
 
     /*
@@ -423,6 +437,54 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
         DataSourceContextHolder.setDbType("dataSource");
     }
 
+
+    /*
+    * query the real time  production data from startDate to endDate for a group station
+    * change the datasource if needed
+    * return json object with no pages
+    * */
+    @RequestMapping(value = "ajaxList_groupData", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_groupData(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                                 HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("measureDate");
+        String endDate = request.getParameter("measureDateEnd");
+        String type = request.getParameter("type");
+
+        String stations = map.get(type);
+
+        logger.info("group data output stations:" + stations);
+
+
+        logger.info("ajaxList_groupData para: " + startDate + " to: " + endDate);
+//        String startDate = "2017-08-26 06:30";
+//        String endDate = "2017-08-26 11:40";
+        if(startDate != null && endDate != null ){
+            if(!startDate.equals("") && !startDate.equals("")){
+                logger.info("output querying startDate:" + startDate + " endDate:" + endDate);
+                entityWrapper.between("measureDate",startDate,endDate);
+            }
+        }
+
+        entityWrapper.in("station", filterStationGroup_1);
+        entityWrapper.eq("Ok", true);
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("rowId", "id","station", "variety", "measureDate");
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.queryGroupData(entityWrapper);
+
+        String content = JSON.toJSONString(record, filter);
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
+
+
     @RequestMapping(value = "ajaxList_measure", method = { RequestMethod.GET, RequestMethod.POST })
     @PageableDefaults(sort = "id=desc")
     private void ajaxList_measure(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
@@ -461,5 +523,34 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
                 entityWrapper.between("measureDate",startDate,endDate);
             }
         }
+    }
+
+    /*
+   * query all the engine type during start date and end date
+   * */
+    @RequestMapping(value = "ajaxList_engineType", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_engineType(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                     HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+//        String startDate = "2017-08-16 06:30";
+//        String endDate = "2017-08-17 06:30";
+        entityWrapper.between("date", startDate, endDate);
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("variety");
+
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.selectEngineType(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+
     }
 }

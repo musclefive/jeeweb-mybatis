@@ -28,6 +28,8 @@ public class StationScrew extends AbstractEntity<String> {
     @TableField(value = "Spin")
     private String spin;
 
+    @TableField(value = "MeasureType")
+    private String measureType;
 
     @Override
     public String getId() {
@@ -69,5 +71,13 @@ public class StationScrew extends AbstractEntity<String> {
 
     public void setSpin(String spin) {
         this.spin = spin;
+    }
+
+    public String getMeasureType() {
+        return measureType;
+    }
+
+    public void setMeasureType(String measureType) {
+        this.measureType = measureType;
     }
 }

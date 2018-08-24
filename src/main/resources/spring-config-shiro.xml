@@ -156,6 +156,7 @@
                 ${admin.url.prefix}/kiener/measure/ajaxList_output_change = anon
                 ${admin.url.prefix}/kiener/measure/ajaxList_getPlan = anon
                 ${admin.url.prefix}/kiener/measure/ajaxList_realTimeTaktTime = anon
+                ${admin.url.prefix}/kiener/measure/ajaxList_groupData = anon
                 ${admin.url.prefix}/logout = logout
                 ${admin.url.prefix}/login  = jCaptchaValidate,authc
                 /** = sysUser,onlineSession,user,syncOnlineSession,perms,roles

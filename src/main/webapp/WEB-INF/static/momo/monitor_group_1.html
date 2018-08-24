@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>Real-Time Production</title>
+
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<!-- bootstrap & fontawesome -->
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+	<!--<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+
+	<!-- page specific plugin styles -->
+
+	<!-- text fonts -->
+	<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
+
+	<!-- ace styles -->
+	<link rel="stylesheet" href="../assets/css/ace.min.css" id="main-ace-style" />
+
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
+	<![endif]-->
+	<link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="../assets/css/ace-ie.min.css" />
+	<![endif]-->
+
+	<!-- inline styles related to this page -->
+
+	<!-- ace settings handler -->
+	<script src="../assets/js/ace-extra.min.js"></script>
+
+	<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+	<!--[if lte IE 8]>
+	<script src="../assets/js/html5shiv.min.js"></script>
+	<script src="../assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body class="no-skin">
+<!-- #section:basics/navbar.layout -->
+<div id="navbar" class="navbar navbar-default">
+
+	<div class="navbar-container" id="navbar-container">
+		<!-- #section:basics/sidebar.mobile.toggle -->
+		<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+			<span class="sr-only">Toggle sidebar</span>
+
+			<span class="icon-bar"></span>
+
+			<span class="icon-bar"></span>
+
+			<span class="icon-bar"></span>
+		</button>
+
+		<!-- /section:basics/sidebar.mobile.toggle -->
+		<div class="navbar-header pull-left">
+			<!-- #section:basics/navbar.layout.brand -->
+			<a href="#" class="navbar-brand">
+				<small>
+					<i class="fa fa-leaf"></i>
+					MoMo Line Real Time Output
+				</small>
+			</a>
+		</div>
+		<div class="navbar-buttons navbar-header pull-right" role="navigation">
+			<br/>
+			<span class="label label-light"><i class="ace-icon fa fa-info-circle bigger-130"></i> <b>5 minutes no response</b></span>
+			<span class="label label-light"><i class="ace-icon fa fa-gavel bigger-130"></i> <b>10 minutes no respose</b></span>
+		</div>
+	</div><!-- /.navbar-container -->
+</div>
+
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+
+	<div class="main-content">
+
+		<!-- /section:basics/content.breadcrumbs -->
+		<div class="page-content">
+
+			<div class="page-content-area">
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<div class="row">
+							<div class="col-sm-12 align-center">
+								<h1 class="large">Group 1</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 align-center">
+								<h4 id="currentTime"></h4>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="widget-box widget-color-blue3">
+									<div class="widget-header align-center">
+										<h3 class="widget-title large">SOLL计划
+											<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+										<div class="widget-toolbar">
+										</div>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main" style="padding: 0px">
+											<!-- #section:elements.popover -->
+											<div id="divPlan" class="align-center" style="padding: 0px">
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 10px;">100</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="widget-box widget-color-blue3">
+									<div class="widget-header align-center">
+										<h3 class="widget-title large">IST实际
+											<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+										<div class="widget-toolbar">
+										</div>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main" style="padding: 0px">
+											<!-- #section:elements.popover -->
+											<div id="divActual" class="align-center" style="padding: 0px">
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 10px;">100</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="widget-box widget-color-blue3">
+									<div class="widget-header align-center">
+										<h3 class="widget-title large">DIF偏差
+											<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+										<div class="widget-toolbar">
+										</div>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main" style="padding: 0px">
+											<!-- #section:elements.popover -->
+											<div id="divDif" class="align-center" style="padding: 0px">
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 10px;">100</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="widget-box widget-color-blue3">
+									<div class="widget-header align-center">
+										<h3 class="widget-title large">OPR达成率
+											<i class="ace-icon fa fa-gavel hidden"></i><i class="ace-icon fa fa-info-circle hidden"></i></h3>
+										<div class="widget-toolbar">
+										</div>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main" style="padding: 0px">
+											<!-- #section:elements.popover -->
+											<div id="divOpr" class="align-center" style="padding: 0px">
+												<h3 style="padding: 0px;margin-top:10px;margin-bottom: 10px;">100</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="space-30"></div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<!--<div class="row">-->
+									<!--<div class="col-sm-3">-->
+										<!--<div class="widget-box widget-color-green">-->
+											<!--<div class="widget-header align-center">-->
+												<!--<h3 class="widget-title large">M010</h3><br>-->
+												<!--<h3 class="widget-title large">M010</h3>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+									<!--<div class="col-sm-3">-->
+										<!--<div class="widget-box widget-color-green">-->
+											<!--<div class="widget-header align-center">-->
+												<!--<h3 class="widget-title large">M010</h3><br>-->
+												<!--<h3 class="widget-title large">M010</h3>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+									<!--<div class="col-sm-3">-->
+										<!--<div class="widget-box widget-color-green">-->
+											<!--<div class="widget-header align-center">-->
+												<!--<h3 class="widget-title large">M010</h3><br>-->
+												<!--<h3 class="widget-title large">M010</h3>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+									<!--<div class="col-sm-3">-->
+										<!--<div class="widget-box widget-color-green">-->
+											<!--<div class="widget-header align-center">-->
+												<!--<h3 class="widget-title large">M010</h3><br>-->
+												<!--<h3 class="widget-title large">M010</h3>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<div class="row" id="rowList">
+									<script id="stationTemplate" type="text/x-jquery-tmpl">
+										<div class="col-sm-3">
+											<div class="widget-box widget-color-green">
+												<div class="widget-header align-center" id=${ID}>
+													<h3 class="widget-title large">${Name}</h3><br>
+													<h3 class="widget-title large">0</h3>
+												</div>
+											</div>
+										</div>
+									</script>
+								</div>
+
+							</div>
+							<div class="col-sm-6"></div>
+						</div>
+						<div class="space-30"></div>
+						<div class="row">
+							<button class="btn btn-sm btn-success" id="btnTest">
+								测试
+								<i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+							</button>
+							<script id="movieTemplate" type="text/x-jquery-tmpl">
+								<li>
+									<b>${Name}</b> (${ReleaseYear})
+								</li>
+							</script>
+							<ul id="movieList"></ul>
+						</div>
+						<!-- PAGE CONTENT ENDS -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.page-content-area -->
+
+		</div><!-- /.page-content -->
+	</div><!-- /.main-content -->
+
+	<div class="footer">
+		<div class="footer-inner">
+			<!-- #section:basics/footer -->
+			<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">VWED CC IT</span>
+							&copy; 2017-2018
+						</span>
+
+				&nbsp; &nbsp;
+			</div>
+
+			<!-- /section:basics/footer -->
+		</div>
+	</div>
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+	</a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script type="text/javascript">
+	window.jQuery || document.write("<script src='../assets/js/jquery.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+	window.jQuery || document.write("<script src='../assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+	if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="../assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<script src="../assets/js/prototype.js"></script>
+<script src="../assets/js/date-time/moment.min.js"></script>
+
+<!-- ace scripts -->
+<script src="../assets/js/ace-elements.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
+<script src="../assets/js/jquery.tmpl.js"></script>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+
+	var beginHHMM = "07:00";
+	var endHHMM = "02:00";
+
+	var movies = [
+		{ Name: "The Red Violin", ReleaseYear: "1998" },
+		{ Name: "Eyes Wide Shut", ReleaseYear: "1999" },
+		{ Name: "The Inheritance", ReleaseYear: "1976" }
+	];
+
+	var group_stations = [
+		{ Name: "M10", ID: "divM10" , Station:"10"},
+		{ Name: "A30", ID: "divA30" , Station:"A30"},
+		{ Name: "NA40", ID: "divA40" , Station:"NA40"},
+		{ Name: "M45", ID: "divA45" , Station:"M45"},
+		{ Name: "M50", ID: "divM50" , Station:"M50"},
+		{ Name: "M60", ID: "divM60" , Station:"M60"},
+		{ Name: "HA70", ID: "divA70" , Station:"HA70"},
+		{ Name: "M80", ID: "divM80" , Station:"M80"},
+		{ Name: "M90", ID: "divM90" , Station:"M90"},
+		{ Name: "A100", ID: "divA100" , Station:"A100"},
+		{ Name: "NA110", ID: "divA110" , Station:"NA100"}
+	];
+
+	/*initial the page method
+	 * get the real output from ajax method*/
+
+	$(document).ready(function() {
+		var sh; // Interval
+
+//				production eviroment setting
+//		var queryDate = moment().format("YYYY-MM-DD");
+//		var startDate = queryDate + " 06:30";
+//		var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
+
+//				testing eviroment setting
+//		var queryDate = "2017-08-16";
+		var startDate = "2017-08-16 06:30";
+		var endDate = "2017-08-16 15:50";
+
+
+		$( "#movieTemplate" ).tmpl( movies ).appendTo( "#movieList" );
+		$( "#stationTemplate" ).tmpl( group_stations ).appendTo( "#rowList" );
+
+		var i = 0;
+		$("#btnTest").click(function(){
+			i ++;
+			$("#divA100").children().last().html(i);
+		});
+
+		//enable the interval by default when refreshing the page
+		var realtimeOutput = function (){
+
+			endDate = moment(endDate).add(6, 'seconds').format("YYYY-MM-DD HH:mm:ss");
+			console.info("endDate: " + endDate + " " +  moment().format("HH:mm:ss"));
+			$("#currentTime").html(new Date().format("yyyy-MM-dd hh:mm:ss") + " KW" + moment().format("WW") + " " +moment().format("ddd"));
+			if(moment().format("HH:mm:ss") < "07:50:00" && moment().format("HH:mm:ss") > "07:49:40"){
+				console.info("refresh the whole page");
+				window.location.reload();
+			}
+
+			if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
+			{
+				console.info("endDate format: " + moment(endDate).format("HH:mm") + " begin:" + beginHHMM + " end:" + endHHMM)
+				$.ajax({
+					type : "post",
+					url : "../../admin/kiener/measure/ajaxList_groupData",
+					dataType : "json",
+					data: {"measureDate":startDate,"measureDateEnd":endDate, "type":"group1"},
+					success : function(data) {
+						for(var p in data){
+
+						}
+					}
+				});
+			}
+			else{
+				console.info("stop query from the db during the night time");
+			}
+			return realtimeOutput;
+
+		};
+		realtimeOutput();
+
+//		sh = setInterval(realtimeOutput, 6000);
+
+
+	});
+
+
+</script>
+</body>
+</html>

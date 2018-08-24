@@ -7,6 +7,7 @@ import cn.jeeweb.core.query.data.Pageable;
 import cn.jeeweb.core.query.data.Queryable;
 import cn.jeeweb.core.query.parse.QueryToWrapper;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
+import cn.jeeweb.modules.kiener.entity.TakeTime;
 import cn.jeeweb.modules.kiener.mapper.MeasureDataMapper;
 import cn.jeeweb.modules.kiener.service.IMeasureDataService;
 import com.baomidou.mybatisplus.mapper.SqlHelper;
@@ -66,6 +67,15 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     @Override
     public List<MeasureData> querySingleTaktTime(Wrapper<MeasureData> wrapper){
         List<MeasureData> records = baseMapper.queryRealTimeTaktTimeSingle(wrapper);
+        return records;
+    }
+
+    /*
+    * query the real time data(ouput and takttime) for a group station
+    * */
+    @Override
+    public List<MeasureData> queryGroupData(Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryGroupData(wrapper);
         return records;
     }
 
@@ -130,10 +140,36 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     * */
     @Override
     public List<MeasureData> queryScrweList(Queryable queryable, Wrapper<MeasureData> wrapper){
-        List<MeasureData> records = baseMapper.queryScrewListbm(queryable,wrapper);
+        List<MeasureData> records = baseMapper.queryScrewListbm(queryable, wrapper);
         return records;
     }
 
+    /*
+    * query the force data for a list or chart
+    * */
+    @Override
+    public List<MeasureData> queryForceList(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryForceListbm(queryable, wrapper);
+        return records;
+    }
+
+    /*
+   * query OK Rate for each of the station
+   * */
+    @Override
+    public List<MeasureData> queryOKRate(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryOKRatebm(queryable, wrapper);
+        return records;
+    }
+
+    /*
+   * query OK Rate for each of the station
+   * */
+    @Override
+    public List<MeasureData> queryOKRatewithNoVariety(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.queryOKRatebmwithNoVariety(queryable, wrapper);
+        return records;
+    }
 
     /*
     * query the Engine List from the MeasureGeneralData Table
@@ -142,6 +178,16 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
     public List<MeasureData> queryEngineList(Queryable queryable, Wrapper<MeasureData> wrapper ){
         List<MeasureData> records = baseMapper.queryEngineList(queryable, wrapper);
         return records;
+    }
+
+    /*
+    * select all the available engine type
+    * */
+    @Override
+    public List<MeasureData> selectEngineType(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.selectEngineTypePage(queryable, wrapper);
+        return records;
+
     }
 
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%--<meta name="decorator" content="single"/>--%>
-    <title>Screw Info</title>
+    <title>Force Info</title>
 
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" href="${staticPath}/assets/css/bootstrap.min.css" />
@@ -68,7 +68,7 @@
 										</div>
 									</div>
 									<div class="col-sm-2">
-										<label for="selectPosSpin">Pos&Spin</label>
+										<label for="selectPosSpin">Stroke&HW</label>
 										<br />
 										<select class="form-control" id="selectPosSpin">
 										</select>
@@ -115,20 +115,20 @@
 									<li class="active">
 										<a data-toggle="tab" href="#divChart">
 											<i class="blue ace-icon fa fa-tachometer bigger-110"></i>
-											Torque
+											Force
 										</a>
 									</li>
 
 									<li>
 										<a data-toggle="tab" href="#divNormalDist">
 											<i class="pink ace-icon fa fa-bar-chart-o bigger-110"></i>
-											Torque NORMDIST
+											Force NORMDIST
 										</a>
 									</li>
 									<li>
 										<a data-toggle="tab" href="#divChartPressure">
 											<i class="grey ace-icon fa fa-cog  bigger-110"></i>
-											Angle
+											Dist
 										</a>
 									</li>
 									<li>
@@ -177,10 +177,10 @@
 	</div><!-- /.main-content -->
 
 </div><!-- /.main-container -->
-<!-- 闂備胶顭堢换鍫ュ礉瀹�鍕剳闁荤偟顭� -->
+<!-- 闂傚倷鑳堕…鍫㈡崲閸儱绀夌�癸拷閸曨剙鍓抽梺鑽ゅ仧椤拷 -->
 	<%--<html:js  name="jquery,bootstrap,ace-theme"/>--%>
 
-	<!-- 闂備胶鍘ч〃搴㈢濠婂牊鍋╅柣鎰靛墰閳绘洖鈹戞径宀�浠� -->
+	<!-- 闂傚倷鑳堕崢褔銆冩惔銏㈩洸婵犲﹤鐗婇崑鈺呮煟閹伴潧澧伴柍缁樻礀閳规垶寰勫畝锟芥禒锟� -->
 	<script src="${staticPath}/assets/js/jquery.min.js"></script>
 	<script src="${staticPath}/assets/js/bootstrap.min.js"></script>
 
@@ -229,7 +229,7 @@
 //			get all the screw stations ajax method
 			$.ajax({
 				type : "post",
-				url : "${adminPath}/kiener/screw/ajaxList_screw?type=screw",
+				url : "${adminPath}/kiener/screw/ajaxList_screw?type=force",
 				dataType : "json",
 				success : function(data) {
 					if(data.results.length == 0){
@@ -259,7 +259,7 @@
 				}
 			});
 
-//			when the screw station change, get the pos and spin from the database
+//			when the force station change, get the stroke and hw from the database
 			$("#selectStationType").on('change', function(){
 				var identifier = $(this).children('option:selected').val();
 				console.info("identifier:" + identifier);
@@ -280,7 +280,7 @@
 							$("#selectPosSpin").empty();
 
 							for(var i = 0; i < record.length; i++) {
-								var text = "Pos("+record[i]["pos"]+")" + "--" + "Spin("+record[i]["spin"]+")";
+								var text = "Stroke("+record[i]["pos"]+")" + "--" + "HW("+record[i]["spin"]+")";
 								var value = record[i]["pos"] + "-" + record[i]["spin"];
 								if(i == 0){
 									$("#selectPosSpin").append("<option value='"+value+"' selected>"+text+"</option>");
@@ -318,17 +318,17 @@
 			* */
 			$("#myTab a[href='#divTable']").on('shown.bs.tab', function(e){
 
-				var startDate = $("#date-timepicker-start").val();
-				var endDate = $("#date-timepicker-end").val();
+//				var startDate = $("#date-timepicker-start").val();
+//				var endDate = $("#date-timepicker-end").val();
+//
+				var startDate = "2017-11-11 06:30";
+				var endDate = "2017-11-12 01:30";
 
-//				var startDate = "2018-03-14 06:30";
-//				var endDate = "2018-03-15 01:30";
-
-				var screwStation = $("#selectStationType").find("option:selected").val();
+				var forceStation = $("#selectStationType").find("option:selected").val();
 				var pos_spin = $("#selectPosSpin").find("option:selected").val();
 				var arr = pos_spin.split('-');
-				var pos = arr[0];
-				var spin = arr[1];
+				var pos = arr[0]; //stroke
+				var spin = arr[1]; //HW
 
 				if (startDate == "" || endDate == "") {
 					return false;
@@ -339,7 +339,7 @@
 				if(tableList){
 					$('#tableLeakTest').dataTable().fnDestroy();
 				}
-				initTable(startDate,endDate,screwStation,pos,spin);
+				initTable(startDate,endDate,forceStation,pos,spin);
 			});
 
 //			click the NormalDist show the normal dist for the leak rate
@@ -350,7 +350,7 @@
 				var val_normdist = []; // show the normal distribution chart
 				var strTemp = "";
 
-				var tmpTorque = 0.00;
+				var tmpForce = 0.00;
 				var tmpInt = 0;
 				console.info("max:" + colum_max + " min:" + colum_min + " mean:" + mean +
 						" stdev:" + stdev + " length: " + record.length);
@@ -360,16 +360,16 @@
 
 				for(var i = 0; i < record.length; i++) {
 					//inital map_column_x for column chart
-					tmpTorque =  parseFloat(record[i]["torqueAct"].toString());
+					tmpForce =  parseFloat(record[i]["forceAct"].toString());
 
-					if(tmpTorque <= colum_min){
+					if(tmpForce <= colum_min){
 						map_column_x[colum_min.toFixed(2)] =  map_column_x[colum_min.toFixed(2)] + 1;
 						tmpInt = 0;
-					}else if (tmpTorque >= colum_max){
+					}else if (tmpForce >= colum_max){
 						map_column_x[colum_max_end] =  map_column_x[colum_max_end] + 1;
 						tmpInt = 0;
 					}else{
-						tmpInt = Math.ceil(parseFloat(((tmpTorque-colum_min)/colum_step).toFixed(2)));
+						tmpInt = Math.ceil(parseFloat(((tmpForce-colum_min)/colum_step).toFixed(2)));
 						map_column_x[(colum_min + tmpInt * colum_step).toFixed(2).toString()] = map_column_x[(colum_min + tmpInt * colum_step).toFixed(2).toString()] + 1;
 					}
 				}
@@ -409,14 +409,14 @@
 							}
 						},
 						title: {
-							text: 'Norm Distribution',
+							text: 'Quantity',
 							style: {
 								color: Highcharts.getOptions().colors[1]
 							}
 						}
 					}, { // Secondary yAxis
 						title: {
-							text: 'Quantity',
+							text: 'Normal Distribution',
 							style: {
 								color: Highcharts.getOptions().colors[0]
 							}
@@ -432,9 +432,9 @@
 					plotOptions: {
 						line: {
 							dataLabels: {
-								enabled: true          // 寮�鍚暟鎹爣绛�
+								enabled: true          // 瀵拷閸氼垱鏆熼幑顔界垼缁涳拷
 							},
-							enableMouseTracking: false // 鍏抽棴榧犳爣璺熻釜锛屽搴旂殑鎻愮ず妗嗐�佺偣鍑讳簨浠朵細澶辨晥
+							enableMouseTracking: false // 閸忔娊妫存Η鐘崇垼鐠虹喕閲滈敍灞筋嚠鎼存梻娈戦幓鎰仛濡楀棎锟戒胶鍋ｉ崙璁崇皑娴犳湹绱版径杈ㄦ櫏
 						}
 					},
 					tooltip: {
@@ -454,9 +454,9 @@
 					]
 				};
 
-				barOption.title.text = "Torque Distribution";
+				barOption.title.text = "Force Distribution";
 
-				barOption.series[0].name = "Torque Act Count";
+				barOption.series[0].name = "Force Act Count";
 				barOption.series[0].data = eval('['+ val_pie +']');
 
 				barOption.series[1].name = "Normal Distribution";
@@ -470,29 +470,29 @@
 
 			$("#btnQuery").click(function() {
 
-				var startDate = $("#date-timepicker-start").val();
-				var endDate = $("#date-timepicker-end").val();
+//				var startDate = $("#date-timepicker-start").val();
+//				var endDate = $("#date-timepicker-end").val();
 
-//				var startDate = "2018-03-14 06:30";
-//				var endDate = "2018-03-15 01:30";
+				var startDate = "2017-11-11 06:30";
+				var endDate = "2017-11-12 01:30";
 
 				$("#myTab a[href='#divChart']").tab('show');
 
-				var screwStation = $("#selectStationType").find("option:selected").val();
+				var forceStation = $("#selectStationType").find("option:selected").val();
 				var pos_spin = $("#selectPosSpin").find("option:selected").val();
 				var pos = pos_spin;
 				var arr = pos_spin.split('-');
-				var pos = arr[0];
-				var spin = arr[1];
+				var pos = arr[0]; //stroke
+				var spin = arr[1]; //hw
 
-				if (screwStation == "" || pos_spin == "" ) {
-					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
+				if (forceStation == "" || pos_spin == "" ) {
+					top.layer.alert('请选择岗位', {icon: 0, title:'警告'});
 					return false;
 				}
-				console.info("query data startDate:" + startDate + " endDate:" + endDate + " station:" + screwStation + "" +
+				console.info("query data startDate:" + startDate + " endDate:" + endDate + " station:" + forceStation + "" +
 						" pos_spin " + pos_spin + " pos:" + pos + " spin:" + spin);
 
-				initChart(options,optionAngle, startDate, endDate, screwStation, pos, spin);
+				initChart(options,optionAngle, startDate, endDate, forceStation, pos, spin);
 
 			});
 
@@ -542,30 +542,30 @@
 				},
 				yAxis: {
 					title: {
-						text: 'Torque'
+						text: 'Force'
 					},
 					plotLines:[
 						{
 							label:{
-//								text:'38s',     //鏍囩鐨勫唴瀹�
-								align:'left',                //鏍囩鐨勬按骞充綅缃紝姘村钩灞呭乏,榛樿鏄按骞冲眳涓璫enter
-								x:-10                         //鏍囩鐩稿浜庤瀹氫綅鐨勪綅缃按骞冲亸绉荤殑鍍忕礌锛岄噸鏂板畾浣嶏紝姘村钩灞呭乏10px
+//								text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
+								align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
+								x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
 							},
-							color:'blue',           //绾跨殑棰滆壊锛屽畾涔変负绾㈣壊
-							dashStyle:'solid',     //榛樿鍊硷紝杩欓噷瀹氫箟涓哄疄绾�
-//							value:38,               //瀹氫箟鍦ㄩ偅涓�间笂鏄剧ず鏍囩ず绾匡紝杩欓噷鏄湪x杞翠笂鍒诲害涓�3鐨勫�煎鍨傜洿鍖栦竴鏉＄嚎
-							width:2               //鏍囩ず绾跨殑瀹藉害锛�2px
+							color:'blue',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
+							dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
+//							value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
+							width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
 						},
 						{
 							label:{
-//								text:'38s',     //鏍囩鐨勫唴瀹�
-								align:'left',                //鏍囩鐨勬按骞充綅缃紝姘村钩灞呭乏,榛樿鏄按骞冲眳涓璫enter
-								x:-10                         //鏍囩鐩稿浜庤瀹氫綅鐨勪綅缃按骞冲亸绉荤殑鍍忕礌锛岄噸鏂板畾浣嶏紝姘村钩灞呭乏10px
+//								text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
+								align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
+								x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
 							},
-							color:'green',           //绾跨殑棰滆壊锛屽畾涔変负绾㈣壊
-							dashStyle:'solid',     //榛樿鍊硷紝杩欓噷瀹氫箟涓哄疄绾�
-//							value:38,               //瀹氫箟鍦ㄩ偅涓�间笂鏄剧ず鏍囩ず绾匡紝杩欓噷鏄湪x杞翠笂鍒诲害涓�3鐨勫�煎鍨傜洿鍖栦竴鏉＄嚎
-							width:2               //鏍囩ず绾跨殑瀹藉害锛�2px
+							color:'green',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
+							dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
+//							value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
+							width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
 						}
 					]
 				},
@@ -573,7 +573,7 @@
 					valueDecimals: 2,
 					shared: true,
 					formatter:function(){
-                        return this.x + '<br/>' + '<b>Torque ='+this.points[0].point.y + '</b><br/>' +
+                        return this.x + '<br/>' + '<b>Force ='+this.points[0].point.y + '</b><br/>' +
 								'PartNumber=' + this.points[0].point.partNumber + '<br/>' +
 								'Variety=' + this.points[0].point.variety.substr(1) + ' Station=' + this.points[0].point.station + '<br/>' +
 								'UW-T=' + this.points[1].y + ' DW-T=' + this.points[2].y + '<br/>' +
@@ -597,12 +597,12 @@
 						turboThreshold:0,
 						color: '#FF7256'
 					},{
-						name : "Torque Max",
+						name : "Force Max",
 						turboThreshold:0,
 						color: '#73BF00'
 					},
 					{
-						name : "Torque Min",
+						name : "Force Min",
 						turboThreshold:0,
 						color: '#8F4586'
 					}
@@ -650,7 +650,7 @@
 					valueDecimals: 2,
 					shared: true,
 					formatter:function(){
-						return this.x + '<br/>' + '<b>Angle ='+this.points[0].point.y + '</b><br/>' +
+						return this.x + '<br/>' + '<b>Dist ='+this.points[0].point.y + '</b><br/>' +
 								'PartNumber=' + this.points[0].point.partNumber + '<br/>' +
 								'Variety=' + this.points[0].point.variety.substr(1) + ' Station=' + this.points[0].point.station + '<br/>';
 					}
@@ -668,12 +668,12 @@
 
 		function initChart(options, optionsAngle, start, end, station, pos, spin) {
 			var val_time = [];
-			var val_AngleAct = [];
-			var val_TorqueAct = [];
-			var val_Torque = []; //contain the partNumber, variety, and station and so on.
+			var val_DistAct = [];
+			var val_ForceAct = [];
+			var val_Force = []; //contain the partNumber, variety, and station and so on.
 
-			var val_torqueMax = [];
-			var val_torqueMin = [];
+			var val_forceMax = [];
+			var val_forceMin = [];
 			var val_uwt = [];
 			var val_dwt = [];
 			var max = 0;
@@ -684,7 +684,7 @@
 			var dwt = 0;
 			$.ajax({
 				type : "post",
-				url : "${adminPath}/kiener/leak/ajaxList_screwinfo",
+				url : "${adminPath}/kiener/leak/ajaxList_forceinfo",
 				dataType : "json",
 				data: {"measureDate":start,"endDate":end, "station":station,"pos":pos,"spin":spin},
 				error : function (xhr, textStatus){
@@ -699,48 +699,48 @@
 						top.layer.alert('没有数据', {icon: 0, title:'警告'});
 					}else{
 						var tempStr = "";
-						var tempStrAngle = "";
-						var tmpTorqueAct = 0.00;
+						var tempStrDistAct = "";
+						var tmpForceAct = 0.00;
 						var tmpInt = 0;
 						console.info("chart data total length: " + length);
 						for(var i = 0; i < length; i++) {
 							val_time.push("'" + record[i]["measureDate"] + "'");
 
-							tmpTorqueAct = parseFloat(record[i]["torqueAct"].toString()).toFixed(2);
+							tmpForceAct = parseFloat(record[i]["forceAct"].toString()).toFixed(2);
 
-							val_TorqueAct.push(tmpTorqueAct.toString());
-							tempStr = "{y:" + tmpTorqueAct.toString() + ",partNumber:'" + record[i]["partNumber"]
+							val_ForceAct.push(tmpForceAct.toString());
+							tempStr = "{y:" + tmpForceAct.toString() + ",partNumber:'" + record[i]["partNumber"]
 							+ "',variety:'" + record[i]["variety"] + "',station:'" + record[i]["station"] + "'}";
-							tempStrAngle = "{y:" + record[i]["angleAct"].toString() + ",partNumber:'" + record[i]["partNumber"]
+							tempStrDistAct = "{y:" + record[i]["distAct"].toString() + ",partNumber:'" + record[i]["partNumber"]
 									+ "',variety:'" + record[i]["variety"] + "',station:'" + record[i]["station"] + "'}";
-							val_AngleAct.push(tempStrAngle);
-							val_Torque.push(tempStr);
-							val_torqueMax.push(record[i]["torqueMax"].toString());
-							val_torqueMin.push(record[i]["torqueMin"].toString());
+							val_DistAct.push(tempStrDistAct);
+							val_Force.push(tempStr);
+							val_forceMax.push(record[i]["forceMax"].toString());
+							val_forceMin.push(record[i]["forceMin"].toString());
 
-							sum = sum +  parseFloat(record[i]["torqueAct"].toString());
+							sum = sum +  parseFloat(record[i]["forceAct"].toString());
 
 							//inital map_column_x for column chart
-							tmpTorqueAct =  parseFloat(record[i]["torqueAct"].toString());
+							tmpForceAct =  parseFloat(record[i]["forceAct"].toString());
 
-							if(tmpTorqueAct <= colum_min){
+							if(tmpForceAct <= colum_min){
 								map_column_x[colum_min.toFixed(1)] =  map_column_x[colum_min.toFixed(1)] + 1;
 								tmpInt = 0;
 //								console.info("LeakRate:" + tmpLeakRate + " tmpInt:" + tmpInt + " key:" + colum_min.toFixed(1).toString());
-							}else if (tmpTorqueAct >= colum_max){
+							}else if (tmpForceAct >= colum_max){
 								map_column_x[colum_max.toFixed(1)] =  map_column_x[colum_max.toFixed(1)] + 1;
 								tmpInt = 0;
 //								console.info("LeakRate:" + tmpLeakRate + " tmpInt:" + tmpInt + " key:" + colum_max.toFixed(1).toString());
 							}else{
-								tmpInt = Math.ceil(parseFloat(((tmpTorqueAct-colum_min)/colum_step).toFixed(2)));
+								tmpInt = Math.ceil(parseFloat(((tmpForceAct-colum_min)/colum_step).toFixed(2)));
 								map_column_x[(colum_min + tmpInt * colum_step).toFixed(1).toString()] = map_column_x[(colum_min + tmpInt * colum_step).toFixed(1).toString()] + 1;
 //								console.info("LeakRate:" + tmpLeakRate + " tmpInt:" + tmpInt +
 //										":" + (tmpLeakRate-colum_min)/colum_step + " key:" + (colum_min + tmpInt * colum_step).toFixed(1).toString());
 							}
 						}
 
-						colum_max = Math.max.apply(null, val_TorqueAct);
-						colum_min = Math.min.apply(null, val_TorqueAct);
+						colum_max = Math.max.apply(null, val_ForceAct);
+						colum_min = Math.min.apply(null, val_ForceAct);
 						mean = sum/length;
 						colum_step = (colum_max/Math.ceil(Math.sqrt(length))).toFixed(2);
 						//fill the input text
@@ -753,8 +753,8 @@
 
 						//STDEV Sigma
 						for(var i = 0; i < length; i++) {
-							tmpTorqueAct = parseFloat(record[i]["torqueAct"].toString());
-							rval = rval + Math.pow((tmpTorqueAct - mean),2);
+							tmpForceAct = parseFloat(record[i]["forceAct"].toString());
+							rval = rval + Math.pow((tmpForceAct - mean),2);
 						}
 						rval = rval / (length-1);
 						stdev = Math.sqrt(rval);
@@ -772,33 +772,33 @@
 								" stdev:" + stdev.toFixed(2) + " uwt:" + uwt.toFixed(2) +
 								" dwt:" + dwt.toFixed(2) + " sum:" + sum.toFixed(2));
 
-						options.series[0].name = "Torque";
+						options.series[0].name = "Force";
 
-						options.series[0].data = eval('['+ val_Torque+']');
+						options.series[0].data = eval('['+ val_Force+']');
 						options.series[1].data = eval('['+ val_uwt +']');
 						options.series[2].data = eval('['+ val_dwt +']');
-						options.series[3].data = eval('['+ val_torqueMax +']');
-						options.series[4].data = eval('['+ val_torqueMin +']');
+						options.series[3].data = eval('['+ val_forceMax +']');
+						options.series[4].data = eval('['+ val_forceMin +']');
 
 						options.labels.items[0].html = "Max:" + colum_max +" Min:" + colum_min + "<br/>Mean:" + mean.toFixed(2) +
 						" Sigma:" + stdev.toFixed(2) + "<br/> 3-Sigma:" + (3* stdev).toFixed(2) + " Count:" + length;
 						options.xAxis.categories = eval('['+ val_time +']');
-						options.title.text = "Torque Value for " + "M" + station;
-						options.subtitle.text = start + " to " + end + " Pos:" + pos + " Spin:" + spin ;
+						options.title.text = "Force Value for " + "M" + station;
+						options.subtitle.text = start + " to " + end + " Stroke:" + pos + " HW:" + spin ;
 
 
-						optionsAngle.series[0].data = eval('['+ val_AngleAct +']');
-						optionsAngle.series[0].name = "Angle Act";
+						optionsAngle.series[0].data = eval('['+ val_DistAct +']');
+						optionsAngle.series[0].name = "Dist Act";
 						optionsAngle.xAxis.categories = eval('['+ val_time +']');
-						optionsAngle.title.text = "Angle Value for " + "M" + station;
-						optionsAngle.subtitle.text = start + " to " + end + " Pos:" + pos + " Spin:" + spin ;
+						optionsAngle.title.text = "Dist Value for " + "M" + station;
+						optionsAngle.subtitle.text = start + " to " + end + " Stroke:" + pos + " HW:" + spin ;
 
 						new Highcharts.Chart(options);
 						new Highcharts.Chart(optionsAngle);
 
-						val_AngleAct = [];
+						val_DistAct = [];
 						val_time = [];
-						val_TorqueAct = [];
+						val_ForceAct = [];
 
 					}
 
@@ -826,7 +826,7 @@
 					"zeroRecords" : "No Record for this period"
 				},
 				"ajax": {
-					"url" : "${adminPath}/kiener/leak/ajaxList_screwinfo?measureDate="+start +
+					"url" : "${adminPath}/kiener/leak/ajaxList_forceinfo?measureDate="+start +
 					"&endDate=" + end + "&station=" + station + "&pos=" + pos + "&spin=" +spin,
 					"dataSrc" : "results"
 				},
@@ -853,34 +853,34 @@
 						"sTitle":"Station"
 					},
 					{
-						"data": "torqueMax",
-						"sTitle":"TorqueMax"
+						"data": "forceMax",
+						"sTitle":"ForceMax"
 					},
 					{
-						"data": "torqueAct",
-						"sTitle":"TorqueAct",
+						"data": "forceAct",
+						"sTitle":"ForceAct",
 						"render": function(data, type, row) {
 							return "<B>" + data + "</B>"
 						}
 					},
 					{
-						"data": "torqueMin",
-						"sTitle":"TorqueMin"
+						"data": "forceMin",
+						"sTitle":"ForceMin"
 					},
 					{
-						"data": "angleMax",
-						"sTitle":"AngleMax"
+						"data": "distMax",
+						"sTitle":"DistMax"
 					},
 					{
-						"data": "angleAct",
-						"sTitle":"AngleAct",
+						"data": "distAct",
+						"sTitle":"DistAct",
 						"render": function(data, type, row) {
 							return "<B>" + data + "</B>"
 						}
 					},
 					{
-						"data": "angleMin",
-						"sTitle":"AngleMin"
+						"data": "distMin",
+						"sTitle":"DistMin"
 					}
 				]
 			} );

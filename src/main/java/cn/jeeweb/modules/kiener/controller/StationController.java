@@ -52,7 +52,7 @@ public class StationController extends BaseCRUDController<Station, Long> {
 
         entityWrapper.eq("enabled", true);
         entityWrapper.eq("isRework", false);
-        entityWrapper.eq("isOffline", "0");
+//        entityWrapper.eq("isOffline", "0");
         entityWrapper.eq("isConveyorSystem", false);
         entityWrapper.orderBy("identifier");
 
@@ -77,6 +77,37 @@ public class StationController extends BaseCRUDController<Station, Long> {
         entityWrapper.eq("isRework", false);
         entityWrapper.eq("isOffline", "0");
         entityWrapper.eq("isConveyorSystem", false);
+        entityWrapper.orderBy("identifier");
+
+//        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<Station> record = stationService.selectList(entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+        StringUtils.printJson(response, content);
+    }
+
+    /*
+* query all the stations for select type
+*
+* */
+    @RequestMapping(value = "ajaxList_station_force", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_station_force(PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+        EntityWrapper<Station> entityWrapper = new EntityWrapper<>(entityClass);
+        //input the start and end param
+        DataSourceContextHolder.setDbType("dataSource");
+
+        //output json with query conditions
+        propertyPreFilterable.addQueryProperty("id", "identifier", "type","force");
+
+//      filer condition find force > 0 station,
+//        entityWrapper.eq("enabled", true);
+//        entityWrapper.eq("isRework", false);
+//        entityWrapper.eq("isOffline", "0");
+//        entityWrapper.eq("isConveyorSystem", false);
+        entityWrapper.gt("force", 0);
+
         entityWrapper.orderBy("identifier");
 
 //        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);

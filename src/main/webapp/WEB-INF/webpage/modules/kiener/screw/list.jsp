@@ -13,6 +13,7 @@
     <grid:column label="type"  name="type"  width="50" />
     <grid:column label="pos"  name="pos"  width="50"/>
     <grid:column label="spin"  name="spin"  width="50"/>
+    <grid:column label="type"  name="measureType"  width="50"/>
 
     <grid:toolbar function="create"/>
     <grid:toolbar function="update"/>

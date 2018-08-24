@@ -369,12 +369,10 @@
 									<thead>
 									<tr style="padding: 0px; font-size: x-large">
 										<th class=" col-sm-1" >SN</th>
-										<th class=" col-sm-1" >Type</th>
-										<th class=" col-sm-2" >Loading</th>
+										<th class=" col-sm-4" >Engine Type</th>
+										<th class=" col-sm-4" >Loading Plan</th>
 										<th class=" col-sm-2" >Input</th>
 										<th class=" col-sm-2" >Output</th>
-										<th class=" col-sm-5" >Last Engine</th>
-										<th class=" col-sm-1" >Station</th>
 									</tr>
 									</thead>
 									<tbody id="tbody_plan">
@@ -384,8 +382,6 @@
 										<td style="font-size: 20px" id="firstTypePlan"></td>
 										<td style="font-size: 20px" id="firstTypeOnline">0</td>
 										<td style="font-size: 20px" id="firstTypeOutput">0</td>
-										<td style="font-size: 20px" id="firstTypeLastEngine">0</td>
-										<td style="font-size: 20px" id="firstTypeStation">0</td>
 
 									</tr>
 									<tr id="trSecondType" class="hidden">
@@ -394,10 +390,6 @@
 										<td style="font-size: 20px" id="secondTypePlan"></td>
 										<td style="font-size: 20px" id="secondTypeOnline">0</td>
 										<td style="font-size: 20px" id="secondTypeOutput">0</td>
-										<td style="font-size: 20px" id="secondTypeLastEngine">0</td>
-										<td style="font-size: 20px" id="secondTypeStation">0</td>
-
-
 									</tr>
 									<tr id="trThirdType" class="hidden">
 										<td style="font-size: 20px"><button class="btn btn-success btn-xs">3</button></td>
@@ -405,8 +397,6 @@
 										<td style="font-size: 20px" id="thirdTypePlan"></td>
 										<td style="font-size: 20px" id="thirdTypeOnline">0</td>
 										<td style="font-size: 20px" id="thirdTypeOutput">0</td>
-										<td style="font-size: 20px" id="thirdTypeLastEngine">0</td>
-										<td style="font-size: 20px" id="thirdTypeStation">0</td>
 
 									</tr>
 									<tr id="trFourthType" class="hidden">
@@ -415,8 +405,6 @@
 										<td style="font-size: 20px" id="fourthTypePlan"></td>
 										<td style="font-size: 20px" id="fourthTypeOnline">0</td>
 										<td style="font-size: 20px" id="fourthTypeOutput">0</td>
-										<td style="font-size: 20px" id="fourthTypeLastEngine">0</td>
-										<td style="font-size: 20px" id="fourthTypeStation">0</td>
 
 									</tr>
 									<tr id="trFifthType" class="hidden">
@@ -425,8 +413,6 @@
 										<td style="font-size: 20px" id="fifthTypePlan"></td>
 										<td style="font-size: 20px" id="fifthTypeOnline">0</td>
 										<td style="font-size: 20px" id="fifthTypeOutput">0</td>
-										<td style="font-size: 20px" id="fifthTypeLastEngine">0</td>
-										<td style="font-size: 20px" id="fiftyTypeStation">0</td>
 
 									</tr>
 									</tbody>
@@ -791,14 +777,6 @@
 		$("#m010_type_1").children().first().html("");
 		$("#m010_type_1").children().last().html("");
 		$("#latestPartNumber").html("");
-		$("#firstTypeLastEngine").html("");
-		$("#secondTypeLastEngine").html("");
-		$("#thirdTypeLastEngine").html("");
-		$("#fourthTypeLastEngine").html("");
-		$("#fifthTypeLastEngine").html("");
-		$("#fifthTypeLastEngine").html("");
-
-
 		$("#m140_type_1").children().first().html("");
 		$("#m140_type_1").children().last().html("");
 		$("#m150_type_1").children().first().html("");
@@ -861,9 +839,9 @@
 		var endDate = moment().format("YYYY-MM-DD HH:mm:ss");
 
 //				testing eviroment setting
-//		var queryDate = "2018-03-12";
-//		var startDate = "2018-03-12 06:30";
-//		var endDate = "2018-03-12 10:00";
+//		var queryDate = "2017-08-16";
+//		var startDate = "2017-08-16 06:30";
+//		var endDate = "2017-08-16 15:50";
 
 //				$("#trFirstType").removeClass("hidden");
 //				$("#trSecondType").removeClass("hidden");
@@ -1009,11 +987,9 @@
 			var m1610_typeNum = 0;
 			var m1650_typeNum = 0;
 
-
-
 			if(moment(endDate).format("HH:mm") > beginHHMM || moment(endDate).format("HH:mm") < endHHMM)
 			{
-//				console.info("endDate format: " + moment(endDate).format("HH:mm") + " begin:" + beginHHMM + " end:" + endHHMM)
+				console.info("endDate format: " + moment(endDate).format("HH:mm") + " begin:" + beginHHMM + " end:" + endHHMM)
 				$.ajax({
 					type : "post",
 					url : "../../admin/kiener/measure/ajaxList_output",
@@ -1021,46 +997,19 @@
 					data: {"measureDate":startDate,"measureDateEnd":endDate, "type":"klt"},
 					success : function(data) {
 //                    [{"output":"1062","station":45,"variety":"05710"},{"output":"5","station":45,"variety":"05776"}]
-						var latestNumber = "";
 						for(var p in data){
 //                        console.info("output:" + data[p].output + " type:" + typeof(data[p].output)+
 //                                " station: " + data[p].station + " type: " + typeof(data[p].station) +
 //                                " variety: " + data[p].variety);
 							if(data[p].station == 10 ){
 								m010_typeNum = m010_typeNum + 1;
-								latestNumber = data[p].latestNumber;
 //									 setOutputPanel(object, variety, output, varietyNumber, flag)
 								setOutputPanel($("#m010_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate, m010_typeNum,1);
 								//				show the latest partNumber
 								if(m010_typeNum == 1){
-									$("#latestPartNumber").append(latestNumber);
-								}
-
-								if(data[p].variety.substr(1) == firstEType){
-									$("#firstTypeLastEngine").html(latestNumber);
-
-								}else if(data[p].variety.substr(1) == secondEType){
-									$("#secondTypeLastEngine").html(latestNumber);
-
-								}else if(data[p].variety.substr(1) == thirdEType){
-									$("#thirdTypeLastEngine").html(latestNumber);
-
-								}else if(data[p].variety.substr(1) == fourthEType){
-									$("#fourthTypeLastEngine").html(latestNumber);
-
-								}else if(data[p].variety.substr(1) == fifthEType){
-									$("#fifthTypeLastEngine").html(latestNumber);
-
+									$("#latestPartNumber").append(data[p].latestNumber);
 								}
 							}
-
-//							based on the latestNumber to identify the exact station
-							if(data[p].latestNumber == latestNumber){
-								var station = data[p].station;
-								console.info("ll:" + data[p].latestNumber + " " + data[p].variety + " " + data[p].station);
-								$("#firstTypeStation").html(station);
-							}
-
 							if(data[p].station == 140 ){
 								m140_typeNum = m140_typeNum + 1;
 								setOutputPanel($("#m140_type_1"),data[p].variety.substr(1),data[p].output, data[p].nextDate, m140_typeNum,0);
@@ -1217,7 +1166,7 @@
 				}
 
 				else if(variety == secondEType){
-//					console.info("this the second type:" + variety);
+					console.info("this the second type:" + variety);
 
 					//if current produce enginee typ is the secondType, change to the color
 					object.parent().parent().parent().removeClass("widget-color-blue3");
@@ -1292,8 +1241,8 @@
 
 					object.parent().parent().parent().find(".fa-gavel").removeClass("hidden");
 				}
-//				console.info("the Time Frame is :" +timeFrame + " lastestTime:" + lastestTime + " endDate:" +
-//						endDate + " type:" + variety);
+				console.info("the Time Frame is :" +timeFrame + " lastestTime:" + lastestTime + " endDate:" +
+						endDate + " type:" + variety);
 			}
 
 			if(flag == 1){

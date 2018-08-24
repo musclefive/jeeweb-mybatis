@@ -2,6 +2,7 @@ package cn.jeeweb.modules.kiener.mapper;
 
 import cn.jeeweb.core.query.data.Queryable;
 import cn.jeeweb.modules.kiener.entity.MeasureData;
+import cn.jeeweb.modules.kiener.entity.TakeTime;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -27,6 +28,8 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
 
     List<MeasureData> queryRealTimeTaktTimeSingle(@Param("ew") Wrapper<MeasureData> wrapper);
 
+    List<MeasureData> queryGroupData(@Param("ew") Wrapper<MeasureData> wrapper);
+
     List<MeasureData> queryZKGDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper ,@Param("ew_1") Wrapper<MeasureData> wrapper_1);
 
     List<MeasureData> queryZKAndKWDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper, @Param("ew_1") Wrapper<MeasureData> wrapper_1);
@@ -35,6 +38,8 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
 
     List<MeasureData> queryScrewListbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
+    List<MeasureData> queryForceListbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
     List<MeasureData> querySingleDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
     List<MeasureData> queryDailyDMCbm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
@@ -42,5 +47,11 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
     List<MeasureData> queryDailyDMCbmforZK(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
 
     List<MeasureData> queryEngineList(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryOKRatebm(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> queryOKRatebmwithNoVariety(Queryable queryable,@Param("ew") Wrapper<MeasureData> wrapper);
+
+    List<MeasureData> selectEngineTypePage(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
 
 }

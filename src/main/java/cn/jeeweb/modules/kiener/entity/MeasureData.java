@@ -133,6 +133,38 @@ public class MeasureData extends AbstractEntity<Long> {
     private String angleAct;
     /*screw information end*/
 
+    /*force information begin*/
+    @TableField(exist = false)
+    private String forceID;
+
+    @TableField(exist = false)
+    private String strokeNumber;
+
+    @TableField(exist = false)
+    private String hardware;
+
+    @TableField(exist = false)
+    private String forceMin;
+
+    @TableField(exist = false)
+    private String forceMax;
+
+    @TableField(exist = false)
+    private String forceAct;
+
+    @TableField(exist = false)
+    private String distMin;
+
+    @TableField(exist = false)
+    private String distMax;
+
+    @TableField(exist = false)
+    private String distAct;
+    /*screw information end*/
+
+    /*ratio for success past engine information end*/
+    @TableField(exist = false)
+    private String totalNok;
 
     @Override
     public Long getId() {
@@ -414,5 +446,85 @@ public class MeasureData extends AbstractEntity<Long> {
 
     public void setAngleAct(String angleAct) {
         this.angleAct = angleAct;
+    }
+
+    public String getTotalNok() {
+        return totalNok;
+    }
+
+    public void setTotalNok(String totalNok) {
+        this.totalNok = totalNok;
+    }
+
+    public String getForceID() {
+        return forceID;
+    }
+
+    public void setForceID(String forceID) {
+        this.forceID = forceID;
+    }
+
+    public String getStrokeNumber() {
+        return strokeNumber;
+    }
+
+    public void setStrokeNumber(String strokeNumber) {
+        this.strokeNumber = strokeNumber;
+    }
+
+    public String getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(String hardware) {
+        this.hardware = hardware;
+    }
+
+    public String getForceMin() {
+        return forceMin;
+    }
+
+    public void setForceMin(String forceMin) {
+        this.forceMin = forceMin;
+    }
+
+    public String getForceMax() {
+        return forceMax;
+    }
+
+    public void setForceMax(String forceMax) {
+        this.forceMax = forceMax;
+    }
+
+    public String getForceAct() {
+        return forceAct;
+    }
+
+    public void setForceAct(String forceAct) {
+        this.forceAct = forceAct;
+    }
+
+    public String getDistMin() {
+        return distMin;
+    }
+
+    public void setDistMin(String distMin) {
+        this.distMin = distMin;
+    }
+
+    public String getDistMax() {
+        return distMax;
+    }
+
+    public void setDistMax(String distMax) {
+        this.distMax = distMax;
+    }
+
+    public String getDistAct() {
+        return distAct;
+    }
+
+    public void setDistAct(String distAct) {
+        this.distAct = distAct;
     }
 }

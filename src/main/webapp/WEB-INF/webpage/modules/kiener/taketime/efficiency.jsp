@@ -154,6 +154,7 @@
 
 		var val_avgTakTime = new Array();
 		var val_station = new Array();
+		var val_total = new Array();
 
 		$.blockUI.defaults.message = '<h4><img style="height: 30px;width: 30px" src="${staticPath}/assets/img/loading.gif" /> Just a moment...</h4>';
 		$.blockUI.defaults.overlayCSS.opacity = .2;
@@ -207,11 +208,88 @@
 				}
 			});
 
+//			var options = {
+//				chart: {
+//					renderTo: 'chartPanel',
+//					zoomType: 'x',
+//					type: 'column'
+//				},
+//				title: {
+//					text: ''
+//				},
+//				subtitle: {
+////					text: ''
+//				},
+//				labels:{
+//					style:{
+//						color : "#ff0000"
+//					},
+//					items:[{
+//						html:'',
+//						style:{
+//							left:'0px',
+//							top:'-40px'
+//						}
+//					}]
+//				},
+//				xAxis: {
+//					crosshair: true
+//				},
+//				yAxis: {
+//					min: 0,
+//					title: {
+//						text: 'Takt Time(ss)'
+//					},
+//					plotLines:[{
+//						label:{
+//							text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
+//							align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
+//							x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
+//						},
+//						color:'red',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
+//						dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
+//						value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
+//						width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
+//					}]
+//				},
+//				tooltip: {
+//					headerFormat: '<span style="font-size:10px"><B>Employee ID:{point.key}</B></span><table>',
+//					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+//					'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>' +
+//					'<tr><td style="color:{series.color};padding:0">Total Record: </td>' +
+//					'<td style="padding:0"><b>{point.total:.0f}</b></td></tr>',
+//					footerFormat: '</table>',
+//					shared: true,
+//					useHTML: true
+//				},
+//				plotOptions: {
+//					column: {
+//						pointPadding: 0.2,
+//						borderWidth: 0
+//					}
+//				},
+//				series:[{
+////					name : "Avg Tak Time",
+////					data : [ 37, 38, 39, 38, 38, 40, 39, 39, 38, 38]
+//					dataLabels: {
+//						enabled: true,
+//						rotation: 0,
+//						color: '#FFFFFF',
+//						align: 'center',
+//						format: '{point.total}', // one decimal
+//						y: 25, // 10 pixels down from the top
+//						style: {
+//							fontSize: '13px',
+//							fontFamily: 'Verdana, sans-serif'
+//						}
+//					}
+//				}]
+//			};
+
 			var options = {
 				chart: {
 					renderTo: 'chartPanel',
-					zoomType: 'x',
-					type: 'column'
+					zoomType: 'x'
 				},
 				title: {
 					text: ''
@@ -234,30 +312,39 @@
 				xAxis: {
 					crosshair: true
 				},
-				yAxis: {
-					min: 0,
-					title: {
-						text: 'Takt Time(ss)'
-					},
-					plotLines:[{
-						label:{
-							text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
-							align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
-							x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
+				yAxis: [
+					{
+						min: 0,
+						title: {
+							text: 'Takt Time(ss)'
 						},
-						color:'red',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
-						dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
-						value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
-						width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
-					}]
-				},
+						plotLines:[{
+							label:{
+								text:'38s',     //閺嶅洨顒烽惃鍕敶鐎癸拷
+								align:'left',                //閺嶅洨顒烽惃鍕寜楠炲厖缍呯純顕嗙礉濮樻潙閽╃仦鍛箯,姒涙顓婚弰顖涙寜楠炲啿鐪虫稉鐠玡nter
+								x:-10                         //閺嶅洨顒烽惄绋款嚠娴滃氦顫︾�规矮缍呴惃鍕秴缂冾喗鎸夐獮鍐蹭焊缁夎崵娈戦崓蹇曠閿涘矂鍣搁弬鏉跨暰娴ｅ稄绱濆鏉戦挬鐏炲懎涔�10px
+							},
+							color:'red',           //缁捐法娈戞０婊嗗閿涘苯鐣炬稊澶夎礋缁俱垼澹�
+							dashStyle:'solid',     //姒涙顓婚崐纭风礉鏉╂瑩鍣风�规矮绠熸稉鍝勭杽缁撅拷
+							value:38,               //鐎规矮绠熼崷銊╁亝娑擃亜锟介棿绗傞弰鍓с仛閺嶅洨銇氱痪鍖＄礉鏉╂瑩鍣烽弰顖氭躬x鏉炵繝绗傞崚璇插娑擄拷3閻ㄥ嫬锟界厧顦╅崹鍌滄纯閸栨牔绔撮弶锛勫殠
+							width:2               //閺嶅洨銇氱痪璺ㄦ畱鐎硅棄瀹抽敍锟�2px
+						}]
+					},
+					{
+						min: 0,
+						title: {
+							text: 'Total Engine'
+						},
+						opposite: true
+					}
+				],
 				tooltip: {
-					headerFormat: '<span style="font-size:10px"><B>Employee ID:{point.key}</B></span><table>',
-					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>' +
-					'<tr><td style="color:{series.color};padding:0">Total Record: </td>' +
-					'<td style="padding:0"><b>{point.total:.0f}</b></td></tr>',
-					footerFormat: '</table>',
+//					headerFormat: '<span style="font-size:10px"><B>Employee ID:{point.key}</B></span><table>',
+//					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+//					'<td style="padding:0"><b>{point.y:.0f} s</b></td></tr>' +
+//					'<tr><td style="color:{series.color};padding:0">Total Record: </td>' +
+//					'<td style="padding:0"><b>{point.total:.0f}</b></td></tr>',
+//					footerFormat: '</table>',
 					shared: true,
 					useHTML: true
 				},
@@ -267,22 +354,17 @@
 						borderWidth: 0
 					}
 				},
-				series:[{
+				series:[
+					{
 //					name : "Avg Tak Time",
 //					data : [ 37, 38, 39, 38, 38, 40, 39, 39, 38, 38]
-					dataLabels: {
-						enabled: true,
-						rotation: 0,
-						color: '#FFFFFF',
-						align: 'center',
-						format: '{point.total}', // one decimal
-						y: 25, // 10 pixels down from the top
-						style: {
-							fontSize: '13px',
-							fontFamily: 'Verdana, sans-serif'
-						}
+					type: 'column'
+				},
+					{
+						type: 'spline',
+						yAxis: 1
 					}
-				}]
+				]
 			};
 
 			$('#date-timepicker-start').datetimepicker({
@@ -367,6 +449,7 @@
 //								val_avgTakTime.push(record[p]["avgTakTime"]);
 								tempStr = "{y:" + record[p]["avgTakTime"] + ",total:'" + record[p]["total"] + "'}";
 								val_avgTakTime.push(tempStr);
+								val_total.push(record[p]["total"]);
 
 							}
 							console.info("val_station:" + val_station);
@@ -383,6 +466,9 @@
 							options.series[0].data = eval('['+ val_avgTakTime +']');
 //							options.series[0].data = val_avgTakTime;
 
+							options.series[1].name = "Total Produce Engine";
+							options.series[1].data = eval('['+ val_total +']');
+
 //							if(currentType != "all"){
 //								currentType = currentType.substr(1);
 //							}
@@ -392,6 +478,8 @@
 						new Highcharts.Chart(options);
 						val_avgTakTime = [];
 						val_station = [];
+						val_total = [];
+
 //					console.info(val_avgTakTime);
 //					console.info(val_station);
 					}

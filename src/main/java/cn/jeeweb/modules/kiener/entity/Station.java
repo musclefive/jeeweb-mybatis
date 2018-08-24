@@ -46,6 +46,12 @@ public class Station extends AbstractEntity<Long> {
     @TableField(value = "screw")
     private String screw;
 
+    @TableField(value = "leak")
+    private String leak;
+
+    @TableField(value = "force")
+    private String force;
+
     @TableField(value = "isShowTaktTime")
     private Boolean isShowTaktTime;
 
@@ -156,5 +162,21 @@ public class Station extends AbstractEntity<Long> {
 
     public void setIsShowDashboard(Boolean isShowDashboard) {
         this.isShowDashboard = isShowDashboard;
+    }
+
+    public String getLeak() {
+        return leak;
+    }
+
+    public void setLeak(String leak) {
+        this.leak = leak;
+    }
+
+    public String getForce() {
+        return force;
+    }
+
+    public void setForce(String force) {
+        this.force = force;
     }
 }

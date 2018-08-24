@@ -12,8 +12,9 @@
 
     SELECT Identifier as "identifier", Type as "type"
     FROM <include refid="queryTable" />
-        group by Identifier,Type
-
+        <where>
+            ${ew.sqlSegment}
+        </where>
     </select>
 
 </mapper>
