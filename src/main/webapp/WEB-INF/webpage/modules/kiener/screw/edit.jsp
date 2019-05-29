@@ -49,10 +49,17 @@
 			   </tr>
 			   <tr>
 				   <td  class="width-15 active text-right">
-					   <label><font color="red">*</font>Type</label>
+					   <label><font color="red">*</font>Measure Type</label>
 				   </td>
 				   <td class="width-35" >
-					   <form:input path="measureType" class="form-control "/>
+					   <form:select path="measuretype" dict="measuretype" class="form-control"  htmlEscape="false"  datatype="*"  nullmsg="请输入类型！"/>
+					   <label class="Validform_checktip"></label>
+				   </td>
+				   <td  class="width-15 active text-right">
+					   <label><font color="red">*</font>JobID</label>
+				   </td>
+				   <td  class="width-35" >
+					   <form:input path="jobid" class="form-control " />
 					   <label class="Validform_checktip"></label>
 				   </td>
 			   </tr>

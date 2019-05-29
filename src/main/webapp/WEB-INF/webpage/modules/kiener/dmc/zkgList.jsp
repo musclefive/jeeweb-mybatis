@@ -395,7 +395,9 @@
 				$("#date-timepicker-end").val(ShiftDate);
 			}
 		});
-
+/*
+* query the zk/zkg/kw online list between start and end
+* */
 		$("#btnQuery").click(function() {
 			var startDate = $("#date-timepicker-start").val();
 			var endDate = $("#date-timepicker-end").val();
@@ -414,6 +416,9 @@
 
 		});
 
+		/*
+		* query zkg/zk/kw online record list
+		* */
 		$("#btnQueryByDMC").click(function() {
 			var data = $("#txtDMCList").val();
 
@@ -424,6 +429,7 @@
 			if(tableQueryList){
 				$('#tableZKGQueryList').dataTable().fnDestroy();
 			}
+			//queryType is list
 			initQueryTable(data, "list");
 
 		});

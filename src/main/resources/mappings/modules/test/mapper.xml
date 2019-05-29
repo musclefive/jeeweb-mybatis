@@ -8,4 +8,9 @@
         select * from user_leave p where p.id = #{id}
     </select>
 
+    <insert id="addUser" parameterType="UserLeave"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into user_leave(userName,userAge,userAddress)
+        values(#{userName},#{userAge},#{userAddress})
+    </insert>
 </mapper>

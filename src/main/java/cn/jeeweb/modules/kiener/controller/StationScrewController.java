@@ -100,7 +100,7 @@ public class StationScrewController extends BaseCRUDController<StationScrew, Str
         String identifier = request.getParameter("identifier").toString();
 
         //output json with query conditions
-        propertyPreFilterable.addQueryProperty("id", "identifier", "type", "pos","spin");
+        propertyPreFilterable.addQueryProperty("id", "identifier", "type", "pos","spin","jobid");
 
 //      filer condition
         entityWrapper.eq("Identifier", identifier);

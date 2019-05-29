@@ -21,8 +21,6 @@
 		<mysql.version>5.1.27</mysql.version>
 		<!-- oracle -->
 		<oracle.version>10.2.0.1.0</oracle.version>
-		<!-- 4.0 -->
-		<sqlserver.version>4.0</sqlserver.version>
 		<!-- 工具包 -->
 		<guava.version>17.0</guava.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
@@ -510,7 +508,11 @@
 			<artifactId>axis2-transport-http</artifactId>
 			<version>1.7.6</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>7.0.0.jre8</version>
+		</dependency>
 		<!-- 注释掉oracle、sqlserver，需要的自己添加 
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>

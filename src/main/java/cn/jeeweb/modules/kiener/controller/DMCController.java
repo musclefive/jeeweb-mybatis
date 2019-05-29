@@ -75,6 +75,20 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         return display("zkList");
     }
 
+    @RequestMapping(value = "/zkgWapian")
+    public String zkgWapianList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter the takt time list, then show the station list and query time
+        preList(model, request, response);
+        return display("zkgWapian");
+    }
+
+    @RequestMapping(value = "/kwWapian")
+    public String kwWapianList(Model model, HttpServletRequest request, HttpServletResponse response) {
+        //enter the takt time list, then show the station list and query time
+        preList(model, request, response);
+        return display("kwWapian");
+    }
+
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
@@ -85,7 +99,7 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
 
     /*
     * query the DMC code from the table[DMCMeasurements]
-    * to show the ZKG part table
+    * to show the ZKG detail record
     * */
     @RequestMapping(value = "ajaxList_dmc_zkg", method = { RequestMethod.GET, RequestMethod.POST })
     private void ajaxList_dmc_zkg(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
@@ -261,6 +275,7 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         String dmc = request.getParameter("dmc").toString();
         String station = request.getParameter("station").toString();
 //        String dmc = "06K103011CP01555189RRRRR";
+        //querytype : single and list
         String queryType = request.getParameter("queryType").toString();
         logger.info("ajaxList_dmc_single method queryType: " + queryType + " dmc:" + dmc + " station:" + station);
 
@@ -290,5 +305,47 @@ public class DMCController extends BaseCRUDController<MeasureData, Long> {
         DataSourceContextHolder.setDbType("dataSource");
     }
 
+    /*
+    * query the all the online record(ZK/ZKG/KW) from  from the table[DMCMeasurements]
+    * for later statistic for wapian by different color
+    * */
+    @RequestMapping(value = "ajaxList_dmc_part_online_list", method = { RequestMethod.GET, RequestMethod.POST })
+    private void ajaxList_dmc_part_online_list(Queryable queryable, PropertyPreFilterable propertyPreFilterable, HttpServletRequest request,
+                                     HttpServletResponse response) throws IOException {
+        EntityWrapper<MeasureData> entityWrapper = new EntityWrapper<>(entityClass);
+
+        preAjaxList(queryable, entityWrapper, request, response);
+
+//       station:10 for zkg station:70 for kw
+        String station = request.getParameter("station").toString();
+        String startDate = request.getParameter("measureDate").toString();
+        String endDate = request.getParameter("endDate").toString();
+        String currentType = request.getParameter("currentType").toString();
+        entityWrapper.between("A.measureDate", startDate, endDate);
+
+//        String dmc = "06K103011CP01555189RRRRR";
+
+        entityWrapper.eq("station", station);
+        //add condition select all the Ok parts
+        if(!currentType.equals("all")){
+            entityWrapper.eq("variety", currentType);
+        }
+
+        if (station.equals("10")){
+            propertyPreFilterable.addQueryProperty("partNumber", "variety", "total", "type","measureDate");
+        } else{
+            propertyPreFilterable.addQueryProperty("partNumber", "variety", "total", "dmc","measureDate");
+        }
+
+        // 预处理
+        QueryableConvertUtils.convertQueryValueToEntityValue(queryable, entityClass);
+        SerializeFilter filter = propertyPreFilterable.constructFilter(entityClass);
+        List<MeasureData> record = measureDataService.selectPartOnlineList(queryable, entityWrapper);
+
+        String content = "{\"results\":" + JSON.toJSONString(record, filter) + "}";
+
+        StringUtils.printJson(response, content);
+        DataSourceContextHolder.setDbType("dataSource");
+    }
 
 }

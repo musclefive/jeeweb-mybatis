@@ -190,6 +190,17 @@ public class MeasureDataServiceImpl extends CommonServiceImpl<MeasureDataMapper,
 
     }
 
+    /*
+    * select all the zk/zkg/kw online record list
+    * for later statistic for wapian by different color.
+    * */
+    @Override
+    public List<MeasureData> selectPartOnlineList(Queryable queryable, Wrapper<MeasureData> wrapper){
+        List<MeasureData> records = baseMapper.selectPartOnlineList(queryable, wrapper);
+        return records;
+
+    }
+
 
     /*
     *

@@ -53,4 +53,6 @@ public interface IMeasureDataService extends ICommonService<MeasureData> {
 
     public List<MeasureData> selectEngineType(Queryable queryable, Wrapper<MeasureData> wrapper);
 
+    public List<MeasureData> selectPartOnlineList(Queryable queryable, Wrapper<MeasureData> wrapper);
+
 }

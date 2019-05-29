@@ -54,4 +54,6 @@ public interface MeasureDataMapper extends BaseMapper<MeasureData> {
 
     List<MeasureData> selectEngineTypePage(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
 
+    List<MeasureData> selectPartOnlineList(Queryable queryable, @Param("ew") Wrapper<MeasureData> wrapper);
+
 }

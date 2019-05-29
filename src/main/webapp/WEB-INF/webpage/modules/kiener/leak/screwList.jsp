@@ -244,7 +244,7 @@
 						for(var i = 0; i < record.length; i++) {
 							var text =  record[i]["type"] + record[i]["identifier"];
 							var value = record[i]["identifier"];
-//							console.info(text);
+//							console.info(text + " jobid:" + record[i]["jobid"]);
 							$("#selectStationType").append("<option value='"+value+"'>"+text+"</option>");
 						}
 						$("#selectStationType").chosen({allow_single_deselect:true});
@@ -281,7 +281,8 @@
 
 							for(var i = 0; i < record.length; i++) {
 								var text = "Pos("+record[i]["pos"]+")" + "--" + "Spin("+record[i]["spin"]+")";
-								var value = record[i]["pos"] + "-" + record[i]["spin"];
+								var value = record[i]["pos"] + "-" + record[i]["spin"] + "-" + record[i]["jobid"];
+								console.info("pos and spin: " + value);
 								if(i == 0){
 									$("#selectPosSpin").append("<option value='"+value+"' selected>"+text+"</option>");
 								}else{
@@ -329,7 +330,7 @@
 				var arr = pos_spin.split('-');
 				var pos = arr[0];
 				var spin = arr[1];
-
+				var jobid = arr[2];
 				if (startDate == "" || endDate == "") {
 					return false;
 				}
@@ -339,7 +340,7 @@
 				if(tableList){
 					$('#tableLeakTest').dataTable().fnDestroy();
 				}
-				initTable(startDate,endDate,screwStation,pos,spin);
+				initTable(startDate,endDate,screwStation,pos,spin, jobid);
 			});
 
 //			click the NormalDist show the normal dist for the leak rate
@@ -484,7 +485,7 @@
 				var arr = pos_spin.split('-');
 				var pos = arr[0];
 				var spin = arr[1];
-
+				var jobid = arr[2];
 				if (screwStation == "" || pos_spin == "" ) {
 					top.layer.alert('请选择岗位！', {icon: 0, title:'警告'});
 					return false;
@@ -492,7 +493,7 @@
 				console.info("query data startDate:" + startDate + " endDate:" + endDate + " station:" + screwStation + "" +
 						" pos_spin " + pos_spin + " pos:" + pos + " spin:" + spin);
 
-				initChart(options,optionAngle, startDate, endDate, screwStation, pos, spin);
+				initChart(options,optionAngle, startDate, endDate, screwStation, pos, spin, jobid);
 
 			});
 
@@ -587,24 +588,26 @@
 					{
 	//					name : "Leak"
 						turboThreshold:0,
-						color: '#1C86EE'
+						color: '#00CD00'
 					},{
 						name : "UW-T",
+						dashStyle : "longdashdot",
 						turboThreshold:0,
-						color: '#FF3030'
+						color: '#0000FF'
 					},{
 						name : "DW-T",
+						dashStyle : "longdashdot",
 						turboThreshold:0,
-						color: '#FF7256'
+						color: '#0000FF'
 					},{
 						name : "Torque Max",
 						turboThreshold:0,
-						color: '#73BF00'
+						color: '#FF3030'
 					},
 					{
 						name : "Torque Min",
 						turboThreshold:0,
-						color: '#8F4586'
+						color: '#FF3030'
 					}
 				]
 			};
@@ -666,7 +669,7 @@
 
 		});
 
-		function initChart(options, optionsAngle, start, end, station, pos, spin) {
+		function initChart(options, optionsAngle, start, end, station, pos, spin,jobid) {
 			var val_time = [];
 			var val_AngleAct = [];
 			var val_TorqueAct = [];
@@ -686,7 +689,7 @@
 				type : "post",
 				url : "${adminPath}/kiener/leak/ajaxList_screwinfo",
 				dataType : "json",
-				data: {"measureDate":start,"endDate":end, "station":station,"pos":pos,"spin":spin},
+				data: {"measureDate":start,"endDate":end, "station":station,"pos":pos,"spin":spin,"jobid":jobid},
 				error : function (xhr, textStatus){
 					console.info("queryData ajax error,textStatus:" + textStatus);
 				},
@@ -807,7 +810,7 @@
 
 		}
 
-		function initTable(start, end, station,pos,spin){
+		function initTable(start, end, station,pos,spin,jobid){
 			tableList = $('#tableLeakTest').dataTable( {
 				"dom": '<"row"<"col-sm-8 "l><"col-sm-2 "f><"col-sm-2 "T>>t<"row"<"col-sm-6"i><"col-sm-6"p>>',
 				oTableTools: {
@@ -827,7 +830,7 @@
 				},
 				"ajax": {
 					"url" : "${adminPath}/kiener/leak/ajaxList_screwinfo?measureDate="+start +
-					"&endDate=" + end + "&station=" + station + "&pos=" + pos + "&spin=" +spin,
+					"&endDate=" + end + "&station=" + station + "&pos=" + pos + "&spin=" +spin + "&jobid=" + jobid,
 					"dataSrc" : "results"
 				},
 				"order" :[[2,'asc']],
@@ -860,7 +863,7 @@
 						"data": "torqueAct",
 						"sTitle":"TorqueAct",
 						"render": function(data, type, row) {
-							return "<B>" + data + "</B>"
+							return "<B>" + parseFloat(data).toFixed(2) + "</B>"
 						}
 					},
 					{
@@ -875,7 +878,7 @@
 						"data": "angleAct",
 						"sTitle":"AngleAct",
 						"render": function(data, type, row) {
-							return "<B>" + data + "</B>"
+							return "<B>" + parseFloat(data).toFixed(2) + "</B>"
 						}
 					},
 					{

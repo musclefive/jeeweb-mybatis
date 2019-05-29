@@ -132,7 +132,7 @@ public class LeakTestController extends BaseCRUDController<MeasureData, Long> {
         String station = request.getParameter("station").toString();
         String pos = request.getParameter("pos").toString();
         String spin = request.getParameter("spin").toString();
-
+        String jobid = request.getParameter("jobid").toString();
 
         entityWrapper.between("A.Date", startDate, endDate);
         entityWrapper.eq("A.station", station);
@@ -140,6 +140,8 @@ public class LeakTestController extends BaseCRUDController<MeasureData, Long> {
 
         entityWrapper.eq("B.ScrewPos", Integer.valueOf(pos));
         entityWrapper.eq("B.SpindleID", Integer.valueOf(spin));
+        entityWrapper.eq("B.JobID", jobid);
+
         entityWrapper.eq("B.OK", true);
 
         propertyPreFilterable.addQueryProperty("id", "partNumber", "station", "variety", "measureDate", "scewID",

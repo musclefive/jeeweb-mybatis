@@ -16,7 +16,7 @@
 
     </resultMap>
     <sql id="queryTable" >
-        MeasurementGeneralData
+        caq.MeasurementGeneralData
     </sql>
     <sql id="queryTable_MeasureTemp" >
         caq.MeasurementGeneralTemp
@@ -83,19 +83,19 @@
     </select>
 
     <select id="queryRealTimeOutputChangeType" resultType="MeasureData">
-        select output,A.Station, B.Variety, nextDate, latestNumber,Summary as "changeCount" ,Total as "total" from
-        <include refid="queryTable_MeasureTemp" /> A left join
-        (
-        SELECT  Count(*) as 'output', Station ,Variety, MAX(Date) as 'nextDate', max(PartNumber) as latestNumber
-        FROM <include refid="queryTable" />
-        <where>
-            ${ew.sqlSegment}
-        </where>
-        group by Station, Variety
-        ) B on A.station = B.Station
-        where output is not NULL
-        order by A.station, B.nextDate desc
-    </select>
+    select output,A.Station, B.Variety, nextDate, latestNumber,Summary as "changeCount" ,Total as "total" from
+    <include refid="queryTable_MeasureTemp" /> A left join
+    (
+    SELECT  Count(*) as 'output', Station ,Variety, MAX(Date) as 'nextDate', max(PartNumber) as latestNumber
+    FROM <include refid="queryTable" />
+    <where>
+        ${ew.sqlSegment}
+    </where>
+    group by Station, Variety
+    ) B on A.station = B.Station
+    where output is not NULL
+    order by A.station, B.nextDate desc
+</select>
 
     <select id="queryRealTimeTaktTime" resultType="MeasureData">
 
@@ -164,20 +164,20 @@
 
     <select id="queryZKGDMCbm" resultType="MeasureData">
 
-        <!--select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",-->
-        <!--Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary-->
-        <!--from caq.DMCMeasurements C, caq.MeasurementGeneralData A  where DMC in-->
-        <!--(-->
-        <!--SELECT distinct C.DMC-->
-        <!--FROM caq.MeasurementGeneralData A-->
-        <!--left join caq.DMCMeasurements C on A.ID = C.General-->
-        <!--where station = '10' and C.Ok = 1-->
-        <!--and JobID = 14-->
-        <!--and Date < '2018-01-31 07:00' and Date > '2018-01-30 07:30'-->
-        <!--)  and A.station = '10' and A.OK = 1 and C.General = A.ID-->
-        <!--group by DMC-->
-        <!--having Min(A.Date) < '2018-01-31 07:00'  and Min(A.Date) >  '2018-01-30 07:30'-->
-        <!--order by summary desc, measureDate-->
+        <!--select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",
+        Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary
+        from caq.DMCMeasurements C, caq.MeasurementGeneralData A  where DMC in
+        (
+        SELECT distinct C.DMC
+        FROM caq.MeasurementGeneralData A
+        left join caq.DMCMeasurements C on A.ID = C.General
+        where station = '10' and C.Ok = 1
+        and JobID = 14
+        and Date < '2018-01-31 07:00' and Date > '2018-01-30 07:30'
+        )  and A.station = '10' and A.OK = 1 and C.General = A.ID
+        group by DMC
+        having Min(A.Date) < '2018-01-31 07:00'  and Min(A.Date) >  '2018-01-30 07:30'
+        order by summary desc, measureDate-->
 
         select  Min(A.ID) as "ID", Min(PartNumber) as "PartNumber", Min(Variety) as "Variety",
         Min(A.Date) as measureDate ,Max(A.Date) as maxDate , Min(C.DMC) as dmc, count(*) as summary
@@ -474,6 +474,18 @@
         select
         DISTINCT variety as "Variety"
         from <include refid="queryTable" />
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+
+    <!--select part online information for zk/zkg/kw-->
+    <select id="selectPartOnlineList" resultType="MeasureData">
+        select A.PartNumber as "PartNumber",A.Variety as "Variety",
+        A.zkg as "type",A.kw as "dmc",
+        right(A.zk,5) as "total", A.measureDate as "measureDate"
+        from <include refid="queryTable_DMCDaily" /> A
         <where>
             ${ew.sqlSegment}
         </where>

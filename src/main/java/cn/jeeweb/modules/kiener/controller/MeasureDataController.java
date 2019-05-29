@@ -300,9 +300,9 @@ public class MeasureDataController extends BaseCRUDController<MeasureData, Long>
     @Override
     public void preAjaxList(Queryable queryable,EntityWrapper<MeasureData> entityWrapper, HttpServletRequest request, HttpServletResponse response) {
 
-        DataSourceContextHolder.setDbType("dataSource1");
+//        DataSourceContextHolder.setDbType("dataSource1");
 //      change to the production enviroment
-//      DataSourceContextHolder.setDbType("dataSource_production");
+      DataSourceContextHolder.setDbType("dataSource_production");
     }
 
     /*

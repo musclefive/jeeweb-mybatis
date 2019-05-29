@@ -15,4 +15,5 @@ public interface UserLeaveMapper extends BaseMapper<UserLeave> {
 
     public UserLeave selectUserByID(String id);
 
+    public void addUser(UserLeave user);
 }

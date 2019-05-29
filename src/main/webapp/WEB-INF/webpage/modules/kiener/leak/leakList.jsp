@@ -512,15 +512,17 @@
 					{
 	//					name : "Leak"
 						turboThreshold:0,
-						color: '#1C86EE'
+						color: '#00CD00'
 					},{
 						name : "UW-T",
 						turboThreshold:0,
-						color: '#FF3030'
+						dashStyle : "longdashdot",
+						color: '#0000FF'
 					},{
 						name : "DW-T",
 						turboThreshold:0,
-						color: '#FF7256'
+						dashStyle : "longdashdot",
+						color: '#0000FF'
 					}]
 			};
 
